@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 01:41:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/02 03:07:58 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/02 22:14:45 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,82 @@ int	is_sep(char st, char c)
 		return (1);
 	else
 		return (0);
+}
+
+int	count_words(char const *s, char c)
+{
+	int	i;
+	int	cnt;
+
+	cnt = 0;
+	i = 0;
+	while (s[i])
+	{
+		if (i == 0)
+		{
+			if (!is_sep(s[i], c))
+				cnt++;
+		}
+		else
+		{
+			if (!is_sep(s[i], c) == 0 && is_sep(s[i - 1], c))
+				cnt++;
+		}
+		i++;
+	}
+	return (cnt);
+}
+
+void	insert_split(char const *s, char c, char *res_split)
+{
+	int	i;
+
+	i = 0;
+	while (!(is_sep(s[i], c)))
+	{
+		res_split[i] = s[i];
+		i++;
+	}
+	res_split[i] = '\0';
+}
+
+void	alloc_split(char const *s, char c, char **res_split)
+{
+	int	i;
+	int	j;
+	int	res_idx;
+
+	res_idx = 0;
+	i = 0;
+	while (s[i])
+	{
+		if (is_sep(s[i], c))
+			i++;
+		else
+		{
+			j = 0;
+			while (!(is_sep(s[i + j], c))
+				j++;
+			res_split[res_idx] = (char)malloc(sizeof(char) * (j + 1));
+			if (res_split[res_idx] == NULL)
+				return ;
+			insert_split(s + i, c, res_split[res_idx]);
+			res_idx++;
+			i += j;
+		}
+	}
+}
 
 char	**ft_split(char const *s, char c)
 {
-	int	cnt_word;
+	int		words;
+	char	**res_split;
 
-	cnt_word = 
+	words = count_words(s, c);
+	res_split = (char **)malloc(sizeof(char *) * (words + 1));
+	if (res_split == NULL)
+		return (NULL);
+	res_split[words] = 0;
+	alloc_split(s, c, res_split);
+	return (res_split);
+}
