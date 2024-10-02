@@ -3,21 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 01:41:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/02 22:14:45 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/03 02:10:22 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int	is_sep(char st, char c) 
+int	is_sep(char st, char c)
 {
-	if (st == c || st == '\0')
-		return (1);
-	else
-		return (0);
+	return (st == c || st == '\0');
 }
 
 int	count_words(char const *s, char c)
@@ -36,7 +33,7 @@ int	count_words(char const *s, char c)
 		}
 		else
 		{
-			if (!is_sep(s[i], c) == 0 && is_sep(s[i - 1], c))
+			if (!is_sep(s[i], c) && is_sep(s[i - 1], c))
 				cnt++;
 		}
 		i++;
@@ -49,7 +46,7 @@ void	insert_split(char const *s, char c, char *res_split)
 	int	i;
 
 	i = 0;
-	while (!(is_sep(s[i], c)))
+	while (!is_sep(s[i], c))
 	{
 		res_split[i] = s[i];
 		i++;
@@ -72,9 +69,9 @@ void	alloc_split(char const *s, char c, char **res_split)
 		else
 		{
 			j = 0;
-			while (!(is_sep(s[i + j], c))
+			while (!is_sep(s[i + j], c))
 				j++;
-			res_split[res_idx] = (char)malloc(sizeof(char) * (j + 1));
+			res_split[res_idx] = (char *)malloc(sizeof(char) * (j + 1));
 			if (res_split[res_idx] == NULL)
 				return ;
 			insert_split(s + i, c, res_split[res_idx]);
