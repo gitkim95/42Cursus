@@ -3,30 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 22:04:06 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 13:36:02 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/03 17:26:13 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
 char	*ft_strdup(const char *s)
 {
 	char	*new_str;
-	int		s_len;
-	int		i;
+	size_t	s_len;
+	size_t	i;
 
 	s_len = ft_strlen(s);
 	new_str = (char *)malloc(sizeof(char) * (s_len + 1));

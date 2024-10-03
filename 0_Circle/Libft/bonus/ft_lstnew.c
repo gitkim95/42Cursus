@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 18:14:15 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 17:26:09 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/03 17:43:48 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/03 17:48:11 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+t_list	*ft_lstnew(void *content)
 {
-	size_t	i;
+	t_list	*new_node;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	new_node = (t_list *)malloc(sizeof(t_list));
+	new_node -> content = content;
+	new_node -> next = NULL;
+	return (new_node);
 }

@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 18:14:15 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 17:26:09 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/03 17:01:38 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/03 17:06:00 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	size_t	i;
+	unsigned int	i;
+	unsigned int	s_len;
 
+	s_len = ft_strlen(s);
 	i = 0;
-	while (s[i])
+	while (i < s_len)
+	{
+		(*f)(i, &s[i]);
 		i++;
-	return (i);
+	}
 }

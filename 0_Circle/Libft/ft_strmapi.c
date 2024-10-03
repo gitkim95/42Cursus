@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 18:14:15 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 17:26:09 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/03 16:51:12 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/03 17:25:56 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	i;
+	char			*result;
+	unsigned int	i;
+	unsigned int	s_len;
 
+	s_len = ft_strlen(s);
+	result = (char *)malloc(sizeof(char) * (s_len + 1));
+	if (result == NULL)
+		return (NULL);
 	i = 0;
-	while (s[i])
+	while (i < s_len)
+	{
+		result[i] = (*f)(i, s[i]);
 		i++;
-	return (i);
+	}
+	return (result);
 }

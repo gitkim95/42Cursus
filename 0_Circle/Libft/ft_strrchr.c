@@ -3,28 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 20:49:58 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 13:38:42 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/03 17:25:58 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
 char	*ft_strrchr(const char *s, int c)
 {
-	int	s_idx;
+	size_t	s_idx;
 
 	s_idx = ft_strlen(s) - 1;
 	while (s_idx >= 0)
