@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 23:06:00 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 22:22:26 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/04 02:15:50 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strcat(char *dst, char const *src, int *offset)
 	while (src[i])
 	{
 		dst[*offset] = src[i];
-		offset++;
+		(*offset)++;
 		i++;
 	}
 	dst[*offset] = '\0';

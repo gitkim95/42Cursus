@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 23:24:13 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 22:29:51 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/04 01:20:15 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	alloc_result(char const *s1, char const *set, char *result)
+void	alloc_result(char const *s1, char const *set, char **result)
 {
 	int	s1_idx;
 	int	set_idx;
@@ -33,7 +33,7 @@ void	alloc_result(char const *s1, char const *set, char *result)
 			cnt++;
 		s1_idx++;
 	}
-	result = (char *)malloc(sizeof(char) * (cnt + 1));
+	*result = (char *)malloc(sizeof(char) * (cnt + 1));
 }
 
 void	trim_paste(char const *s1, char const *set, char *result)
@@ -68,7 +68,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*result;
 
 	result = NULL;
-	alloc_result(s1, set, result);
+	alloc_result(s1, set, &result);
 	if (result == NULL)
 		return (NULL);
 	trim_paste(s1, set, result);

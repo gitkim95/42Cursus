@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:07:04 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 12:44:43 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/04 01:23:32 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_isascii(int c)
 {
 	if (0 <= c && c <= 127)
-		return (c);
+		return (1);
 	else
 		return (0);
 }
