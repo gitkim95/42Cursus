@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr      +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:06:47 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/01 19:08:09 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/03 12:55:49 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_tolower(int c)
 {

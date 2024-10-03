@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr      +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 23:06:00 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/01 23:23:52 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/03 13:37:21 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
 int	ft_strlen(char *s)
 {
@@ -29,11 +29,11 @@ char	*ft_strcat(char *dst, char *src, int *offset)
 	i = 0;
 	while (src[i])
 	{
-		dst[offset] = src[i];
+		dst[*offset] = src[i];
 		offset++;
 		i++;
 	}
-	dst[offset] = '\0';
+	dst[*offset] = '\0';
 	return (dst);
 }
 

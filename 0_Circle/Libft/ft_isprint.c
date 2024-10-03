@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr      +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:13:06 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/01 18:13:55 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/03 12:44:56 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_isprint(int c)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr      +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:39:16 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/01 18:48:38 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/03 12:54:05 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
@@ -28,7 +28,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		ch_dest[i] = tmp[i];
+		ch_dst[i] = tmp[i];
 		i++;
 	}
 	return (dest);
