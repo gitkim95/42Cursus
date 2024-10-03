@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 17:32:17 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 17:40:46 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/03 22:31:27 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
+	char	tmp;
+
 	if (n < 0)
 	{
 		if (n == -2147483648)
@@ -26,5 +28,6 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 	if (n >= 10)
 		ft_putnbr_fd(n / 10, fd);
-	write(fd, n % 10 + '0', 1);
+	tmp = n % 10 + '0';
+	write(fd, &tmp, 1);
 }

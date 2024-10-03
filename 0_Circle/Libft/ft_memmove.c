@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:39:16 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 15:18:49 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/03 22:33:22 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 
 	ch_dst = (char *)dest;
 	ch_src = (char *)src;
-	if (ch_dst > ch_src && (ch_dst - ch_src < n))
+	if (ch_dst > ch_src && (size_t)(ch_dst - ch_src) < n)
 	{
 		return (sequential(ch_dst, ch_src, n));
 	}
-	if (ch_dst < ch_src && (ch_src - ch_dst < n))
+	if (ch_dst < ch_src && (size_t)(ch_src - ch_dst) < n)
 	{
 		return (reverse(ch_dst, ch_src, n));
 	}

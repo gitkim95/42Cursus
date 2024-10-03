@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 21:28:23 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 13:35:23 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/03 22:55:47 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_atoi(const char *nptr)
 		return (0);
 	while ('0' <= nptr[i] && nptr[i] <= '9')
 	{
-		result = result * 10 + (nptr - '0');
+		result = result * 10 + (nptr[i] - '0');
 		i++;
 	}
 	return (result);

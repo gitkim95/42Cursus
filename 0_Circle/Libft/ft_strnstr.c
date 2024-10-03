@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 21:17:21 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 13:34:59 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/03 22:52:06 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,24 @@
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	char	*b_pnt;
-	char	*l_pnt;
+	const char	*b_pnt;
+	const char	*l_pnt;
 	size_t	i;
 
 	if (little[0] == '\0')
-		return (big);
+		return ((char *)big);
 	i = 0;
-	while (big && i < len)
+	while (big[i] && i < len)
 	{
-		b_pnt = big;
+		b_pnt = big + i;
 		l_pnt = little;
-		while (b_pnt == l_pnt && b_pnt != '\0' && l_pnt != '\0')
+		while (*b_pnt == *l_pnt && *b_pnt != '\0' && *l_pnt != '\0')
 		{
 			b_pnt++;
 			l_pnt++;
 		}
-		if (l_pnt == '\0')
-			return (big);
-		big++;
+		if (*l_pnt == '\0')
+			return ((char *)big + i);
 		i++;
 	}
 	return (NULL);

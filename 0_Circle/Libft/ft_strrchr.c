@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 20:49:58 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 17:25:58 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/03 22:34:48 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strrchr(const char *s, int c)
 	while (s_idx >= 0)
 	{
 		if (s[s_idx] == c)
-			return (s + s_idx);
+			return ((char *)(s + s_idx));
 		s_idx--;
 	}
 	return (0);

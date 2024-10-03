@@ -6,13 +6,13 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 23:06:00 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 17:40:15 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/03 22:22:26 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcat(char *dst, char *src, int *offset)
+char	*ft_strcat(char *dst, char const *src, int *offset)
 {
 	int	i;
 
