@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 21:17:21 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 22:52:06 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/03 23:07:25 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	const char	*b_pnt;
 	const char	*l_pnt;
-	size_t	i;
+	size_t		i;
 
 	if (little[0] == '\0')
 		return ((char *)big);
