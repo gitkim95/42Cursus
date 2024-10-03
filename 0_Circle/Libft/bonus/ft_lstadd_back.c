@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 17:43:48 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 21:42:56 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/03 19:36:56 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/03 20:04:13 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*new_node;
+	t_list	*last_lst;
 
-	new_node = (t_list *)malloc(sizeof(t_list));
-	if (new_node == NULL)
-		return (NULL);
-	new_node -> content = content;
-	new_node -> next = NULL;
-	return (new_node);
+	if (!lst || !new)
+		return ;
+	if (*lst == NULL)
+	{
+		*lst = new;
+		new -> next = NULL;
+		return ;
+	}
+	last_lst = ft_lstlast(*lst);
+	last_lst -> next = new;
+	new -> next = NULL;
 }

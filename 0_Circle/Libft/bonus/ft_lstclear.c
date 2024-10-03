@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 17:43:48 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 21:42:56 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/03 20:05:38 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/03 20:14:52 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_list	*new_node;
+	t_list	*tmp;
 
-	new_node = (t_list *)malloc(sizeof(t_list));
-	if (new_node == NULL)
-		return (NULL);
-	new_node -> content = content;
-	new_node -> next = NULL;
-	return (new_node);
+	while (*lst)
+	{
+		tmp = *lst;
+		(*del)(tmp -> content);
+		*lst = tmp -> next;
+		free(tmp);
+	}
+	*lst = NULL;
 }
