@@ -3,18 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 01:41:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 13:37:57 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/06 04:05:35 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	is_sep(char st, char c)
+void	free_alloc(char **res, int idx)
 {
-	return (st == c || st == '\0');
+	int	i;
+
+	i = 0;
+	if (res)
+	{
+		while (i < idx)
+		{
+			free(res[i]);
+			i++;
+		}
+		free(res);
+	}
 }
 
 int	count_words(char const *s, char c)
@@ -28,12 +39,12 @@ int	count_words(char const *s, char c)
 	{
 		if (i == 0)
 		{
-			if (!is_sep(s[i], c))
+			if (!(s[i] == c || s[i] == '\0'))
 				cnt++;
 		}
 		else
 		{
-			if (!is_sep(s[i], c) && is_sep(s[i - 1], c))
+			if (!(s[i] == c || s[i] == '\0') && (s[i - 1] == c))
 				cnt++;
 		}
 		i++;
@@ -46,7 +57,7 @@ void	insert_split(char const *s, char c, char *res_split)
 	int	i;
 
 	i = 0;
-	while (!is_sep(s[i], c))
+	while (!(s[i] == c || s[i] == '\0'))
 	{
 		res_split[i] = s[i];
 		i++;
@@ -64,20 +75,22 @@ void	alloc_split(char const *s, char c, char **res_split)
 	i = 0;
 	while (s[i])
 	{
-		if (is_sep(s[i], c))
-			i++;
-		else
+		if ((s[i] == c || s[i] == '\0'))
 		{
-			j = 0;
-			while (!is_sep(s[i + j], c))
-				j++;
-			res_split[res_idx] = (char *)malloc(sizeof(char) * (j + 1));
-			if (res_split[res_idx] == NULL)
-				return ;
-			insert_split(s + i, c, res_split[res_idx]);
-			res_idx++;
-			i += j;
+			i++;
+			continue;
 		}
+		j = 0;
+		while (!(s[i + j] == c || s[i + j] == '\0'))
+			j++;
+		res_split[res_idx] = (char *)malloc(sizeof(char) * (j + 1));
+		if (res_split[res_idx] == NULL)
+		{
+			free_alloc(res_split, res_idx);
+			return ;
+		}
+		insert_split(s + i, c, res_split[res_idx++]);
+		i += j;
 	}
 }
 
