@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 01:41:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/06 04:05:35 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/06 04:17:36 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	alloc_split(char const *s, char c, char **res_split)
 		if ((s[i] == c || s[i] == '\0'))
 		{
 			i++;
-			continue;
+			continue ;
 		}
 		j = 0;
 		while (!(s[i + j] == c || s[i + j] == '\0'))
