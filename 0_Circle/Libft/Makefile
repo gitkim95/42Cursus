@@ -37,20 +37,23 @@ SOURCES = ft_calloc.c \
 	ft_atoi.c \
 	ft_strdup.c \
 	ft_itoa.c \
-	ft_strmapi.c \
-	bonus/ft_lstnew.c \
-	bonus/ft_lstadd_front.c \
-	bonus/ft_lstsize.c \
-	bonus/ft_lstlast.c \
-	bonus/ft_lstadd_back.c \
-	bonus/ft_lstdelone.c \
-	bonus/ft_lstclear.c \
-	bonus/ft_lstiter.c \
-	bonus/ft_lstmap.c
+	ft_strmapi.c
+
+BSRCS = ft_lstnew.c \
+	ft_lstadd_front.c \
+	ft_lstsize.c \
+	ft_lstlast.c \
+	ft_lstadd_back.c \
+	ft_lstdelone.c \
+	ft_lstclear.c \
+	ft_lstiter.c \
+	ft_lstmap.c
 
 OBJS = $(SOURCES:%.c=%.o)
 
-.PHONY : all clean fclean re
+BOBJS = $(BSRCS:%.c=%.o)
+
+.PHONY : all clean fclean re bonus
 
 all : $(NAME)
 
@@ -61,9 +64,13 @@ $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(BOBJS)
 
 fclean : clean
 	rm -f $(NAME)
 
 re : fclean all
+
+bonus : $(BOBJS)
+	$(CC) $(CFLAGS) -c $(BSRCS)
+	ar rc $(NAME) $(BOBJS)
