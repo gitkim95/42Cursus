@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:08:28 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/04 01:51:28 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/05 23:04:28 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	char	*str;
 
-	i = 0;
-	while (s[i])
+	str = (char *)s;
+	while (*str)
 	{
-		if (s[i] == c)
-			return ((char *)(s + i));
-		i++;
+		if (*str == (char)c)
+			return (str);
+		str++;
 	}
-	if (s[i] == c)
-		return ((char *)(s + i));
-	return (0);
+	if (*str == c)
+		return (str);
+	return (NULL);
 }

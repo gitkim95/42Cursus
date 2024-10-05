@@ -53,11 +53,17 @@ OBJS = $(SOURCES:%.c=%.o)
 
 BOBJS = $(BSRCS:%.c=%.o)
 
+ifdef WITH_BONUS
+    OBJ_FILE = $(OBJS) $(BOBJS)
+else
+    OBJ_FILE = $(OBJS)
+endif
+
 .PHONY : all clean fclean re bonus
 
 all : $(NAME)
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJ_FILE)
 	ar rc $@ $^
 
 %.o : %.c
@@ -71,6 +77,5 @@ fclean : clean
 
 re : fclean all
 
-bonus : $(BOBJS)
-	$(CC) $(CFLAGS) -c $(BSRCS)
-	ar rc $(NAME) $(BOBJS)
+bonus: $(OBJ_FILE)
+	@make WITH_BONUS=1 all

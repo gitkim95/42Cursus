@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 16:51:12 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 17:25:56 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/06 00:57:02 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		result[i] = (*f)(i, s[i]);
 		i++;
 	}
+	result[i] = '\0';
 	return (result);
 }
