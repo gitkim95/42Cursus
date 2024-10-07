@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 17:13:31 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 17:41:00 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/07 11:58:00 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_putstr_fd(char *s, int fd)
 {
 	size_t	s_len;
 
-	if (s == NULL)
+	if (!s)
 		return ;
 	s_len = ft_strlen(s);
 	write(fd, s, s_len);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 01:41:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/06 04:17:36 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/07 12:08:05 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	count_words(char const *s, char c)
 	int	i;
 	int	cnt;
 
+	if (!s)
+		return (0);
 	cnt = 0;
 	i = 0;
 	while (s[i])
@@ -104,6 +106,8 @@ char	**ft_split(char const *s, char c)
 	if (res_split == NULL)
 		return (NULL);
 	res_split[words] = 0;
+	if (!words)
+		return (res_split);
 	alloc_split(s, c, res_split);
 	return (res_split);
 }
