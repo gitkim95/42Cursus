@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 23:24:13 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/04 15:35:37 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/07 03:42:07 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	trim_paste(char const *s1, char *result, int offset)
+void	trim_paste(char const *s1, char *result, size_t offset)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (*s1 && i < offset)
@@ -29,8 +29,8 @@ void	trim_paste(char const *s1, char *result, int offset)
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*result;
-	int		front;
-	int		back;
+	size_t		front;
+	size_t		back;
 
 	front = 0;
 	back = ft_strlen(s1);

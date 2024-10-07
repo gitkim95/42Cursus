@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:39:16 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/04 01:43:36 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/07 04:05:00 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,13 @@ void	*reverse(char *dest, char *src, size_t n)
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char	*ch_dst;
-	char	*ch_src;
+	unsigned char	*ch_dst;
+	unsigned char	*ch_src;
 
-	ch_dst = (char *)dest;
-	ch_src = (char *)src;
+	if (!src || !dest)
+		return (NULL);
+	ch_dst = (unsigned char *)dest;
+	ch_src = (unsigned char *)src;
 	if (ch_dst > ch_src && (size_t)(ch_dst - ch_src) < n)
 	{
 		return (reverse(ch_dst, ch_src, n));

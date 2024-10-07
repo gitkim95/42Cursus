@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:28:06 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 23:07:39 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/07 04:06:00 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	*ft_memset(void *s, int c, size_t n)
 {
 	size_t	i;
-	char	*area;
+	unsigned char	*area;
 
-	area = (char *)s;
+	area = (unsigned char *)s;
 	i = 0;
 	while (i < n)
 	{
-		area[i] = c;
+		area[i] = (unsigned char)c;
 		i++;
 	}
 	return (s);

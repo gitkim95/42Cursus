@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 21:12:46 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/05 22:53:51 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/07 03:54:12 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	unsigned char	*str_1;
 	unsigned char	*str_2;
 
+	if (!s1 || !s2)
+		return (0);
 	str_1 = (unsigned char *)s1;
 	str_2 = (unsigned char *)s2;
 	i = 0;
