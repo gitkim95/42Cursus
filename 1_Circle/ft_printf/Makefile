@@ -29,10 +29,3 @@ fclean : clean
 	rm -f $(NAME)
 
 re : fclean all
-
-bonus: $(BOBJS)
-	@if [ ! -f $(NAME) ]; then \
-		ar rc $(NAME) $^; \
-	else \
-		ar r $(NAME) $^; \
-	fi
