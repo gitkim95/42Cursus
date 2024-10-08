@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 16:51:12 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/06 00:57:02 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/08 18:58:11 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	unsigned int	i;
 	unsigned int	s_len;
 
+	if (!s || !f)
+		return (NULL);
 	s_len = ft_strlen(s);
 	result = (char *)malloc(sizeof(char) * (s_len + 1));
 	if (result == NULL)
