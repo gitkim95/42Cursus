@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:21:34 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/09 01:52:35 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/09 15:16:19 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,18 @@
 # include <stdlib.h> // malloc, free
 # include <unistd.h> // write
 # include <stdarg.h> // va_start, va_copy, va_arg, va_end
+
+typedef struct s_check
+{
+	int		type;
+	int		width;
+	int		precision;
+	char	flag;
+}	t_check;
+
+# define TYPES "cspdiuxX%"
+# define LOWCASE "0123456789abcdef"
+# define UPCASE "0123456789ABCDEF"
 
 #endif
 

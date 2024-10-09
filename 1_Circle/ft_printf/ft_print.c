@@ -1,45 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/06 20:05:18 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/09 18:06:55 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/09 17:12:19 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/09 18:33:34 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 #include "../Libft/libft.h"
 
-int	pasing_type(char arg, va_list ap)
+int	print_c_p(char arg, va_list ap)
 {
-	int	length;
-	if (ft_strchr(TYPES, arg))
-	{
-		if (arg == 'c' || arg == '%')
-			length = print_ch_pct(arg, ap);
-	}
+	int		length;
+	char	c;
+
+	length = ft_printchar(c);
 	return (length);
 }
-
-int	ft_printf(const char *str, ...)
+int	print_s(char arg, va_list ap)
 {
-	va_list ap;
-	int		i;
-	int		ret_len;
+	int	length;
 
-	va_start(ap, str);
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '%')
-		{
-			if (str[i + 1])
-			{
-				ret_len += pasing_type(str[i + 1]);
-			}
-		}
-	}
+	length = 0;
 }
+int	print_p(char arg, va_list ap)
+{
+	int	length;
+
+	length = 0;
+}
+int	print_d_i(char arg, va_list ap)
+{
+	int	length;
+
+	length = 0;
+}
+int	print_shex(char arg, va_list ap)
+{
+	int	length;
+
+	length = 0;
+}
+int	print_bhex(char arg, va_list ap)
+{
+	int	length;
+
+	length = 0;
+}
+

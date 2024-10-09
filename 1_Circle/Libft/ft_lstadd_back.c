@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 20:56:17 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/09 18:33:22 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/03 19:36:56 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/06 04:08:14 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	size_t			i;
-	unsigned char	*s_1;
-	unsigned char	*s_2;
+	t_list	*last_lst;
 
-	s_1 = (unsigned char *)s1;
-	s_2 = (unsigned char *)s2;
-	i = 0;
-	while (s_1[i] && s_2[i] && i < n)
+	if (!lst || !new)
+		return ;
+	if (*lst == NULL)
+		*lst = new;
+	else
 	{
-		if (s_1[i] != s_2[i])
-			return (s_1[i] - s_2[i]);
-		i++;
+		last_lst = ft_lstlast(*lst);
+		last_lst -> next = new;
 	}
-	if (i < n)
-		return (s_1[i] - s_2[i]);
-	return (0);
 }

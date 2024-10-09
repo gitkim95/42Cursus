@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 18:35:59 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/07 03:57:34 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/01 18:32:13 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/03 12:45:42 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-	size_t			i;
-	unsigned char	*ch_dst;
-	unsigned char	*ch_src;
+	size_t	i;
+	char	*str;
 
-	if (!src || !dest)
-		return (NULL);
-	ch_src = (unsigned char *)src;
-	ch_dst = (unsigned char *)dest;
+	str = (char *)s;
 	i = 0;
 	while (i < n)
 	{
-		ch_dst[i] = ch_src[i];
+		str[i] = 0;
 		i++;
 	}
-	return (dest);
 }

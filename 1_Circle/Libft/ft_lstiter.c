@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 18:35:59 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/07 03:57:34 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/03 20:15:15 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/07 03:46:54 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	size_t			i;
-	unsigned char	*ch_dst;
-	unsigned char	*ch_src;
-
-	if (!src || !dest)
-		return (NULL);
-	ch_src = (unsigned char *)src;
-	ch_dst = (unsigned char *)dest;
-	i = 0;
-	while (i < n)
+	if (!f)
+		return ;
+	while (lst)
 	{
-		ch_dst[i] = ch_src[i];
-		i++;
+		(*f)(lst -> content);
+		lst = lst -> next;
 	}
-	return (dest);
 }

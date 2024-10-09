@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 20:56:17 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/09 18:33:22 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/03 17:01:38 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/08 18:51:14 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	size_t			i;
-	unsigned char	*s_1;
-	unsigned char	*s_2;
+	unsigned int	i;
+	unsigned int	s_len;
 
-	s_1 = (unsigned char *)s1;
-	s_2 = (unsigned char *)s2;
+	if (!s || !f)
+		return ;
+	s_len = ft_strlen(s);
 	i = 0;
-	while (s_1[i] && s_2[i] && i < n)
+	while (i < s_len)
 	{
-		if (s_1[i] != s_2[i])
-			return (s_1[i] - s_2[i]);
+		(*f)(i, &s[i]);
 		i++;
 	}
-	if (i < n)
-		return (s_1[i] - s_2[i]);
-	return (0);
 }

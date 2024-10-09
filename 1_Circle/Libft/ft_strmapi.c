@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 20:56:17 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/09 18:33:22 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/03 16:51:12 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/08 18:58:11 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t			i;
-	unsigned char	*s_1;
-	unsigned char	*s_2;
+	char			*result;
+	unsigned int	i;
+	unsigned int	s_len;
 
-	s_1 = (unsigned char *)s1;
-	s_2 = (unsigned char *)s2;
+	if (!s || !f)
+		return (NULL);
+	s_len = ft_strlen(s);
+	result = (char *)malloc(sizeof(char) * (s_len + 1));
+	if (result == NULL)
+		return (NULL);
 	i = 0;
-	while (s_1[i] && s_2[i] && i < n)
+	while (i < s_len)
 	{
-		if (s_1[i] != s_2[i])
-			return (s_1[i] - s_2[i]);
+		result[i] = (*f)(i, s[i]);
 		i++;
 	}
-	if (i < n)
-		return (s_1[i] - s_2[i]);
-	return (0);
+	result[i] = '\0';
+	return (result);
 }

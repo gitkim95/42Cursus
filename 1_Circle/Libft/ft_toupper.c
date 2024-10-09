@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 20:56:17 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/09 18:33:22 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/01 18:51:19 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/03 17:26:22 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_toupper(int c)
 {
-	size_t			i;
-	unsigned char	*s_1;
-	unsigned char	*s_2;
+	int	to_up;
 
-	s_1 = (unsigned char *)s1;
-	s_2 = (unsigned char *)s2;
-	i = 0;
-	while (s_1[i] && s_2[i] && i < n)
+	if ('a' <= c && c <= 'z')
 	{
-		if (s_1[i] != s_2[i])
-			return (s_1[i] - s_2[i]);
-		i++;
+		to_up = c - 32;
+		return (to_up);
 	}
-	if (i < n)
-		return (s_1[i] - s_2[i]);
-	return (0);
+	else
+		return (c);
 }

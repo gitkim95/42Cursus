@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 18:35:59 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/07 03:57:34 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/03 20:17:06 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/07 03:48:25 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *),
+		void (*del)(void *))
 {
-	size_t			i;
-	unsigned char	*ch_dst;
-	unsigned char	*ch_src;
+	t_list	*new_list;
+	t_list	**lst_pnt;
+	t_list	*tmp;
 
-	if (!src || !dest)
+	if (!f)
 		return (NULL);
-	ch_src = (unsigned char *)src;
-	ch_dst = (unsigned char *)dest;
-	i = 0;
-	while (i < n)
+	new_list = NULL;
+	lst_pnt = &new_list;
+	while (lst)
 	{
-		ch_dst[i] = ch_src[i];
-		i++;
+		tmp = ft_lstnew((*f)(lst -> content));
+		if (tmp == NULL)
+		{
+			ft_lstclear(&new_list, del);
+			return (NULL);
+		}
+		*lst_pnt = tmp;
+		lst_pnt = &tmp -> next;
+		lst = lst -> next;
 	}
-	return (dest);
+	return (new_list);
 }

@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 20:56:17 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/09 18:33:22 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/01 18:14:15 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/08 18:51:48 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+size_t	ft_strlen(const char *s)
 {
-	size_t			i;
-	unsigned char	*s_1;
-	unsigned char	*s_2;
+	size_t	i;
 
-	s_1 = (unsigned char *)s1;
-	s_2 = (unsigned char *)s2;
+	if (!s)
+		return (0);
 	i = 0;
-	while (s_1[i] && s_2[i] && i < n)
-	{
-		if (s_1[i] != s_2[i])
-			return (s_1[i] - s_2[i]);
+	while (s[i])
 		i++;
-	}
-	if (i < n)
-		return (s_1[i] - s_2[i]);
-	return (0);
+	return (i);
 }

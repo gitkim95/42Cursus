@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 20:56:17 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/09 18:33:22 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/01 22:04:06 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/08 18:50:11 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_strdup(const char *s)
 {
-	size_t			i;
-	unsigned char	*s_1;
-	unsigned char	*s_2;
+	char	*new_str;
+	size_t	s_len;
+	size_t	i;
 
-	s_1 = (unsigned char *)s1;
-	s_2 = (unsigned char *)s2;
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	new_str = (char *)malloc(sizeof(char) * (s_len + 1));
+	if (new_str == NULL)
+		return (NULL);
 	i = 0;
-	while (s_1[i] && s_2[i] && i < n)
+	while (i < s_len)
 	{
-		if (s_1[i] != s_2[i])
-			return (s_1[i] - s_2[i]);
+		new_str[i] = s[i];
 		i++;
 	}
-	if (i < n)
-		return (s_1[i] - s_2[i]);
-	return (0);
+	new_str[i] = '\0';
+	return (new_str);
 }

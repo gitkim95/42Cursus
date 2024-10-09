@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 20:56:17 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/09 18:33:22 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/01 18:50:42 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/03 17:26:05 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t			i;
-	unsigned char	*s_1;
-	unsigned char	*s_2;
+	size_t	d_len;
+	size_t	s_len;
+	size_t	i;
 
-	s_1 = (unsigned char *)s1;
-	s_2 = (unsigned char *)s2;
 	i = 0;
-	while (s_1[i] && s_2[i] && i < n)
+	s_len = ft_strlen(src);
+	d_len = ft_strlen(dst);
+	if (size <= d_len)
+		return (s_len + size);
+	while (src[i] != '\0' && i < size - 1 - d_len)
 	{
-		if (s_1[i] != s_2[i])
-			return (s_1[i] - s_2[i]);
+		dst[d_len + i] = src[i];
 		i++;
 	}
-	if (i < n)
-		return (s_1[i] - s_2[i]);
-	return (0);
+	dst[d_len + i] = '\0';
+	return (s_len + d_len);
 }
