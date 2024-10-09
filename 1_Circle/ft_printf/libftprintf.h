@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student42.gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:21:34 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/09 15:16:19 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/10 02:22:28 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,19 @@ typedef struct s_check
 # define TYPES "cspdiuxX%"
 # define LOWCASE "0123456789abcdef"
 # define UPCASE "0123456789ABCDEF"
+
+int	ft_printchar(char c);
+int	ft_printstr(char *s); // printtext;
+
+int	parsing_type(char arg, va_list ap); // printf;
+
+int	print_c_p(char arg, va_list ap);
+int	print_s(char arg, va_list ap);
+int	print_p(char arg, va_list ap);
+int	print_d_i(char arg, va_list ap);
+int	print_shex(char arg, va_list ap);
+int	print_bhex(char arg, va_list ap); // typematch
+
 
 #endif
 
