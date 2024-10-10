@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student42.gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 18:39:16 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/07 04:05:00 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/10 23:26:43 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*sequential(char *dest, char *src, size_t n)
+void	*sequential(unsigned char *dest, unsigned char *src, size_t n)
 {
 	size_t	i;
 
@@ -25,7 +25,7 @@ void	*sequential(char *dest, char *src, size_t n)
 	return (dest);
 }
 
-void	*reverse(char *dest, char *src, size_t n)
+void	*reverse(unsigned char *dest, unsigned char *src, size_t n)
 {
 	size_t	i;
 

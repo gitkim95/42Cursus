@@ -49,9 +49,9 @@ BSRCS = ft_lstnew.c \
 	ft_lstiter.c \
 	ft_lstmap.c
 
-OBJS = $(SOURCES:%.c=%.o)
+OBJS = $(SOURCES:.c=.o)
 
-BOBJS = $(BSRCS:%.c=%.o)
+BOBJS = $(BSRCS:.c=.o)
 
 .PHONY : all clean fclean re bonus
 

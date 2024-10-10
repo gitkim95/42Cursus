@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student42.gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 20:05:18 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/10 19:20:04 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/11 00:06:03 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include "../Libft/libft.h"
 
 int	parsing_type(char arg, va_list ap)
 {
@@ -22,15 +21,15 @@ int	parsing_type(char arg, va_list ap)
 		if (arg == 'c' || arg == '%')
 			length = print_c_p(arg, ap);
 		if (arg == 's')
-			length = print_s(arg, ap);
+			length = print_s(ap);
 		if (arg == 'u')
-			length = print_u(arg, ap);
+			length = print_u(ap);
 		if (arg == 'd' || arg == 'i')
-			length = print_d_i(arg, ap);
+			length = print_d_i(ap);
 		if (arg == 'X' || arg == 'x')
 			length = print_hex(arg, ap);
 		if (arg == 'p')
-			length = print_p(arg, ap);
+			length = print_p(ap);
 	}
 	else
 		return (-1);
@@ -39,7 +38,7 @@ int	parsing_type(char arg, va_list ap)
 
 int	ft_printf(const char *str, ...)
 {
-	va_list ap;
+	va_list	ap;
 	int		ret_len;
 	int		tmp;
 
@@ -49,9 +48,9 @@ int	ft_printf(const char *str, ...)
 	{
 		if (*str == '%')
 		{
-			if (*(str + 1))
+			if (*++str)
 			{
-				tmp = parsing_type((char)*(str + 1), ap);
+				tmp = parsing_type((char)*str, ap);
 				if (tmp == -1)
 					return (-1);
 				ret_len += tmp;
@@ -63,4 +62,31 @@ int	ft_printf(const char *str, ...)
 	}
 	va_end(ap);
 	return (ret_len);
+}
+#include <stdio.h>
+int	main ()
+{
+	int a = 1000000;
+	char b[10] = "abcdefghij";
+	char c = 't';
+	ft_printf("ft_printf.d : %d\n", a);
+	printf("printf.d : %d\n", a);
+	ft_printf("ft_printf.i : %i\n", a);
+	printf("printf.i : %i\n", a);
+	ft_printf("ft_printf.u : %u\n", a);
+	printf("printf.u : %u\n", a);
+	ft_printf("ft_printf.x : %x\n", a);
+	printf("printf.x : %x\n", a);
+	ft_printf("ft_printf.X : %X\n", a);
+	printf("printf.X : %X\n", a);
+	ft_printf("ft_printf.p : %p\n", &a);
+	printf("printf.p : %p\n", &a);
+	ft_printf("ft_printf.s : %s\n", b);
+	printf("printf.s : %s\n", b);
+	ft_printf("ft_printf.c : %c\n", c);
+	printf("printf.c : %c\n", c);
+	ft_printf("ft_printf.%%\n");
+	printf("printf.%%\n");
+
+	return (0);
 }

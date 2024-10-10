@@ -4,15 +4,15 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = libftprintf.a
 
-SOURCES = 
+SOURCES = ft_output.c \
+	ft_util.c \
+	ft_type_hex.c \
+	ft_printf.c \
+	ft_type_de_al.c 
 
-BSRCS = 
+OBJS = $(SOURCES:.c=.o)
 
-OBJS = $(SOURCES:%.c=%.o)
-
-BOBJS = $(BSRCS:%.c=%.o)
-
-.PHONY : all clean fclean re bonus
+.PHONY : all clean fclean re
 
 all : $(NAME)
 
