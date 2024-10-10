@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student42.gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:21:34 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/10 23:51:06 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/11 02:36:14 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,17 @@
 int		ft_printchar(char c);
 int		ft_printstr(char *s);
 void	conv_hex(size_t nbr, int *cnt, char arg);
-void	conv_addr(size_t nbr, int *cnt);// output;
-
+void	conv_addr(size_t nbr, int *cnt);
 int		parsing_type(char arg, va_list ap);
-int		ft_printf(const char *str, ...);// printf;
-
+int		ft_printf(const char *str, ...);
 int		print_c_p(char arg, va_list ap);
 int		print_s(va_list ap);
 int		print_d_i(va_list ap);
 int		print_u(va_list ap);
 int		print_hex(char arg, va_list ap);
-int		print_p(va_list ap); // typematch
+int		print_p(va_list ap);
+char	*ft_itoa_ll(long long nbr);
 
-char	*ft_itoa_ll(long long nbr); // util
-
-char	*ft_strchr(const char *s, int c);
+char	*ft_strchr(const char *s, int c); // Makefile 수정 후 call 확인
 
 #endif
