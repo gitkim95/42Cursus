@@ -2,9 +2,13 @@
 
 int main()
 {
-	int a = 5;
-	int b;
-	b = printf("%z", a);
-	printf("%d", b);
+	int a = -2147483648;
+	int b = (unsigned int)a;
+
+	printf("%x\n", a);
+	printf("%X\n", a);
+	printf("%x\n", b);
+	printf("%X\n", b);
+
 	return (0);
 }

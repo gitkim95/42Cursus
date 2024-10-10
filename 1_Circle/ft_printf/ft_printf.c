@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student42.gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 20:05:18 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/10 02:19:12 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/10 19:20:04 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 int	parsing_type(char arg, va_list ap)
 {
-	int	length;
+	int		length;
 
 	if (ft_strchr(TYPES, arg))
 	{
 		if (arg == 'c' || arg == '%')
-			length = print_ch_pct(arg, ap);
+			length = print_c_p(arg, ap);
 		if (arg == 's')
 			length = print_s(arg, ap);
 		if (arg == 'u')
@@ -28,7 +28,7 @@ int	parsing_type(char arg, va_list ap)
 		if (arg == 'd' || arg == 'i')
 			length = print_d_i(arg, ap);
 		if (arg == 'X' || arg == 'x')
-			length = print_x(arg, ap);
+			length = print_hex(arg, ap);
 		if (arg == 'p')
 			length = print_p(arg, ap);
 	}
