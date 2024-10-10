@@ -60,7 +60,7 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	ar rc $@ $^
 
-%.o : %.c
+.c.o :
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
