@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student42.gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 20:05:18 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/11 03:35:03 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/11 18:48:19 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include "libft.h"
+#include "./libft/libft.h"
 
 int	parsing_type(char arg, va_list ap)
 {

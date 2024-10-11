@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_type_hex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student42.gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:12:19 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/10 23:50:59 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/11 18:48:11 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 int	print_hex(char arg, va_list ap)
 {
-	int		length;
-	int		nbr;
+	int	length;
+	int	nbr;
 
 	nbr = va_arg(ap, int);
 	length = 0;
-	conv_hex((size_t)nbr, &length, arg);
+	conv_hex((unsigned int)nbr, &length, arg);
 	return (length);
 }
 
 int	print_p(va_list ap)
 {
 	int		length;
-	size_t	tmp;
+	size_t	addr;
 
-	tmp = (size_t)va_arg(ap, void *);
+	addr = (size_t)va_arg(ap, void *);
 	length = 0;
-	conv_addr(tmp, &length);
+	conv_addr(addr, &length);
 	return (length);
 }

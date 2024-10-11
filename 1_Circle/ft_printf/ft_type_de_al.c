@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_type_de_al.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student42.gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:12:19 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/10 23:51:01 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/11 18:48:16 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ int	print_s(va_list ap)
 	char	*s;
 
 	s = va_arg(ap, char *);
+	if (!s)
+	{
+		ft_printstr("(null)");
+		return (6);
+	}
 	length = ft_printstr(s);
 	return (length);
 }

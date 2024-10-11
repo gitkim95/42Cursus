@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student42gyeongsan.kr>      +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 14:19:06 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/06 14:36:23 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/11 16:26:21 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # include <unistd.h> // read
 # include <stdlib.h> // malloc, free
 
-int	get_next_line(const int fd, char **line);
+char *get_next_line(int fd);
 
 #endif
+
+// 읽은 줄을 뱉거나 널을 리턴
+// fd의 내용을 한 줄씩 읽고 반환하라
+// 

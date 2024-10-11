@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:21:34 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/11 16:13:19 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/11 18:47:58 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 int		ft_printchar(char c);
 int		ft_printstr(char *s);
-void	conv_hex(size_t nbr, int *cnt, char arg);
+void	conv_hex(unsigned int nbr, int *cnt, char arg);
 void	conv_addr(size_t nbr, int *cnt);
 int		parsing_type(char arg, va_list ap);
 int		ft_printf(const char *str, ...);

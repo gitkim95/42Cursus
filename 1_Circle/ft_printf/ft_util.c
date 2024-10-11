@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_util.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student42.gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 18:49:12 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/10 23:50:58 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/11 18:48:09 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,4 @@ char	*ft_itoa_ll(long long nbr)
 	fill_arr(nbr, result, &i);
 	result[i] = '\0';
 	return (result);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	char	*str;
-
-	if (!s)
-		return (NULL);
-	str = (char *)s;
-	while (*str)
-	{
-		if (*str == (char)c)
-			return (str);
-		str++;
-	}
-	if (*str == c)
-		return (str);
-	return (NULL);
 }
