@@ -29,7 +29,7 @@ $(LIBFT) :
 	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -c $< -o $@
 
 clean :
-	rm -f $(OBJS) $(BOBJS)
+	rm -f $(OBJS)
 	make -C $(LIBFT_DIR) clean
 
 fclean : clean
