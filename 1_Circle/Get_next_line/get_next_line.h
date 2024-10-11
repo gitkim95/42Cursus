@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 14:19:06 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/11 16:26:21 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/11 19:28:56 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h> // read
 # include <stdlib.h> // malloc, free
 
-char *get_next_line(int fd);
+char	*get_next_line(int fd);
 
 #endif
 
