@@ -6,11 +6,11 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 01:21:17 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/11 18:48:22 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/13 17:02:17 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_printchar(char c)
 {

@@ -20,7 +20,8 @@ LIBFT = $(LIBFT_DIR)/libft.a
 all : $(NAME)
 
 $(NAME) : $(OBJS) $(LIBFT)
-	ar rc $@ $^
+	cp $(LIBFT) $@
+	ar rcs $@ $^
 
 $(LIBFT) :
 	make -C $(LIBFT_DIR)

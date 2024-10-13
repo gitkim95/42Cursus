@@ -6,11 +6,11 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 20:05:18 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/11 18:48:19 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/13 18:23:19 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 #include "./libft/libft.h"
 
 int	parsing_type(char arg, va_list ap)

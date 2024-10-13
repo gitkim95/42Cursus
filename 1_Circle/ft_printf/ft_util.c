@@ -6,11 +6,11 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 18:49:12 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/11 18:48:09 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/13 17:02:31 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	cal_len(long long n)
 {

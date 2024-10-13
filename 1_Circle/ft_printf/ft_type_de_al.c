@@ -6,11 +6,11 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:12:19 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/11 18:48:16 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/13 17:02:23 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	print_c_p(char arg, va_list ap)
 {

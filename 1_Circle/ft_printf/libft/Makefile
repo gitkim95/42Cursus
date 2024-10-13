@@ -58,7 +58,7 @@ BOBJS = $(BSRCS:.c=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	ar rc $@ $^
+	ar rcs $@ $^
 
 .c.o :
 	$(CC) $(CFLAGS) -c $< -o $@
