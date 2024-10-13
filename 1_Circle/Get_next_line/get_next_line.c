@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 14:18:52 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/13 22:10:48 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/13 22:12:03 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ char	*get_next_line(int fd)
 		n = read(fd, buf, BUFFER_SIZE);
 		if (n == -1)
 			return (NULL);
-		if ()
 		line_size += n;
 	}
 
