@@ -6,9 +6,18 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 16:21:50 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/11 16:22:07 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/13 20:58:05 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+void	ft_output(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\n' || str[i] !='\0')
+		i++;
+	write(1, str, i);
+}
