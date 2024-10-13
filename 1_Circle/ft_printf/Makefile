@@ -21,7 +21,7 @@ all : $(NAME)
 
 $(NAME) : $(OBJS) $(LIBFT)
 	cp $(LIBFT) $@
-	ar rcs $@ $^
+	ar rcs $@ $(OBJS)
 
 $(LIBFT) :
 	make -C $(LIBFT_DIR)
