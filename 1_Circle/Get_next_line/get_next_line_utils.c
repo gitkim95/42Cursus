@@ -31,7 +31,9 @@ void	take_next_line(int fd, size_t start_idx)
 	buf = (char *)malloc(sizeof(char) * (start_idx + 1));
 	if (!buf)
 		return ;
-	read(fd, buf, start_idx);
+	if (fd)
+		(void)fd;
+	// read(fd, buf, start_idx);
 	free(buf);
 }
 

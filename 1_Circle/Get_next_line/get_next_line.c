@@ -15,11 +15,11 @@
 char	*get_next_line(int fd)
 {
 	char			*read_line;
-	char			buf[BUFFER_SIZE];
+	char			buf[BUFFER_SIZE + 1];
 	int				read_len;
 	static size_t	start_idx;
 
-	read_len = read(fd, buf, start_idx);
+	read_len = 1;
 	read_line = NULL;
 	if (start_idx)
 		take_next_line(fd, start_idx);
@@ -28,6 +28,7 @@ char	*get_next_line(int fd)
 		read_len = read(fd, buf, BUFFER_SIZE);
 		if (read_len == -1)
 			return (NULL);
+		buf[read_len] = 0;
 		if (!ft_strchr(buf, '\n'))
 			read_line = ft_strnjoin(read_line, buf, read_len);
 		else
@@ -49,6 +50,7 @@ int	main()
 	int fd;
 
 	fd = open("aa", O_RDONLY);
+	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	close(fd);
 	return (0);
