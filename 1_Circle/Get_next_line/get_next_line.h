@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 14:19:06 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/13 21:34:15 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/14 18:57:29 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@
 
 char	*get_next_line(int fd);
 void	ft_output(char *str);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strchr(const char *s, int c);
 
 #endif
 
+// static 변수가 핵심
 // 읽은 줄을 뱉거나 널을 리턴
 // fd의 내용을 한 줄씩 읽고 반환하라
 // 함수는 한 줄을 읽었으면 읽은걸 반환, 못 읽으면 널리턴

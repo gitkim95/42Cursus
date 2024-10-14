@@ -12,6 +12,18 @@
 
 #include "get_next_line.h"
 
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	if (!s)
+		return (i);
+	while (s[i])
+		i++;
+	return (i);
+}
+
 void	ft_output(char *str)
 {
 	int	i;
@@ -20,4 +32,60 @@ void	ft_output(char *str)
 	while (str[i] != '\n' || str[i] !='\0')
 		i++;
 	write(1, str, i);
+}
+static char	*ft_strcat(char *dst, char const *src, int *offset)
+{
+	int	i;
+
+	i = 0;
+	while (src[i])
+	{
+		dst[*offset] = src[i];
+		(*offset)++;
+		i++;
+	}
+	dst[*offset] = '\0';
+	return (dst);
+}
+
+char	*ft_strnjoin(char const *s1, char const *s2, size_t n)
+{
+	char	*new_str;
+	size_t	s1_len;
+	size_t	s2_len;
+	size_t	i;
+
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	if (n > s2_len)
+		n = s2_len;
+	if (!s1 && !s2)
+		return (NULL);
+	new_str = (char *)malloc(sizeof(char) * (s1_len + n + 1));
+	if (new_str == NULL)
+		return (NULL);
+	i = 0;
+	if (s1)
+		new_str = ft_strcat(new_str, s1, &i);
+	if (s2)
+		new_str = ft_strcat(new_str, s2, &i);
+	free(s1);
+	return (new_str);
+}
+char	*ft_strchr(const char *s, int c)
+{
+	char	*str;
+
+	if (!s)
+		return (NULL);
+	str = (char *)s;
+	while (*str)
+	{
+		if (*str == (char)c)
+			return (str);
+		str++;
+	}
+	if (*str == c)
+		return (str);
+	return (NULL);
 }
