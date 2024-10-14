@@ -14,16 +14,17 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 32
+#  define BUFFER_SIZE 42
 # endif
 
-# include <unistd.h> // read
-# include <stdlib.h> // malloc, free
+# include <unistd.h>
+# include <stdlib.h>
 
 char	*get_next_line(int fd);
-void	ft_output(char *str);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strnjoin(char *s1, char const *s2, size_t n);
 char	*ft_strchr(const char *s, int c);
+size_t	ft_strlen(const char *s);
+void	take_next_line(int fd, size_t start_idx);
 
 #endif
 

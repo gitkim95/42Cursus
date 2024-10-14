@@ -24,16 +24,18 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-void	ft_output(char *str)
+void	take_next_line(int fd, size_t start_idx)
 {
-	int	i;
+	char	*buf;
 
-	i = 0;
-	while (str[i] != '\n' || str[i] !='\0')
-		i++;
-	write(1, str, i);
+	buf = (char *)malloc(sizeof(char) * (start_idx + 1));
+	if (!buf)
+		return ;
+	read(fd, buf, start_idx);
+	free(buf);
 }
-static char	*ft_strcat(char *dst, char const *src, int *offset)
+
+static char	*ft_strcat(char *dst, char const *src, size_t *offset)
 {
 	int	i;
 
@@ -48,7 +50,7 @@ static char	*ft_strcat(char *dst, char const *src, int *offset)
 	return (dst);
 }
 
-char	*ft_strnjoin(char const *s1, char const *s2, size_t n)
+char	*ft_strnjoin(char *s1, char const *s2, size_t n)
 {
 	char	*new_str;
 	size_t	s1_len;
@@ -66,12 +68,15 @@ char	*ft_strnjoin(char const *s1, char const *s2, size_t n)
 		return (NULL);
 	i = 0;
 	if (s1)
+	{
 		new_str = ft_strcat(new_str, s1, &i);
+		free(s1);
+	}
 	if (s2)
 		new_str = ft_strcat(new_str, s2, &i);
-	free(s1);
 	return (new_str);
 }
+
 char	*ft_strchr(const char *s, int c)
 {
 	char	*str;
