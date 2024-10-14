@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 14:19:06 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/14 18:57:29 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/15 02:36:51 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1
 # endif
 
 # include <unistd.h>
@@ -44,3 +44,4 @@ void	take_next_line(int fd, size_t start_idx);
 // 뽀나스
 // 하나의 정적변수로 빌드
 // 동시에 여러 fd를 읽고 관리할 수 있어야 한다
+// https://dc-choi.tistory.com/52

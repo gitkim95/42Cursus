@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 14:18:52 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/13 22:12:03 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/15 02:36:52 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ char	*get_next_line(int fd)
 	while (read_len > 0)
 	{
 		read_len = read(fd, buf, BUFFER_SIZE);
-		if (read_len == -1)
+		if (read_len <= 0)
 			return (NULL);
 		buf[read_len] = 0;
-		if (!ft_strchr(buf, '\n'))
+		if (!(ft_strchr(buf, 10)))
 			read_line = ft_strnjoin(read_line, buf, read_len);
 		else
 		{
-			read_len = buf - ft_strchr(buf, '\n') + 1;
+			read_len = buf - ft_strchr(buf, 10) + 1;
 			read_line = ft_strnjoin(read_line, buf, read_len);
 			break ;
 		}
