@@ -10,7 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
+
+static char	*get_line(int fd, char **buffer, char **backup);
+static int	read_file(int fd, char **buffer, char **backup);
+static char	*separate_line(char **backup);
+static void	free_ptr(char **ptr);
 
 char	*get_next_line(int fd)
 {
@@ -27,7 +32,8 @@ char	*get_next_line(int fd)
 		backup[fd] = ft_strdup("");
 	result = get_line(fd, &buffer, &backup[fd]);
 	free(buffer);
-	return (result)
+	return (result);
+}
 
 static char	*get_line(int fd, char **buffer, char **backup)
 {
@@ -94,4 +100,18 @@ static void	free_ptr(char **ptr)
 {
 	free(*ptr);
 	*ptr = NULL;
+}
+
+#include <stdio.h>
+#include <fcntl.h>
+
+int	main()
+{
+	int fd;
+
+	fd = open("aa", O_RDONLY);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	close(fd);
+	return (0);
 }

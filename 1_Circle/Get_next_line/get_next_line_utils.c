@@ -33,7 +33,6 @@ void	take_next_line(int fd, size_t start_idx)
 		return ;
 	if (fd)
 		(void)fd;
-	// read(fd, buf, start_idx);
 	free(buf);
 }
 
