@@ -81,8 +81,33 @@ char	*get_next_line(int fd)
 	if (!buf)
 		return (NULL);
 	if (!save_line[fd])
-		save_line[fd] = ft_strdup("");
+		save_line[fd] = ft_strdup(""); // free;
 	read_line = take_a_line(fd, &buf, &save_line[fd]);
 	free(buf);
 	return (read_line);
+}
+
+#include <stdio.h>
+#include <fcntl.h>
+
+int main () {
+	int fd;
+	char *ln;
+
+	fd = open("bb", O_RDONLY);
+	ln = get_next_line(fd);
+	printf("1: %s", ln);
+	free(ln);
+	ln = get_next_line(fd);
+	printf("2: %s", ln);
+	free(ln);
+	ln = get_next_line(fd);
+	printf("3: %s", ln);
+	free(ln);
+	ln = get_next_line(fd);
+	printf("4: %s", ln);
+	free(ln);
+	ln = get_next_line(fd);
+	printf("5: %s", ln);
+	free(ln);
 }
