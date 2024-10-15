@@ -16,66 +16,63 @@ size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
-	i = 0;
 	if (!s)
-		return (i);
+		return (0);
+	i = 0;
 	while (s[i])
 		i++;
 	return (i);
 }
 
-void	take_next_line(int fd, size_t start_idx)
-{
-	char	*buf;
-
-	buf = (char *)malloc(sizeof(char) * (start_idx + 1));
-	if (!buf)
-		return ;
-	if (fd)
-		(void)fd;
-	free(buf);
-}
-
-static char	*ft_strcat(char *dst, char const *src, size_t *offset)
-{
-	int	i;
-
-	i = 0;
-	while (src[i])
-	{
-		dst[*offset] = src[i];
-		(*offset)++;
-		i++;
-	}
-	dst[*offset] = '\0';
-	return (dst);
-}
-
-char	*ft_strnjoin(char *s1, char const *s2, size_t n)
+char	*ft_strdup(const char *s)
 {
 	char	*new_str;
-	size_t	s1_len;
-	size_t	s2_len;
+	size_t	s_len;
 	size_t	i;
 
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	if (n > s2_len)
-		n = s2_len;
-	if (!s1 && !s2)
+	if (!s)
 		return (NULL);
-	new_str = (char *)malloc(sizeof(char) * (s1_len + n + 1));
+	s_len = ft_strlen(s);
+	new_str = (char *)malloc(sizeof(char) * (s_len + 1));
 	if (new_str == NULL)
 		return (NULL);
 	i = 0;
-	if (s1)
+	while (i < s_len)
 	{
-		new_str = ft_strcat(new_str, s1, &i);
-		free(s1);
+		new_str[i] = s[i];
+		i++;
 	}
-	if (s2)
-		new_str = ft_strcat(new_str, s2, &i);
+	new_str[i] = '\0';
 	return (new_str);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*sub_str;
+	size_t	i;
+	size_t	sub_len;
+	size_t	s_len;
+
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (s_len < start)
+		return (ft_strdup(""));
+	if (s_len - start > len)
+		sub_len = len;
+	else
+		sub_len = s_len - start;
+	sub_str = (char *)malloc(sizeof(char) * (sub_len + 1));
+	if (sub_str == NULL)
+		return (NULL);
+	i = 0;
+	while (i < sub_len && s[start])
+	{
+		sub_str[i] = s[start + i];
+		i++;
+	}
+	sub_str[i] = '\0';
+	return (sub_str);
 }
 
 char	*ft_strchr(const char *s, int c)
@@ -91,7 +88,36 @@ char	*ft_strchr(const char *s, int c)
 			return (str);
 		str++;
 	}
-	if (*str == c)
+	if (*str == (char)c)
 		return (str);
 	return (NULL);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*new_str;
+	size_t	i;
+	size_t	j;
+	size_t	s1_len;
+	size_t	s2_len;
+
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	new_str = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
+	if (new_str == NULL)
+		return (NULL);
+	i = 0;
+	while (i < s1_len)
+	{
+		new_str[i] = s1[i];
+		i++;
+	}
+	j = 0;
+	while (i + j < s1_len + s2_len)
+	{
+		new_str[i + j] = s2[j];
+		j++;
+	}
+	new_str[i + j] = '\0';
+	return (new_str);
 }
