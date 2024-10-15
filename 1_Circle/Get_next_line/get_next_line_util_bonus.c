@@ -115,7 +115,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	j = 0;
 	while (i + j < s1_len + s2_len)
 	{
-		new_str[i + j] = s1[j];
+		new_str[i + j] = s2[j];
 		j++;
 	}
 	new_str[i + j] = '\0';

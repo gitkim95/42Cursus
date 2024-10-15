@@ -58,7 +58,7 @@ static char	*take_a_line(int fd, char **buf, char **save_line)
 	int		n;
 
 	n = read_file(fd, buf, save_line);
-	if (n == -1 || !(**save_line))
+	if (n == -1 || !(*save_line))
 	{
 		free_null(buf);
 		return (NULL);
