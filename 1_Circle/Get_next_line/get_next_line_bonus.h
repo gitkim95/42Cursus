@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr      +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:41:18 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/15 14:41:20 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/16 02:33:11 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(const char *s);
+size_t	ft_strlen(const char *s);
 
 #endif

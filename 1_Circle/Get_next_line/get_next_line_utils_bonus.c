@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_util_bonus.c                         :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr      +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 16:23:54 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/15 16:23:56 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/16 05:31:20 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,18 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 char	*ft_strchr(const char *s, int c)
 {
 	char	*str;
+	int		i;
 
 	if (!s)
 		return (NULL);
 	str = (char *)s;
-	while (*str)
+	i = 0;
+	while (str[i])
 	{
-		if (*str == (char)c)
-			return (str);
-		str++;
+		if (str[i] == (char)c)
+			return (str + i);
+		i++;
 	}
-	if (*str == (char)c)
-		return (str);
 	return (NULL);
 }
 

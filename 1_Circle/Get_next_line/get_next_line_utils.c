@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 16:21:50 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/13 20:58:05 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/16 05:26:25 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ char	*ft_strchr(const char *s, int c)
 			return (str);
 		str++;
 	}
-	if (*str == (char)c)
-		return (str);
 	return (NULL);
 }
 
