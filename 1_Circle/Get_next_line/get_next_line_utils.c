@@ -78,15 +78,17 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 char	*ft_strchr(const char *s, int c)
 {
 	char	*str;
+	int		i;
 
 	if (!s)
 		return (NULL);
 	str = (char *)s;
-	while (*str)
+	i = 0;
+	while (str[i])
 	{
-		if (*str == (char)c)
-			return (str);
-		str++;
+		if (str[i] == (char)c)
+			return (str + i);
+		i++;
 	}
 	return (NULL);
 }
