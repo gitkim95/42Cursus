@@ -49,3 +49,54 @@
 		 - sudo dkpg -l apparmor 로 설치 여부 확인 시 안 깔려있다면
 		 - sudo apt install apparmor/ sudo apt install apparmor-utils/ apparmor-profiles로 설치 가능
 		 - 한 마디로 프로그램 별 보안 정책을 설정하는 것, 예시로는 핸드폰 어플에 카메라 권한 허용같은 것
+2
+	UFW 서비스 여부 확인하기
+		 - sudo ufw enable로 활성화
+		 - sudo ufw status verbose로 상태 확인
+		 - sudo ufw allow ????로 ????번 포트 허용, ????/tcp or udp 명령어도 가능
+	SSH 서비스 여부 확인하기
+		 - dpkg --get-selections | grep ssh로 ssh 설치 여부 확인
+		 - service ssh status로 동작중인지 확인
+		 - sudo apt-get install openssh-server로 설치가 안되어있다면 설치
+	uname -a로 버전 확인 가능
+3
+	groupadd evaluating으로 그룹 생성
+	useradd(del) (유저)로 유저 추가/삭제 가능
+	usermod -G (그룹) -a (유저) 로 그룹에 유저 추가
+	gpasswd -a (유저) (그룹) 으로도 그룹에 유저 추가 가능
+	gpasswd -d (유저) (그룹) 으로 그룹에서 유저 제거 가능
+	비밀번호 정책이 그러한 것은 브루트 포스 어택에 대비하기 위함
+		 - groups (유저)로 해당 유저가 속한 그룹을 볼 수 있음
+4
+	vi /etc/hostname 으로 변경 후 재부팅
+	hostnamectl set-hostname (바꿀이름) 으로 변경 후 service systemd-networkd restart
+	hostname (바꿀이름) 으로 변경 후 service systemd-networkd restart
+	세 가지 방법으로 변경 가능
+	파티션 확인법 lsblk
+		-- 파티션 분배 방법 다시 확인
+	
+
+Mandatory
+	- CLI 환경으로 설치해라
+	- 데비안 선택함
+	- 데비안은 APPARMOR를 항상 실행하게 해야한다. / sudo apparmor status(enable)
+	- 파티션 분배
+	- 새 유저를 만들 수 있어야 한다 / 유저 목록 확인법 찾기
+	- UFW에서 4242 포트를 허용해야 한다.
+	- hostname은 gitkim42로 설정
+	- 비밀번호는 정책을 따라야 한다 (대문자 + 소문자 + 숫자 + 10자 이상)
+	- sudo를 설치해야한다
+	- user42 그룹 및 sudo 그룹에 속해야한다.
+	- 디펜스 중 유저를 만들고 그룹에 추가하는 작업을 할 수 있어야 한다.
+	- 비밀번호 정책을 만들어라
+		-- 30일마다 폐기
+		-- 비밀번호 수정 최소 허용 일자는 2일
+		-- 암호 폐기 7일 전에 경고 메세지
+		-- 최소 10글자, 대문자, 소문자, 숫자가 포함되어야하며 동일 문자가 연속 3개 안됨
+		-- 유저의 이름이 포함되면 안된다
+		-- 이전 암호에 7자 이상 속하는걸 재사용하면 안된다.
+		-- 루트 비밀번호도 마찬가지
+	- sudo 규칙을 만들어라
+		-- 잘못된 비밀번호 입력 제한 3회
+		-- 잘못된 비밀번호 입력 시 내가 원하는 메세지 출력
+		-- 
