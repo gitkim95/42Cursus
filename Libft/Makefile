@@ -4,85 +4,75 @@ CFLAGS = -Wall -Wextra -Werror
 
 NAME = libft.a
 
-SOURCES = ft_calloc.c \
-	ft_strjoin.c \
-	ft_putstr_fd.c \
-	ft_isalpha.c \
-	ft_isdigit.c \
-	ft_isalnum.c \
-	ft_isascii.c \
-	ft_isprint.c \
-	ft_strlen.c \
-	ft_memset.c \
-	ft_bzero.c \
-	ft_memcpy.c \
-	ft_substr.c \
-	ft_strtrim.c \
-	ft_split.c \
-	ft_putchar_fd.c \
-	ft_putnbr_fd.c \
-	ft_memmove.c \
-	ft_striteri.c \
-	ft_toupper.c \
-	ft_tolower.c \
-	ft_strchr.c \
-	ft_strrchr.c \
-	ft_putendl_fd.c \
-	ft_strlcpy.c \
-	ft_strlcat.c \
-	ft_strncmp.c \
-	ft_memchr.c \
-	ft_memcmp.c \
-	ft_strnstr.c \
-	ft_atoi.c \
-	ft_strdup.c \
-	ft_itoa.c \
-	ft_strmapi.c
+LIBFT_SRCS =	ft_calloc.c	\
+				ft_strjoin.c	\
+				ft_putstr_fd.c	\
+				ft_isalpha.c	\
+				ft_isdigit.c	\
+				ft_isalnum.c	\
+				ft_isascii.c	\
+				ft_isprint.c	\
+				ft_strlen.c	\
+				ft_memset.c	\
+				ft_bzero.c	\
+				ft_memcpy.c	\
+				ft_substr.c	\
+				ft_strtrim.c	\
+				ft_split.c	\
+				ft_putchar_fd.c	\
+				ft_putnbr_fd.c	\
+				ft_memmove.c	\
+				ft_striteri.c	\
+				ft_toupper.c	\
+				ft_tolower.c	\
+				ft_strchr.c	\
+				ft_strrchr.c	\
+				ft_putendl_fd.c	\
+				ft_strlcpy.c	\
+				ft_strlcat.c	\
+				ft_strncmp.c	\
+				ft_memchr.c	\
+				ft_memcmp.c	\
+				ft_strnstr.c	\
+				ft_atoi.c	\
+				ft_strdup.c	\
+				ft_itoa.c	\
+				ft_strmapi.c	\
+				ft_lstnew.c	\
+				ft_lstadd_front.c	\
+				ft_lstsize.c	\
+				ft_lstlast.c	\
+				ft_lstadd_back.c	\
+				ft_lstdelone.c	\
+				ft_lstclear.c	\
+				ft_lstiter.c	\
+				ft_lstmap.c	\
+				get_next_line.c	
 
-BSRCS = ft_lstnew.c \
-	ft_lstadd_front.c \
-	ft_lstsize.c \
-	ft_lstlast.c \
-	ft_lstadd_back.c \
-	ft_lstdelone.c \
-	ft_lstclear.c \
-	ft_lstiter.c \
-	ft_lstmap.c
-
-OBJS = $(SOURCES:.c=.o)
-
-BOBJS = $(BSRCS:.c=.o)
+LIBFT_OBJS = $(LIBFT_SRCS:.c=.o)
 
 PRINTF_DIR = ./ft_printf
-FTPRINTF = $(PRINTF_DIR)/libftprintf.a
+PRINTF_SRCS = 	ft_output.c	\
+				ft_printf.c	\
+				ft_type_de_al.c	\
+				ft_type_hex.c	\
+				ft_util.c
+PRINTF_OBJS = $(addprefix $(PRINTF_DIR)/, $(PRINTF_SRCS:.c=.o))
 
-.PHONY : all clean fclean re bonus
+.PHONY : all clean fclean re
 
 all : $(NAME)
 
-$(NAME) : $(OBJS) $(FTPRINTF)
-	@cp $(FTPRINTF) $@
-	ar rcs $@ $(OBJS)
-
-$(FTPRINTF) : 
-	make -C $(PRINTF_DIR) all
+$(NAME) : $(LIBFT_OBJS) $(PRINTF_OBJS)
+	ar rcs $@ $^
 
 .c.o :
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
-	rm -f $(OBJS) $(BOBJS)
-	make -C $(PRINTF_DIR) clean
+	rm -f $(LIBFT_OBJS) $(PRINTF_OBJS)
 
 fclean : clean
 	rm -f $(NAME)
-	make -C $(PRINTF_DIR) fclean
 
 re : fclean all
-
-bonus: $(BOBJS)
-	@if [ ! -f $(NAME) ]; then \
-		ar rc $(NAME) $^; \
-	else \
-		ar r $(NAME) $^; \
-	fi
