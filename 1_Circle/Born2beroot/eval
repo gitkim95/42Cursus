@@ -69,12 +69,12 @@
 		 - groups (유저)로 해당 유저가 속한 그룹을 볼 수 있음
 4
 	vi /etc/hostname 으로 변경 후 재부팅
-	hostnamectl set-hostname (바꿀이름) 으로 변경 후 service systemd-networkd restart
-	hostname (바꿀이름) 으로 변경 후 service systemd-networkd restart
-	세 가지 방법으로 변경 가능
-	파티션 확인법 lsblk
-		-- 파티션 분배 방법 다시 확인
-	
+	hostnamectl set-hostname (바꿀이름libpam-cracklib
+
+**SSH 세팅
+
+apt install net-tools
+https://help.iwinv.kr/manual/read.html?idx=913
 
 Mandatory
 	- CLI 환경으로 설치해라
@@ -89,10 +89,15 @@ Mandatory
 	- user42 그룹 및 sudo 그룹에 속해야한다.
 	- 디펜스 중 유저를 만들고 그룹에 추가하는 작업을 할 수 있어야 한다.
 	- 비밀번호 정책을 만들어라
-		-- 30일마다 폐기
-		-- 비밀번호 수정 최소 허용 일자는 2일
-		-- 암호 폐기 7일 전에 경고 메세지
-		-- 최소 10글자, 대문자, 소문자, 숫자가 포함되어야하며 동일 문자가 연속 3개 안됨
+		-- 30일마다 폐기 PASS_MAX_DAYS
+		-- 비밀번호 수정 최소 허용 일자는 2일 PASS_MIN_DAYS
+		-- 암호 폐기 7일 전에 경고 메세지 PASS_WARN_AGE
+		-- 최소 10글자 PASS_MIN_LEN >> /etc/login.defs
+		apt -y install libpam-pwquality
+		vim /etc/pam.d/common-password
+		https://community.learnlinux.tv/t/etc-pam-d-common-password-example/2785
+		https://www.server-world.info/en/note?os=Debian_12&p=pam&f=1#google_vignette
+		-- 대문자, 소문자, 숫자가 포함되어야하며 동일 문자가 연속 3개 안됨
 		-- 유저의 이름이 포함되면 안된다
 		-- 이전 암호에 7자 이상 속하는걸 재사용하면 안된다.
 		-- 루트 비밀번호도 마찬가지
