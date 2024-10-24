@@ -102,6 +102,81 @@ Mandatory
 		-- 이전 암호에 7자 이상 속하는걸 재사용하면 안된다.
 		-- 루트 비밀번호도 마찬가지
 	- sudo 규칙을 만들어라
-		-- 잘못된 비밀번호 입력 제한 3회
-		-- 잘못된 비밀번호 입력 시 내가 원하는 메세지 출력
-		-- 
+		-- 잘못된 비밀번호 입력 제한 3회 Defaults	passwd_tries
+		-- 잘못된 비밀번호 입력 시 내가 원하는 메세지 출력 Defaults	badpass_message
+		-- /var/log/sudo/ 폴더에 sudo 사용 로그가 모두 담겨야 한다 Defaults	log_input/output // Defaults	iolog_dir
+		-- TTY모드 활성화 Defaults	requiretty
+		-- /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin Defaults	secure_path=""
+	- mornitoring.sh를 생성한다
+	apt-get -y install sysstat
+	vi /root/monitoring.sh
+		-- 10분에 한번 'wall'에 뿌리며 오류표시 ㄴㄴ
+		-- 운영체제의 아키텍처와 커널버전 uname -a
+		-- 물리 프로세서 개수 grep "physical id" /proc/cpuinfo | sort -u | wc -l
+		-- 가상 프로세서 개수 grep "processor" /proc/cpuinfo | sort -u | wc -l
+		-- 서버의 현재 사용 가능한 RAM과 그 사용률을 백분률로 표시
+		-- 서버의 현재 사용 가능한 저장소와 그 사용률,,
+		-- 서버의 현재 프로세서 사용률,,
+		-- 마지막 부팅 날짜와 시간
+		-- lvm 작동 여부
+		-- 활성 연결 수 표시
+		-- 서버를 사용중인 사용자 수
+		-- IPv4 주소와 서버의 MAC주소 표시
+		-- sudo 프로그램으로 실행된 명령의 수
+		-- 디펜스 중 스크립트의 작동방식을 설명해야하고  수정하지말고 스크립트를 중단해야한다.
+
+printf "#Architecture: "
+uname -a
+
+printf "#CPU physical : "
+grep "physical id" /proc/cpuinfo | sort -u | wc -l
+
+printf "#vCPU : "
+grep "processor" /proc/cpuinfo | sort -u | wc -l
+
+printf "#Memory Usage: "
+free -m | grep "Mem" | awk '{printf "%d/%dMB (%.2f%%)\n", $3, $2, $3/$2 * 100}'
+
+printf "#Disk Usage: "
+df -a -BM | grep "/dev/mapper" | awk '{used+=$3}END{print used}' | tr -d '\n'
+printf "/"
+df -a -BM | grep "/dev/mapper" | awk '{total+=$3+$4}END{printf ("%d", total/1024)}' | tr -d '\n'
+printf "Gb ("
+df -a -BM | grep "/dev/mapper" | awk '{used+=$3; total+=$3+$4}END{printf ("%d", used/total*100)}' | tr -d '\n'
+printf "%%)\n"
+
+printf "#CPU load: "
+mpstat | grep "all" | awk '{printf "%.1f%%\n", 100-$13}'
+
+printf "#Last boot: "
+who -b | awk '{printf $3" "$4"\n"}'
+
+printf "#LVM use: "
+if [ "$(lsblk | grep lvm | wc -l)" -gt 0 ] ; then printf "yes\n" ; else printf "no\n" ; fi
+
+printf "#Connections TCP : "
+ss | grep -i tcp | wc -l | tr -d '\n'
+printf " ESTABLISHED\n"
+
+printf "#User log: "
+who | wc -l
+
+printf "#Network: "
+hostname -I | tr -d '\n'
+printf "("
+ip link show | awk '$1 == "link/ether" {print $2}' | sed '2, $d' | tr -d '\n'
+printf ")\n"
+
+printf "#Sudo : "
+journalctl _COMM=sudo | wc -l | tr -d '\n'
+printf " cmd\n"
+
+exit 0
+		chmod +x monitoring.sh
+		crontab -e
+		*/10 * * * * /root/monitoring.sh | wall
+
+		-- head -n 2 /etc/os-release 명령어 활용
+		-- /usr/sbin/aa-status
+		-- /usr/sbin/ufw status
+		-- ss -tunip
