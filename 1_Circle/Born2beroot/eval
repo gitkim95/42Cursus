@@ -75,6 +75,7 @@
 
 apt install net-tools
 https://help.iwinv.kr/manual/read.html?idx=913
+/etc/ssh/sshd_config
 
 Mandatory
 o	- CLI 환경으로 설치해라
