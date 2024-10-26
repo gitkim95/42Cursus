@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:55:09 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/26 23:47:45 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/27 02:44:28 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,20 @@
 # include <stdlib.h> // malloc, free, exit
 # include <unistd.h> // read, write
 
+typedef struct s_ps_node
+{
+	int					nb;
+	struct s_ps_node	*prev;
+	struct s_ps_node	*next;
+}	t_ps_node;
+
 typedef struct s_stack
 {
-	int				nb;
-	struct s_stack	*prev;
-	struct s_stack	*next;
+	int			size;
+	int			max_value;
+	int			min_value;
+	t_ps_node	*head;
+	t_ps_node	*tail;
 }	t_stack;
 
 typedef enum e_single
@@ -63,17 +72,11 @@ void	double_instruct(t_double e_inst, t_stack **a, t_stack **b);
 
 #endif
 
-// typedef struct s_ps_node
-// {
-// 	int	nb;
-// 	struct s_stack_node	*next;
-// }	t_ps_node;
-
 // typedef struct s_stack
 // {
-// 	int	size;
-// 	t_stack_node	*head;
-// 	t_stack_node	*tail;
+// 	int				nb;
+// 	struct s_stack	*prev;
+// 	struct s_stack	*next;
 // }	t_stack;
 
 //Libft 사용 가능

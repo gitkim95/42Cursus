@@ -6,17 +6,17 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 22:00:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/26 23:48:00 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/27 03:04:09 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*ps_newlst(int nb)
+t_ps_node	*ps_newlst(int nb)
 {
-	t_stack	*newstack;
+	t_ps_node	*newstack;
 
-	newstack = (t_stack *)malloc(sizeof(t_stack));
+	newstack = (t_ps_node *)malloc(sizeof(t_ps_node));
 	if (!newstack)
 		return (NULL);
 	newstack -> nb = nb;
@@ -25,20 +25,19 @@ t_stack	*ps_newlst(int nb)
 	return (newstack);
 }
 
-void	ps_lstfree(t_stack **lst)
+void	ps_lstfree(t_ps_node *lst)
 {
-	t_stack	*tmp;
+	t_ps_node	*tmp;
 
-	while (*lst)
+	while (lst)
 	{
-		tmp = *lst;
-		*lst = tmp -> next;
+		tmp = lst;
+		lst = lst -> next;
 		free(tmp);
 	}
-	*lst = NULL;
 }
 
-t_stack	*ps_lstlast(t_stack *lst)
+t_ps_node	*ps_lstlast(t_ps_node *lst)
 {
 	if (!lst)
 		return (NULL);
@@ -47,23 +46,24 @@ t_stack	*ps_lstlast(t_stack *lst)
 	return (lst);
 }
 
-void	ps_lstadd_back(t_stack **head, t_stack *new_node)
+void	ps_lstadd_back(t_stack *ps_stack, t_ps_node *new_node)
 {
-	t_stack	*last_node;
-
-	if (!head || !new_node)
+	if (!new_node)
 		return ;
-	if (*head == NULL)
-		*head = new_node;
+	if (ps_stack -> head == NULL)
+	{
+		ps_stack -> head = new_node;
+		ps_stack -> tail = new_node;
+	}
 	else
 	{
-		last_node = ps_lstlast(*head);
-		last_node -> next = new_node;
-		new_node -> prev = last_node;
+		ps_stack -> tail -> next = new_node;
+		new_node -> prev = ps_stack -> tail;
+		ps_stack -> tail = new_node;
 	}
 }
 
-int	ps_lstsize(t_stack *node)
+int	ps_lstsize(t_ps_node *node)
 {
 	int	cnt;
 
