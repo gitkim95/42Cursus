@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:54:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/27 02:56:14 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/27 04:58:37 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ int	main(int ac, char **av)
 			ps_lstfree(&(ps_stack.head));
 			return (0);
 		}
-		ps_lstadd_back(&a, newstk);
+		ps_lstadd_back(&a, new_node);
 		arg_size++;
+		ps_stack.size++;
 	}
 	return (0);
 }
