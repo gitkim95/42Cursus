@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:55:09 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/26 18:02:05 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/26 23:47:45 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_stack	*ps_newlst(int nb);
 void	ps_lstfree(t_stack **lst);
 t_stack	*ps_lstlast(t_stack *lst);
 void	ps_lstadd_back(t_stack **head, t_stack *tail);
+int		ps_lstsize(t_stack *node);
 
 //ps_task_func.c
 void	ps_swap(t_stack **stack);

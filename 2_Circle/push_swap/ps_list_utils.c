@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 22:00:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/26 17:38:39 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/26 23:48:00 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,17 @@ void	ps_lstadd_back(t_stack **head, t_stack *new_node)
 		last_node -> next = new_node;
 		new_node -> prev = last_node;
 	}
+}
+
+int	ps_lstsize(t_stack *node)
+{
+	int	cnt;
+
+	cnt = 0;
+	while (node)
+	{
+		node = node -> next;
+		cnt++;
+	}
+	return (cnt);
 }
