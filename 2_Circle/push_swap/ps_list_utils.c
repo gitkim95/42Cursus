@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 22:00:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/26 14:53:08 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/26 17:38:39 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_stack	*ps_newlst(int nb)
 	newstack -> next = NULL;
 	return (newstack);
 }
+
 void	ps_lstfree(t_stack **lst)
 {
 	t_stack	*tmp;

@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:55:09 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/26 14:57:05 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/26 18:02:05 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,52 @@
 
 # include <stdlib.h> // malloc, free, exit
 # include <unistd.h> // read, write
+
+typedef struct s_stack
+{
+	int				nb;
+	struct s_stack	*prev;
+	struct s_stack	*next;
+}	t_stack;
+
+typedef enum e_single
+{
+	SA = 0,
+	SB = 3,
+	RA = 6,
+	RB = 9,
+	RRA = 12,
+	RRB = 16
+}	t_single;
+
+typedef enum e_double
+{
+	SS = 0,
+	PA = 3,
+	PB = 6,
+	RR = 9,
+	RRR = 12
+}	t_double;
+
+# define SINGLE_NAME "sa\0sb\0ra\0rb\0rra\0rrb"
+# define DOUBLE_NAME "ss\0pa\0pb\0rr\0rrr"
+//ps_list_utils.c
+t_stack	*ps_newlst(int nb);
+void	ps_lstfree(t_stack **lst);
+t_stack	*ps_lstlast(t_stack *lst);
+void	ps_lstadd_back(t_stack **head, t_stack *tail);
+
+//ps_task_func.c
+void	ps_swap(t_stack **stack);
+void	ps_push(t_stack **dst, t_stack **src);
+void	ps_rotate(t_stack **stack);
+void	ps_r_rotate(t_stack **stack);
+
+//ps_task_parsing.c
+void	single_instruct(t_single e_inst, t_stack **stack);
+void	double_instruct(t_double e_inst, t_stack **a, t_stack **b);
+
+#endif
 
 // typedef struct s_ps_node
 // {
@@ -28,44 +74,6 @@
 // 	t_stack_node	*head;
 // 	t_stack_node	*tail;
 // }	t_stack;
-
-
-typedef struct s_stack
-{
-	int	nb;
-	struct s_stack	*prev;
-	struct s_stack	*next;
-}	t_stack;
-
-# define SINGLE_NAME "sa\0sb\0ra\0rb\0rra\0rrb"
-# define DOUBLE_NAME "ss\0pa\0pb\0rr\0rrr"
-
-typedef enum single_inst
-{
-	SA = 0, 
-	SB = 3, 
-	RA = 6, 
-	RB = 9,
-	RRA = 12,
-	RRB = 16
-}	e_single;
-
-typedef enum double_inst
-{
-	SS = 0,
-	PA = 3,
-	PB = 6,
-	RR = 9,
-	RRR = 12
-}	e_double;
-
-//list_utils.c
-t_stack	*ps_newlst(int nb);
-void	ps_lstfree(t_stack **lst);
-t_stack	*ps_lstlast(t_stack *lst);
-void	ps_lstadd_back(t_stack **head, t_stack *tail);
-
-#endif
 
 //Libft 사용 가능
 //기수정렬 추천
