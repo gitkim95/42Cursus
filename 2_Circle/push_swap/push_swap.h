@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:55:09 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/26 13:19:26 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/26 14:57:05 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,26 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
-# define SINGLE_NAME "sa\0sb\0pa\0pb\0ra\0rb"
-# define DOUBLE_NAME "ss\0rr\0rrr"
+# define SINGLE_NAME "sa\0sb\0ra\0rb\0rra\0rrb"
+# define DOUBLE_NAME "ss\0pa\0pb\0rr\0rrr"
 
 typedef enum single_inst
 {
 	SA = 0, 
 	SB = 3, 
-	PA = 6, 
-	PB = 9, 
-	RA = 12, 
-	RB = 15
+	RA = 6, 
+	RB = 9,
+	RRA = 12,
+	RRB = 16
 }	e_single;
 
 typedef enum double_inst
 {
 	SS = 0,
-	RR = 3,
-	RRR = 6
+	PA = 3,
+	PB = 6,
+	RR = 9,
+	RRR = 12
 }	e_double;
 
 //list_utils.c

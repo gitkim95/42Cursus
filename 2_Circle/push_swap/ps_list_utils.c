@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 22:00:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/26 12:13:47 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/26 14:53:08 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_stack	*ps_newlst(int nb)
 	if (!newstack)
 		return (NULL);
 	newstack -> nb = nb;
-	newstack -> next = NULL;
+	newstack -> prev = NULL;
 	newstack -> next = NULL;
 	return (newstack);
 }
@@ -46,18 +46,18 @@ t_stack	*ps_lstlast(t_stack *lst)
 	return (lst);
 }
 
-void	ps_lstadd_back(t_stack **head, t_stack *tail)
+void	ps_lstadd_back(t_stack **head, t_stack *new_node)
 {
 	t_stack	*last_node;
 
-	if (!head || !tail)
+	if (!head || !new_node)
 		return ;
 	if (*head == NULL)
-		*head = tail;
+		*head = new_node;
 	else
 	{
 		last_node = ps_lstlast(*head);
-		last_node -> next = tail;
-		tail -> prev = last_node;
+		last_node -> next = new_node;
+		new_node -> prev = last_node;
 	}
 }

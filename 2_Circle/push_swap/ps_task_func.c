@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 22:45:25 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/26 13:24:38 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/26 14:58:46 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,23 @@ void	ps_swap(t_stack **stack)
 }
 
 
-void	ps_push(t_stack **stack)
+void	ps_push(t_stack **dst, t_stack **src)
 {
+	t_stack *src_head;
+	t_stack *dst_head;
 
+	src_head = *src;
+	dst_head = *dst;
+	src_head -> next -> prev = NULL;
+	*src = src_head -> next;
+	src_head -> next = dst_head;
+	dst_head -> prev = src_head;
+	*dst = src_head;
 }
 
 void	ps_rotate(t_stack **stack)
 {
-
+	t_stack	tmp;
 }
 
 void	ps_r_rotate(t_stack **stack)
@@ -49,26 +58,32 @@ void single_instruct(e_single e_inst, t_stack **stack)
 	if (e_inst == SA || e_inst == SB)
 		ps_swap(stack);
 	else if (e_inst == RA || e_inst == RB)
-		psr(stack);
+		ps_rotate(stack);
+	else if (e_inst == RRA || e_inst == RRB)
+		ps_r_rotate(stack);
 	ft_printf("%s\n", SINGLE_NAME + e_inst);
 }
 
-void double_instruct(e_double e_inst, t_stack **stack, t_stack **stack2)
+void double_instruct(e_double e_inst, t_stack **a, t_stack **b)
 {
 	if (e_inst == SS)
 	{
-		ps_swap(stack);
-		ps_swap(stack2);
+		ps_swap(a);
+		ps_swap(b);
 	}
+	else if (e_inst == PA)
+		ps_push(a, b);
+	else if (e_inst == PB)
+		ps_push(b, a);
 	else if (e_inst == RR)
 	{
-		ps_rr(stack);
-		ps_rr(stack2);
+		ps_rotate(a);
+		ps_rotate(b);
 	}
 	else if (e_inst == RRR)
 	{
-		ps_rrr(stack);
-		ps_rrr(stack2);
+		ps_r_rotate(a);
+		ps_r_rotate(b);
 	}
 	ft_printf("%s\n", DOUBLE_NAME + e_inst);
 }
