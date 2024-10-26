@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:55:09 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/25 02:01:01 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/26 13:19:26 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,53 @@
 
 # include <stdlib.h> // malloc, free, exit
 # include <unistd.h> // read, write
+
+// typedef struct s_ps_node
+// {
+// 	int	nb;
+// 	struct s_stack_node	*next;
+// }	t_ps_node;
+
+// typedef struct s_stack
+// {
+// 	int	size;
+// 	t_stack_node	*head;
+// 	t_stack_node	*tail;
+// }	t_stack;
+
+
+typedef struct s_stack
+{
+	int	nb;
+	struct s_stack	*prev;
+	struct s_stack	*next;
+}	t_stack;
+
+# define SINGLE_NAME "sa\0sb\0pa\0pb\0ra\0rb"
+# define DOUBLE_NAME "ss\0rr\0rrr"
+
+typedef enum single_inst
+{
+	SA = 0, 
+	SB = 3, 
+	PA = 6, 
+	PB = 9, 
+	RA = 12, 
+	RB = 15
+}	e_single;
+
+typedef enum double_inst
+{
+	SS = 0,
+	RR = 3,
+	RRR = 6
+}	e_double;
+
+//list_utils.c
+t_stack	*ps_newlst(int nb);
+void	ps_lstfree(t_stack **lst);
+t_stack	*ps_lstlast(t_stack *lst);
+void	ps_lstadd_back(t_stack **head, t_stack *tail);
 
 #endif
 
