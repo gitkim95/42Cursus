@@ -76,12 +76,7 @@ df -a -BM | grep "/dev/mapper" | awk '{total+=$3+$4}END{printf ("%d", total/1024
 printf "Gb ("
 df -a -BM | grep "/dev/mapper" | awk '{used+=$3; total+=$3+$4}END{printf ("%d", used/total*100)}' | tr -d '\n'
 printf "%%)\n"
-
-printf "#CPU load: "
-mpstat | grep "all" | awk '{printf "%.1f%%\n", 100-$13}'
-
-printf "#Last boot: "
-who -b | awk '{printf $3" "$4"\n"}'
+ /var/log/sudo/
 
 printf "#LVM use: "
 if [ "$(lsblk | grep lvm | wc -l)" -gt 0 ] ; then printf "yes\n" ; else printf "no\n" ; fi
