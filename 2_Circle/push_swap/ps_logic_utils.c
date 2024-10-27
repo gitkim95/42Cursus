@@ -6,17 +6,27 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 23:53:01 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/27 03:04:24 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/27 23:14:30 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	check_asc(t_stack **a, int size)
+int	check_asc(t_stack *a)
 {
-	t_stack	*head;
+	t_ps_node	*a_node;
 
-	head = *a;
-	while (head -> next && head -> nb < head -> next -> nb)
+	a_node = a->head;
+	while (a_node->next)
+	{
+		if (a_node->nb >= a_node->next->nb)
+			return (0);
+		a_node = a_node->next;
+	}
+	return (1);
+}
+
+long	ps_atol(char *arr)
+{
 
 }

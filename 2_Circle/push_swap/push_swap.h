@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:55:09 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/27 02:44:28 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/27 23:14:10 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 typedef struct s_ps_node
 {
-	int					nb;
+	long				nb;
 	struct s_ps_node	*prev;
 	struct s_ps_node	*next;
 }	t_ps_node;
@@ -26,8 +26,6 @@ typedef struct s_ps_node
 typedef struct s_stack
 {
 	int			size;
-	int			max_value;
-	int			min_value;
 	t_ps_node	*head;
 	t_ps_node	*tail;
 }	t_stack;
@@ -58,17 +56,23 @@ t_stack	*ps_newlst(int nb);
 void	ps_lstfree(t_stack **lst);
 t_stack	*ps_lstlast(t_stack *lst);
 void	ps_lstadd_back(t_stack **head, t_stack *tail);
-int		ps_lstsize(t_stack *node);
 
 //ps_task_func.c
-void	ps_swap(t_stack **stack);
-void	ps_push(t_stack **dst, t_stack **src);
-void	ps_rotate(t_stack **stack);
-void	ps_r_rotate(t_stack **stack);
+void	ps_swap(t_stack *stack);
+void	ps_push(t_stack *dst, t_stack *src);
+void	ps_rotate(t_stack *stack);
+void	ps_r_rotate(t_stack *stack);
 
 //ps_task_parsing.c
-void	single_instruct(t_single e_inst, t_stack **stack);
-void	double_instruct(t_double e_inst, t_stack **a, t_stack **b);
+void	single_instruct(t_single e_inst, t_stack *stack);
+void	double_instruct(t_double e_inst, t_stack *a, t_stack *b);
+
+//ps_verification.c
+int		ps_isnum(int ac, char **av);
+int		ps_veri_same_nb(t_stack *stack);
+
+//ps_logic_utils.c
+int		check_asc(t_stack *a);
 
 #endif
 
@@ -115,6 +119,7 @@ rrr - rra와 rrb를 동시에 수행
 // 500개 ,, 5500개 미만 ,,
 
 // 비트연산, 기수정렬, min or max값 저장, 음수/양수 갯수 세어놓기
+// 그리디!!!!!!!! 3점 놓고 배치
 
 // 뽀나스
 // checker 프로그램 작성

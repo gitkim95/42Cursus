@@ -6,13 +6,13 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 17:28:32 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/26 17:41:10 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/27 18:14:50 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	single_instruct(t_single e_inst, t_stack **stack)
+void	single_instruct(t_single e_inst, t_stack *stack)
 {
 	if (e_inst == SA || e_inst == SB)
 		ps_swap(stack);
@@ -23,7 +23,7 @@ void	single_instruct(t_single e_inst, t_stack **stack)
 	ft_printf("%s\n", SINGLE_NAME + e_inst);
 }
 
-void	double_instruct(t_double e_inst, t_stack **a, t_stack **b)
+void	double_instruct(t_double e_inst, t_stack *a, t_stack *b)
 {
 	if (e_inst == SS)
 	{

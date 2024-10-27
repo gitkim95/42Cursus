@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 22:00:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/27 04:58:44 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/27 20:53:50 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,22 @@ t_ps_node	*ps_newlst(int nb)
 	newstack = (t_ps_node *)malloc(sizeof(t_ps_node));
 	if (!newstack)
 		return (NULL);
-	newstack -> nb = nb;
-	newstack -> prev = NULL;
-	newstack -> next = NULL;
+	newstack->nb = nb;
+	newstack->prev = NULL;
+	newstack->next = NULL;
 	return (newstack);
 }
 
-void	ps_lstfree(t_ps_node *lst)
+void	ps_lstfree(t_stack *stack)
 {
+	t_ps_node	*node;
 	t_ps_node	*tmp;
 
-	while (lst)
+	node = stack->head;
+	while (node)
 	{
-		tmp = lst;
-		lst = lst -> next;
+		tmp = node;
+		node = node->next;
 		free(tmp);
 	}
 }
@@ -41,8 +43,8 @@ t_ps_node	*ps_lstlast(t_ps_node *lst)
 {
 	if (!lst)
 		return (NULL);
-	while (lst -> next)
-		lst = lst -> next;
+	while (lst->next)
+		lst = lst->next;
 	return (lst);
 }
 
@@ -50,16 +52,16 @@ void	ps_lstadd_back(t_stack *ps_stack, t_ps_node *new_node)
 {
 	if (!new_node)
 		return ;
-	if (ps_stack -> head == NULL)
+	if (ps_stack->head == NULL)
 	{
-		ps_stack -> head = new_node;
-		ps_stack -> tail = new_node;
+		ps_stack->head = new_node;
+		ps_stack->tail = new_node;
 	}
 	else
 	{
-		ps_stack -> tail -> next = new_node;
-		new_node -> prev = ps_stack -> tail;
-		ps_stack -> tail = new_node;
+		ps_stack->tail->next = new_node;
+		new_node->prev = ps_stack->tail;
+		ps_stack->tail = new_node;
 	}
 }
 
@@ -70,7 +72,7 @@ void	ps_lstadd_back(t_stack *ps_stack, t_ps_node *new_node)
 // 	cnt = 0;
 // 	while (node)
 // 	{
-// 		node = node -> next;
+// 		node = node->next;
 // 		cnt++;
 // 	}
 // 	return (cnt);
