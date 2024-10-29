@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:54:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/27 23:12:59 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/28 05:48:50 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,15 @@ void	cal_max_min(t_stack *ps_stack)
 int	make_stack(int ac, char **av, t_stack *ps_stack)
 {
 	t_ps_node	*new_node;
+	long		trans_nb;
 	int			arg_size;
 
 	arg_size = 1;
 	while (arg_size < ac)
 	{
-		new_node = ps_newlst(ft_atoi(av[arg_size]));
-		if (!new_node)
+		trans_nb = ps_atol(av[arg_size]);
+		new_node = ps_newlst((int)trans_nb);
+		if (!new_node || INT_MAX < trans_nb || trans_nb < INT_MIN)
 		{
 			ps_lstfree(ps_stack);
 			ft_printf("Error\n");

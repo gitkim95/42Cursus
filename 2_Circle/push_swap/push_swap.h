@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:55:09 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/27 23:14:10 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/30 03:55:47 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,11 @@ int		ps_veri_same_nb(t_stack *stack);
 
 //ps_logic_utils.c
 int		check_asc(t_stack *a);
+long	ps_atol(char *arr);
 
 #endif
 
-// typedef struct s_stack
-// {
-// 	int				nb;
-// 	struct s_stack	*prev;
-// 	struct s_stack	*next;
-// }	t_stack;
-
+//https://techdebt.tistory.com/26
 //Libft 사용 가능
 //기수정렬 추천
 //Makefile 작성

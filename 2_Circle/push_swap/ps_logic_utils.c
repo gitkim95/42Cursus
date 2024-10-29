@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 23:53:01 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/27 23:14:30 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/28 05:36:36 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,27 @@ int	check_asc(t_stack *a)
 
 long	ps_atol(char *arr)
 {
+	long	ret;
+	long	sign;
+	int		idx;
 
+	sign = 1;
+	idx = 0;
+	ret = 0;
+	while (arr[idx] == 32 || (9 <= arr[idx] && arr[idx] <= 13))
+		idx++;
+	if (arr[idx] == '+' || arr[idx] == '-')
+	{
+		if (arr[idx + 1] == '+' || arr[idx + 1] == '-')
+			return (0);
+		if (arr[idx] == '-')
+			sign *= -1;
+		idx++;
+	}
+	while ('0' <= arr[idx] && arr[idx] <= '9')
+	{
+		ret = ret * 10 + (arr[idx] - '0');
+		idx++;
+	}
+	return (ret * sign);
 }
