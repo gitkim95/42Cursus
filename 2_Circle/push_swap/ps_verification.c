@@ -6,12 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 21:27:12 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/27 22:15:27 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/30 17:39:12 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "./Libft/libft.h"
+#include "./libft/libft.h"
 
 int	ps_issign(char c)
 {
@@ -35,7 +35,7 @@ int	ps_veri_val_nb(char *arr)
 			return (0);
 		if (ps_issign(arr[idx]))
 		{
-			if (!ft_isdigit(arr[idx + 1])) // 터진다면 여기
+			if (!ft_isdigit(arr[idx + 1]))
 				return (0);
 		}
 		idx++;
@@ -73,6 +73,7 @@ int	ps_veri_same_nb(t_stack *stack)
 		{
 			if (node_1->nb == node_2->nb)
 			{
+				ps_lstfree(stack);
 				ft_printf("Error\n");
 				return (0);
 			}

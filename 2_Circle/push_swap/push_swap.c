@@ -6,12 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:54:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/28 05:48:50 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/30 17:47:44 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "./Libft/libft.h"
+#include "./libft/libft.h"
 #include <limits.h>
 
 void	greedy_algoritm(t_stack *a)
@@ -60,11 +60,8 @@ int	main(int ac, char **av)
 
 	stack_a = (t_stack){0, NULL, NULL};
 	stack_b = (t_stack){0, NULL, NULL};
-	if (!ps_isnum(ac, av))
-		return (0);
-	if (!make_stack(ac, av, &stack_a))
-		return (0);
-	if (!ps_veri_same_nb(&stack_a))
+	if (!ps_isnum(ac, av) || !make_stack(ac, av, &stack_a)
+		|| !ps_veri_same_nb(&stack_a) || check_asc(&stack_a))
 		return (0);
 	return (0);
 }

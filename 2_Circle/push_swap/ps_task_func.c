@@ -6,12 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 22:45:25 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/27 18:14:51 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/30 17:39:19 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "./Libft/libft.h"
+#include "./libft/libft.h"
 
 void	ps_swap(t_stack *stack)
 {
