@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 22:45:25 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/30 17:39:19 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/30 19:59:24 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	ps_push(t_stack *dst, t_stack *src)
 	src_head->next = dst_head;
 	dst_head->prev = src_head;
 	dst->head = src_head;
+	dst->size += 1;
+	src->size -= 1;
 }
 
 void	ps_rotate(t_stack *stack)

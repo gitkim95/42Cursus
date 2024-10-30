@@ -6,11 +6,30 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 23:53:01 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/30 17:43:51 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/30 23:05:27 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	terminator(int type)
+{
+	if (type == 1)
+	{
+		ft_printf("Error\n");
+		exit(1);
+	}
+}
+
+void	init_stack(t_stack *stack_a, t_stack *stack_b)
+{
+	stack_a->head = NULL;
+	stack_a->tail = NULL;
+	stack_a->size = 0;
+	stack_b->head = NULL;
+	stack_b->tail = NULL;
+	stack_b->size = 0;
+}
 
 int	check_asc(t_stack *a)
 {
@@ -26,17 +45,15 @@ int	check_asc(t_stack *a)
 	return (1);
 }
 
-long	ps_atol(char *arr)
+long long	ps_atoll(char *arr)
 {
-	long	ret;
-	long	sign;
-	int		idx;
+	long long	ret;
+	long long	sign;
+	int			idx;
 
 	sign = 1;
 	idx = 0;
 	ret = 0;
-	while (arr[idx] == 32 || (9 <= arr[idx] && arr[idx] <= 13))
-		idx++;
 	if (arr[idx] == '+' || arr[idx] == '-')
 	{
 		if (arr[idx + 1] == '+' || arr[idx + 1] == '-')

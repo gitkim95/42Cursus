@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:55:09 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/30 18:00:45 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/30 23:17:45 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,28 +52,29 @@ typedef enum e_double
 # define SINGLE_NAME "sa\0sb\0ra\0rb\0rra\0rrb"
 # define DOUBLE_NAME "ss\0pa\0pb\0rr\0rrr"
 //ps_list_utils.c
-t_stack	*ps_newlst(int nb);
-void	ps_lstfree(t_stack **lst);
-t_stack	*ps_lstlast(t_stack *lst);
-void	ps_lstadd_back(t_stack **head, t_stack *tail);
+t_stack		*ps_newlst(int nb);
+void		ps_lstfree(t_stack **lst);
+t_stack		*ps_lstlast(t_stack *lst);
+void		ps_lstadd_back(t_stack **head, t_stack *tail);
 
 //ps_task_func.c
-void	ps_swap(t_stack *stack);
-void	ps_push(t_stack *dst, t_stack *src);
-void	ps_rotate(t_stack *stack);
-void	ps_r_rotate(t_stack *stack);
+void		ps_swap(t_stack *stack);
+void		ps_push(t_stack *dst, t_stack *src);
+void		ps_rotate(t_stack *stack);
+void		ps_r_rotate(t_stack *stack);
 
 //ps_task_parsing.c
-void	single_instruct(t_single e_inst, t_stack *stack);
-void	double_instruct(t_double e_inst, t_stack *a, t_stack *b);
+void		single_instruct(t_single e_inst, t_stack *stack);
+void		double_instruct(t_double e_inst, t_stack *a, t_stack *b);
 
 //ps_verification.c
-int		ps_isnum(int ac, char **av);
-int		ps_veri_same_nb(t_stack *stack);
+int			ps_isnum(int ac, char **av);
+int			ps_veri_same_nb(t_stack *stack);
 
 //ps_logic_utils.c
-int		check_asc(t_stack *a);
-long	ps_atol(char *arr);
+void		init_stack(t_stack *stack_a, t_stack *stack_b);
+int			check_asc(t_stack *a);
+long long	ps_atoll(char *arr);
 
 #endif
 
