@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:54:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/01 06:24:16 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/01 06:28:50 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,6 @@ void	greedy_algoritm(t_stack *a)
 	b = NULL;
 	if (check_asc(a))
 		return ;
-}
-
-void	cal_max_min(t_stack *ps_stack)
-{
-	
 }
 
 int	main(int ac, char **av)
