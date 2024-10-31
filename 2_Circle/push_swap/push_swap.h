@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:55:09 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/30 23:17:45 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/31 20:51:14 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int			ps_veri_same_nb(t_stack *stack);
 void		init_stack(t_stack *stack_a, t_stack *stack_b);
 int			check_asc(t_stack *a);
 long long	ps_atoll(char *arr);
+void		terminator(int type, void *addr, t_stack *stack);
 
 #endif
 

@@ -6,16 +6,20 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 23:53:01 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/30 23:05:27 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/10/31 20:57:42 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	terminator(int type)
+void	terminator(int type, void *addr, t_stack *stack)
 {
 	if (type == 1)
 	{
+		if (addr)
+			free(addr);
+		if (stack)
+			ps_lstfree(stack);
 		ft_printf("Error\n");
 		exit(1);
 	}
