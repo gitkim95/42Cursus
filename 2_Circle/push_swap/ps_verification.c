@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 21:27:12 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/30 17:39:12 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/01 06:20:29 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ps_veri_val_nb(char *arr)
 	return (1);
 }
 
-int	ps_isnum(int ac, char **av)
+void	ps_isnum(int ac, char **av)
 {
 	int	idx;
 
@@ -51,35 +51,28 @@ int	ps_isnum(int ac, char **av)
 	{
 		idx = ac - 1;
 		if (!ps_veri_val_nb(av[idx]))
-		{
-			ft_printf("Error\n");
-			return (0);
-		}
+			terminator(1, NULL, NULL, NULL);
 		ac--;
 	}
-	return (1);
+	return ;
 }
 
-int	ps_veri_same_nb(t_stack *stack)
+void	ps_veri_same_nb(int *list, int size)
 {
-	t_ps_node	*node_1;
-	t_ps_node	*node_2;
+	int	i;
+	int	j;
 
-	node_1 = stack->head;
-	while (node_1->next)
+	i = 0;
+	while (i < size)
 	{
-		node_2 = node_1->next;
-		while (node_2)
+		j = i + 1;
+		while (j < size)
 		{
-			if (node_1->nb == node_2->nb)
-			{
-				ps_lstfree(stack);
-				ft_printf("Error\n");
-				return (0);
-			}
-			node_2 = node_2->next;
+			if (list[i] == list[j])
+				terminator(1, list, NULL, NULL);
+			j++;
 		}
-		node_1 = node_1->next;
+		i++;
 	}
-	return (1);
+	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:55:09 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/31 20:51:14 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/01 06:25:46 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,30 @@ typedef enum e_double
 
 # define SINGLE_NAME "sa\0sb\0ra\0rb\0rra\0rrb"
 # define DOUBLE_NAME "ss\0pa\0pb\0rr\0rrr"
+//ps_arrange_arg_1.c
+char		*make_arr(int ac, char **av);
+char		**arr_merge(int ac, char **av);
+int			cal_arg_size(char **arg_split);
+void		make_stack(int ac, char **av, t_stack *ps_stack);
+
+//ps_arrange_arg_2.c
+int			find_max_val(int *list, int size);
+int			find_min_val(int *list, int size);
+int			*indexing_list(int *list, int list_size);
+int			*listing_arg(char **arg_split, int list_size);
+
 //ps_list_utils.c
-t_stack		*ps_newlst(int nb);
-void		ps_lstfree(t_stack **lst);
-t_stack		*ps_lstlast(t_stack *lst);
-void		ps_lstadd_back(t_stack **head, t_stack *tail);
+t_ps_node	*ps_newlst(int nb);
+void		ps_lstfree(t_stack *stack);
+t_ps_node	*ps_lstlast(t_ps_node *lst);
+void		ps_lstadd_back(t_stack *ps_stack, t_ps_node *new_node);
+//int			ps_lstsize(t_stack *stack);
+
+//ps_logic_utils.c
+void		terminator(int type, void *addr_1, void *addr_2, t_stack *stack);
+void		init_stack(t_stack *stack_a, t_stack *stack_b);
+int			check_asc(t_stack *a);
+long long	ps_atoll(char *arr, char **arg_split, int *list);
 
 //ps_task_func.c
 void		ps_swap(t_stack *stack);
@@ -68,14 +87,8 @@ void		single_instruct(t_single e_inst, t_stack *stack);
 void		double_instruct(t_double e_inst, t_stack *a, t_stack *b);
 
 //ps_verification.c
-int			ps_isnum(int ac, char **av);
-int			ps_veri_same_nb(t_stack *stack);
-
-//ps_logic_utils.c
-void		init_stack(t_stack *stack_a, t_stack *stack_b);
-int			check_asc(t_stack *a);
-long long	ps_atoll(char *arr);
-void		terminator(int type, void *addr, t_stack *stack);
+void		ps_isnum(int ac, char **av);
+void		ps_veri_same_nb(int *list, int size);
 
 #endif
 

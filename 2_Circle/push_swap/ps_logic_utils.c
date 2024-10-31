@@ -6,18 +6,20 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 23:53:01 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/31 20:57:42 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/01 06:10:47 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	terminator(int type, void *addr, t_stack *stack)
+void	terminator(int type, void *addr_1, void *addr_2, t_stack *stack)
 {
 	if (type == 1)
 	{
-		if (addr)
-			free(addr);
+		if (addr_1)
+			free(addr_1);
+		if (addr_2)
+			free(addr_2);
 		if (stack)
 			ps_lstfree(stack);
 		ft_printf("Error\n");
@@ -49,7 +51,7 @@ int	check_asc(t_stack *a)
 	return (1);
 }
 
-long long	ps_atoll(char *arr)
+long long	ps_atoll(char *arr, char **arg_split, int *list)
 {
 	long long	ret;
 	long long	sign;
@@ -60,16 +62,18 @@ long long	ps_atoll(char *arr)
 	ret = 0;
 	if (arr[idx] == '+' || arr[idx] == '-')
 	{
-		if (arr[idx + 1] == '+' || arr[idx + 1] == '-')
-			return (0);
 		if (arr[idx] == '-')
 			sign *= -1;
 		idx++;
 	}
+	if (!('0' <= arr[idx] && arr[idx] <= '9'))
+		terminator(1, arg_split, list, NULL);
 	while ('0' <= arr[idx] && arr[idx] <= '9')
 	{
 		ret = ret * 10 + (arr[idx] - '0');
 		idx++;
 	}
+	if (arr[idx])
+		terminator(1, arg_split, list, NULL);
 	return (ret * sign);
 }
