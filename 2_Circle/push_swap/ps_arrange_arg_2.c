@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 05:20:53 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/01 14:52:30 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/01 18:11:31 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ int	*listing_arg(char **arg_split, int list_size)
 		if (INT_MAX < trans_nb || trans_nb < INT_MIN)
 			terminator(1, list, arg_split, NULL);
 		list[idx] = trans_nb;
+		idx++;
 	}
 	free_split(arg_split);
 	ps_veri_same_nb(list, list_size);

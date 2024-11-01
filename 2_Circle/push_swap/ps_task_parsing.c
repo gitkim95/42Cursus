@@ -6,11 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 17:28:32 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/27 18:14:50 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/01 18:37:53 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "./libft/libft.h"
 
 void	single_instruct(t_single e_inst, t_stack *stack)
 {

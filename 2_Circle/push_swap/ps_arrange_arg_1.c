@@ -6,11 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 05:20:20 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/01 06:21:43 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/01 16:57:32 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "./libft/libft.h"
 
 char	*make_arr(int ac, char **av)
 {

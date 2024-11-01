@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:55:09 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/01 14:55:48 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/01 16:58:21 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 typedef struct s_ps_node
 {
-	long				nb;
+	int					nb;
 	struct s_ps_node	*prev;
 	struct s_ps_node	*next;
 }	t_ps_node;
@@ -72,7 +72,7 @@ void		ps_lstadd_back(t_stack *ps_stack, t_ps_node *new_node);
 //int			ps_lstsize(t_stack *stack);
 
 //ps_logic_utils.c
-void		terminator(int type, void *addr_1, void **addr_2, t_stack *stack);
+void		terminator(int type, void *addr_1, char **addr_2, t_stack *stack);
 void		init_stack(t_stack *stack_a, t_stack *stack_b);
 int			check_asc(t_stack *a);
 long long	ps_atoll(char *arr, char **arg_split, int *list);
