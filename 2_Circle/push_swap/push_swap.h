@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:55:09 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/01 16:58:21 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/02 00:39:31 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void		ps_veri_same_nb(int *list, int size);
 #endif
 
 //https://techdebt.tistory.com/26
+//https://80000coding.oopy.io/71fa0b62-6461-463d-b1e1-5eaa2b3a3ca9
 //Libft 사용 가능
 //기수정렬 추천
 //Makefile 작성

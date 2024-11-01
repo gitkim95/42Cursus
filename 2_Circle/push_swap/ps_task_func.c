@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 22:45:25 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/01 18:29:09 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/02 01:40:07 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	ps_swap(t_stack *stack)
 	second->prev = first->prev;
 	first->prev = second;
 	second->next = first;
-	first->next->prev = first;
+	if (stack->size > 2)
+		first->next->prev = first;
 	stack->head = second;
 }
 
@@ -38,9 +39,11 @@ void	ps_push(t_stack *dst, t_stack *src)
 	src->head = src_head->next;
 	src->head->prev = NULL;
 	src_head->next = dst_head;
-	if (dst_head)
+	if (dst->size > 0)
 		dst_head->prev = src_head;
 	dst->head = src_head;
+	if (dst->size == 0)
+		dst->tail = dst->head;
 	dst->size += 1;
 	src->size -= 1;
 }
