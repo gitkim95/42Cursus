@@ -6,12 +6,25 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 05:20:53 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/01 06:25:34 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/01 14:52:30 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <limits.h>
+
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
 
 int	find_max_val(int *list, int size)
 {
@@ -84,6 +97,8 @@ int	*listing_arg(char **arg_split, int list_size)
 	int			idx;
 
 	list = (int *)malloc(sizeof(int) * list_size);
+	if (!list)
+		terminator(1, NULL, arg_split, NULL);
 	idx = 0;
 	while (arg_split[idx])
 	{
@@ -92,7 +107,7 @@ int	*listing_arg(char **arg_split, int list_size)
 			terminator(1, list, arg_split, NULL);
 		list[idx] = trans_nb;
 	}
-	free(arg_split);
+	free_split(arg_split);
 	ps_veri_same_nb(list, list_size);
 	list = indexing_list(list, list_size);
 	return (list);

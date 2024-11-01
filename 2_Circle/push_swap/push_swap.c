@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:54:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/01 06:28:50 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/01 14:57:35 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	main(int ac, char **av)
 {
 	t_stack		stack_a;
 	t_stack		stack_b;
-	t_ps_node	*new_node;
 
 	if (ac < 2)
 		exit(0);

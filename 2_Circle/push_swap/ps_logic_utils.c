@@ -6,23 +6,26 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 23:53:01 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/01 06:10:47 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/01 14:53:17 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "./libft/libft.h"
 
-void	terminator(int type, void *addr_1, void *addr_2, t_stack *stack)
+void	terminator(int type, void *addr_1, char **addr_2, t_stack *stack)
 {
+	int	i;
+
 	if (type == 1)
 	{
 		if (addr_1)
 			free(addr_1);
 		if (addr_2)
-			free(addr_2);
+			free_split(addr_2);
 		if (stack)
 			ps_lstfree(stack);
-		ft_printf("Error\n");
+		ft_putendl_fd("Error", 2);
 		exit(1);
 	}
 }
