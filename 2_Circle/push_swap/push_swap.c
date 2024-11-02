@@ -6,14 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:54:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/02 21:52:02 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/03 03:22:19 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "./libft/libft.h"
-
-
 
 void	push_to_b_except_3(t_stack *a, t_stack *b)
 {
@@ -23,10 +21,10 @@ void	push_to_b_except_3(t_stack *a, t_stack *b)
 
 void	ready_to_sort(t_stack *a, t_stack *b)
 {
-	int i;
+	int	i;
 	int	size;
-	int nb;
-	int pivot_1;
+	int	nb;
+	int	pivot_1;
 	int	pivot_2;
 
 	pivot_1 = a->size / 3;
@@ -63,7 +61,7 @@ void	sort_a_3node(t_stack *a)
 	{
 		single_instruct(SA, a);
 		single_instruct(RA, a);
-	}	
+	}
 	else if (middle_nb < head_nb && head_nb < tail_nb)
 		single_instruct(SA, a);
 	else if (tail_nb < head_nb && head_nb < middle_nb)
@@ -116,22 +114,51 @@ int	find_a_cost(t_stack *a, int b_nb)
 	while (node)
 	{
 		if (node->prev == NULL && if_a_prev_null(a, b_nb))
-			break;
+			break ;
 		if (node->prev != NULL && node->prev->nb < b_nb && \
 			node->nb > b_nb && node->prev->nb < node->nb)
-			break;
+			break ;
 		if (node->prev != NULL && node->prev->nb > b_nb && \
 			node->nb > b_nb && node->prev->nb > node->nb)
-			break;
+			break ;
 		if (node->prev != NULL && node->prev->nb < b_nb && \
 			node->nb < b_nb && node->prev->nb > node->nb)
-			break;
+			break ;
 		node = node->next;
 		cnt++;
 	}
 	if (cnt > a->size / 2)
 		cnt = cnt - a->size;
 	return (cnt);
+}
+
+void	set_abs_value(int a_loc, int b_loc, int a_co, int b_co)
+{
+	if (a_loc < 0)
+		a_loc *= -1;
+	if (b_loc < 0)
+		b_loc *= -1;
+	if (a_co < 0)
+		a_co *= -1;
+	if (b_co < 0)
+		b_co *= -1;
+}
+
+int	check_least_cost(t_least_cost *cal)
+{
+	int	a_loc;
+	int	b_loc;
+	int	a_co;
+	int	b_co;
+
+	a_loc = cal->a_location;
+	b_loc = cal->b_location;
+	a_co = cal->a_cost;
+	b_co = cal->b_cost;
+	set_abs_value(a_loc, b_loc, a_co, b_co);
+	if (a_loc + b_loc < a_co + b_co)
+		return (1);
+	return (0);
 }
 
 void	find_best(t_stack *a, t_stack *b, t_least_cost *cal)
@@ -150,13 +177,57 @@ void	find_best(t_stack *a, t_stack *b, t_least_cost *cal)
 			cal->b_location = idx - b->size;
 		else
 			cal->b_location = idx;
-		if (idx == 0 || )
+		if (idx == 0 || check_least_cost(cal))
 		{
 			cal->a_cost = cal->a_location;
 			cal->b_cost = cal->b_location;
 		}
 		b_node = b_node->next;
 		idx++;
+	}
+}
+
+void	rotate_for_push_all(t_stack *a, t_stack *b, t_least_cost *cal)
+{
+	while (cal->a_cost < 0 && cal->b_cost < 0)
+	{
+		double_instruct(RRR, a, b);
+		cal->a_cost++;
+		cal->b_cost++;
+	}
+	while (cal->a_cost > 0 && cal->b_cost > 0)
+	{
+		double_instruct(RR, a, b);
+		cal->a_cost--;
+		cal->b_cost--;
+	}
+}
+
+void	rotate_for_push_a(t_stack *stack, t_least_cost *cal)
+{
+	while (cal->a_cost > 0)
+	{
+		single_instruct(RA, stack);
+		cal->a_cost--;
+	}
+	while (cal->a_cost < 0)
+	{
+		single_instruct(RRA, stack);
+		cal->a_cost++;
+	}
+}
+
+void	rotate_for_push_b(t_stack *stack, t_least_cost *cal)
+{
+	while (cal->b_cost > 0)
+	{
+		single_instruct(RB, stack);
+		cal->b_cost--;
+	}
+	while (cal->b_cost < 0)
+	{
+		single_instruct(RRB, stack);
+		cal->b_cost++;
 	}
 }
 
@@ -180,13 +251,12 @@ void	greedy_algoritm(t_stack *a, t_stack *b)
 		cal.a_cost = 0;
 		cal.b_cost = 0;
 		find_best(a, b, &cal);
-		// rotate logic
-		// cost의 값이 음수라면 rr, 양수라면 r을 돈다. 둘다 음수 혹은 양수라면 같이 굴린 후 따로 굴린다.
+		rotate_for_push_all(a, b, &cal);
+		rotate_for_push_a(a, &cal);
+		rotate_for_push_b(b, &cal);
 		double_instruct(PA, a, b);
 	}
 }
-
-#include <stdio.h> // 나중에 지워야 함
 
 int	main(int ac, char **av)
 {
@@ -200,8 +270,11 @@ int	main(int ac, char **av)
 	make_stack(ac, av, &stack_a);
 	if (check_asc(&stack_a))
 		return (0);
-	else // 정렬 확인, 정렬 됐다면 바로 종료, 아니면 로직 시작
+	else
 		greedy_algoritm(&stack_a, &stack_b);
+	ps_lstfree(&stack_a);
+	return (0);
+}
 	// for (t_ps_node *node = stack_a.head; node ; node = node->next)
 	// {
 	// 	printf("a - %d\n", node->nb);
@@ -210,6 +283,3 @@ int	main(int ac, char **av)
 	// {
 	// 	printf("b - %d\n", node->nb);
 	// }
-	ps_lstfree(&stack_a);
-	return (0);
-}
