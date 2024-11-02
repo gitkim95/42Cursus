@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:55:09 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/02 00:39:31 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/02 21:28:40 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ typedef struct s_stack
 	t_ps_node	*head;
 	t_ps_node	*tail;
 }	t_stack;
+
+typedef struct s_least_cost
+{
+	int	a_location;
+	int	b_location;
+	int	a_cost;
+	int	b_cost;
+}	t_least_cost;
 
 typedef enum e_single
 {

@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 23:53:01 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/01 16:59:38 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/02 21:51:52 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	check_asc(t_stack *a)
 	t_ps_node	*a_node;
 
 	a_node = a->head;
-	while (a_node->next)
+	while (a_node && a_node->next)
 	{
 		if (a_node->nb >= a_node->next->nb)
 			return (0);

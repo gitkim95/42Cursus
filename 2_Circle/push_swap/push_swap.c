@@ -6,12 +6,20 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:54:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/02 01:45:05 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/02 21:52:02 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "./libft/libft.h"
+
+
+
+void	push_to_b_except_3(t_stack *a, t_stack *b)
+{
+	while (a->size > 3)
+		double_instruct(PB, a, b);
+}
 
 void	ready_to_sort(t_stack *a, t_stack *b)
 {
@@ -40,8 +48,6 @@ void	ready_to_sort(t_stack *a, t_stack *b)
 			single_instruct(RA, a);
 		i++;
 	}
-	while (a->size > 3)
-		double_instruct(PB, a, b);
 }
 
 void	sort_a_3node(t_stack *a)
@@ -84,29 +90,85 @@ void	sort_a_2node(t_stack *a)
 		single_instruct(SA, a);
 }
 
-void	cal_rotate_freq(t_stack *a, t_stack *b, int *a_r, int *b_r)
+int	if_a_prev_null(t_stack *a, int b_nb)
 {
-	t_ps_node	*b_head;
+	t_ps_node	*head;
+	t_ps_node	*tail;
+
+	head = a->head;
+	tail = a->tail;
+	if (tail->nb < b_nb && head->nb > b_nb && tail->nb < head->nb)
+		return (1);
+	if (tail->nb > b_nb && head->nb > b_nb && tail->nb > head->nb)
+		return (1);
+	if (tail->nb < b_nb && head->nb < b_nb && tail->nb > head->nb)
+		return (1);
+	return (0);
+}
+
+int	find_a_cost(t_stack *a, int b_nb)
+{
+	t_ps_node	*node;
+	int			cnt;
+
+	node = a->head;
+	cnt = 0;
+	while (node)
+	{
+		if (node->prev == NULL && if_a_prev_null(a, b_nb))
+			break;
+		if (node->prev != NULL && node->prev->nb < b_nb && \
+			node->nb > b_nb && node->prev->nb < node->nb)
+			break;
+		if (node->prev != NULL && node->prev->nb > b_nb && \
+			node->nb > b_nb && node->prev->nb > node->nb)
+			break;
+		if (node->prev != NULL && node->prev->nb < b_nb && \
+			node->nb < b_nb && node->prev->nb > node->nb)
+			break;
+		node = node->next;
+		cnt++;
+	}
+	if (cnt > a->size / 2)
+		cnt = cnt - a->size;
+	return (cnt);
+}
+
+void	find_best(t_stack *a, t_stack *b, t_least_cost *cal)
+{
+	t_ps_node	*b_node;
 	int			idx;
 	int			nb;
 
-	b_head = b->head;
+	b_node = b->head;
 	idx = 0;
 	while (idx < b->size)
 	{
-		nb = b_head->nb;
-
+		nb = b_node->nb;
+		cal->a_location = find_a_cost(a, nb);
+		if (idx > b->size / 2)
+			cal->b_location = idx - b->size;
+		else
+			cal->b_location = idx;
+		if (idx == 0 || )
+		{
+			cal->a_cost = cal->a_location;
+			cal->b_cost = cal->b_location;
+		}
+		b_node = b_node->next;
+		idx++;
 	}
-
 }
 
 void	greedy_algoritm(t_stack *a, t_stack *b)
 {
-	int	a_r;
-	int	b_r;
+	t_least_cost	cal;
 
 	if (a->size > 3)
+	{
 		ready_to_sort(a, b);
+		push_to_b_except_3(a, b);
+	}
 	if (a->size == 3)
 		sort_a_3node(a);
 	else if (a->size == 2)
@@ -115,8 +177,11 @@ void	greedy_algoritm(t_stack *a, t_stack *b)
 		return ;
 	while (!(b->size == 0 && check_asc(a)))
 	{
-		a_r = 0;
-		b_r = 0;
+		cal.a_cost = 0;
+		cal.b_cost = 0;
+		find_best(a, b, &cal);
+		// rotate logic
+		// cost의 값이 음수라면 rr, 양수라면 r을 돈다. 둘다 음수 혹은 양수라면 같이 굴린 후 따로 굴린다.
 		double_instruct(PA, a, b);
 	}
 }
@@ -145,6 +210,6 @@ int	main(int ac, char **av)
 	// {
 	// 	printf("b - %d\n", node->nb);
 	// }
-
+	ps_lstfree(&stack_a);
 	return (0);
 }
