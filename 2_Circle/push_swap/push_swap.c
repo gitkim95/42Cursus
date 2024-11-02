@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:54:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/03 03:22:19 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/03 04:18:20 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,6 +231,16 @@ void	rotate_for_push_b(t_stack *stack, t_least_cost *cal)
 	}
 }
 
+// int	get_zero_location(t_stack *a)
+// {
+	
+// }
+
+// void	set_zero_top(t_stack *a)
+// {
+
+// }
+
 void	greedy_algoritm(t_stack *a, t_stack *b)
 {
 	t_least_cost	cal;
@@ -246,7 +256,7 @@ void	greedy_algoritm(t_stack *a, t_stack *b)
 		sort_a_2node(a);
 	else
 		return ;
-	while (!(b->size == 0 && check_asc(a)))
+	while (b->size > 0)
 	{
 		cal.a_cost = 0;
 		cal.b_cost = 0;
@@ -257,6 +267,7 @@ void	greedy_algoritm(t_stack *a, t_stack *b)
 		double_instruct(PA, a, b);
 	}
 }
+#include <stdio.h>
 
 int	main(int ac, char **av)
 {
@@ -272,14 +283,14 @@ int	main(int ac, char **av)
 		return (0);
 	else
 		greedy_algoritm(&stack_a, &stack_b);
+	for (t_ps_node *node = stack_a.head; node ; node = node->next)
+	{
+		printf("a - %d\n", node->nb);
+	}
+	for (t_ps_node *node = stack_b.head; node ; node = node->next)
+	{
+		printf("b - %d\n", node->nb);
+	}
 	ps_lstfree(&stack_a);
 	return (0);
 }
-	// for (t_ps_node *node = stack_a.head; node ; node = node->next)
-	// {
-	// 	printf("a - %d\n", node->nb);
-	// }
-	// for (t_ps_node *node = stack_b.head; node ; node = node->next)
-	// {
-	// 	printf("b - %d\n", node->nb);
-	// }

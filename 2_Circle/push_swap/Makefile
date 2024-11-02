@@ -8,16 +8,16 @@ SOURCES = ps_task_func.c \
 	ps_list_utils.c \
 	ps_logic_utils.c \
 	ps_verification.c \
-	push_swap.c 
-
+	push_swap.c
 OBJS = $(SOURCES:.c=.o)
-LIBFT = libft.a
+
+LIBFT = $(LIBFT_DIR)/libft.a
 LIBFT_DIR = ./libft
 
 all : $(NAME)
 
 $(NAME) : $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) -g -o $@ $^
 
 .c.o :
 	$(CC) $(CFLAGS) -o $@ -c $<
