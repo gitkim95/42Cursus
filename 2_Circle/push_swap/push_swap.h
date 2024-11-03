@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:55:09 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/02 21:28:40 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/03 17:37:05 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,24 @@ int			find_min_val(int *list, int size);
 int			*indexing_list(int *list, int list_size);
 int			*listing_arg(char **arg_split, int list_size);
 
+//ps_greedy_logic.c
+void		find_best(t_stack *a, t_stack *b, t_least_cost *cal);
+void		rotate_for_push_all(t_stack *a, t_stack *b, t_least_cost *cal);
+void		rotate_for_push_a(t_stack *stack, t_least_cost *cal);
+void		rotate_for_push_b(t_stack *stack, t_least_cost *cal);
+void		greedy_algoritm(t_stack *a, t_stack *b);
+
+//ps_greedy_utils_1.c
+void		ready_to_sort(t_stack *a, t_stack *b);
+void		push_to_b_except_3(t_stack *a, t_stack *b);
+void		set_zero_top(t_stack *a);
+
+//ps_greedy_utils_2.c
+int			if_a_prev_null(t_stack *a, int b_nb);
+int			find_a_cost(t_stack *a, int b_nb);
+void		set_abs_value(int *a_loc, int *b_loc, int *a_co, int *b_co);
+int			check_least_cost(t_least_cost *cal);
+
 //ps_list_utils.c
 t_ps_node	*ps_newlst(int nb);
 void		ps_lstfree(t_stack *stack);
@@ -84,6 +102,10 @@ void		terminator(int type, void *addr_1, char **addr_2, t_stack *stack);
 void		init_stack(t_stack *stack_a, t_stack *stack_b);
 int			check_asc(t_stack *a);
 long long	ps_atoll(char *arr, char **arg_split, int *list);
+
+//ps_sort_ac_under_3.c
+void		sort_a_3node(t_stack *a);
+void		sort_a_2node(t_stack *a);
 
 //ps_task_func.c
 void		ps_swap(t_stack *stack);

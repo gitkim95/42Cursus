@@ -1,14 +1,18 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = push_swap
-SOURCES = ps_task_func.c \
-	ps_task_parsing.c \
-	ps_arrange_arg_1.c \
-	ps_arrange_arg_2.c \
-	ps_list_utils.c \
-	ps_logic_utils.c \
-	ps_verification.c \
-	push_swap.c
+SOURCES = ps_list_utils.c	\
+	push_swap.c	\
+	ps_sort_ac_under_3.c	\
+	ps_greedy_utils_2.c	\
+	ps_greedy_utils_1.c	\
+	ps_task_parsing.c	\
+	ps_task_func.c	\
+	ps_greedy_logic.c	\
+	ps_logic_utils.c	\
+	ps_arrange_arg_1.c	\
+	ps_verification.c	\
+	ps_arrange_arg_2.c
 OBJS = $(SOURCES:.c=.o)
 
 LIBFT = $(LIBFT_DIR)/libft.a
