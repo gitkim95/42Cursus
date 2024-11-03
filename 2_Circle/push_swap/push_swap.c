@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:54:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/03 04:18:20 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/03 16:22:18 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,16 +132,16 @@ int	find_a_cost(t_stack *a, int b_nb)
 	return (cnt);
 }
 
-void	set_abs_value(int a_loc, int b_loc, int a_co, int b_co)
+void	set_abs_value(int *a_loc, int *b_loc, int *a_co, int *b_co)
 {
-	if (a_loc < 0)
-		a_loc *= -1;
-	if (b_loc < 0)
-		b_loc *= -1;
-	if (a_co < 0)
-		a_co *= -1;
-	if (b_co < 0)
-		b_co *= -1;
+	if (*a_loc < 0)
+		*a_loc *= -1;
+	if (*b_loc < 0)
+		*b_loc *= -1;
+	if (*a_co < 0)
+		*a_co *= -1;
+	if (*b_co < 0)
+		*b_co *= -1;
 }
 
 int	check_least_cost(t_least_cost *cal)
@@ -155,7 +155,7 @@ int	check_least_cost(t_least_cost *cal)
 	b_loc = cal->b_location;
 	a_co = cal->a_cost;
 	b_co = cal->b_cost;
-	set_abs_value(a_loc, b_loc, a_co, b_co);
+	set_abs_value(&a_loc, &b_loc, &a_co, &b_co);
 	if (a_loc + b_loc < a_co + b_co)
 		return (1);
 	return (0);
@@ -231,15 +231,41 @@ void	rotate_for_push_b(t_stack *stack, t_least_cost *cal)
 	}
 }
 
-// int	get_zero_location(t_stack *a)
-// {
-	
-// }
+int	get_zero_location(t_stack *a)
+{
+	t_ps_node	*node;
+	int			zere_location;
 
-// void	set_zero_top(t_stack *a)
-// {
+	zere_location = 0;
+	node = a->head;
+	while (node)
+	{
+		if (node->nb == 0)
+			break;
+		node = node -> next;
+		zere_location++;
+	}
+	return (zere_location);
+}
 
-// }
+void	set_zero_top(t_stack *a)
+{
+	int	zero_location;
+
+	zero_location = get_zero_location(a);
+	if (zero_location > a->size / 2)
+		zero_location = zero_location - a->size;
+	while (zero_location < 0)
+	{
+		single_instruct(RRA, a);
+		zero_location++;
+	}
+	while (zero_location > 0)
+	{
+		single_instruct(RA, a);
+		zero_location--;
+	}
+}
 
 void	greedy_algoritm(t_stack *a, t_stack *b)
 {
@@ -266,6 +292,7 @@ void	greedy_algoritm(t_stack *a, t_stack *b)
 		rotate_for_push_b(b, &cal);
 		double_instruct(PA, a, b);
 	}
+	set_zero_top(a);
 }
 #include <stdio.h>
 
@@ -283,14 +310,14 @@ int	main(int ac, char **av)
 		return (0);
 	else
 		greedy_algoritm(&stack_a, &stack_b);
-	for (t_ps_node *node = stack_a.head; node ; node = node->next)
-	{
-		printf("a - %d\n", node->nb);
-	}
-	for (t_ps_node *node = stack_b.head; node ; node = node->next)
-	{
-		printf("b - %d\n", node->nb);
-	}
+	// for (t_ps_node *node = stack_a.head; node ; node = node->next)
+	// {
+	// 	printf("a - %d\n", node->nb);
+	// }
+	// for (t_ps_node *node = stack_b.head; node ; node = node->next)
+	// {
+	// 	printf("b - %d\n", node->nb);
+	// }
 	ps_lstfree(&stack_a);
 	return (0);
 }

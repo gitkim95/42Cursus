@@ -7,7 +7,7 @@
             "request": "launch",
             // "program": "${fileDirname}/a.out",
             "program": "${workspaceFolder}/2_Circle/push_swap/push_swap",
-            "args": ["2 3 4 9 1"],
+            "args": ["34 73 98 45 96 62 90 57 74 63 69 97 5 40 9 72 65 11 80 6 19 48 24 70 95 21 61 53 77 43 31 25 75 12 55 23 84 4 94 81 16 58 78 17 3 83 71 14 38 26 22 47 67 86 18 52 87 51 93 7 82 37 79 8 50 76 60 42 35 28 13 56 39 85 30 29 99 89 15 20 1 100 32 59 68 33 46 91 27 36 64 41 92 2 88 54 44 49 66 10"],
             "stopAtEntry": false,
             // "cwd": "${fileDirname}",
             "cwd": "${workspaceFolder}",
