@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 23:53:01 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/02 21:51:52 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/05 00:27:12 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,17 @@ void	terminator(int type, void *addr_1, char **addr_2, t_stack *stack)
 			ps_lstfree(stack);
 		ft_putendl_fd("Error", 2);
 		exit(1);
+	}
+	if (type == 2)
+	{
+		if (addr_1)
+			free(addr_1);
+		if (addr_2)
+			free_split(addr_2);
+		if (stack)
+			ps_lstfree(stack);
+		ft_putendl_fd("OK", 1);
+		exit(0);
 	}
 }
 

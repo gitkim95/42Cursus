@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 23:54:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/05 00:01:08 by gitkim           ###   ########.fr       */
+/*   Created: 2024/11/04 23:37:34 by gitkim            #+#    #+#             */
+/*   Updated: 2024/11/05 01:00:11 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include "./libft/libft.h"
+#include "checker.h"
 
-int	main(int ac, char **av)
+// void	checker_output(int type, void *)
+// {
+
+// }
+
+int	main(int ac, char *av[])
 {
 	t_stack	stack_a;
 	t_stack	stack_b;
@@ -24,9 +28,10 @@ int	main(int ac, char **av)
 	ps_isnum(ac, av);
 	make_stack(ac, av, &stack_a);
 	if (check_asc(&stack_a))
-		return (0);
+		terminator(2, NULL, NULL, &stack_a);
 	else
-		greedy_algoritm(&stack_a, &stack_b);
-	ps_lstfree(&stack_a);
-	return (0);
+	{
+	}
+	// 표준입력 받아서 그 입력대로 명령 실행, 정렬되면 ok 아니면 ko
+	// 유효하지 않은 명령이면 Error
 }

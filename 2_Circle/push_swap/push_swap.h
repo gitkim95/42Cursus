@@ -6,15 +6,15 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:55:09 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/03 18:01:14 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/04 23:39:25 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdlib.h> // malloc, free, exit
-# include <unistd.h> // read, write
+# include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_ps_node
 {
@@ -121,50 +121,6 @@ void		ps_isnum(int ac, char **av);
 void		ps_veri_same_nb(int *list, int size);
 
 #endif
-
-//https://techdebt.tistory.com/26
-//https://80000coding.oopy.io/71fa0b62-6461-463d-b1e1-5eaa2b3a3ca9
-//Libft 사용 가능
-//기수정렬 추천
-//Makefile 작성
-/*
-넌 a와 b라는 이름을 가진 스택을 가진다.
-a에는 복제 불가한 무작위 양의 음수/ 양수가 포함되어 있다.
-b는 비어있다.
-
-스택 a에 숫자를 오름차순 정렬한다.
-
-sa - a의 맨 위 요소 둘을 교환, 요소가 두개 미만이면 작업 하지 않음
-sb - b ,,
-ss - sa와 sb를 동시에 수행
-pa - b의 맨 위에 있는 요소를 a의 맨 위에 놓는다. b가 비면 작업 하지 않음
-pb - a ,,
-ra - a의 모든 요소를 한 칸 위로 이동, 첫 번째 요소가 마지막 요소가 된다.
-rb - b ,,
-rr - ra와 rb를 동시에 수행
-rra - ra의 reverse
-rrb - rb ,,
-rrr - rra와 rrb를 동시에 수행
-*/
-
-// 전역변수 금지
-// Makefile로 컴파일
-// 스택 a는 int형식 배열 모양으로 인수로 들어온다. 첫 번째 인자는 스택의 맨 위에 있어야 한다.
-// 결과적으로 가장 작은 숫자가 맨 위에 있어야 한다.
-// 명령어는 '\n'으로 구분되어야 하며 그 외 다른 구분자는 없어야 한다.
-// 정렬이 안 되거나 효율이 후지면 0점
-// 매개변수가 지정되지 않은 경우 프로그램은 출력하지 않고 다시 프롬프트를 보여야 한다.
-// 에러 발생 시 "Error\n"라는 메세지를 출력해야 한다.
-//	- 정수가 아니거나/ integer 범위 밖이거나/ 중복이 있는 경우
-// 100개의 무작위 숫자를 700개 미만의 작업으로 수행해야 함.
-// 500개 ,, 5500개 미만 ,,
-
-// 비트연산, 기수정렬, min or max값 저장, 음수/양수 갯수 세어놓기
-// 그리디!!!!!!!! 3점 놓고 배치
-
-// 뽀나스
-// checker 프로그램 작성
-// Make bonus 규칙 추가, 프로그램명 checker
 // 정렬이 확인 된 경우 "OK\n"출력
 // 안 된 경우 "KO\n"출력
 // 에러 발생 시 "Error\n"라는 메세지를 출력해야 한다.
