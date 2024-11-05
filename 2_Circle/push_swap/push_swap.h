@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:55:09 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/04 23:39:25 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/05 12:41:21 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,3 @@ void		ps_isnum(int ac, char **av);
 void		ps_veri_same_nb(int *list, int size);
 
 #endif
-// 정렬이 확인 된 경우 "OK\n"출력
-// 안 된 경우 "KO\n"출력
-// 에러 발생 시 "Error\n"라는 메세지를 출력해야 한다.
-//	- 정수가 아니거나/ integer 범위 밖이거나/ 중복이 있는 경우/ 존재하지 않는 명령어가 있는 경우
