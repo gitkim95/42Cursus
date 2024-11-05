@@ -6,14 +6,14 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 17:28:32 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/01 18:37:53 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/05 13:44:44 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "./libft/libft.h"
 
-void	single_instruct(t_single e_inst, t_stack *stack)
+void	single_instruct(t_single e_inst, t_stack *stack, int p_flg)
 {
 	if (e_inst == SA || e_inst == SB)
 		ps_swap(stack);
@@ -21,10 +21,11 @@ void	single_instruct(t_single e_inst, t_stack *stack)
 		ps_rotate(stack);
 	else if (e_inst == RRA || e_inst == RRB)
 		ps_r_rotate(stack);
-	ft_printf("%s\n", SINGLE_NAME + e_inst);
+	if (p_flg)
+		ft_printf("%s\n", SINGLE_NAME + e_inst);
 }
 
-void	double_instruct(t_double e_inst, t_stack *a, t_stack *b)
+void	double_instruct(t_double e_inst, t_stack *a, t_stack *b, int p_flg)
 {
 	if (e_inst == SS)
 	{
@@ -45,5 +46,6 @@ void	double_instruct(t_double e_inst, t_stack *a, t_stack *b)
 		ps_r_rotate(a);
 		ps_r_rotate(b);
 	}
-	ft_printf("%s\n", DOUBLE_NAME + e_inst);
+	if (p_flg)
+		ft_printf("%s\n", DOUBLE_NAME + e_inst);
 }

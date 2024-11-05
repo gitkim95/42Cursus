@@ -67,7 +67,7 @@ $(NAME) : $(LIBFT_OBJS) $(PRINTF_OBJS)
 	ar rcs $@ $^
 
 .c.o :
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -g -c $< -o $@
 
 clean :
 	rm -f $(LIBFT_OBJS) $(PRINTF_OBJS)

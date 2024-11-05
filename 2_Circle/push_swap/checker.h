@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 23:37:25 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/05 12:41:23 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/05 14:37:01 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define CHECKER_H
 
 # include "push_swap.h"
+
+void	check_instruction(t_stack *stack_a, t_stack *stack_b);
+void	compare_inst(char *get_inst, t_stack *stack_a, t_stack *stack_b);
+void	validate_inst(char *get_inst, t_stack *stack_a, t_stack *stack_b);
 
 #endif
 // 정렬이 확인 된 경우 "OK\n"출력

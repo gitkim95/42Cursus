@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:55:09 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/05 12:41:21 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/05 13:48:44 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,8 @@ void		ps_rotate(t_stack *stack);
 void		ps_r_rotate(t_stack *stack);
 
 //ps_task_parsing.c
-void		single_instruct(t_single e_inst, t_stack *stack);
-void		double_instruct(t_double e_inst, t_stack *a, t_stack *b);
+void		single_instruct(t_single e_inst, t_stack *stack, int p_flg);
+void		double_instruct(t_double e_inst, t_stack *a, t_stack *b, int p_flg);
 
 //ps_verification.c
 void		ps_isnum(int ac, char **av);

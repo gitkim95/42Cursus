@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 17:10:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/03 17:28:46 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/05 13:46:06 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ void	rotate_for_push_all(t_stack *a, t_stack *b, t_least_cost *cal)
 {
 	while (cal->a_cost < 0 && cal->b_cost < 0)
 	{
-		double_instruct(RRR, a, b);
+		double_instruct(RRR, a, b, 1);
 		cal->a_cost++;
 		cal->b_cost++;
 	}
 	while (cal->a_cost > 0 && cal->b_cost > 0)
 	{
-		double_instruct(RR, a, b);
+		double_instruct(RR, a, b, 1);
 		cal->a_cost--;
 		cal->b_cost--;
 	}
@@ -58,12 +58,12 @@ void	rotate_for_push_a(t_stack *stack, t_least_cost *cal)
 {
 	while (cal->a_cost > 0)
 	{
-		single_instruct(RA, stack);
+		single_instruct(RA, stack, 1);
 		cal->a_cost--;
 	}
 	while (cal->a_cost < 0)
 	{
-		single_instruct(RRA, stack);
+		single_instruct(RRA, stack, 1);
 		cal->a_cost++;
 	}
 }
@@ -72,12 +72,12 @@ void	rotate_for_push_b(t_stack *stack, t_least_cost *cal)
 {
 	while (cal->b_cost > 0)
 	{
-		single_instruct(RB, stack);
+		single_instruct(RB, stack, 1);
 		cal->b_cost--;
 	}
 	while (cal->b_cost < 0)
 	{
-		single_instruct(RRB, stack);
+		single_instruct(RRB, stack, 1);
 		cal->b_cost++;
 	}
 }
@@ -105,7 +105,7 @@ void	greedy_algoritm(t_stack *a, t_stack *b)
 		rotate_for_push_all(a, b, &cal);
 		rotate_for_push_a(a, &cal);
 		rotate_for_push_b(b, &cal);
-		double_instruct(PA, a, b);
+		double_instruct(PA, a, b, 1);
 	}
 	set_zero_top(a);
 }

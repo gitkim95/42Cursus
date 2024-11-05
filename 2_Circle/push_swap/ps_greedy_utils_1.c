@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 17:11:21 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/03 17:36:18 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/05 14:01:01 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void	ready_to_sort(t_stack *a, t_stack *b)
 		nb = a->head->nb;
 		if (nb <= pivot_1)
 		{
-			double_instruct(PB, a, b);
+			double_instruct(PB, a, b, 1);
 			if (b->size > 1)
-				single_instruct(RB, b);
+				single_instruct(RB, b, 1);
 		}
 		else if (pivot_1 < nb && nb <= pivot_2)
-			double_instruct(PB, a, b);
+			double_instruct(PB, a, b, 1);
 		else
-			single_instruct(RA, a);
+			single_instruct(RA, a, 1);
 		i++;
 	}
 }
@@ -44,24 +44,24 @@ void	ready_to_sort(t_stack *a, t_stack *b)
 void	push_to_b_except_3(t_stack *a, t_stack *b)
 {
 	while (a->size > 3)
-		double_instruct(PB, a, b);
+		double_instruct(PB, a, b, 1);
 }
 
 int	get_zero_location(t_stack *a)
 {
 	t_ps_node	*node;
-	int			zere_location;
+	int			zero_location;
 
-	zere_location = 0;
+	zero_location = 0;
 	node = a->head;
 	while (node)
 	{
 		if (node->nb == 0)
 			break ;
 		node = node -> next;
-		zere_location++;
+		zero_location++;
 	}
-	return (zere_location);
+	return (zero_location);
 }
 
 void	set_zero_top(t_stack *a)
@@ -73,12 +73,12 @@ void	set_zero_top(t_stack *a)
 		zero_location = zero_location - a->size;
 	while (zero_location < 0)
 	{
-		single_instruct(RRA, a);
+		single_instruct(RRA, a, 1);
 		zero_location++;
 	}
 	while (zero_location > 0)
 	{
-		single_instruct(RA, a);
+		single_instruct(RA, a, 1);
 		zero_location--;
 	}
 }

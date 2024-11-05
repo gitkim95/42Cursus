@@ -1,8 +1,8 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = push_swap
-SOURCES = push_swap.c	\
-	ps_greedy_logic.c	\
+MAIN = push_swap.c
+SOURCES = ps_greedy_logic.c	\
 	ps_greedy_utils_1.c	\
 	ps_greedy_utils_2.c	\
 	ps_sort_ac_under_3.c	\
@@ -13,39 +13,40 @@ SOURCES = push_swap.c	\
 	ps_list_utils.c	\
 	ps_logic_utils.c	\
 	ps_verification.c
+M_OBJS = $(MAIN:.c=.o)
 OBJS = $(SOURCES:.c=.o)
 
 BONUS_NAME = checker
-B_SOURCES = 
-B_OBJS = $(B_SOURCES:.c=.o)
+B_MAIN = checker.c
+B_OBJS = $(B_MAIN:.c=.o)
 
 LIBFT = $(LIBFT_DIR)/libft.a
 LIBFT_DIR = ./libft
 
 all : $(NAME)
 
-$(NAME) : $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) -o $@ $^
+$(NAME) : $(M_OBJS) $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) -g -o $@ $^
 
-.c.o :
-	$(CC) $(CFLAGS) -o $@ -c $<
+bonus : $(BONUS_NAME)
+
+$(BONUS_NAME) : $(B_OBJS) $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) -g -o $@ $^
+
+%.o : %.c
+	$(CC) $(CFLAGS) -g -o $@ -c $<
 
 $(LIBFT) :
 	make -C $(LIBFT_DIR)
 
 clean :
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(M_OBJS) $(B_OBJS)
 	make -C $(LIBFT_DIR) clean
 
 fclean : clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(BONUS_NAME)
 	make -C $(LIBFT_DIR) fclean
 
 re : fclean all
-
-bonus : $(BONUS_NAME)
-
-$(BONUS_NAME) : $(OBJS) $(BOBJS) $(LIBFT)
-	$(CC) $(CFLAGS) -o $@ $^
 
 .PHONY : all clean fclean re bonus
