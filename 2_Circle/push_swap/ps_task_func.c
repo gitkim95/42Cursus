@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 22:45:25 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/05 15:27:36 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/05 19:13:09 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	ps_rotate(t_stack *stack)
 	t_ps_node	*second;
 	t_ps_node	*last;
 
+	if (stack->size < 2)
+		return ;
 	first = stack->head;
 	second = first->next;
 	last = stack->tail;
@@ -76,6 +78,8 @@ void	ps_r_rotate(t_stack *stack)
 	t_ps_node	*last;
 	t_ps_node	*last_prev;
 
+	if (stack->size < 2)
+		return ;
 	first = stack->head;
 	last = stack->tail;
 	last_prev = last->prev;

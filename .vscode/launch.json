@@ -7,7 +7,7 @@
             "request": "launch",
             // "program": "${fileDirname}/a.out",
             "program": "${workspaceFolder}/2_Circle/push_swap/checker",
-            "args": ["1 5 4 2 3", "<", "${workspaceFolder}/2_Circle/push_swap/stdin"],
+            "args": [""],
             "stopAtEntry": false,
             // "cwd": "${fileDirname}",
             "cwd": "${workspaceFolder}",
