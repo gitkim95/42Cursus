@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 05:20:53 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/01 18:11:31 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/05 16:40:43 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,15 @@ int	find_max_val(int *list, int size)
 	idx = 0;
 	while (idx < size)
 	{
-		if (list[idx] > max_val)
+		if (list[idx] >= max_val)
 		{
 			max_val = list[idx];
 			ret = idx;
 		}
 		idx++;
 	}
-	list[ret] = INT_MAX;
+	if (size)
+		list[ret] = INT_MAX;
 	return (ret);
 }
 
@@ -57,14 +58,15 @@ int	find_min_val(int *list, int size)
 	idx = 0;
 	while (idx < size)
 	{
-		if (list[idx] < min_val)
+		if (list[idx] <= min_val)
 		{
 			min_val = list[idx];
 			ret = idx;
 		}
 		idx++;
 	}
-	list[ret] = INT_MAX;
+	if (size)
+		list[ret] = INT_MAX;
 	return (ret);
 }
 

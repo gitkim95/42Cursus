@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 23:37:34 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/05 15:26:54 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/05 16:31:16 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	main(int ac, char *av[])
 	ps_isnum(ac, av);
 	make_stack(ac, av, &stack_a);
 	if (check_asc(&stack_a))
-		terminator(2, NULL, NULL, &stack_a);
+		terminator(0, NULL, NULL, &stack_a);
 	else
 		check_instruction(&stack_a, &stack_b);
 }

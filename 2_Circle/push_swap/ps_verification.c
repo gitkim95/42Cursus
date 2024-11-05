@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 21:27:12 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/01 06:20:29 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/05 16:56:32 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	ps_veri_val_nb(char *arr)
 	int	idx;
 
 	idx = 0;
+	if (!arr[idx])
+		return (0);
 	while (arr[idx])
 	{
 		if (!ft_isdigit(arr[idx])
