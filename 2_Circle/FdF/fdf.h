@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 23:06:42 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/06 02:45:39 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/06 03:11:11 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 #endif
 /*
 https://velog.io/@tmdgks2222/fdf
+https://velog.io/@minjune8506/MiniLibX
+https://80000coding.oopy.io/b44522da-1efb-46aa-86f3-ec9bbb13f58a#b44522da-1efb-46aa-86f3-ec9bbb13f58a
 https://github.com/goffauxs/fdf/blob/main/fdf.c
 libxext-dev
 
