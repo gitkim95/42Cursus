@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 22:19:23 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/06 23:04:36 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/07 03:21:00 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,27 @@ void	free_split(char **split)
 	free(split);
 }
 
-void	fdf_lstfree(t_fdf *fdf)
+void	fdf_maplist_free(t_map_list *node)
 {
-	free(fdf->map);
-	free(fdf);
+	t_map_list	*tmp;
+
+	while (node)
+	{
+		tmp = node;
+		node = node->next;
+		free_split(tmp->list);
+		free(tmp);
+	}
 }
 
-void	terminator(int type, void *addr_1, char **addr_2, t_fdf *fdf)
+void	terminator(int type, void *addr_1, char **addr_2, t_map_list *node)
 {
 	if (addr_1)
 		free(addr_1);
 	if (addr_2)
 		free_split(addr_2);
-	if (fdf)
-		fdf_lstfree(fdf);
+	if (node)
+		fdf_lstfree(node);
 	if (type == 0)
 	{
 		ft_putendl_fd("OK", 1);

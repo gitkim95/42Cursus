@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 23:06:42 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/06 23:04:37 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/07 03:34:56 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 # include <errno.h> // 
 
 # define BUFFER_SIZE 42
-typedef struct	s_map_lst
+typedef struct	s_map_list
 {
-	int		*map_arr;
-	struct	s_map_lst *next;
-}	t_map_lst;
+	char	**list;
+	struct	s_map_list *next;
+}	t_map_list;
 
 typedef struct	s_map
 {
@@ -34,7 +34,6 @@ typedef struct	s_map
 	int	z_max;
 	int	z_min;
 	int	**map;
-	t_map_lst *map_list;
 }	t_map;
 
 typedef struct	s_fdf
@@ -47,19 +46,35 @@ typedef struct	s_fdf
 	int		size_line;
 	int		endian;
 	int		color;
-	t_map	*map;
+	t_map	map;
 }	t_fdf;
+//fdf_init_struct.c
+void		init_fdf_struct(t_fdf *fdf);
+
+//fdf_set_map_1.c
+t_map_list	*fdf_maplist_last(t_map_list *node);
+void		fdf_maplist_addback(t_map_list **head, t_map_list *new_node);
+t_map_list	*fdf_maplist_newnode(char **maplist);
+void		set_map_size_n_list(t_fdf *fdf, t_map_list **temp, int fd);
+void		set_map_struct(t_fdf *fdf, t_map_list **temp, int fd);
+
+//fdf_set_map_2.c
+void		set_min_max(t_fdf *fdf);
+void		set_map(t_fdf *fdf, t_map_list **head);
+void		set_integer_map(t_fdf *fdf, t_map_list **head);
+int			get_map_width(char **buf_split);
 
 //fdf_terminator.c
-void	free_split(char **split);
-void	fdf_lstfree(t_fdf *fdf);
-void	terminator(int type, void *addr_1, char **addr_2, t_fdf *fdf);
+void		free_split(char **split);
+void		fdf_maplist_free(t_map_list *node);
+void		terminator(int type, void *addr_1, char **addr_2, t_map_list *node);
 
 //fdf_utils.c
 
+//fdf_valid_file.c
+void		valid_fdf_file(char *file_path);
 
 //fdf.c
-
 
 #endif
 /*
