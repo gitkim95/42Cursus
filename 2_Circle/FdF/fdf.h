@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 23:06:42 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/06 20:42:36 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/06 23:04:37 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,23 @@
 # include <errno.h> // 
 
 # define BUFFER_SIZE 42
-typedef struct s_map
+typedef struct	s_map_lst
+{
+	int		*map_arr;
+	struct	s_map_lst *next;
+}	t_map_lst;
+
+typedef struct	s_map
 {
 	int	height;
 	int	width;
 	int	z_max;
 	int	z_min;
 	int	**map;
+	t_map_lst *map_list;
 }	t_map;
 
-typedef struct s_fdf
+typedef struct	s_fdf
 {
 	void	*mlx;
 	void	*win;
@@ -43,10 +50,15 @@ typedef struct s_fdf
 	t_map	*map;
 }	t_fdf;
 
-//fdf_utils.c
+//fdf_terminator.c
 void	free_split(char **split);
+void	fdf_lstfree(t_fdf *fdf);
 void	terminator(int type, void *addr_1, char **addr_2, t_fdf *fdf);
 
+//fdf_utils.c
+
+
+//fdf.c
 
 
 #endif
