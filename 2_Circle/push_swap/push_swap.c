@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:54:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/05 16:36:19 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/06 19:44:17 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ int	main(int ac, char **av)
 	init_stack(&stack_a, &stack_b);
 	ps_isnum(ac, av);
 	make_stack(ac, av, &stack_a);
-	if (check_asc(&stack_a))
-		return (0);
-	else
+	if (!check_asc(&stack_a))
 		greedy_algoritm(&stack_a, &stack_b);
 	ps_lstfree(&stack_a);
 	return (0);

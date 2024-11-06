@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 23:37:34 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/05 16:31:16 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/06 19:53:38 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 void	validate_inst(char *get_inst, t_stack *stack_a, t_stack *stack_b)
 {
 	if (!ft_strncmp(get_inst, "sa\n", 3) || !ft_strncmp(get_inst, "sb\n", 3) || \
-		!ft_strncmp(get_inst, "pa\n", 3) || !ft_strncmp(get_inst, "pb\n", 3) || \
-		!ft_strncmp(get_inst, "ra\n", 3) || !ft_strncmp(get_inst, "rb\n", 3) || \
-		!ft_strncmp(get_inst, "rr\n", 3) || !ft_strncmp(get_inst, "rra\n", 4) || \
-		!ft_strncmp(get_inst, "rrb\n", 4) || !ft_strncmp(get_inst, "rrr\n", 4))
+		!ft_strncmp(get_inst, "ss\n", 3) || !ft_strncmp(get_inst, "pa\n", 3) || \
+		!ft_strncmp(get_inst, "pb\n", 3) || !ft_strncmp(get_inst, "ra\n", 3) || \
+		!ft_strncmp(get_inst, "rb\n", 3) || !ft_strncmp(get_inst, "rr\n", 3) || \
+		!ft_strncmp(get_inst, "rra\n", 4) || !ft_strncmp(get_inst, "rrb\n", 4) || \
+		!ft_strncmp(get_inst, "rrr\n", 4))
 		return ;
 	else
 	{
@@ -35,6 +36,8 @@ void	compare_inst(char *get_inst, t_stack *stack_a, t_stack *stack_b)
 		single_instruct(SA, stack_a, 0);
 	else if (!ft_strncmp(get_inst, "sb\n", 3))
 		single_instruct(SB, stack_b, 0);
+	else if (!ft_strncmp(get_inst, "ss\n", 3))
+		double_instruct(SS, stack_a, stack_b, 0);
 	else if (!ft_strncmp(get_inst, "pa\n", 3))
 		double_instruct(PA, stack_a, stack_b, 0);
 	else if (!ft_strncmp(get_inst, "pb\n", 3))
@@ -91,8 +94,5 @@ int	main(int ac, char *av[])
 	init_stack(&stack_a, &stack_b);
 	ps_isnum(ac, av);
 	make_stack(ac, av, &stack_a);
-	if (check_asc(&stack_a))
-		terminator(0, NULL, NULL, &stack_a);
-	else
-		check_instruction(&stack_a, &stack_b);
+	check_instruction(&stack_a, &stack_b);
 }
