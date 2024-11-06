@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:57:20 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/06 16:50:40 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/06 22:10:57 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ void	free_split(char **split)
 		idx++;
 	}
 	free(split);
+}
+
+void	fdf_lstfree(t_fdf *fdf)
+{
+	free(fdf->map);
+	free(fdf);
 }
 
 void	terminator(int type, void *addr_1, char **addr_2, t_fdf *fdf)

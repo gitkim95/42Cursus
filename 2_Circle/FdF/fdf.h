@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 23:06:42 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/06 17:14:42 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/06 20:42:36 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_map
 	int	width;
 	int	z_max;
 	int	z_min;
-	int	**map_split;
+	int	**map;
 }	t_map;
 
 typedef struct s_fdf
@@ -45,7 +45,7 @@ typedef struct s_fdf
 
 //fdf_utils.c
 void	free_split(char **split);
-void	terminator(int type, void *addr_1, char **addr_2, t_fdf *stack);
+void	terminator(int type, void *addr_1, char **addr_2, t_fdf *fdf);
 
 
 
