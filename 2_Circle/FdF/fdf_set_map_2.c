@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 02:43:10 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/07 03:32:26 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/07 03:41:17 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	set_min_max(t_fdf *fdf)
 		height++;
 	}
 }
+
 void	set_map(t_fdf *fdf, t_map_list **head)
 {
 	t_map_list	*node;
