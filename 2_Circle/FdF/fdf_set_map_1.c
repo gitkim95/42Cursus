@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 02:37:18 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/07 18:04:46 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/07 21:52:09 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,9 @@ void	set_map_size_n_list(t_fdf *fdf, t_map_list **temp, int fd)
 	close(fd);
 }
 
-void	set_map_struct(t_fdf *fdf, t_map_list **temp, char *file_path)
+void	set_map_struct(t_fdf *fdf, char *file_path)
 {
+	t_map_list	*temp;
 	int			fd;
 
 	fd = open(file_path, O_RDONLY);
@@ -91,7 +92,7 @@ void	set_map_struct(t_fdf *fdf, t_map_list **temp, char *file_path)
 	{
 			//error
 	}
-	*temp = NULL;
-	set_map_size_n_list(fdf, temp, fd);
-	set_integer_map(fdf, temp);
+	temp = NULL;
+	set_map_size_n_list(fdf, &temp, fd);
+	set_integer_map(fdf, &temp);
 }

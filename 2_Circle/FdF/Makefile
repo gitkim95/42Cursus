@@ -19,10 +19,10 @@ LIBFT_DIR = ./libft
 all : $(NAME)
 
 $(NAME) : $(M_OBJS) $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) -g -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^ -L$(MINILIBX_DIR) -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 %.o : %.c
-	$(CC) $(CFLAGS) -g -o $@ -c $<
+	$(CC) $(CFLAGS) -I$(MINILIBX_DIR) -O3 -c $< -o $@
 
 $(LIBFT) :
 	make -C $(LIBFT_DIR)
