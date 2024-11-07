@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 02:55:47 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/07 03:41:32 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/07 18:05:05 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ void	valid_fdf_file(char *file_path)
 
 	file_path_split = ft_split(file_path, '.');
 	if (!file_path_split)
-		//error
+	{
+			//error
+	}
 	idx = 0;
 	while (file_path_split[idx])
 		idx++;
@@ -30,5 +32,7 @@ void	valid_fdf_file(char *file_path)
 		return ;
 	}
 	else
+	{
 		//error
+	}
 }

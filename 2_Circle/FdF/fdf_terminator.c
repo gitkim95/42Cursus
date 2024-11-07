@@ -6,12 +6,11 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 22:19:23 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/07 03:21:00 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/07 17:39:24 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <mlx.h>
 #include "./libft/libft.h"
 
 void	free_split(char **split)
@@ -47,7 +46,7 @@ void	terminator(int type, void *addr_1, char **addr_2, t_map_list *node)
 	if (addr_2)
 		free_split(addr_2);
 	if (node)
-		fdf_lstfree(node);
+		fdf_maplist_free(node);
 	if (type == 0)
 	{
 		ft_putendl_fd("OK", 1);

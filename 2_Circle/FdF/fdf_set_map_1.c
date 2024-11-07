@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 02:37:18 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/07 03:32:09 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/07 18:04:46 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,20 @@ void	set_map_size_n_list(t_fdf *fdf, t_map_list **temp, int fd)
 		buf_split = ft_split(buf, ' ');
 		free(buf);
 		if (!buf_split)
+		{
 			//error
+		}
 		node = fdf_maplist_newnode(buf_split);
 		if (!node)
+		{
 			//error
+		}
 		fdf_maplist_addback(temp, node);
 		cal_width = get_map_width(buf_split);
 		if (fdf->map.width && fdf->map.width != cal_width)
+		{
 			//error
+		}
 		fdf->map.width = cal_width;
 		fdf->map.height++;
 	}
@@ -82,7 +88,10 @@ void	set_map_struct(t_fdf *fdf, t_map_list **temp, char *file_path)
 
 	fd = open(file_path, O_RDONLY);
 	if (fd < 0)
-		//error
+	{
+			//error
+	}
+	*temp = NULL;
 	set_map_size_n_list(fdf, temp, fd);
 	set_integer_map(fdf, temp);
 }

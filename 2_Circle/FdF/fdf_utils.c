@@ -6,10 +6,9 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 15:57:20 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/07 03:21:02 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/07 17:35:37 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <mlx.h>
 #include "./libft/libft.h"

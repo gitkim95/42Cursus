@@ -1,8 +1,14 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 NAME = fdf
 MAIN = fdf.c
-SOURCES = 
+SOURCES = fdf_init_struct.c \
+	fdf_parse_file.c \
+	fdf_set_map_1.c \
+	fdf_set_map_2.c \
+	fdf_terminator.c \
+	fdf_utils.c \
+	fdf_valid_file.c
 M_OBJS = $(MAIN:.c=.o)
 OBJS = $(SOURCES:.c=.o)
 

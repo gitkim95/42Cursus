@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 23:06:42 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/07 03:42:04 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/07 17:36:48 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_map_list	*fdf_maplist_last(t_map_list *node);
 void		fdf_maplist_addback(t_map_list **head, t_map_list *new_node);
 t_map_list	*fdf_maplist_newnode(char **maplist);
 void		set_map_size_n_list(t_fdf *fdf, t_map_list **temp, int fd);
-void		set_map_struct(t_fdf *fdf, t_map_list **temp, int fd);
+void		set_map_struct(t_fdf *fdf, t_map_list **temp, char *file_path);
 
 //fdf_set_map_2.c
 void		set_min_max(t_fdf *fdf);
