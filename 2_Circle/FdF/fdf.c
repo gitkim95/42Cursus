@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 23:06:20 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/08 18:19:53 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/08 19:40:51 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int ac, char *av[])
 {
 	t_fdf		fdf;
 
-	if (ac < 2)
+	if (ac != 2)
 	{
 		//error
 	}

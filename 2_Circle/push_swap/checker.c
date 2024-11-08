@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 23:37:34 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/07 19:37:04 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/08 21:30:48 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	compare_inst(char *get_inst, t_stack *stack_a, t_stack *stack_b)
 	else if (!ft_strncmp(get_inst, "rra\n", 4))
 		single_instruct(RRA, stack_a, 0);
 	else if (!ft_strncmp(get_inst, "rrb\n", 4))
-		single_instruct(RRB, stack_a, 0);
+		single_instruct(RRB, stack_b, 0);
 	else if (!ft_strncmp(get_inst, "rrr\n", 4))
 		double_instruct(RRR, stack_a, stack_b, 0);
 }
