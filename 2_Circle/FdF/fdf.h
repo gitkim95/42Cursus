@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 23:06:42 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/07 21:52:19 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/08 18:20:53 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include <stdio.h> // perror
 # include <string.h> // strerror
 # include <errno.h> // 
+
+# define WIDTH 1920
+# define HEIGHT 1080
 
 typedef struct s_map_list
 {
@@ -48,7 +51,7 @@ typedef struct s_fdf
 	t_map	map;
 }	t_fdf;
 //fdf_init_struct.c
-void		init_fdf_struct(t_fdf *fdf);
+void		set_struct_zero(t_fdf *fdf);
 
 //fdf_set_map_1.c
 t_map_list	*fdf_maplist_last(t_map_list *node);
