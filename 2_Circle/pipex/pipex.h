@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 19:38:04 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/09 21:32:35 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/09 22:48:02 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ typedef struct s_pipex
 {
 	char	**cmd1;
 	char	**cmd2;
-	char	*path;
+	char	**path;
+	int		cmd_idx;
 }	t_pipex;
 
 #endif
