@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 19:38:04 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/09 22:48:02 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/10 04:01:36 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,23 @@
 # include <sys/types.h> // pid_t 타입 사용
 # include <errno.h> // errno
 
+typedef struct s_data
+{
+	char			**cmd;
+	int				cmd_idx;
+	struct s_data	*next;
+}	t_data;
+
 typedef struct s_pipex
 {
-	char	**cmd1;
-	char	**cmd2;
 	char	**path;
-	int		cmd_idx;
+	int		arg_size;
+	t_data	*head;
+	t_data	*tail;
 }	t_pipex;
+
+//free_struct.c
+void	terminator(int flag, t_pipex *data, int errnum, char *msg);
 
 #endif
 /*

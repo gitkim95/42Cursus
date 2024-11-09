@@ -6,14 +6,14 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 19:37:57 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/09 22:48:01 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/10 04:01:45 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include "./libft/libft.h"
 
-char	*find_path(char *envp[])
+char	*find_path(char *envp[], t_pipex *data)
 {
 	int		i;
 	char	*path;
@@ -25,9 +25,7 @@ char	*find_path(char *envp[])
 		{
 			path = ft_strdup(envp[i] + 5);
 			if (!path)
-			{
-					//error
-			}
+				terminator(1, data, errno, "allocate error");
 			return (path);
 		}
 		i++;
@@ -35,21 +33,17 @@ char	*find_path(char *envp[])
 	return (NULL);
 }
 
-char	**set_path(char *envp[])
+char	**set_path(char *envp[], t_pipex *data)
 {
 	char	*path_arr;
 	char	**path_split;
 
-	path_arr = find_path(envp);
+	path_arr = find_path(envp, data);
 	if (!path_arr)
-	{
-		//error
-	}
+		terminator(1, data, errno, "PATH not found");
 	path_split = ft_split(path_arr, ':');
 	if (!path_split)
-	{
-		//error
-	}
+		terminator(1, data, errno, "allocate error");
 	return (path_split);
 }
 
@@ -59,22 +53,18 @@ char	*check_cmd(t_pipex *data, char *cmd)
 	char	*temp;
 	char	*new_cmd;
 
-	if (access(cmd, X_OK) == 0);
+	if (access(cmd, X_OK) == 0)
 		return (cmd);
 	temp = ft_strjoin("/", cmd);
 	if (!temp)
-	{
-			//error
-	}
+		terminator(1, data, errno, "allocate error");
 	i = 0;
 	while (data->path[i])
 	{
 		new_cmd = ft_strjoin(data->path[i], temp);
 		if (!new_cmd)
-		{
-			//error
-		}
-		if (access(new_cmd, X_OK) == 0);
+			terminator(1, data, errno, "allocate error");
+		if (access(new_cmd, X_OK) == 0)
 		{
 			free(temp);
 			return (new_cmd);
@@ -93,23 +83,15 @@ char	*set_cmd(t_pipex *data, char *cmd)
 	temp_cmd = cmd;
 	cmd = check_cmd(data, cmd);
 	if (cmd != temp_cmd)
-	{
 		free(temp_cmd);
-		if (!cmd)
-		{
-			//error
-		}	
-	}
 	return (cmd);
 }
 
 void	set_data(t_pipex *data, int argc, char *argv[], char *envp[])
 {
-	char	*temp_cmd;
-	
 	data->cmd1 = ft_split(argv[2], ' ');
 	data->cmd2 = ft_split(argv[3], ' ');
-	data->path = set_path(envp);
+	data->path = set_path(envp, data);
 	data->cmd_idx = argc - 3;
 	data->cmd1[0] = set_cmd(data, data->cmd1[0]);
 	data->cmd2[0] = set_cmd(data, data->cmd2[0]);
@@ -119,9 +101,8 @@ int main (int argc, char *argv[], char *envp[])
 {
 	t_pipex	data;
 
-	if (argc != 5)
-	{
-		//error
-	}
+	if (argc != 5 || errno)
+		terminator(1, &data, errno,"Not enough argument");
 	set_data(&data, argc, argv, envp);
+	make_pipe;
 }
