@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 19:38:04 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/10 20:33:54 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/10 22:53:08 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,18 @@ typedef struct s_pipex
 
 //free_struct.c
 void	terminator(int flag, t_pipex *cmd, int errnum, char *msg);
+
+//ppx_set_struct_1.c
+void	data_lst_addback(t_pipex *cmd, t_data *new_node);
+void	set_struct_data(t_pipex *cmd, char *argv[]);
+char	*find_path(char *envp[], t_pipex *cmd);
+char	**set_path(char *envp[], t_pipex *cmd);
+void	set_struct_pipex(t_pipex *cmd, int argc, char *argv[], char *envp[]);
+
+//ppx_set_struct_2.c
+char	*check_cmd(t_pipex *data, char *cmd);
+void	set_cmd(t_pipex *cmd);
+
 
 #endif
 /*
