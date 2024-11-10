@@ -6,11 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 22:51:13 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/11 04:55:16 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/11 06:32:02 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include "./libft/libft.h"
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
@@ -20,7 +21,7 @@
 void	execve_cmd(t_pipex *cmd, char *envp[], int cmd_idx)
 {
 	t_data	*data_node;
-
+	
 	data_node = cmd->head;
 	while (data_node)
 	{
@@ -40,18 +41,20 @@ void	fork_process(t_pipex *cmd, int cmd_idx)
 		dup2(cmd->input_fd, STDIN_FILENO);
 		dup2(cmd->pipe_fd[cmd_idx][1], STDOUT_FILENO);
 		close_child_first(cmd);
+		if (cmd->limiter)
+			get_stdin(cmd, cmd_idx);
 	}
-	else if (cmd_idx < cmd->arg_size - 1)
-	{
-		dup2(cmd->pipe_fd[cmd_idx - 1][0], STDIN_FILENO);
-		dup2(cmd->pipe_fd[cmd_idx][1], STDOUT_FILENO);
-		close_child_middle(cmd, cmd_idx);
-	}
-	else
+	else if (cmd_idx == cmd->arg_size - 1)
 	{
 		dup2(cmd->pipe_fd[cmd_idx - 1][0], STDIN_FILENO);
 		dup2(cmd->output_fd, STDOUT_FILENO);
 		close_child_last(cmd, cmd_idx);
+	}
+	else
+	{
+		dup2(cmd->pipe_fd[cmd_idx - 1][0], STDIN_FILENO);
+		dup2(cmd->pipe_fd[cmd_idx][1], STDOUT_FILENO);
+		close_child_middle(cmd, cmd_idx);
 	}
 }
 

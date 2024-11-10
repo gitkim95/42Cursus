@@ -6,12 +6,14 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 19:38:04 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/11 04:54:12 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/11 06:31:55 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
+
+# define BUFFER_SIZE 1024
 
 typedef struct s_data
 {
@@ -27,13 +29,14 @@ typedef struct s_pipex
 	int		input_fd;
 	int		output_fd;
 	int		**pipe_fd;
+	char	*limiter;
 	t_data	*head;
 	t_data	*tail;
 }	t_pipex;
 
 //ppx_set_struct_1.c
 void	data_lst_addback(t_pipex *cmd, t_data *new_node);
-void	set_struct_data(t_pipex *cmd, char *argv[]);
+void	set_struct_data(t_pipex *cmd, char *argv[], int idx);
 char	*find_path(char *envp[], t_pipex *cmd);
 char	**set_path(char *envp[], t_pipex *cmd);
 void	set_struct_pipex(t_pipex *cmd, int argc, char *argv[], char *envp[]);
@@ -60,6 +63,10 @@ void	free_split(char **c_split, int **i_split, int i_size);
 void	free_lst(t_pipex *cmd);
 void	free_pipex_struct(t_pipex *cmd);
 void	terminator(int flag, t_pipex *cmd, int errnum, char *msg);
+
+//here_doc.c
+void	handle_heredoc(t_pipex *cmd, int argc, char *argv[], char *envp[]);
+void	get_stdin(t_pipex *cmd, int cmd_idx);
 
 #endif
 /*

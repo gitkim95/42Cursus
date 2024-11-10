@@ -7,7 +7,7 @@
             "request": "launch",
             // "program": "${fileDirname}/a.out",
             "program": "${workspaceFolder}/2_Circle/pipex/pipex",
-            "args": ["aa", "cat", "wc -l", "bb"],
+            "args": ["here_doc", "asd", "cat", "wc -l", "bb"],
             "stopAtEntry": false,
             // "cwd": "${fileDirname}",
             "cwd": "${workspaceFolder}/2_Circle/pipex",

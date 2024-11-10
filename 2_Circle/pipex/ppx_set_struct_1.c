@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 22:44:49 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/11 04:54:20 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/11 05:58:25 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,23 @@ t_data	*make_new_data_node(char **cmd, int idx)
 	return (new_data);
 }
 
-void	set_struct_data(t_pipex *cmd, char *argv[])
+void	set_struct_data(t_pipex *cmd, char *argv[], int idx)
 {
 	t_data	*data_node;
-	int		idx;
 	char	**cmd_split;
+	int		i;
 
-	idx = 0;
-	while (idx < cmd->arg_size)
+	i = 0;
+	while (i < cmd->arg_size)
 	{
-		cmd_split = ft_split(argv[idx + 2], ' ');
+		cmd_split = ft_split(argv[idx + i], ' ');
 		if (!cmd_split)
 			terminator(1, cmd, errno, "allocate error");
-		data_node = make_new_data_node(cmd_split, idx);
+		data_node = make_new_data_node(cmd_split, i);
 		if (!data_node)
 			terminator(1, cmd, errno, "allocate error");
 		data_lst_addback(cmd, data_node);
-		idx++;
+		i++;
 	}
 }
 
@@ -91,6 +91,7 @@ void	set_struct_pipex(t_pipex *cmd, int argc, char *argv[], char *envp[])
 	cmd->path = set_path(envp, cmd);
 	cmd->head = NULL;
 	cmd->tail = NULL;
+	cmd->limiter = NULL;
 	cmd->output_fd = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (cmd->output_fd == -1)
 		terminator(1, cmd, errno, argv[argc - 1]);
@@ -102,6 +103,6 @@ void	set_struct_pipex(t_pipex *cmd, int argc, char *argv[], char *envp[])
 		if (cmd->input_fd == -1)
 			terminator(1, cmd, errno, "Error opening NULL");
 	}
-	set_struct_data(cmd, argv);
+	set_struct_data(cmd, argv, 2);
 	set_cmd(cmd);
 }

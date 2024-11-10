@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 00:17:13 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/11 04:54:47 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/11 05:23:28 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	free_pipex_struct(t_pipex *cmd)
 		close(cmd->output_fd);
 	if (cmd->pipe_fd)
 		free_split(NULL, cmd->pipe_fd, cmd->arg_size);
+	if (cmd->limiter)
+		free(cmd->limiter);
 }
 
 void	terminator(int flag, t_pipex *cmd, int errnum, char *msg)

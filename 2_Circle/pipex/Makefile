@@ -7,7 +7,8 @@ SOURCES =	terminator.c	\
 	ppx_set_struct_2.c	\
 	fd_closer.c	\
 	ppx_logic.c	\
-	pipex.c
+	pipex.c	\
+	here_doc.c
 M_OBJS = $(MAIN:.c=.o)
 OBJS = $(SOURCES:.c=.o)
 
