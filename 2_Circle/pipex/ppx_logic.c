@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 22:51:13 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/11 02:21:28 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/11 03:07:58 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,32 +28,77 @@ void	execve_cmd(t_pipex *cmd, char *envp[], int cmd_idx)
 	}
 }
 
+void	close_child_last(t_pipex *cmd, int cmd_idx)
+{
+	int	i;
+
+	close(cmd->pipe_fd[cmd_idx - 1][1]);
+	close(cmd->input_fd);
+	i = 0;
+	while (i < cmd->arg_size - 1)
+	{
+		if (i != cmd_idx && i != cmd_idx - 1)
+		{
+			close(cmd->pipe_fd[i][0]);
+			close(cmd->pipe_fd[i][1]);
+		}
+		i++;
+	}
+}
+void	close_child_middle(t_pipex *cmd, int cmd_idx)
+{
+	int	i;
+
+	close(cmd->pipe_fd[cmd_idx - 1][1]);
+	close(cmd->pipe_fd[cmd_idx][0]);
+	close(cmd->input_fd);
+	close(cmd->output_fd);
+	i = 0;
+	while (i < cmd->arg_size - 1)
+	{
+		if (i != cmd_idx && i != cmd_idx - 1)
+		{
+			close(cmd->pipe_fd[i][0]);
+			close(cmd->pipe_fd[i][1]);
+		}
+		i++;
+	}
+}
+
+void	close_child_first(t_pipex *cmd)
+{
+	int	i;
+
+	close(cmd->pipe_fd[0][0]);
+	close(cmd->output_fd);
+	i = 1;
+	while (i < cmd->arg_size - 1)
+	{
+		close(cmd->pipe_fd[i][0]);
+		close(cmd->pipe_fd[i][1]);
+		i++;
+	}
+}
+
 void	fork_process(t_pipex *cmd, int cmd_idx)
 {
-	// int	idx;
-
 	if (cmd_idx == 0)
 	{
 		dup2(cmd->input_fd, STDIN_FILENO);
 		dup2(cmd->pipe_fd[cmd_idx][1], STDOUT_FILENO);
+		close_child_first(cmd);
 	}
 	else if (cmd_idx < cmd->arg_size - 1)
 	{
 		dup2(cmd->pipe_fd[cmd_idx - 1][0], STDIN_FILENO);
 		dup2(cmd->pipe_fd[cmd_idx][1], STDOUT_FILENO);
+		close_child_middle(cmd, cmd_idx);
 	}
 	else
 	{
 		dup2(cmd->pipe_fd[cmd_idx - 1][0], STDIN_FILENO);
 		dup2(cmd->output_fd, STDOUT_FILENO);
-	}
-	for (int i = 0; i < cmd->arg_size - 1; i++)
-	{
-		if (i != cmd_idx)
-		{
-			close(cmd->pipe_fd[i][0]);
-			close(cmd->pipe_fd[i][1]);
-		}
+		close_child_last(cmd, cmd_idx);
 	}
 }
 
