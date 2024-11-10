@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 22:51:13 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/10 22:52:51 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/11 02:21:28 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	execve_cmd(t_pipex *cmd, char *envp[], int cmd_idx)
 
 void	fork_process(t_pipex *cmd, int cmd_idx)
 {
+	// int	idx;
+
 	if (cmd_idx == 0)
 	{
 		dup2(cmd->input_fd, STDIN_FILENO);
@@ -45,8 +47,14 @@ void	fork_process(t_pipex *cmd, int cmd_idx)
 		dup2(cmd->pipe_fd[cmd_idx - 1][0], STDIN_FILENO);
 		dup2(cmd->output_fd, STDOUT_FILENO);
 	}
-	// close(cmd->pipe_fd[cmd_idx][0]);
-	// close(cmd->pipe_fd[cmd_idx][1]);
+	for (int i = 0; i < cmd->arg_size - 1; i++)
+	{
+		if (i != cmd_idx)
+		{
+			close(cmd->pipe_fd[i][0]);
+			close(cmd->pipe_fd[i][1]);
+		}
+	}
 }
 
 void	init_pipe_fd(t_pipex *cmd)
@@ -98,9 +106,10 @@ void	pipe_logic(t_pipex *cmd, char *envp[])
 		}
 		cmd_idx++;
 	}
+	close_pipes(cmd, 0);
 	cmd_idx = 0;
 	while (cmd_idx < cmd->arg_size)
-	{	
+	{
 		waitpid(pid[cmd_idx], NULL, 0);
 		cmd_idx++;
 	}

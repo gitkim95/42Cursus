@@ -2,7 +2,10 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 NAME = pipex
 MAIN = pipex.c
-SOURCES = free_struct.c
+SOURCES = ppx_set_struct_1.c	\
+	ppx_set_struct_2.c	\
+	free_struct.c	\
+	ppx_logic.c
 M_OBJS = $(MAIN:.c=.o)
 OBJS = $(SOURCES:.c=.o)
 

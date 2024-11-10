@@ -6,21 +6,21 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 19:38:04 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/10 22:53:08 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/11 02:21:47 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include <fcntl.h> //open
-# include <unistd.h> //close, read, write, access, dup, dup2, execve, fork, pipe, unlink,
-# include <stdlib.h> //malloc, free, exit, 
-# include <stdio.h> //perror
-# include <string.h> //strerror
-# include <sys/wait.h> // wait, waitpid
-# include <sys/types.h> // pid_t 타입 사용
-# include <errno.h> // errno
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <string.h>
+# include <sys/wait.h>
+# include <sys/types.h>
+# include <errno.h>
 
 typedef struct s_data
 {
@@ -53,6 +53,14 @@ void	set_struct_pipex(t_pipex *cmd, int argc, char *argv[], char *envp[]);
 //ppx_set_struct_2.c
 char	*check_cmd(t_pipex *data, char *cmd);
 void	set_cmd(t_pipex *cmd);
+
+//ppx_logic.c
+void	pipe_logic(t_pipex *cmd, char *envp[]);
+void	alloc_pipe_fd(t_pipex *cmd);
+void	init_pipe_fd(t_pipex *cmd);
+void	fork_process(t_pipex *cmd, int cmd_idx);
+void	execve_cmd(t_pipex *cmd, char *envp[], int cmd_idx);
+void	close_pipes(t_pipex *cmd, int cmd_idx);
 
 
 #endif

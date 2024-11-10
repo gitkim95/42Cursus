@@ -6,11 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 22:44:49 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/10 22:50:18 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/11 01:49:34 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include "./libft/libft.h"
 
 t_data	*make_new_data_node(char **cmd, int idx)
 {
@@ -74,6 +75,7 @@ char	**set_path(char *envp[], t_pipex *cmd)
 	if (!path_arr)
 		terminator(1, cmd, errno, "PATH not found");
 	path_split = ft_split(path_arr, ':');
+	free(path_arr);
 	if (!path_split)
 		terminator(1, cmd, errno, "allocate error");
 	return (path_split);

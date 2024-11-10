@@ -1,0 +1,21 @@
+total 1688
+drwxr-xr-x 3 gitkim gitkim    4096 Nov 11 01:47 .
+drwxr-xr-x 5 gitkim gitkim    4096 Nov  6 03:10 ..
+-rw-r--r-- 1 gitkim gitkim     577 Nov 11 00:40 Makefile
+-rwxr-xr-x 1 gitkim gitkim      39 Nov 10 23:30 aa
+-rw-r--r-- 1 gitkim gitkim    1122 Nov 11 01:47 bb
+-rw-r--r-- 1 gitkim gitkim 1586470 Oct 25 18:52 en.subject.pdf
+-rw-r--r-- 1 gitkim gitkim    1993 Nov 11 01:46 free_struct.c
+-rw-r--r-- 1 gitkim gitkim    7104 Nov 11 01:46 free_struct.o
+drwxr-xr-x 3 gitkim gitkim    4096 Nov 11 01:46 libft
+-rwxr-xr-x 1 gitkim gitkim   36536 Nov 11 01:46 pipex
+-rw-r--r-- 1 gitkim gitkim    1357 Nov 11 00:55 pipex.c
+-rw-r--r-- 1 gitkim gitkim    5422 Nov 11 00:56 pipex.h
+-rw-r--r-- 1 gitkim gitkim    5776 Nov 11 01:46 pipex.o
+-rw-r--r-- 1 gitkim gitkim    3762 Nov 11 01:38 ppx_logic.c
+-rw-r--r-- 1 gitkim gitkim    9584 Nov 11 01:46 ppx_logic.o
+-rw-r--r-- 1 gitkim gitkim    2678 Nov 11 00:42 ppx_set_struct_1.c
+-rw-r--r-- 1 gitkim gitkim    9200 Nov 11 01:46 ppx_set_struct_1.o
+-rw-r--r-- 1 gitkim gitkim    1916 Nov 11 00:42 ppx_set_struct_2.c
+-rw-r--r-- 1 gitkim gitkim    7024 Nov 11 01:46 ppx_set_struct_2.o
+-rw-r--r-- 1 gitkim gitkim       0 Nov 11 01:47 sed abb

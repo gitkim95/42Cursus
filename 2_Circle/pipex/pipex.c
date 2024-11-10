@@ -6,27 +6,24 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 19:37:57 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/10 22:52:58 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/11 02:22:01 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include "./libft/libft.h"
 
-void close_pipes(t_pipex *cmd)
+void	close_pipes(t_pipex *cmd, int cmd_idx)
 {
-    int i;
-
-    i = 0;
-    while (i < cmd->arg_size - 1)
-    {
-        close(cmd->pipe_fd[i][0]);
-        close(cmd->pipe_fd[i][1]);
-        i++;
-    }
+	while (cmd_idx < cmd->arg_size - 1)
+	{
+		close(cmd->pipe_fd[cmd_idx][0]);
+		close(cmd->pipe_fd[cmd_idx][1]);
+		cmd_idx++;
+	}
 }
 
-int main (int argc, char *argv[], char *envp[])
+int	main (int argc, char *argv[], char *envp[])
 {
 	t_pipex	cmd;
 
@@ -34,6 +31,6 @@ int main (int argc, char *argv[], char *envp[])
 		terminator(1, NULL, 0, "Not enough argument");
 	set_struct_pipex(&cmd, argc, argv, envp);
 	pipe_logic(&cmd, envp);
-	close_pipes(&cmd);
 	terminator(0, &cmd, 0, NULL);
+	return (0);
 }
