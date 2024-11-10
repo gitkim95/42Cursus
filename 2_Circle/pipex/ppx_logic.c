@@ -6,11 +6,16 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 22:51:13 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/11 03:07:58 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/11 04:55:16 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <sys/types.h>
+#include <errno.h>
 
 void	execve_cmd(t_pipex *cmd, char *envp[], int cmd_idx)
 {
@@ -25,58 +30,6 @@ void	execve_cmd(t_pipex *cmd, char *envp[], int cmd_idx)
 				terminator(1, cmd, errno, "Execve failed");
 		}
 		data_node = data_node->next;
-	}
-}
-
-void	close_child_last(t_pipex *cmd, int cmd_idx)
-{
-	int	i;
-
-	close(cmd->pipe_fd[cmd_idx - 1][1]);
-	close(cmd->input_fd);
-	i = 0;
-	while (i < cmd->arg_size - 1)
-	{
-		if (i != cmd_idx && i != cmd_idx - 1)
-		{
-			close(cmd->pipe_fd[i][0]);
-			close(cmd->pipe_fd[i][1]);
-		}
-		i++;
-	}
-}
-void	close_child_middle(t_pipex *cmd, int cmd_idx)
-{
-	int	i;
-
-	close(cmd->pipe_fd[cmd_idx - 1][1]);
-	close(cmd->pipe_fd[cmd_idx][0]);
-	close(cmd->input_fd);
-	close(cmd->output_fd);
-	i = 0;
-	while (i < cmd->arg_size - 1)
-	{
-		if (i != cmd_idx && i != cmd_idx - 1)
-		{
-			close(cmd->pipe_fd[i][0]);
-			close(cmd->pipe_fd[i][1]);
-		}
-		i++;
-	}
-}
-
-void	close_child_first(t_pipex *cmd)
-{
-	int	i;
-
-	close(cmd->pipe_fd[0][0]);
-	close(cmd->output_fd);
-	i = 1;
-	while (i < cmd->arg_size - 1)
-	{
-		close(cmd->pipe_fd[i][0]);
-		close(cmd->pipe_fd[i][1]);
-		i++;
 	}
 }
 
@@ -151,7 +104,7 @@ void	pipe_logic(t_pipex *cmd, char *envp[])
 		}
 		cmd_idx++;
 	}
-	close_pipes(cmd, 0);
+	close_all_fd(cmd, 0);
 	cmd_idx = 0;
 	while (cmd_idx < cmd->arg_size)
 	{

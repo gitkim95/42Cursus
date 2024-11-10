@@ -6,12 +6,14 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 22:48:36 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/11 00:42:31 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/11 04:55:04 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include "./libft/libft.h"
+#include <stdlib.h>
+#include <errno.h>
 
 char	*check_cmd(t_pipex *data, char *cmd)
 {

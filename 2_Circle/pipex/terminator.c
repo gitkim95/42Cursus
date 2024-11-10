@@ -1,17 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_struct.c                                      :+:      :+:    :+:   */
+/*   terminator.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 00:17:13 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/11 01:46:05 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/11 04:54:47 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include "./libft/libft.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
 
 void	free_split(char **c_split, int **i_split, int i_size)
 {

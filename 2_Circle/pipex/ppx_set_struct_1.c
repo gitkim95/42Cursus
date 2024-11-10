@@ -6,12 +6,16 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 22:44:49 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/11 01:49:34 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/11 04:54:20 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include "./libft/libft.h"
+#include <stdlib.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <errno.h>
 
 t_data	*make_new_data_node(char **cmd, int idx)
 {
@@ -87,12 +91,17 @@ void	set_struct_pipex(t_pipex *cmd, int argc, char *argv[], char *envp[])
 	cmd->path = set_path(envp, cmd);
 	cmd->head = NULL;
 	cmd->tail = NULL;
-	cmd->input_fd = open(argv[1], O_RDONLY);
-	if (cmd->input_fd == -1)
-		terminator(1, cmd, errno, argv[1]);
 	cmd->output_fd = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (cmd->output_fd == -1)
 		terminator(1, cmd, errno, argv[argc - 1]);
+	cmd->input_fd = open(argv[1], O_RDONLY);
+	if (cmd->input_fd == -1)
+	{
+		perror(argv[1]);
+		cmd->input_fd = open("/dev/null", O_RDONLY);
+		if (cmd->input_fd == -1)
+			terminator(1, cmd, errno, "Error opening NULL");
+	}
 	set_struct_data(cmd, argv);
 	set_cmd(cmd);
 }

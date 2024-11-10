@@ -6,21 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 19:38:04 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/11 03:06:52 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/11 04:54:12 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
-
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <sys/wait.h>
-# include <sys/types.h>
-# include <errno.h>
 
 typedef struct s_data
 {
@@ -40,9 +31,6 @@ typedef struct s_pipex
 	t_data	*tail;
 }	t_pipex;
 
-//free_struct.c
-void	terminator(int flag, t_pipex *cmd, int errnum, char *msg);
-
 //ppx_set_struct_1.c
 void	data_lst_addback(t_pipex *cmd, t_data *new_node);
 void	set_struct_data(t_pipex *cmd, char *argv[]);
@@ -55,13 +43,23 @@ char	*check_cmd(t_pipex *data, char *cmd);
 void	set_cmd(t_pipex *cmd);
 
 //ppx_logic.c
-void	pipe_logic(t_pipex *cmd, char *envp[]);
-void	alloc_pipe_fd(t_pipex *cmd);
-void	init_pipe_fd(t_pipex *cmd);
-void	fork_process(t_pipex *cmd, int cmd_idx);
 void	execve_cmd(t_pipex *cmd, char *envp[], int cmd_idx);
-void	close_pipes(t_pipex *cmd, int cmd_idx);
+void	fork_process(t_pipex *cmd, int cmd_idx);
+void	init_pipe_fd(t_pipex *cmd);
+void	alloc_pipe_fd(t_pipex *cmd);
+void	pipe_logic(t_pipex *cmd, char *envp[]);
 
+//fd_closer.c
+void	close_all_fd(t_pipex *cmd, int cmd_idx);
+void	close_child_last(t_pipex *cmd, int cmd_idx);
+void	close_child_middle(t_pipex *cmd, int cmd_idx);
+void	close_child_first(t_pipex *cmd);
+
+//terminator.c
+void	free_split(char **c_split, int **i_split, int i_size);
+void	free_lst(t_pipex *cmd);
+void	free_pipex_struct(t_pipex *cmd);
+void	terminator(int flag, t_pipex *cmd, int errnum, char *msg);
 
 #endif
 /*

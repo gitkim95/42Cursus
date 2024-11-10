@@ -1,26 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/08 19:37:57 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/11 04:55:49 by gitkim           ###   ########.fr       */
+/*   Created: 2024/11/11 03:36:32 by gitkim            #+#    #+#             */
+/*   Updated: 2024/11/11 04:41:38 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <unistd.h>
-
-int	main(int argc, char *argv[], char *envp[])
-{
-	t_pipex	cmd;
-
-	if (argc < 5)
-		terminator(1, NULL, 0, "Not enough argument");
-	set_struct_pipex(&cmd, argc, argv, envp);
-	pipe_logic(&cmd, envp);
-	terminator(0, &cmd, 0, NULL);
-	return (0);
-}
