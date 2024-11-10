@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 19:38:04 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/10 04:01:36 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/10 20:33:54 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,15 @@ typedef struct s_pipex
 {
 	char	**path;
 	int		arg_size;
+	int		input_fd;
+	int		output_fd;
+	int		**pipe_fd;
 	t_data	*head;
 	t_data	*tail;
 }	t_pipex;
 
 //free_struct.c
-void	terminator(int flag, t_pipex *data, int errnum, char *msg);
+void	terminator(int flag, t_pipex *cmd, int errnum, char *msg);
 
 #endif
 /*
@@ -61,7 +64,7 @@ dup(int fd);
 	- fd를 복제하여 반환
 	- 성공 시 fd 반환, 실패 시 -1 반환
 dup2(int fd, int fd2);
-	- fd를 복제하여 fd2값으로 지정
+	- fd를 복제하여 fd2에 해당 값으로 지정
 	- 이미 fd2가 open되어있다면 close 후 복제 실행
 execve(const char *filename, char *const argv[], char *const envp[]);
 	- filename이 가리키는 파일을 실행, 이는 실행파일이거나 스크립트여야 함
