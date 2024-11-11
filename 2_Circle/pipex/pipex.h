@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 19:38:04 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/11 06:31:55 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/11 18:14:29 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_pipex
 }	t_pipex;
 
 //ppx_set_struct_1.c
-void	data_lst_addback(t_pipex *cmd, t_data *new_node);
+t_data	*make_new_data_node(char **cmd, int idx);
 void	set_struct_data(t_pipex *cmd, char *argv[], int idx);
 char	*find_path(char *envp[], t_pipex *cmd);
 char	**set_path(char *envp[], t_pipex *cmd);
@@ -44,12 +44,13 @@ void	set_struct_pipex(t_pipex *cmd, int argc, char *argv[], char *envp[]);
 //ppx_set_struct_2.c
 char	*check_cmd(t_pipex *data, char *cmd);
 void	set_cmd(t_pipex *cmd);
+void	data_lst_addback(t_pipex *cmd, t_data *new_node);
+void	init_pipe_fd(t_pipex *cmd);
+void	alloc_pipe_fd(t_pipex *cmd);
 
 //ppx_logic.c
 void	execve_cmd(t_pipex *cmd, char *envp[], int cmd_idx);
-void	fork_process(t_pipex *cmd, int cmd_idx);
-void	init_pipe_fd(t_pipex *cmd);
-void	alloc_pipe_fd(t_pipex *cmd);
+void	pipe_connect_process(t_pipex *cmd, int cmd_idx);
 void	pipe_logic(t_pipex *cmd, char *envp[]);
 
 //fd_closer.c

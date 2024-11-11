@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 22:48:36 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/11 04:55:04 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/11 18:13:21 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,35 @@ void	data_lst_addback(t_pipex *cmd, t_data *new_node)
 	{
 		cmd->tail->next = new_node;
 		cmd->tail = new_node;
+	}
+}
+
+void	init_pipe_fd(t_pipex *cmd)
+{
+	int	idx;
+
+	idx = 0;
+	while (idx < cmd->arg_size - 1)
+	{
+		if (pipe(cmd->pipe_fd[idx]) == -1)
+			terminator(1, cmd, errno, "Pipe failed");
+		idx++;
+	}
+}
+
+void	alloc_pipe_fd(t_pipex *cmd)
+{
+	int	idx;
+
+	cmd->pipe_fd = (int **)malloc(sizeof(int *) * (cmd->arg_size - 1));
+	if (!cmd->pipe_fd)
+		terminator(1, cmd, errno, "allocate error");
+	idx = 0;
+	while (idx < cmd->arg_size - 1)
+	{
+		cmd->pipe_fd[idx] = (int *)malloc(sizeof(int) * 2);
+		if (!cmd->pipe_fd[idx])
+			terminator(1, cmd, errno, "allocate error");
+		idx++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 22:51:13 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/11 06:32:02 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/11 18:13:28 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,13 @@ void	execve_cmd(t_pipex *cmd, char *envp[], int cmd_idx)
 	}
 }
 
-void	fork_process(t_pipex *cmd, int cmd_idx)
+void	pipe_connect_process(t_pipex *cmd, int cmd_idx)
 {
 	if (cmd_idx == 0)
 	{
 		dup2(cmd->input_fd, STDIN_FILENO);
 		dup2(cmd->pipe_fd[cmd_idx][1], STDOUT_FILENO);
 		close_child_first(cmd);
-		if (cmd->limiter)
-			get_stdin(cmd, cmd_idx);
 	}
 	else if (cmd_idx == cmd->arg_size - 1)
 	{
@@ -58,33 +56,22 @@ void	fork_process(t_pipex *cmd, int cmd_idx)
 	}
 }
 
-void	init_pipe_fd(t_pipex *cmd)
+void	fork_loop(t_pipex *cmd, pid_t *pid, char *envp[])
 {
-	int	idx;
+	int	cmd_idx;
 
-	idx = 0;
-	while (idx < cmd->arg_size - 1)
+	cmd_idx = 0;
+	while (cmd_idx < cmd->arg_size)
 	{
-		if (pipe(cmd->pipe_fd[idx]) == -1)
-			terminator(1, cmd, errno, "Pipe failed");
-		idx++;
-	}
-}
-
-void	alloc_pipe_fd(t_pipex *cmd)
-{
-	int	idx;
-
-	cmd->pipe_fd = (int **)malloc(sizeof(int *) * (cmd->arg_size - 1));
-	if (!cmd->pipe_fd)
-		terminator(1, cmd, errno, "allocate error");
-	idx = 0;
-	while (idx < cmd->arg_size - 1)
-	{
-		cmd->pipe_fd[idx] = (int *)malloc(sizeof(int) * 2);
-		if (!cmd->pipe_fd[idx])
-			terminator(1, cmd, errno, "allocate error");
-		idx++;
+		pid[cmd_idx] = fork();
+		if (pid[cmd_idx] == -1)
+			terminator(1, cmd, errno, "Fork Failed");
+		if (pid[cmd_idx] == 0)
+		{
+			pipe_connect_process(cmd, cmd_idx);
+			execve_cmd(cmd, envp, cmd_idx);
+		}
+		cmd_idx++;
 	}
 }
 
@@ -96,17 +83,7 @@ void	pipe_logic(t_pipex *cmd, char *envp[])
 	pid = (pid_t *)malloc(sizeof(pid_t) * cmd->arg_size);
 	alloc_pipe_fd(cmd);
 	init_pipe_fd(cmd);
-	cmd_idx = 0;
-	while (cmd_idx < cmd->arg_size)
-	{
-		pid[cmd_idx] = fork();
-		if (pid[cmd_idx] == 0)
-		{
-			fork_process(cmd, cmd_idx);
-			execve_cmd(cmd, envp, cmd_idx);
-		}
-		cmd_idx++;
-	}
+	fork_loop(cmd, pid, envp);
 	close_all_fd(cmd, 0);
 	cmd_idx = 0;
 	while (cmd_idx < cmd->arg_size)

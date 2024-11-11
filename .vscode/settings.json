@@ -12,6 +12,7 @@
 		"utility": "c",
 		"*.a": "c",
 		"string": "c",
-		"cerrno": "c"
+		"cerrno": "c",
+		"stdio.h": "c"
 	}
 }

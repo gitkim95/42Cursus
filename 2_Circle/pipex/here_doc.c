@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 03:36:32 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/11 06:55:23 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/11 18:15:56 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,23 @@ void	get_stdin(t_pipex *cmd, int cmd_idx)
 // 직후 다시 fork, outfile에 STDOUT dup2 수행, 실행함수
 // 부모프로세스는 else분기로 나와서 표준입력 받는다
 //dup2(pipefd[0], STDIN_FILENO); 후 실행 함수
-void	hd_make_pipe() // 자리 나면 fork까지
-{
+// void	hd_make_pipe(t_pipex *cmd) // 자리 나면 fork까지
+// {
+// 	pid_t	pid_1;
+// 	pid_t	pid_2;
+// 	int		cmd_idx;
+	
+// 	alloc_pipe_fd(cmd);
+// 	init_pipe_fd(cmd);
+// 	cmd_idx = 0;
+// 	pid_1 = fork()
+// 	if (pid_1 == -1)
 
-}
+
+// 	close_all_fd(cmd, 0);
+// 	waitpid(pid_1, NULL, 0);
+// 	waitpid(pid_2, NULL, 0);
+// }
 
 void	handle_heredoc(t_pipex *cmd, int argc, char *argv[], char *envp[])
 {
