@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 03:36:32 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/11 21:40:31 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/11 21:52:38 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,47 +16,6 @@
 #include <unistd.h>
 #include <errno.h>
 #include <sys/wait.h>
-
-// void	get_stdin(t_pipex *cmd, int cmd_idx)
-// {
-// 	char	buf[BUFFER_SIZE + 1];
-// 	int		read_len;
-// 	int		lim_len;
-
-// 	lim_len = ft_strlen(cmd->limiter);
-// 	read_len = 1;
-// 	while (read_len)
-// 	{
-// 		read_len = read(STDIN_FILENO, buf, BUFFER_SIZE);
-// 		if (read_len == -1)
-// 			terminator(1, cmd, errno, "STDIN failed");
-// 		buf[read_len] = '\0';
-// 		if (!ft_strncmp(buf, cmd->limiter, lim_len))
-// 			break;
-// 		write(cmd->pipe_fd[0][1], buf, read_len);
-// 	}
-// 	close(cmd->pipe_fd[0][1]);
-// 	execve_cmd(cmd, NULL, cmd_idx);
-// }
-
-// void	get_stdin(t_pipex *cmd, int cmd_idx)
-// {
-// 	char	*read_stdin;
-// 	int		lim_len;
-
-// 	lim_len = ft_strlen(cmd->limiter);
-// 	while (1)
-// 	{
-// 		read_stdin = get_next_line(STDIN_FILENO);
-// 		if (!read_stdin)
-// 			break;
-// 		if (!ft_strncmp(read_stdin, cmd->limiter, lim_len))
-// 			break;
-// 		write(cmd->pipe_fd[0][1], read_stdin, ft_strlen(read_stdin));
-// 	}
-// 	close(cmd->pipe_fd[0][1]);
-// 	execve_cmd(cmd, NULL, cmd_idx);
-// }
 
 void	get_stdin(t_pipex *cmd)
 {
@@ -98,14 +57,13 @@ void	hd_pipe_logic(t_pipex *cmd, pid_t *pid_1, pid_t *pid_2, char *envp[])
 		dup2(cmd->output_fd, STDOUT_FILENO);
 		dup2(cmd->pipe_fd[0][0], STDIN_FILENO);
 		close_child_last(cmd, 1);
-		execve_cmd(cmd, envp, 1);
+		execve_cmd(cmd, NULL, 1);
 	}
 }
 
 void	hd_make_pipe(t_pipex *cmd, char *envp[])
 {
-	pid_t	pid_1;
-	pid_t	pid_2;
+	pid_t	pid[3];
 
 	alloc_pipe_fd(cmd);
 	init_pipe_fd(cmd);
@@ -117,7 +75,7 @@ void	hd_make_pipe(t_pipex *cmd, char *envp[])
 
 void	handle_heredoc(t_pipex *cmd, int argc, char *argv[], char *envp[])
 {
-	cmd->arg_size = argc - 4;
+	cmd->arg_size = argc - 3;
 	cmd->path = set_path(envp, cmd);
 	cmd->head = NULL;
 	cmd->tail = NULL;
