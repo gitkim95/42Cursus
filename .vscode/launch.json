@@ -13,7 +13,18 @@
             "cwd": "${workspaceFolder}/2_Circle/pipex",
             "environment": [],
             "externalConsole": false,
-            "MIMode": "gdb"
+            // "MIMode": "gdb",
+            // "miDebuggerPath": "/usr/bin/gdb",  // GDB 경로를 확인
+            // "miDebuggerArgs": "-gdb-set follow-fork-mode child",  // GDB에서 자식 프로세스를 추적하도록 설정
+            // "serverLaunchTimeout": 10000,
+            // "preLaunchTask": "build",  // 빌드 작업이 필요하다면 추가 (선택 사항)
+            // "setupCommands": [
+            //     {
+            //         "description": "Enable GDB to follow child processes",
+            //         "text": "-gdb-set follow-fork-mode child",
+            //         "ignoreFailures": false
+            //     }
+            // ]
         }
     ]
 }

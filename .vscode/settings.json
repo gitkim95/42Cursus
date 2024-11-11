@@ -13,6 +13,7 @@
 		"*.a": "c",
 		"string": "c",
 		"cerrno": "c",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"pipex.h": "c"
 	}
 }

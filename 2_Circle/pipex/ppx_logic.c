@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 22:51:13 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/11 18:13:28 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/11 18:45:17 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	fork_loop(t_pipex *cmd, pid_t *pid, char *envp[])
 		pid[cmd_idx] = fork();
 		if (pid[cmd_idx] == -1)
 			terminator(1, cmd, errno, "Fork Failed");
-		if (pid[cmd_idx] == 0)
+		else if (pid[cmd_idx] == 0)
 		{
 			pipe_connect_process(cmd, cmd_idx);
 			execve_cmd(cmd, envp, cmd_idx);

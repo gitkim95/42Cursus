@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 19:38:04 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/11 18:14:29 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/11 21:41:52 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	terminator(int flag, t_pipex *cmd, int errnum, char *msg);
 
 //here_doc.c
 void	handle_heredoc(t_pipex *cmd, int argc, char *argv[], char *envp[]);
-void	get_stdin(t_pipex *cmd, int cmd_idx);
+void	get_stdin(t_pipex *cmd);
 
 #endif
 /*
