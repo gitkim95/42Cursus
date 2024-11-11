@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 03:39:44 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/11 20:18:32 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/12 01:02:04 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	close_all_fd(t_pipex *cmd, int cmd_idx)
 		close(cmd->pipe_fd[cmd_idx][1]);
 		cmd_idx++;
 	}
-	close(cmd->input_fd);
+	if (cmd->input_fd != -1)
+		close(cmd->input_fd);
 	close(cmd->output_fd);
 }
 

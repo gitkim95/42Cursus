@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 22:44:49 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/11 18:14:37 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/12 01:33:59 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ t_data	*make_new_data_node(char **cmd, int idx)
 	return (new_data);
 }
 
-void	set_struct_data(t_pipex *cmd, char *argv[], int idx)
+void	set_struct_data(t_pipex *cmd, int argc, char *argv[], int idx)
 {
 	t_data	*data_node;
 	char	**cmd_split;
 	int		i;
 
 	i = 0;
-	while (i < cmd->arg_size)
+	while (i < cmd->arg_size && idx + 1 < argc - 1)
 	{
 		cmd_split = ft_split(argv[idx + i], ' ');
 		if (!cmd_split)
@@ -103,6 +103,6 @@ void	set_struct_pipex(t_pipex *cmd, int argc, char *argv[], char *envp[])
 		if (cmd->input_fd == -1)
 			terminator(1, cmd, errno, "Error opening NULL");
 	}
-	set_struct_data(cmd, argv, 2);
+	set_struct_data(cmd, argc, argv, 2);
 	set_cmd(cmd);
 }
