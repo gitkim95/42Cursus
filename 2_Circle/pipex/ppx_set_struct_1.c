@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 22:44:49 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/12 01:33:59 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/12 18:18:01 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	set_struct_pipex(t_pipex *cmd, int argc, char *argv[], char *envp[])
 	cmd->head = NULL;
 	cmd->tail = NULL;
 	cmd->limiter = NULL;
+	cmd->pid = (pid_t *)malloc(sizeof(pid_t) * cmd->arg_size);
 	cmd->output_fd = open(argv[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (cmd->output_fd == -1)
 		terminator(1, cmd, errno, argv[argc - 1]);

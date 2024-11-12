@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 22:51:13 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/12 13:04:57 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/12 18:23:14 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	execve_cmd(t_pipex *cmd, int cmd_idx, char *envp[])
 		if (data_node->cmd_idx == cmd_idx)
 		{
 			if (execve(data_node->cmd[0], data_node->cmd, envp) == -1)
-				terminator(1, cmd, errno, "Execve failed");
+				terminator(2, cmd, 0, ft_strdup(data_node->cmd[0]));
 		}
 		data_node = data_node->next;
 	}
@@ -58,14 +58,14 @@ void	pipe_connect_process(t_pipex *cmd, int cmd_idx)
 	}
 }
 
-void	fork_loop(t_pipex *cmd, pid_t *pid, int cmd_idx, char *envp[])
+void	fork_loop(t_pipex *cmd, int cmd_idx, char *envp[])
 {
 	while (cmd_idx < cmd->arg_size)
 	{
-		pid[cmd_idx] = fork();
-		if (pid[cmd_idx] == -1)
+		cmd->pid[cmd_idx] = fork();
+		if (cmd->pid[cmd_idx] == -1)
 			terminator(1, cmd, errno, "Fork Failed");
-		else if (pid[cmd_idx] == 0)
+		else if (cmd->pid[cmd_idx] == 0)
 		{
 			pipe_connect_process(cmd, cmd_idx);
 			execve_cmd(cmd, cmd_idx, envp);
@@ -76,19 +76,16 @@ void	fork_loop(t_pipex *cmd, pid_t *pid, int cmd_idx, char *envp[])
 
 void	pipe_logic(t_pipex *cmd, char *envp[])
 {
-	pid_t	*pid;
 	int		cmd_idx;
 
-	pid = (pid_t *)malloc(sizeof(pid_t) * cmd->arg_size);
 	alloc_pipe_fd(cmd);
 	init_pipe_fd(cmd);
-	fork_loop(cmd, pid, 0, envp);
+	fork_loop(cmd, 0, envp);
 	close_all_fd(cmd, 0);
 	cmd_idx = 0;
 	while (cmd_idx < cmd->arg_size)
 	{
-		waitpid(pid[cmd_idx], NULL, 0);
+		waitpid(cmd->pid[cmd_idx], NULL, 0);
 		cmd_idx++;
 	}
-	free(pid);
 }

@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 03:39:44 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/12 02:20:02 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/12 16:56:07 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	close_child_middle(t_pipex *cmd, int cmd_idx)
 
 	close(cmd->pipe_fd[cmd_idx - 1][1]);
 	close(cmd->pipe_fd[cmd_idx][0]);
-	close(cmd->input_fd);
+	if (cmd->input_fd != -1)
+		close(cmd->input_fd);
 	close(cmd->output_fd);
 	i = 0;
 	while (i < cmd->arg_size - 1)

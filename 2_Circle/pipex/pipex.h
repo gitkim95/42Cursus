@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 19:38:04 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/12 13:11:44 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/12 18:20:06 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_pipex
 	int		output_fd;
 	int		**pipe_fd;
 	char	*limiter;
+	pid_t	*pid;
 	t_data	*head;
 	t_data	*tail;
 }	t_pipex;
@@ -53,7 +54,7 @@ void	alloc_pipe_fd(t_pipex *cmd);
 //ppx_logic.c
 void	execve_cmd(t_pipex *cmd, int cmd_idx, char *envp[]);
 void	pipe_connect_process(t_pipex *cmd, int cmd_idx);
-void	fork_loop(t_pipex *cmd, pid_t *pid, int cmd_idx, char *envp[]);
+void	fork_loop(t_pipex *cmd, int cmd_idx, char *envp[]);
 void	pipe_logic(t_pipex *cmd, char *envp[]);
 
 //fd_closer.c
@@ -70,7 +71,7 @@ void	terminator(int flag, t_pipex *cmd, int errnum, char *msg);
 
 //here_doc.c
 void	get_stdin(t_pipex *cmd);
-void	hd_pipe_logic(t_pipex *cmd, pid_t *pid);
+void	hd_pipe_logic(t_pipex *cmd);
 void	hd_make_pipe(t_pipex *cmd, char *envp[]);
 void	handle_heredoc(t_pipex *cmd, int argc, char *argv[], char *envp[]);
 

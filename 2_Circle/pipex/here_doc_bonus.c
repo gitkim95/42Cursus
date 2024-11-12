@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 03:36:32 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/12 13:06:35 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/12 18:19:54 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ void	get_stdin(t_pipex *cmd)
 	}
 }
 
-void	hd_pipe_logic(t_pipex *cmd, pid_t *pid)
+void	hd_pipe_logic(t_pipex *cmd)
 {
-	pid[0] = fork();
-	if (pid[0] == -1)
+	cmd->pid[0] = fork();
+	if (cmd->pid[0] == -1)
 		terminator(1, cmd, errno, "Fork Failed");
-	else if (pid[0] == 0)
+	else if (cmd->pid[0] == 0)
 	{
 		dup2(cmd->pipe_fd[0][1], STDOUT_FILENO);
 		close_child_first(cmd);
@@ -52,18 +52,14 @@ void	hd_pipe_logic(t_pipex *cmd, pid_t *pid)
 
 void	hd_make_pipe(t_pipex *cmd, char *envp[])
 {
-	pid_t	*pid;
-
 	alloc_pipe_fd(cmd);
 	init_pipe_fd(cmd);
-	pid = (pid_t *)malloc(sizeof(pid_t) * 3);
-	hd_pipe_logic(cmd, pid);
-	fork_loop(cmd, pid, 1, envp);
+	hd_pipe_logic(cmd);
+	fork_loop(cmd, 1, envp);
 	close_all_fd(cmd, 0);
-	waitpid(pid[0], NULL, 0);
-	waitpid(pid[1], NULL, 0);
-	waitpid(pid[2], NULL, 0);
-	free(pid);
+	waitpid(cmd->pid[0], NULL, 0);
+	waitpid(cmd->pid[1], NULL, 0);
+	waitpid(cmd->pid[2], NULL, 0);
 }
 
 void	handle_heredoc(t_pipex *cmd, int argc, char *argv[], char *envp[])
@@ -72,7 +68,8 @@ void	handle_heredoc(t_pipex *cmd, int argc, char *argv[], char *envp[])
 	cmd->path = set_path(envp, cmd);
 	cmd->head = NULL;
 	cmd->tail = NULL;
-	cmd->limiter = ft_strdup(argv[2]);
+	cmd->limiter = ft_strjoin(argv[2], "\n");
+	cmd->pid = (pid_t *)malloc(sizeof(pid_t) * cmd->arg_size);
 	cmd->input_fd = -1;
 	cmd->output_fd = open(argv[argc - 1], O_WRONLY | O_APPEND | O_CREAT, 0644);
 	if (cmd->output_fd == -1)

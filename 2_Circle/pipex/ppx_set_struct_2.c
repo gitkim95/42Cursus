@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 22:48:36 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/11 18:13:21 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/12 18:00:51 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*check_cmd(t_pipex *data, char *cmd)
 		i++;
 	}
 	free(temp);
-	return (cmd);
+	return (ft_strjoin("zsh: command not found: ", cmd));
 }
 
 void	set_cmd(t_pipex *cmd)
