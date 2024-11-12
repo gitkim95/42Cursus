@@ -8,7 +8,7 @@ SOURCES =	terminator.c	\
 	fd_closer.c	\
 	ppx_logic.c	\
 	pipex.c
-BONUS =	here_doc.c
+BONUS =	here_doc_bonus.c
 M_OBJS = $(MAIN:.c=.o)
 OBJS = $(SOURCES:.c=.o)
 B_OBJS = $(BONUS:.c=.o)

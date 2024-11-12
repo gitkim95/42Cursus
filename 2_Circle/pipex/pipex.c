@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 19:37:57 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/12 01:19:17 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/12 13:05:08 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char *argv[], char *envp[])
 	else
 	{
 		set_struct_pipex(&cmd, argc, argv, envp);
-		pipe_logic(&cmd);
+		pipe_logic(&cmd, envp);
 	}
 	terminator(0, &cmd, 0, NULL);
 	return (0);

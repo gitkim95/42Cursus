@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   here_doc.c                                         :+:      :+:    :+:   */
+/*   here_doc_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 03:36:32 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/12 01:32:18 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/12 13:06:35 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	hd_pipe_logic(t_pipex *cmd, pid_t *pid)
 	}
 }
 
-void	hd_make_pipe(t_pipex *cmd)
+void	hd_make_pipe(t_pipex *cmd, char *envp[])
 {
 	pid_t	*pid;
 
@@ -58,7 +58,7 @@ void	hd_make_pipe(t_pipex *cmd)
 	init_pipe_fd(cmd);
 	pid = (pid_t *)malloc(sizeof(pid_t) * 3);
 	hd_pipe_logic(cmd, pid);
-	fork_loop(cmd, pid, 1);
+	fork_loop(cmd, pid, 1, envp);
 	close_all_fd(cmd, 0);
 	waitpid(pid[0], NULL, 0);
 	waitpid(pid[1], NULL, 0);
@@ -79,5 +79,5 @@ void	handle_heredoc(t_pipex *cmd, int argc, char *argv[], char *envp[])
 		terminator(1, cmd, errno, argv[argc - 1]);
 	set_struct_data(cmd, argc, argv, 3);
 	set_cmd(cmd);
-	hd_make_pipe(cmd);
+	hd_make_pipe(cmd, envp);
 }
