@@ -7,17 +7,18 @@ SOURCES =	terminator.c	\
 	ppx_set_struct_2.c	\
 	fd_closer.c	\
 	ppx_logic.c	\
-	pipex.c	\
-	here_doc.c
+	pipex.c
+BONUS =	here_doc.c
 M_OBJS = $(MAIN:.c=.o)
 OBJS = $(SOURCES:.c=.o)
+B_OBJS = $(BONUS:.c=.o)
 
 LIBFT = $(LIBFT_DIR)/libft.a
 LIBFT_DIR = ./libft
 
 all : $(NAME)
 
-$(NAME) : $(M_OBJS) $(OBJS) $(LIBFT)
+$(NAME) : $(M_OBJS) $(OBJS) $(B_OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) -o $@ $^
 
 %.o : %.c
@@ -27,7 +28,7 @@ $(LIBFT) :
 	make -C $(LIBFT_DIR)
 
 clean :
-	rm -f $(OBJS) $(M_OBJS)
+	rm -f $(OBJS) $(M_OBJS) $(B_OBJS)
 	make -C $(LIBFT_DIR) clean
 
 fclean : clean
