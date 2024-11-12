@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 03:36:32 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/12 18:19:54 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/12 20:36:50 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ void	get_stdin(t_pipex *cmd)
 	int		lim_len;
 
 	lim_len = ft_strlen(cmd->limiter);
-	read_len = 1;
-	while (read_len)
+	while (1)
 	{
 		read_len = read(STDIN_FILENO, buf, BUFFER_SIZE);
 		if (read_len == -1)
@@ -55,9 +54,9 @@ void	hd_make_pipe(t_pipex *cmd, char *envp[])
 	alloc_pipe_fd(cmd);
 	init_pipe_fd(cmd);
 	hd_pipe_logic(cmd);
+	waitpid(cmd->pid[0], NULL, 0);
 	fork_loop(cmd, 1, envp);
 	close_all_fd(cmd, 0);
-	waitpid(cmd->pid[0], NULL, 0);
 	waitpid(cmd->pid[1], NULL, 0);
 	waitpid(cmd->pid[2], NULL, 0);
 }

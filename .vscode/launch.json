@@ -6,25 +6,32 @@
             "type": "cppdbg",
             "request": "launch",
             // "program": "${fileDirname}/a.out",
-            "program": "${workspaceFolder}/2_Circle/pipex/pipex",
-            "args": ["here_doc", "asd", "cat", "wc -l", "bb"],
+            "program": "${workspaceFolder}/pipex",
+            "args": ["here_doc", "eof", "aa", "cat", "output"],
             "stopAtEntry": false,
             // "cwd": "${fileDirname}",
-            "cwd": "${workspaceFolder}/2_Circle/pipex",
+            "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
-            // "MIMode": "gdb",
-            // "miDebuggerPath": "/usr/bin/gdb",  // GDB 경로를 확인
-            // "miDebuggerArgs": "-gdb-set follow-fork-mode child",  // GDB에서 자식 프로세스를 추적하도록 설정
-            // "serverLaunchTimeout": 10000,
-            // "preLaunchTask": "build",  // 빌드 작업이 필요하다면 추가 (선택 사항)
-            // "setupCommands": [
-            //     {
-            //         "description": "Enable GDB to follow child processes",
-            //         "text": "-gdb-set follow-fork-mode child",
-            //         "ignoreFailures": false
-            //     }
-            // ]
+            "MIMode": "gdb",
+            "setupCommands":
+            [
+	            {
+                    "description": "Enable funcy printing to gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description":"In this mode GDB will be attached to both processes after a call to fork() or vfork().",
+                    "text": "-gdb-set detach-on-fork off",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "The new process is debugged after a fork. The parent process runs unimpeded.",
+                    "text": "-gdb-set follow-fork-mode child",
+                    "ignoreFailures": true
+                }
+            ],
         }
     ]
 }
