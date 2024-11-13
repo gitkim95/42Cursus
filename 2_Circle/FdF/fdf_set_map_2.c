@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 02:43:10 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/07 18:06:02 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/13 22:16:24 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,12 @@ void	set_integer_map(t_fdf *fdf, t_map_list **head)
 	int			idx;
 
 	if (fdf->map.height <= 0 || fdf->map.width <= 0)
+		terminator(4, *head, 0, "File data incorrect");
+	fdf->map.data = (t_coord **)malloc(sizeof(t_coord *) * fdf->map.height);
+	if (!(fdf->map.data))
 	{
-		//error
-	}
-	fdf->map.map = (int **)malloc(sizeof(int *) * fdf->map.height);
-	if (!(fdf->map.map))
-	{
-		//error
+		//error// 여기까지 함
+		
 	}
 	idx = 0;
 	while (idx < fdf->map.height)

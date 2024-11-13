@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 23:06:42 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/08 18:20:53 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/13 22:01:36 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,21 @@ typedef struct s_map_list
 	struct s_map_list	*next;
 }	t_map_list;
 
+typedef struct s_coord
+{
+	int	x;
+	int	y;
+	int z;
+	int color;
+}	t_coord;
+
 typedef struct s_map
 {
-	int	height;
-	int	width;
-	int	z_max;
-	int	z_min;
-	int	**map;
+	int		height;
+	int		width;
+	int		z_max;
+	int		z_min;
+	t_coord	**data;
 }	t_map;
 
 typedef struct s_fdf
@@ -67,7 +75,7 @@ void		set_integer_map(t_fdf *fdf, t_map_list **head);
 int			get_map_width(char **buf_split);
 
 //fdf_terminator.c
-void		free_split(char **split);
+void		free_split(char **c_split, int **i_split, int i_size);
 void		fdf_maplist_free(t_map_list *node);
 void		terminator(int type, void *addr_1, char **addr_2, t_map_list *node);
 

@@ -6,12 +6,13 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 02:37:18 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/07 21:52:09 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/13 22:16:31 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "./libft/libft.h"
+#include <errno.h>
 
 t_map_list	*fdf_maplist_last(t_map_list *node)
 {
@@ -62,24 +63,18 @@ void	set_map_size_n_list(t_fdf *fdf, t_map_list **temp, int fd)
 		buf_split = ft_split(buf, ' ');
 		free(buf);
 		if (!buf_split)
-		{
-			//error
-		}
-		node = fdf_maplist_newnode(buf_split);
-		if (!node)
-		{
-			//error
-		}
-		fdf_maplist_addback(temp, node);
+			terminator(1, NULL, 0, "Allocation failed");
 		cal_width = get_map_width(buf_split);
+		node = fdf_maplist_newnode(buf_split);
+		free_split(buf_split, NULL, 0);
+		if (!node)
+			terminator(4, *temp, 0, "Allocation failed");
 		if (fdf->map.width && fdf->map.width != cal_width)
-		{
-			//error
-		}
+			terminator(4, *temp, 0, "File data incorrect");
+		fdf_maplist_addback(temp, node);
 		fdf->map.width = cal_width;
 		fdf->map.height++;
 	}
-	close(fd);
 }
 
 void	set_map_struct(t_fdf *fdf, char *file_path)
@@ -89,10 +84,9 @@ void	set_map_struct(t_fdf *fdf, char *file_path)
 
 	fd = open(file_path, O_RDONLY);
 	if (fd < 0)
-	{
-			//error
-	}
+		terminator(1, NULL, errno, "File open failed");
 	temp = NULL;
 	set_map_size_n_list(fdf, &temp, fd);
+	close(fd);
 	set_integer_map(fdf, &temp);
 }
