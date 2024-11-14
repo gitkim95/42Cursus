@@ -6,12 +6,29 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 22:19:23 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/13 22:09:30 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/14 18:10:10 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "./libft/libft.h"
+#include "stdio.h"
+#include "stdlib.h"
+
+void	free_fdf_coord(t_fdf *fdf)
+{
+	int	y;
+	t_coord	**temp;
+
+	temp = fdf->map.data;
+	y = 0;
+	while (y < fdf->map.height)
+	{
+		free(temp[y]);
+		y++;
+	}
+	free(temp);
+}
 
 void	free_split(char **c_split, int **i_split, int i_size)
 {
@@ -52,15 +69,10 @@ void	free_fdf_maplist(t_map_list *node)
 	}
 }
 
-void	free_fdf_struct(t_fdf *fdf)
-{
-	
-}
-
 void	terminator(int flag, void *data, int errnum, char *msg)
 {
 	if (data && flag == 3)
-		free_fdf_struct(data);
+		free_fdf_coord((t_fdf *)data);
 	else if (data && flag == 4)
 		free_fdf_maplist((t_map_list *)data);
 	if (flag == 0)

@@ -6,22 +6,17 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 23:06:42 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/13 22:01:36 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/14 18:11:14 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include <fcntl.h> // open
-# include <stdlib.h> // malloc, free, exit
-# include <unistd.h> // read, write, close
-# include <stdio.h> // perror
-# include <string.h> // strerror
-# include <errno.h> // 
-
 # define WIDTH 1920
 # define HEIGHT 1080
+# define UPPERHEX "0123456789ABCDEF"
+# define LOWERHEX "0123456789ABCDEF"
 
 typedef struct s_map_list
 {
@@ -61,23 +56,28 @@ typedef struct s_fdf
 //fdf_init_struct.c
 void		set_struct_zero(t_fdf *fdf);
 
-//fdf_set_map_1.c
+//fdf_list_util.c
 t_map_list	*fdf_maplist_last(t_map_list *node);
 void		fdf_maplist_addback(t_map_list **head, t_map_list *new_node);
 t_map_list	*fdf_maplist_newnode(char **maplist);
+
+//fdf_set_map_1.c
+void		set_coord_data(t_fdf *fdf, t_map_list **head);
+void		set_coord_map(t_fdf *fdf, t_map_list **head);
+int			get_map_width(char **buf_split);
 void		set_map_size_n_list(t_fdf *fdf, t_map_list **temp, int fd);
 void		set_map_struct(t_fdf *fdf, char *file_path);
 
 //fdf_set_map_2.c
 void		set_min_max(t_fdf *fdf);
-void		set_map(t_fdf *fdf, t_map_list **head);
-void		set_integer_map(t_fdf *fdf, t_map_list **head);
-int			get_map_width(char **buf_split);
+int			hex_to_int(char *hex);
+void		set_map_color(t_coord *coord, t_map_list *node);
 
 //fdf_terminator.c
+void		free_fdf_coord(t_fdf *fdf);
 void		free_split(char **c_split, int **i_split, int i_size);
-void		fdf_maplist_free(t_map_list *node);
-void		terminator(int type, void *addr_1, char **addr_2, t_map_list *node);
+void		free_fdf_maplist(t_map_list *node);
+void		terminator(int flag, void *data, int errnum, char *msg);
 
 //fdf_utils.c
 
@@ -88,6 +88,9 @@ void		valid_fdf_file(char *file_path);
 
 #endif
 /*
+
+# include <unistd.h> // read, write, close
+
 https://velog.io/@tmdgks2222/fdf
 https://velog.io/@minjune8506/MiniLibX
 https://80000coding.oopy.io/b44522da-1efb-46aa-86f3-ec9bbb13f58a#b44522da-1efb-46aa-86f3-ec9bbb13f58a

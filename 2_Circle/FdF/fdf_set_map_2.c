@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 02:43:10 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/13 22:16:24 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/14 17:56:58 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,69 +24,51 @@ void	set_min_max(t_fdf *fdf)
 		width = 0;
 		while (width < fdf->map.width)
 		{
-			if (fdf->map.z_max < fdf->map.map[height][width])
-				fdf->map.z_max = fdf->map.map[height][width];
-			if (fdf->map.z_min > fdf->map.map[height][width])
-				fdf->map.z_min = fdf->map.map[height][width];
+			if (fdf->map.z_max < fdf->map.data[height][width].z)
+				fdf->map.z_max = fdf->map.data[height][width].z;
+			if (fdf->map.z_min > fdf->map.data[height][width].z)
+				fdf->map.z_min = fdf->map.data[height][width].z;
 			width++;
 		}
 		height++;
 	}
 }
 
-void	set_map(t_fdf *fdf, t_map_list **head)
+int	hex_to_int(char *hex)
 {
-	t_map_list	*node;
-	int			width;
-	int			height;
-
-	node = *head;
-	height = 0;
-	while (height < fdf->map.height)
-	{
-		width = 0;
-		while (width < fdf->map.width)
-		{
-			fdf->map.map[height][width] = ft_atoi(node->list[width]);
-			width++;
-		}
-		node = node->next;
-		height++;
-	}
-	fdf_maplist_free(*head);
-}
-
-void	set_integer_map(t_fdf *fdf, t_map_list **head)
-{
-	int			idx;
-
-	if (fdf->map.height <= 0 || fdf->map.width <= 0)
-		terminator(4, *head, 0, "File data incorrect");
-	fdf->map.data = (t_coord **)malloc(sizeof(t_coord *) * fdf->map.height);
-	if (!(fdf->map.data))
-	{
-		//error// 여기까지 함
-		
-	}
-	idx = 0;
-	while (idx < fdf->map.height)
-	{
-		fdf->map.map[idx] = (int *)malloc(sizeof(int) * fdf->map.width);
-		if (!(fdf->map.map[idx]))
-		{
-			//error
-		}
-		idx++;
-	}
-	set_map(fdf, head);
-}
-
-int	get_map_width(char **buf_split)
-{
+	int	ret;
 	int	idx;
+	int	hex_idx;
 
+	ret = 0;
 	idx = 0;
-	while (buf_split[idx] && !(*buf_split[idx] == '\n'))
+	while (hex[idx])
+	{
+		hex_idx = 0;
+		if (hex[idx] < 71)
+		{
+			while (UPPERHEX[hex_idx] != hex[idx])
+				hex_idx++;
+		}
+		else
+		{
+			while (LOWERHEX[hex_idx] != hex[idx])
+				hex_idx++;
+		}
+		ret += ret * 16 + hex_idx;
 		idx++;
-	return (idx);
+	}
+	return (ret);
+}
+
+void	set_map_color(t_coord *coord, t_map_list *node)
+{
+	char *color;
+
+	color = ft_strchr(node->list[0], ',');
+	if (color)
+	{
+		color += 3;
+		coord->color = hex_to_int(color);
+	}
 }

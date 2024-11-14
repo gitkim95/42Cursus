@@ -6,46 +6,73 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 02:37:18 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/13 22:16:31 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/14 17:56:42 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "./libft/libft.h"
+#include <fcntl.h>
 #include <errno.h>
 
-t_map_list	*fdf_maplist_last(t_map_list *node)
+void	set_coord_data(t_fdf *fdf, t_map_list **head)
 {
-	while (node -> next)
-		node = node -> next;
-	return (node);
-}
+	t_map_list	*node;
+	int			width;
+	int			height;
 
-void	fdf_maplist_addback(t_map_list **head, t_map_list *new_node)
-{
-	t_map_list	*tail;
-
-	if (!new_node)
-		return ;
-	if (*head == NULL)
-		*head = new_node;
-	else
+	node = *head;
+	height = 0;
+	while (height < fdf->map.height)
 	{
-		tail = fdf_maplist_last(*head);
-		tail -> next = new_node;
+		width = 0;
+		while (width < fdf->map.width)
+		{
+			fdf->map.data[height][width].x = width;
+			fdf->map.data[height][width].y = height;
+			fdf->map.data[height][width].z = ft_atoi(node->list[0]);
+			set_map_color(&fdf->map.data[height][width], node);
+			width++;
+		}
+		node = node->next;
+		height++;
 	}
+	free_fdf_maplist(*head);
 }
 
-t_map_list	*fdf_maplist_newnode(char **maplist)
+void	set_coord_map(t_fdf *fdf, t_map_list **head)
 {
-	t_map_list	*new_node;
+	int			idx;
 
-	new_node = (t_map_list *)malloc(sizeof(t_map_list));
-	if (!new_node)
-		return (NULL);
-	new_node->list = maplist;
-	new_node->next = NULL;
-	return (new_node);
+	if (fdf->map.height <= 0 || fdf->map.width <= 0)
+		terminator(4, *head, 0, "File data incorrect");
+	fdf->map.data = (t_coord **)malloc(sizeof(t_coord *) * fdf->map.height);
+	if (!(fdf->map.data))
+		terminator(4, *head, 0, "Allocation failed");
+	idx = 0;
+	while (idx < fdf->map.height)
+	{
+		fdf->map.data[idx] = (t_coord *)malloc(sizeof(t_coord) * fdf->map.width);
+		if (!(fdf->map.data[idx]))
+		{
+			free_coord_split(fdf->map.data, idx);
+			terminator(4, *head, 0, "Allocation failed");
+		}
+		idx++;
+	}
+	set_coord_data(fdf, head);
+	set_min_max(fdf);
+}
+
+
+int	get_map_width(char **buf_split)
+{
+	int	idx;
+
+	idx = 0;
+	while (buf_split[idx] && !(*buf_split[idx] == '\n'))
+		idx++;
+	return (idx);
 }
 
 void	set_map_size_n_list(t_fdf *fdf, t_map_list **temp, int fd)
@@ -88,5 +115,5 @@ void	set_map_struct(t_fdf *fdf, char *file_path)
 	temp = NULL;
 	set_map_size_n_list(fdf, &temp, fd);
 	close(fd);
-	set_integer_map(fdf, &temp);
+	set_coord_map(fdf, &temp);
 }
