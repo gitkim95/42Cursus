@@ -6,32 +6,32 @@
             "type": "cppdbg",
             "request": "launch",
             // "program": "${fileDirname}/a.out",
-            "program": "${workspaceFolder}/pipex",
-            "args": ["here_doc", "eof", "aa", "cat", "output"],
+            "program": "${workspaceFolder}/2_Circle/FdF/fdf",
+            "args": ["test.fdf"],
             "stopAtEntry": false,
             // "cwd": "${fileDirname}",
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/2_Circle/FdF/",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "setupCommands":
-            [
-	            {
-                    "description": "Enable funcy printing to gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                },
-                {
-                    "description":"In this mode GDB will be attached to both processes after a call to fork() or vfork().",
-                    "text": "-gdb-set detach-on-fork off",
-                    "ignoreFailures": true
-                },
-                {
-                    "description": "The new process is debugged after a fork. The parent process runs unimpeded.",
-                    "text": "-gdb-set follow-fork-mode child",
-                    "ignoreFailures": true
-                }
-            ],
+            // "setupCommands":
+            // [
+	        //     {
+            //         "description": "Enable funcy printing to gdb",
+            //         "text": "-enable-pretty-printing",
+            //         "ignoreFailures": true
+            //     },
+            //     {
+            //         "description":"In this mode GDB will be attached to both processes after a call to fork() or vfork().",
+            //         "text": "-gdb-set detach-on-fork off",
+            //         "ignoreFailures": true
+            //     },
+            //     {
+            //         "description": "The new process is debugged after a fork. The parent process runs unimpeded.",
+            //         "text": "-gdb-set follow-fork-mode child",
+            //         "ignoreFailures": true
+            //     }
+            // ],
         }
     ]
 }

@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 23:06:42 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/14 18:11:14 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/14 23:57:13 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ typedef struct s_map_list
 
 typedef struct s_coord
 {
-	int	x;
-	int	y;
-	int z;
-	int color;
+	float	x;
+	float	y;
+	float	z;
+	int		color;
 }	t_coord;
 
 typedef struct s_map
@@ -71,7 +71,7 @@ void		set_map_struct(t_fdf *fdf, char *file_path);
 //fdf_set_map_2.c
 void		set_min_max(t_fdf *fdf);
 int			hex_to_int(char *hex);
-void		set_map_color(t_coord *coord, t_map_list *node);
+void		set_map_color(t_coord *coord, char *data);
 
 //fdf_terminator.c
 void		free_fdf_coord(t_fdf *fdf);

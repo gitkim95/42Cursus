@@ -15,6 +15,7 @@
 		"cerrno": "c",
 		"stdio.h": "c",
 		"pipex.h": "c",
-		"errno.h": "c"
+		"errno.h": "c",
+		"stdlib.h": "c"
 	}
 }

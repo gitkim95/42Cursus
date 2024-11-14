@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 02:37:18 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/14 17:56:42 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/14 23:57:26 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	set_coord_data(t_fdf *fdf, t_map_list **head)
 		{
 			fdf->map.data[height][width].x = width;
 			fdf->map.data[height][width].y = height;
-			fdf->map.data[height][width].z = ft_atoi(node->list[0]);
-			set_map_color(&fdf->map.data[height][width], node);
+			fdf->map.data[height][width].z = ft_atoi(node->list[width]);
+			set_map_color(&fdf->map.data[height][width], node->list[width]);
 			width++;
 		}
 		node = node->next;
@@ -55,7 +55,7 @@ void	set_coord_map(t_fdf *fdf, t_map_list **head)
 		fdf->map.data[idx] = (t_coord *)malloc(sizeof(t_coord) * fdf->map.width);
 		if (!(fdf->map.data[idx]))
 		{
-			free_coord_split(fdf->map.data, idx);
+			free_fdf_coord(fdf);
 			terminator(4, *head, 0, "Allocation failed");
 		}
 		idx++;
@@ -84,7 +84,7 @@ void	set_map_size_n_list(t_fdf *fdf, t_map_list **temp, int fd)
 
 	while (1)
 	{
-		buf = get_next_line(fd);
+		buf = get_next_line(fd); // 내부 static buf free
 		if (!buf || !(*buf))
 			break ;
 		buf_split = ft_split(buf, ' ');
@@ -93,7 +93,6 @@ void	set_map_size_n_list(t_fdf *fdf, t_map_list **temp, int fd)
 			terminator(1, NULL, 0, "Allocation failed");
 		cal_width = get_map_width(buf_split);
 		node = fdf_maplist_newnode(buf_split);
-		free_split(buf_split, NULL, 0);
 		if (!node)
 			terminator(4, *temp, 0, "Allocation failed");
 		if (fdf->map.width && fdf->map.width != cal_width)
@@ -114,6 +113,6 @@ void	set_map_struct(t_fdf *fdf, char *file_path)
 		terminator(1, NULL, errno, "File open failed");
 	temp = NULL;
 	set_map_size_n_list(fdf, &temp, fd);
-	close(fd);
+	close(fd); // 여기서 처리
 	set_coord_map(fdf, &temp);
 }

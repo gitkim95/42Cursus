@@ -8,7 +8,8 @@ SOURCES = fdf_init_struct.c \
 	fdf_set_map_2.c \
 	fdf_terminator.c \
 	fdf_utils.c \
-	fdf_valid_file.c
+	fdf_valid_file.c	\
+	fdf_list_util.c
 M_OBJS = $(MAIN:.c=.o)
 OBJS = $(SOURCES:.c=.o)
 

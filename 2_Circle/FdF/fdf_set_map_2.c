@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 02:43:10 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/14 17:56:58 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/15 00:00:22 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,24 @@ int	hex_to_int(char *hex)
 			while (LOWERHEX[hex_idx] != hex[idx])
 				hex_idx++;
 		}
-		ret += ret * 16 + hex_idx;
+		ret = ret * 16 + hex_idx;
 		idx++;
 	}
 	return (ret);
 }
 
-void	set_map_color(t_coord *coord, t_map_list *node)
+void	set_map_color(t_coord *coord, char *data)
 {
 	char *color;
 
-	color = ft_strchr(node->list[0], ',');
+	color = ft_strchr(data, ',');
 	if (color)
 	{
 		color += 3;
 		coord->color = hex_to_int(color);
+	}
+	else
+	{
+		coord->color = 0xFFFFFF;
 	}
 }
