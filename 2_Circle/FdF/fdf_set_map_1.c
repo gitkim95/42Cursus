@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 02:37:18 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/14 23:57:26 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/15 00:55:58 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	set_coord_map(t_fdf *fdf, t_map_list **head)
 	}
 	set_coord_data(fdf, head);
 	set_min_max(fdf);
+	set_coord_center(fdf);
 }
 
 

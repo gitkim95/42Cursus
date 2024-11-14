@@ -6,12 +6,34 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 02:43:10 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/15 00:00:22 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/15 00:58:46 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "./libft/libft.h"
+
+void	set_coord_center(t_fdf *fdf)
+{
+	int		height;
+	int		width;
+	t_coord	**data;
+
+	data = fdf->map.data;
+	height = 0;
+	while (height < fdf->map.height)
+	{
+		width = 0;
+		while (width < fdf->map.width)
+		{
+			data[height][width].x -= fdf->map.width / 2;
+			data[height][width].y -= fdf->map.height / 2;
+			data[height][width].z -= (fdf->map.z_max + fdf->map.z_min) / 2;
+			width++;
+		}
+		height++;
+	}
+}
 
 void	set_min_max(t_fdf *fdf)
 {

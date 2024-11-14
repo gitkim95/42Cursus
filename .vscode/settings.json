@@ -16,6 +16,7 @@
 		"stdio.h": "c",
 		"pipex.h": "c",
 		"errno.h": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"fdf.h": "c"
 	}
 }

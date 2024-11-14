@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 23:06:42 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/14 23:57:13 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/15 01:02:23 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ typedef struct s_map_list
 	char				**list;
 	struct s_map_list	*next;
 }	t_map_list;
+
+typedef struct s_point
+{
+	int	x;
+	int	y;
+	int	color;
+}	t_point;
 
 typedef struct s_coord
 {
@@ -51,6 +58,9 @@ typedef struct s_fdf
 	int		line_len;
 	int		endian;
 	int		color;
+	int		x_offset;
+	int		y_offset;
+	int		scale;
 	t_map	map;
 }	t_fdf;
 //fdf_init_struct.c
@@ -69,6 +79,7 @@ void		set_map_size_n_list(t_fdf *fdf, t_map_list **temp, int fd);
 void		set_map_struct(t_fdf *fdf, char *file_path);
 
 //fdf_set_map_2.c
+void		set_coord_center(t_fdf *fdf);
 void		set_min_max(t_fdf *fdf);
 int			hex_to_int(char *hex);
 void		set_map_color(t_coord *coord, char *data);
