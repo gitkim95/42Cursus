@@ -7,31 +7,32 @@
             "request": "launch",
             // "program": "${fileDirname}/a.out",
             "program": "${workspaceFolder}/2_Circle/FdF/fdf",
-            "args": ["test.fdf"],
+            "args": ["42.fdf"],
             "stopAtEntry": false,
             // "cwd": "${fileDirname}",
-            "cwd": "${workspaceFolder}/2_Circle/FdF/",
+            "cwd": "${workspaceFolder}/2_Circle/FdF/library_files_1/maps/test_maps/",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            // "setupCommands":
-            // [
-	        //     {
-            //         "description": "Enable funcy printing to gdb",
-            //         "text": "-enable-pretty-printing",
-            //         "ignoreFailures": true
-            //     },
-            //     {
-            //         "description":"In this mode GDB will be attached to both processes after a call to fork() or vfork().",
-            //         "text": "-gdb-set detach-on-fork off",
-            //         "ignoreFailures": true
-            //     },
-            //     {
-            //         "description": "The new process is debugged after a fork. The parent process runs unimpeded.",
-            //         "text": "-gdb-set follow-fork-mode child",
-            //         "ignoreFailures": true
-            //     }
-            // ],
         }
     ]
 }
+
+// "setupCommands":
+// [
+//     {
+//         "description": "Enable funcy printing to gdb",
+//         "text": "-enable-pretty-printing",
+//         "ignoreFailures": true
+//     },
+//     {
+//         "description":"In this mode GDB will be attached to both processes after a call to fork() or vfork().",
+//         "text": "-gdb-set detach-on-fork off",
+//         "ignoreFailures": true
+//     },
+//     {
+//         "description": "The new process is debugged after a fork. The parent process runs unimpeded.",
+//         "text": "-gdb-set follow-fork-mode child",
+//         "ignoreFailures": true
+//     }
+// ],

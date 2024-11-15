@@ -23,7 +23,7 @@ $(NAME) : $(M_OBJS) $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) -o $@ $^ -L$(MINILIBX_DIR) -lmlx_Linux -Imlx_linux -lXext -lX11 -lm -lz
 
 %.o : %.c
-	$(CC) $(CFLAGS) -I$(MINILIBX_DIR) -O3 -c $< -o $@
+	$(CC) $(CFLAGS) -I$(MINILIBX_DIR) -c $< -o $@
 
 $(LIBFT) :
 	make -C $(LIBFT_DIR)
