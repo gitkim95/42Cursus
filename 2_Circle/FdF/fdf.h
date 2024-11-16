@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 23:06:42 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/15 01:02:23 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/16 11:59:29 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 # define HEIGHT 1080
 # define UPPERHEX "0123456789ABCDEF"
 # define LOWERHEX "0123456789ABCDEF"
+
+typedef struct s_bresenham
+{
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+}	t_bresenham;
 
 typedef struct s_map_list
 {
