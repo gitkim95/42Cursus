@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 23:06:20 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/17 20:16:56 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/18 01:41:19 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,20 +170,20 @@ int	refresh_image(t_fdf *fdf)
 	return (0);
 }
 
-int	close_window(int keycode, t_fdf *fdf)
+int close_win2(t_fdf *fdf)
 {
-	if (keycode == 65307)
-	{
-		mlx_destroy_window(fdf->mlx, fdf->win);
-		terminator(0, fdf, 0, NULL);
-	}
+	mlx_destroy_image(fdf->mlx, fdf->img);
+	mlx_destroy_window(fdf->mlx, fdf->win);
+	mlx_destroy_display(fdf->mlx);
+	free(fdf->mlx);
+	terminator(5, fdf, 0, NULL);
 	return (0);
 }
 
-int close_win2(t_fdf *fdf)
+int	close_win1(int keycode, t_fdf *fdf)
 {
-	mlx_destroy_window(fdf->mlx, fdf->win);
-	terminator(0, fdf, 0, NULL);
+	if (keycode == 65307)
+		close_win2(fdf);
 	return (0);
 }
 
@@ -198,7 +198,7 @@ int	main(int ac, char *av[])
 	set_map_struct(&fdf, av[1]);
 	init_fdf_struct(&fdf, av[1]);
 	mlx_hook(fdf.win, 17, 0, close_win2, &fdf);
-	mlx_hook(fdf.win, 2, 1L<<0, close_window, &fdf);
+	mlx_hook(fdf.win, 2, 1L<<0, close_win1, &fdf);
 	mlx_loop_hook(fdf.mlx, refresh_image, &fdf);
 	mlx_loop(fdf.mlx);
 	return (0);

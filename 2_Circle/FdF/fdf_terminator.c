@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 22:19:23 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/17 17:38:21 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/18 01:41:09 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,12 @@ void	gnl_leak_guard(void)
 void	terminator(int flag, void *data, int errnum, char *msg)
 {
 	gnl_leak_guard();
-	if (data && flag == 3)
-		free_fdf_coord((t_fdf *)data);
-	else if (data && flag == 4)
+	if (data && flag == 4)
 		free_fdf_maplist((t_map_list *)data);
-	if (flag == 0)
-		exit(flag);
+	else if (data && (flag == 3 || flag == 5))
+		free_fdf_coord((t_fdf *)data);
+	if (flag == 0 || flag == 5)
+		exit(0);
 	else if (flag == -1)
 		return ;
 	if (errnum)
