@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 02:37:18 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/18 01:33:52 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/18 01:57:42 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,11 @@ void	set_map_size_n_list(t_fdf *fdf, t_map_list **temp, int fd)
 			terminator(1, NULL, 0, "Allocation failed");
 		cal_width = get_map_width(buf_split);
 		node = fdf_maplist_newnode(buf_split);
+		fdf_maplist_addback(temp, node);
 		if (!node)
 			terminator(4, *temp, 0, "Allocation failed");
 		if (fdf->map.width && fdf->map.width != cal_width)
 			terminator(4, *temp, 0, "File data incorrect");
-		fdf_maplist_addback(temp, node);
 		fdf->map.width = cal_width;
 		fdf->map.height++;
 	}
