@@ -6,17 +6,17 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 23:06:42 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/16 11:59:29 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/17 20:17:43 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1200
+# define HEIGHT 800
 # define UPPERHEX "0123456789ABCDEF"
-# define LOWERHEX "0123456789ABCDEF"
+# define LOWERHEX "0123456789abcdef"
 
 typedef struct s_bresenham
 {

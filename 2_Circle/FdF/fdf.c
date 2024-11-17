@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 23:06:20 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/16 12:50:04 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/17 20:16:56 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,36 +65,6 @@ static t_bresenham	init_bresenham(t_point p1, t_point p2)
 
 void	draw_line_to_img(t_fdf *fdf, t_point p1, t_point p2)
 {
-	// float	m;
-	// int		x;
-	// int		y;
-	// float	dx;
-	// float	dy;
-
-	// x = p1.x;
-	// y = p1.y;
-	// dx = p2.x - p1.x;
-	// dy = p2.y - p1.y;
-	// m = dy / dx;
-	// while (p1.x != p2.x || p1.y != p2.y)
-	// {
-	// 	my_mlx_pixel_put(fdf, p1.x, p1.y, p1.color);
-	// 	if(dx > dy) {
-	// 		if (p2.x > p1.x)
-	// 			++(p1.x);
-	// 		else
-	// 			--(p1.x);
-	// 		p1.y = m * (p1.x - x) + y;
-	// 	}
-	// 	else {
-	// 		if (p2.y > p1.y)
-	// 			++(p1.y);
-	// 		else
-	// 			--(p1.y);
-	// 		p1.x = (p1.y - y) / m + x;
-	// 	}
-	// }
-	// my_mlx_pixel_put(fdf, p1.x, p1.y, p1.color);
 	t_bresenham	bresenham;
 	int			err;
 	int			e2;
@@ -200,38 +170,36 @@ int	refresh_image(t_fdf *fdf)
 	return (0);
 }
 
+int	close_window(int keycode, t_fdf *fdf)
+{
+	if (keycode == 65307)
+	{
+		mlx_destroy_window(fdf->mlx, fdf->win);
+		terminator(0, fdf, 0, NULL);
+	}
+	return (0);
+}
+
+int close_win2(t_fdf *fdf)
+{
+	mlx_destroy_window(fdf->mlx, fdf->win);
+	terminator(0, fdf, 0, NULL);
+	return (0);
+}
+
 int	main(int ac, char *av[])
 {
 	t_fdf		fdf;
 
 	if (ac != 2)
-	{
-		//error
-	}
+		terminator(1, NULL, 0, "Incorrect number of arguments");
 	valid_fdf_file(av[1]);
 	set_struct_zero(&fdf);
 	set_map_struct(&fdf, av[1]);
 	init_fdf_struct(&fdf, av[1]);
-	// fdf_hook(&fdf);
-	// fdf_draw(&fdf);
-
-	
-
-	mlx_loop_hook(fdf.mlx, refresh_image, &fdf); // 2번째 인자로 다 지우고 새로 그리기 넣기
+	mlx_hook(fdf.win, 17, 0, close_win2, &fdf);
+	mlx_hook(fdf.win, 2, 1L<<0, close_window, &fdf);
+	mlx_loop_hook(fdf.mlx, refresh_image, &fdf);
 	mlx_loop(fdf.mlx);
 	return (0);
 }
-
-/*
-.fdf 파일이 유효한지 확인
-메인 구조체 초기화
-fdf.map 구조체 세팅
-*/
-	// for(int i = 0; i < fdf.map.height; i++)
-	// {
-	// 	for (int j = 0; j < fdf.map.width; j++)
-	// 	{
-	// 		printf("%d ", fdf.map.map[i][j]);
-	// 	}
-	// 	printf("%c", '\n');
-	// }

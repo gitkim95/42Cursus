@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 02:37:18 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/15 00:55:58 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/17 17:27:35 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,6 @@ void	set_map_struct(t_fdf *fdf, char *file_path)
 		terminator(1, NULL, errno, "File open failed");
 	temp = NULL;
 	set_map_size_n_list(fdf, &temp, fd);
-	close(fd); // 여기서 처리
+	close(fd);
 	set_coord_map(fdf, &temp);
 }
