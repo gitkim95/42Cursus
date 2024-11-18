@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/17 01:28:26 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/18 14:43:35 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/01 18:50:42 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/03 17:26:05 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+#include "libft.h"
 
-int	main(int argc, char *argv[], char *envp[])
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	char *str;
+	size_t	d_len;
+	size_t	s_len;
+	size_t	i;
 
-	while (1)
+	i = 0;
+	s_len = ft_strlen(src);
+	d_len = ft_strlen(dst);
+	if (size <= d_len)
+		return (s_len + size);
+	while (src[i] != '\0' && i < size - 1 - d_len)
 	{
-		str = readline("$ ");
-		if (str)
-			printf("%s\n", str);
-		else
-			break;
-		add_history(str);
-		free(str);
+		dst[d_len + i] = src[i];
+		i++;
 	}
-	return (0);
+	dst[d_len + i] = '\0';
+	return (s_len + d_len);
 }

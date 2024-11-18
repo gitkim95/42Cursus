@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/17 01:28:26 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/18 14:43:35 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/03 19:32:20 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/03 20:04:24 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+#include "libft.h"
 
-int	main(int argc, char *argv[], char *envp[])
+int	ft_lstsize(t_list *lst)
 {
-	char *str;
+	int	cnt;
 
-	while (1)
+	cnt = 0;
+	while (lst)
 	{
-		str = readline("$ ");
-		if (str)
-			printf("%s\n", str);
-		else
-			break;
-		add_history(str);
-		free(str);
+		cnt++;
+		lst = lst -> next;
 	}
-	return (0);
+	return (cnt);
 }

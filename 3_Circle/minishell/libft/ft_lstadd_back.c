@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/17 01:28:26 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/18 14:43:35 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/03 19:36:56 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/06 04:08:14 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+#include "libft.h"
 
-int	main(int argc, char *argv[], char *envp[])
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	char *str;
+	t_list	*last_lst;
 
-	while (1)
+	if (!lst || !new)
+		return ;
+	if (*lst == NULL)
+		*lst = new;
+	else
 	{
-		str = readline("$ ");
-		if (str)
-			printf("%s\n", str);
-		else
-			break;
-		add_history(str);
-		free(str);
+		last_lst = ft_lstlast(*lst);
+		last_lst -> next = new;
 	}
-	return (0);
 }

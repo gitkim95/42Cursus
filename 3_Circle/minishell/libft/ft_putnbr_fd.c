@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/17 01:28:26 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/18 14:43:35 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/03 17:32:17 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/03 22:31:27 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+#include "libft.h"
 
-int	main(int argc, char *argv[], char *envp[])
+void	ft_putnbr_fd(int n, int fd)
 {
-	char *str;
+	char	tmp;
 
-	while (1)
+	if (n < 0)
 	{
-		str = readline("$ ");
-		if (str)
-			printf("%s\n", str);
-		else
-			break;
-		add_history(str);
-		free(str);
+		if (n == -2147483648)
+		{
+			write(fd, "-2147483648", 11);
+			return ;
+		}
+		n *= -1;
+		write(fd, "-", 1);
 	}
-	return (0);
+	if (n >= 10)
+		ft_putnbr_fd(n / 10, fd);
+	tmp = n % 10 + '0';
+	write(fd, &tmp, 1);
 }

@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/17 01:28:26 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/18 14:43:35 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/03 17:01:38 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/08 18:51:14 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+#include "libft.h"
 
-int	main(int argc, char *argv[], char *envp[])
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	char *str;
+	unsigned int	i;
+	unsigned int	s_len;
 
-	while (1)
+	if (!s || !f)
+		return ;
+	s_len = ft_strlen(s);
+	i = 0;
+	while (i < s_len)
 	{
-		str = readline("$ ");
-		if (str)
-			printf("%s\n", str);
-		else
-			break;
-		add_history(str);
-		free(str);
+		(*f)(i, &s[i]);
+		i++;
 	}
-	return (0);
 }

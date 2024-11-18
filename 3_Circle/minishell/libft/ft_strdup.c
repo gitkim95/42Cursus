@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/17 01:28:26 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/18 14:43:35 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/01 22:04:06 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/08 18:50:11 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+#include "libft.h"
 
-int	main(int argc, char *argv[], char *envp[])
+char	*ft_strdup(const char *s)
 {
-	char *str;
+	char	*new_str;
+	size_t	s_len;
+	size_t	i;
 
-	while (1)
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	new_str = (char *)malloc(sizeof(char) * (s_len + 1));
+	if (new_str == NULL)
+		return (NULL);
+	i = 0;
+	while (i < s_len)
 	{
-		str = readline("$ ");
-		if (str)
-			printf("%s\n", str);
-		else
-			break;
-		add_history(str);
-		free(str);
+		new_str[i] = s[i];
+		i++;
 	}
-	return (0);
+	new_str[i] = '\0';
+	return (new_str);
 }

@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/17 01:28:26 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/18 14:43:35 by gitkim           ###   ########.fr       */
+/*   Created: 2024/10/01 20:56:17 by gitkim            #+#    #+#             */
+/*   Updated: 2024/10/09 18:33:22 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+#include "libft.h"
 
-int	main(int argc, char *argv[], char *envp[])
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char *str;
+	size_t			i;
+	unsigned char	*s_1;
+	unsigned char	*s_2;
 
-	while (1)
+	s_1 = (unsigned char *)s1;
+	s_2 = (unsigned char *)s2;
+	i = 0;
+	while (s_1[i] && s_2[i] && i < n)
 	{
-		str = readline("$ ");
-		if (str)
-			printf("%s\n", str);
-		else
-			break;
-		add_history(str);
-		free(str);
+		if (s_1[i] != s_2[i])
+			return (s_1[i] - s_2[i]);
+		i++;
 	}
+	if (i < n)
+		return (s_1[i] - s_2[i]);
 	return (0);
 }
