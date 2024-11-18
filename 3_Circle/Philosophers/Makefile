@@ -2,11 +2,12 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 NAME = philo
 MAIN = philosophers.c
+BONUS =	philo_bonus
 SOURCES =
-BONUS =	
+B_SOURCES =
 M_OBJS = $(MAIN:.c=.o)
 OBJS = $(SOURCES:.c=.o)
-B_OBJS = $(BONUS:.c=.o)
+B_OBJS = $(B_SOURCES:.c=.o)
 
 all : $(NAME)
 
