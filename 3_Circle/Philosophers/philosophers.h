@@ -1,9 +1,34 @@
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
 
+# include <pthread.h>
+
+typedef struct	s_data
+{
+	pthread_mutex_t	*fork;
+	int				num_of_philo;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				start_time;
+	int				times_to_eat;
+}	t_data;
+
+typedef struct s_philo
+{
+	t_data	*data;
+	int		id;
+	int		left_fork;
+	int		right_fork;
+	int		last_time_eaten;
+	int		num_of_eaten;
+}	t_philo;
+
+
 #endif
 
 /*
+//https://techdebt.tistory.com/32int
 다음은 이 과제를 성공적으로 수행하기 위해 알아야 할 사항입니다:
 
 • 한 명 이상의 철학자가 원탁에 앉아 있습니다.
