@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 22:45:35 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/19 22:46:24 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/19 22:50:28 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,18 @@ typedef struct s_philo
 	long long		last_time_eaten;
 }	t_philo;
 
+//ph_init.c
+int			ph_data_mutex_init(t_data *data);
+int			ph_data_init(t_data *data, int argc, char *argv[]);
+int			ph_philo_init(t_philo **philo, t_data *data);
+
 //ph_terminator.c
+void		free_data(t_data *data);
+void		free_philo(t_philo **philo);
 int			terminator(int flag, void *for_free, char *msg);
 
 //ph_util.c
+int			ph_print_status(t_data *data, int id, char *msg);
 long long	ph_get_time(void);
 size_t		ft_strlen(const char *s);
 int			ft_atoi(const char *nptr);
