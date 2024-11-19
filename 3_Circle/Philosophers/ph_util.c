@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:24:49 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/19 21:27:24 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/19 22:47:56 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	ph_print_status(t_data *data, int id, char *msg)
 	if (cur_time == -1)
 		return (-1);
 	pthread_mutex_lock(&(data->print));
-	
 }
 
 long long	ph_get_time(void)
@@ -29,10 +28,10 @@ long long	ph_get_time(void)
 	struct timeval	tv;
 	long long		total_time;
 	int				flag;
-	
+
 	flag = gettimeofday(&tv, NULL);
 	if (flag == -1)
-		return (-1);// error
+		return (-1);
 	total_time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 	return (total_time);
 }

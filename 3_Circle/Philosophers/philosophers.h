@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philosophers.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/19 22:45:35 by gitkim            #+#    #+#             */
+/*   Updated: 2024/11/19 22:46:24 by gitkim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
 
 # include <pthread.h>
 
-typedef struct	s_data
+typedef struct s_data
 {
 	pthread_mutex_t	*fork;
-	pthread_mutex_t print;
+	pthread_mutex_t	print;
 	int				num_of_philo;
 	int				time_to_die;
 	int				time_to_eat;
