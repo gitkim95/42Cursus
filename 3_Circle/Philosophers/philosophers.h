@@ -6,24 +6,33 @@
 typedef struct	s_data
 {
 	pthread_mutex_t	*fork;
+	pthread_mutex_t print;
 	int				num_of_philo;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
-	int				start_time;
 	int				times_to_eat;
+	long long		start_time;
 }	t_data;
 
 typedef struct s_philo
 {
-	t_data	*data;
-	int		id;
-	int		left_fork;
-	int		right_fork;
-	int		last_time_eaten;
-	int		num_of_eaten;
+	pthread_t		thread;
+	t_data			*data;
+	int				id;
+	int				left_fork;
+	int				right_fork;
+	int				num_of_eaten;
+	long long		last_time_eaten;
 }	t_philo;
 
+//ph_terminator.c
+int			terminator(int flag, void *for_free, char *msg);
+
+//ph_util.c
+long long	ph_get_time(void);
+size_t		ft_strlen(const char *s);
+int			ft_atoi(const char *nptr);
 
 #endif
 

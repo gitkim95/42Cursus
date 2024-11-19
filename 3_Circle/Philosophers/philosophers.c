@@ -6,45 +6,30 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:42:53 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/19 17:59:06 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/19 21:04:38 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-// libft 사용 불가
-
-int	ft_atoi(const char *nptr)
-{
-	int	i;
-	int	sign;
-	int	result;
-
-	sign = 1;
-	i = 0;
-	result = 0;
-	while (nptr[i] == 32 || (9 <= nptr[i] && nptr[i] <= 13))
-		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
-	{
-		if (nptr[i + 1] == '+' || nptr[i + 1] == '-')
-			return (0);
-		if (nptr[i] == '-')
-			sign *= -1;
-		i++;
-	}
-	if (!('0' <= nptr[i] && nptr[i] <= '9'))
-		return (0);
-	while ('0' <= nptr[i] && nptr[i] <= '9')
-	{
-		result = result * 10 + (nptr[i] - '0');
-		i++;
-	}
-	return (result * sign);
-}
+#include <stdlib.h>
 
 int	ph_data_mutex_init(t_data *data)
 {
-	if (pthread_mutex_init())
+	int	idx;
+
+	if (pthread_mutex_init(&(data->print), NULL))
+		return (1);
+	data->fork = malloc(sizeof(pthread_mutex_t) * data->num_of_philo);
+	if (!data->fork)
+		return (1);
+	idx = 0;
+	while (idx < data->num_of_philo)
+	{
+		if (pthread_mutex_init(&(data->fork[idx]), NULL))
+			return (1);
+		idx++;
+	}
+	return (0);
 }
 
 int	ph_data_init(t_data *data, int argc, char *argv[])
@@ -53,14 +38,45 @@ int	ph_data_init(t_data *data, int argc, char *argv[])
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
-	data->start_time = ??; // 시간 설정
+	data->start_time = ph_get_time();
 	if (argc == 6)
 		data->times_to_eat = ft_atoi(argv[5]);
 	if (data->num_of_philo <= 0 || data->time_to_die < 0 ||\
 		data->time_to_eat < 0 || data->time_to_sleep < 0 ||\
 		data->times_to_eat < 0)
-		return (1); // error
+		return (1);
+	if (ph_data_mutex_init(data))
+		return (1);
+	return (0);
+}
 
+int ph_philo_init(t_philo **philo, t_data *data)
+{
+	int	idx;
+
+	*philo = malloc(sizeof(t_philo) * data->num_of_philo);
+	if (!(*philo))
+		return (1);
+	idx = 0;
+	while (idx < data->num_of_philo)
+	{
+		(*philo)[idx].data = data;
+		(*philo)[idx].id = idx;
+		(*philo)[idx].left_fork = idx;
+		(*philo)[idx].right_fork = (idx + 1) % data->num_of_philo;
+		(*philo)[idx].last_time_eaten = ph_get_time();
+		(*philo)[idx].num_of_eaten = 0;
+		idx++;
+	}
+	return (0);
+
+}
+
+int	philosopher_logic(t_philo *philo, t_data *data)
+{
+
+	
+	return (0);
 }
 
 int	main(int argc, char *argv[])
@@ -70,12 +86,16 @@ int	main(int argc, char *argv[])
 	int		flag;
 
 	if (argc != 5 || argc != 6)
-		terminator;
+		return (terminator(1, NULL, "Incorrect number of arguments"));
 	flag = ph_data_init(&data, argc, argv);
 	if (flag)
-		terminator;
-	flag = ph_philo_init();
+		return (terminator(2, &data, "Data init error"));
+	flag = ph_philo_init(&philo, &data);
 	if (flag)
-		terminator;
-	
+		return (terminator(3, &philo, "Philo init error"));
+	flag = philosophers_logic(philo, &data);
+	if (flag)
+		return (terminator);
+
+	return (0);
 }
