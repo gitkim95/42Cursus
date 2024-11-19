@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:24:49 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/19 21:08:22 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/19 21:27:24 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	ph_print_status(t_data *data, int id, char *msg)
 	cur_time = ph_get_time();
 	if (cur_time == -1)
 		return (-1);
+	pthread_mutex_lock(&(data->print));
 	
 }
 
