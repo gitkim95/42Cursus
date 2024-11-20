@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 02:37:18 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/18 01:57:42 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/20 15:45:26 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	set_coord_map(t_fdf *fdf, t_map_list **head)
 	idx = 0;
 	while (idx < fdf->map.height)
 	{
-		fdf->map.data[idx] = (t_coord *)malloc(sizeof(t_coord) * fdf->map.width);
+		fdf->map.data[idx] = (t_coord *)malloc(sizeof(t_coord) * \
+		fdf->map.width);
 		if (!(fdf->map.data[idx]))
 		{
 			free_fdf_coord(fdf);
@@ -64,7 +65,6 @@ void	set_coord_map(t_fdf *fdf, t_map_list **head)
 	set_min_max(fdf);
 	set_coord_center(fdf);
 }
-
 
 int	get_map_width(char **buf_split)
 {
@@ -85,7 +85,7 @@ void	set_map_size_n_list(t_fdf *fdf, t_map_list **temp, int fd)
 
 	while (1)
 	{
-		buf = get_next_line(fd); // 내부 static buf free
+		buf = get_next_line(fd);
 		if (!buf || !(*buf))
 			break ;
 		buf_split = ft_split(buf, ' ');

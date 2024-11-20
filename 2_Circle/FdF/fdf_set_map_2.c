@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 02:43:10 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/15 00:58:46 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/20 15:45:40 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	hex_to_int(char *hex)
 
 void	set_map_color(t_coord *coord, char *data)
 {
-	char *color;
+	char	*color;
 
 	color = ft_strchr(data, ',');
 	if (color)

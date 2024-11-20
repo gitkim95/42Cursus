@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 23:06:42 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/17 20:17:43 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/20 15:54:57 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,96 +71,54 @@ typedef struct s_fdf
 	int		scale;
 	t_map	map;
 }	t_fdf;
+
+//fdf_bresenham.c
+void				draw_line_to_img(t_fdf *fdf, t_point p1, t_point p2);
+
+//fdf_close.c
+int					close_win2(t_fdf *fdf);
+int					close_win1(int keycode, t_fdf *fdf);
+
+//fdf_draw.c
+t_point				isomatric_projection(t_fdf *fdf, t_coord coord);
+int					refresh_image(t_fdf *fdf);
+
 //fdf_init_struct.c
-void		set_struct_zero(t_fdf *fdf);
+void				set_struct_zero(t_fdf *fdf);
 
 //fdf_list_util.c
-t_map_list	*fdf_maplist_last(t_map_list *node);
-void		fdf_maplist_addback(t_map_list **head, t_map_list *new_node);
-t_map_list	*fdf_maplist_newnode(char **maplist);
+t_map_list			*fdf_maplist_last(t_map_list *node);
+void				fdf_maplist_addback(t_map_list **head, \
+					t_map_list *new_node);
+t_map_list			*fdf_maplist_newnode(char **maplist);
 
 //fdf_set_map_1.c
-void		set_coord_data(t_fdf *fdf, t_map_list **head);
-void		set_coord_map(t_fdf *fdf, t_map_list **head);
-int			get_map_width(char **buf_split);
-void		set_map_size_n_list(t_fdf *fdf, t_map_list **temp, int fd);
-void		set_map_struct(t_fdf *fdf, char *file_path);
+void				set_coord_data(t_fdf *fdf, t_map_list **head);
+void				set_coord_map(t_fdf *fdf, t_map_list **head);
+int					get_map_width(char **buf_split);
+void				set_map_size_n_list(t_fdf *fdf, t_map_list **temp, int fd);
+void				set_map_struct(t_fdf *fdf, char *file_path);
 
 //fdf_set_map_2.c
-void		set_coord_center(t_fdf *fdf);
-void		set_min_max(t_fdf *fdf);
-int			hex_to_int(char *hex);
-void		set_map_color(t_coord *coord, char *data);
+void				set_coord_center(t_fdf *fdf);
+void				set_min_max(t_fdf *fdf);
+int					hex_to_int(char *hex);
+void				set_map_color(t_coord *coord, char *data);
 
 //fdf_terminator.c
-void		free_fdf_coord(t_fdf *fdf);
-void		free_split(char **c_split, int **i_split, int i_size);
-void		free_fdf_maplist(t_map_list *node);
-void		terminator(int flag, void *data, int errnum, char *msg);
+void				free_fdf_coord(t_fdf *fdf);
+void				free_split(char **c_split, int **i_split, int i_size);
+void				free_fdf_maplist(t_map_list *node);
+void				terminator(int flag, void *data, int errnum, char *msg);
 
 //fdf_utils.c
+int					fdf_abs(int num);
+void				my_mlx_pixel_put(t_fdf *fdf, int x, int y, \
+					unsigned int color);
+void				init_fdf_struct(t_fdf	*fdf, char *file_path);
 
 //fdf_valid_file.c
-void		valid_fdf_file(char *file_path);
-
-//fdf.c
+void				valid_fdf_file(char *file_path);
+void				init_fdf_struct(t_fdf	*fdf, char *file_path);
 
 #endif
-/*
-
-# include <unistd.h> // read, write, close
-
-https://velog.io/@tmdgks2222/fdf
-https://velog.io/@minjune8506/MiniLibX
-https://80000coding.oopy.io/b44522da-1efb-46aa-86f3-ec9bbb13f58a#b44522da-1efb-46aa-86f3-ec9bbb13f58a
-https://github.com/goffauxs/fdf/blob/main/fdf.c
-libxext-dev
-
-이 프로젝트는 라인 세그먼트(x, z) 덕분에 다양한 포인트(x, z) 덕분에 3D 풍경(x, z)의 간단한 와이어 프레임 모델 표현을 만들고 있다.
-프로젝트는 다음 규칙을 준수해야 합니다:
-• MiniLibX를 사용해야 합니다. 학교 컴퓨터에서 사용할 수 있는 버전이거나 소스를 사용하여 설치해야 합니다.
-• 원본 파일을 컴파일할 Makefile을 제출해야 합니다. 다시 연결해서는 안 됩니다.
-• 전역 변수는 금지되어 있습니다.
-
-V.1 렌더링
-프로그램은 등각 투영으로 모델을 표현해야 합니다.
-랜드스케이프의 좌표는 프로그램에 매개 변수로 전달되는 .fdf 파일에 저장됩니다. 다음은 예입니다:
->cat 42.fdf
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 10 10 0 0 10 10 0 0 0 10 10 10 10 10 0 0 0
-0 0 10 10 0 0 10 10 0 0 0 0 0 0 0 10 10 0 0
-0 0 10 10 0 0 10 10 0 0 0 0 0 0 0 10 10 0 0
-0 0 10 10 10 10 10 10 0 0 0 0 10 10 10 10 0 0 0
-0 0 0 10 10 10 10 10 0 0 0 10 10 0 0 0 0 0 0
-0 0 0 0 0 0 10 10 0 0 0 10 10 0 0 0 0 0 0
-0 0 0 0 0 0 10 10 0 0 0 10 10 10 10 10 10 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-각 숫자는 공간의 한 점을 나타냅니다:
-• 수평 위치는 축에 해당합니다.
-• 세로 위치는 해당 세로 위치에 해당합니다.
-• 이 값은 고도에 해당합니다
-
-가능한 한 가장 좋은 방법으로 libft를 사용하는 것을 잊지 마세요! get_next_line(), ft_split() 및 기타 기능을 사용하면 빠르고 간단한 방법으로 파일에서 데이터를 읽을 수 있습니다.
-이 프로젝트의 목표는 지도를 구문 분석하는 것이 아니라는 점을 명심하세요! 하지만 그렇다고 해서 프로그램을 실행할 때 충돌해야 하는 것은 아닙니다. 즉, 파일에 포함된 지도의 형식이 적절하다고 가정합니다.
-
-V.2 그래픽 관리
-• 프로그램은 이미지를 창에 표시해야 합니다.
-• 창 관리는 원활하게 유지되어야 합니다(다른 창으로 변경, 최소화 등).
-• ESC를 누르면 창을 닫고 프로그램을 깔끔하게 종료해야 합니다.
-• 창틀의 십자 표시를 클릭하면 창을 닫고 프로그램을 깔끔하게 종료해야 합니다.
-• MiniLibX의 이미지 사용은 필수입니다.
-
-보너스
-
-보통은 나만의 독창적인 추가 기능을 개발하는 것이 좋습니다. 하지만 나중에 훨씬 더 흥미로운 그래픽 프로젝트가 있을 것입니다. 그들이 여러분을 기다리고 있습니다!!
-이 과제에 너무 많은 시간을 낭비하지 마세요!
-평가 중에 보너스 부분의 사용이 정당화되는 한 다른 기능을 사용하여 보너스 부분을 완료할 수 있습니다. 현명하게 행동하세요!
-가능하면 몇 가지 추가 점수를 받을 수 있습니다:
-• 평행 또는 원뿔과 같은 하나의 추가 투영을 포함합니다!
-• 확대/축소합니다.
-• 모델을 번역합니다.
-• 모델을 회전합니다.
-• 원하는 보너스를 하나 더 추가합니다.
- */
