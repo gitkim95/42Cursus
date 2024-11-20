@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 22:19:23 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/18 01:41:09 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/20 15:45:59 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void	free_fdf_coord(t_fdf *fdf)
 {
-	int	y;
+	int		y;
 	t_coord	**temp;
 
 	temp = fdf->map.data;
@@ -77,7 +77,7 @@ void	gnl_leak_guard(void)
 	{
 		buf = get_next_line(3);
 		if (!buf)
-			break;
+			break ;
 		free(buf);
 	}
 }
