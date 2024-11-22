@@ -6,12 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 22:42:06 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/22 15:56:33 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/22 18:15:29 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
-#include "stdlib.h"
+#include "philo.h"
+#include <stdlib.h>
 
 int	ph_data_mutex_init(t_data *data)
 {
@@ -38,7 +38,7 @@ int	ph_data_init(t_data *data, int argc, char *argv[])
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
-	data->flag = 1;
+	data->dead_flag = 1;
 	data->start_time = ph_get_time();
 	if (argc == 6)
 	{

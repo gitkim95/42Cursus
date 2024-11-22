@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.h                                     :+:      :+:    :+:   */
+/*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 22:45:35 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/22 15:57:40 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/22 18:32:18 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int			ph_data_init(t_data *data, int argc, char *argv[]);
 int			ph_philo_init(t_philo **philo, t_data *data);
 
 //ph_terminator.c
-void		free_data(t_data *data);
+void		ph_destroy_mutex(t_data *data);
+void		ph_detach(t_philo *philo, t_data *data);
 void		free_philo(t_philo **philo);
 int			terminator(int flag, void *for_free, char *msg);
 

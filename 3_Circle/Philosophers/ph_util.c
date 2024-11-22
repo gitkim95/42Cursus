@@ -6,12 +6,13 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:24:49 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/20 17:25:58 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/23 01:21:48 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philo.h"
 #include <sys/time.h>
+#include <stdio.h>
 
 int	ph_print_status(t_data *data, int id, char *msg)
 {
@@ -21,7 +22,7 @@ int	ph_print_status(t_data *data, int id, char *msg)
 	if (cur_time == -1)
 		return (-1);
 	pthread_mutex_lock(&(data->print));
-	printf("%lld %d %s \n", cur_time - data->start_time, id + 1, msg);
+	printf("%lld %d %s \n", cur_time, id + 1, msg);
 	pthread_mutex_unlock(&(data->print));
 	return (0);
 }

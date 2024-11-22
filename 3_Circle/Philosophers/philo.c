@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
+/*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:42:53 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/22 16:05:09 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/23 01:28:36 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philo.h"
 #include <pthread.h>
 #include <stdlib.h>
 #include <unistd.h>//usleep
+#include <stdio.h>
 
 int	ph_philo_eating(t_philo *philo, t_data *data)
 {
@@ -47,7 +48,7 @@ void	*thread_task(void *param)
 		ph_philo_eating(philo, data);
 		if (data->times_to_eat == philo->num_of_eaten)
 		{
-			data->dead_flag--;
+			data->dead_flag = 0;
 			break;
 		}
 		ph_print_status(data, philo->id, "is sleeping");
@@ -57,27 +58,25 @@ void	*thread_task(void *param)
 	return (0);
 }
 
-void	val_flag(t_philo *philo, t_data *data)
-{
-	int			idx;
-	long long	time;
+// void	val_flag(t_philo *philo, t_data *data)
+// {
+// 	int			idx;
+// 	long long	time;
 
-	if (data->dead_flag)
-	{
-		if ()
-	}
-}
+// 	if (data->dead_flag)
+// 	{
+// 		if ()
+// 	}
+// }
 
-void	del
-
-int	philosopher_logic(t_philo *philo, t_data *data)
+int	philosophers_logic(t_philo *philo, t_data *data)
 {
 	int	idx;
 
 	idx = 0;
 	while (idx < data->num_of_philo)
 	{
-		if (pthread_create(philo[idx].thread, NULL, thread_task, &philo[idx]))
+		if (pthread_create(&philo[idx].thread, NULL, thread_task, &philo[idx]))
 			return (1);
 		idx++;
 	}
@@ -90,13 +89,20 @@ int	philosopher_logic(t_philo *philo, t_data *data)
 	return (0);
 }
 
+void	ph_clear(t_philo **philo, t_data *data)
+{
+	ph_detach(*philo, data);
+	ph_destroy_mutex(data);
+
+}
+
 int	main(int argc, char *argv[])
 {
 	t_data	data;
 	t_philo	*philo;
 	int		flag;
 
-	if (argc != 5 || argc != 6)
+	if (argc != 5 && argc != 6)
 		return (terminator(1, NULL, "Incorrect number of arguments"));
 	flag = ph_data_init(&data, argc, argv);
 	if (flag)
@@ -106,6 +112,7 @@ int	main(int argc, char *argv[])
 		return (terminator(3, &philo, "Philo init error"));
 	flag = philosophers_logic(philo, &data);
 	if (flag)
-		return (terminator);
+		return (0);
+	ph_detach(philo, &data);
 	return (0);
 }

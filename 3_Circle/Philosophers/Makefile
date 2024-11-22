@@ -1,7 +1,7 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 NAME = philo
-MAIN = philosophers.c
+MAIN = philo.c
 BONUS =	philo_bonus
 SOURCES =
 B_SOURCES =
