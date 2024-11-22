@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:42:53 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/20 17:42:04 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/22 16:05:09 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ph_philo_eating(t_philo *philo, t_data *data)
 		ph_print_status(data, philo->id, "is eating");
 		philo->last_time_eaten = ph_get_time();
 		philo->num_of_eaten++;
-
+		// 먹을 시간 주기
 		pthread_mutex_unlock(&(data->fork[philo->right_fork]));
 	}
 	pthread_mutex_unlock(&(data->fork[philo->left_fork]));
@@ -42,11 +42,33 @@ void	*thread_task(void *param)
 	data = philo->data;
 	if (philo->id % 2)
 		usleep(1000);
-	while (1)
+	while (data->dead_flag)
 	{
-		
+		ph_philo_eating(philo, data);
+		if (data->times_to_eat == philo->num_of_eaten)
+		{
+			data->dead_flag--;
+			break;
+		}
+		ph_print_status(data, philo->id, "is sleeping");
+		//생각 할 시간 주기
+		ph_print_status(data, philo->id, "is thinking");
+	}
+	return (0);
+}
+
+void	val_flag(t_philo *philo, t_data *data)
+{
+	int			idx;
+	long long	time;
+
+	if (data->dead_flag)
+	{
+		if ()
 	}
 }
+
+void	del
 
 int	philosopher_logic(t_philo *philo, t_data *data)
 {
@@ -57,6 +79,12 @@ int	philosopher_logic(t_philo *philo, t_data *data)
 	{
 		if (pthread_create(philo[idx].thread, NULL, thread_task, &philo[idx]))
 			return (1);
+		idx++;
+	}
+	idx = 0;
+	while (idx < data->num_of_philo)
+	{
+		pthread_join(philo[idx].thread, NULL);
 		idx++;
 	}
 	return (0);
