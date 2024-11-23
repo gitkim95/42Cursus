@@ -6,15 +6,15 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:42:53 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/23 01:28:36 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/23 15:57:19 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
 #include <pthread.h>
 #include <stdlib.h>
 #include <unistd.h>//usleep
 #include <stdio.h>
+#include "philo.h"
 
 int	ph_philo_eating(t_philo *philo, t_data *data)
 {
@@ -27,7 +27,7 @@ int	ph_philo_eating(t_philo *philo, t_data *data)
 		ph_print_status(data, philo->id, "is eating");
 		philo->last_time_eaten = ph_get_time();
 		philo->num_of_eaten++;
-		// 먹을 시간 주기
+		wait_tasking(ph_get_time(), data->time_to_eat);
 		pthread_mutex_unlock(&(data->fork[philo->right_fork]));
 	}
 	pthread_mutex_unlock(&(data->fork[philo->left_fork]));
@@ -52,22 +52,33 @@ void	*thread_task(void *param)
 			break;
 		}
 		ph_print_status(data, philo->id, "is sleeping");
-		//생각 할 시간 주기
+		wait_tasking(ph_get_time(), data->time_to_sleep);
 		ph_print_status(data, philo->id, "is thinking");
 	}
 	return (0);
 }
 
-// void	val_flag(t_philo *philo, t_data *data)
-// {
-// 	int			idx;
-// 	long long	time;
+void	val_flag(t_philo *philo, t_data *data)
+{
+	int			idx;
+	long long	cur_time;
 
-// 	if (data->dead_flag)
-// 	{
-// 		if ()
-// 	}
-// }
+	while (data->dead_flag)
+	{
+		// if (data->times_to_eat != 0 && data->num_of_philo == )
+		idx = 0;
+		while (idx < data->num_of_philo)
+		{
+			cur_time = ph_get_time();
+			if (philo[idx].last_time_eaten + data->time_to_die < cur_time)
+			{
+				ph_print_status(data, philo[idx].id, "died");
+				data->dead_flag = 0;
+			}
+			idx++;
+		}
+	}
+}
 
 int	philosophers_logic(t_philo *philo, t_data *data)
 {
@@ -80,6 +91,7 @@ int	philosophers_logic(t_philo *philo, t_data *data)
 			return (1);
 		idx++;
 	}
+	val_flag(philo, data);
 	idx = 0;
 	while (idx < data->num_of_philo)
 	{
@@ -87,13 +99,6 @@ int	philosophers_logic(t_philo *philo, t_data *data)
 		idx++;
 	}
 	return (0);
-}
-
-void	ph_clear(t_philo **philo, t_data *data)
-{
-	ph_detach(*philo, data);
-	ph_destroy_mutex(data);
-
 }
 
 int	main(int argc, char *argv[])

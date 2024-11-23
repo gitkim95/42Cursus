@@ -6,12 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 22:42:06 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/22 18:15:29 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/23 15:50:09 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
 #include <stdlib.h>
+#include "philo.h"
 
 int	ph_data_mutex_init(t_data *data)
 {

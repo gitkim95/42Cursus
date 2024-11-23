@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ph_util.c                                          :+:      :+:    :+:   */
+/*   ph_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:24:49 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/23 01:21:48 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/23 15:56:16 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
 #include <sys/time.h>
 #include <stdio.h>
+#include <unistd.h>
+#include "philo.h"
+
+void	wait_tasking(long long start, int wait)
+{
+	long long	fin_time;
+
+	fin_time = start + wait;
+	while (ph_get_time() <= fin_time)
+		usleep(10);
+}
 
 int	ph_print_status(t_data *data, int id, char *msg)
 {

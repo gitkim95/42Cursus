@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:25:59 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/23 01:19:15 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/23 15:50:04 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ void	ph_destroy_mutex(t_data *data)
 		idx++;
 	}
 	free(data->fork);
+}
+
+void	ph_clear(t_philo **philo, t_data *data)
+{
+	ph_detach(*philo, data);
+	ph_destroy_mutex(data);
 }
 
 void	ph_detach(t_philo *philo, t_data *data)
