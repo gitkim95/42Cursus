@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 22:42:06 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/23 15:50:09 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/24 22:26:15 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ph_data_init(t_data *data, int argc, char *argv[])
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
-	data->dead_flag = 1;
+	data->run_flag = 1;
 	data->start_time = ph_get_time();
 	if (argc == 6)
 	{
@@ -70,6 +70,7 @@ int	ph_philo_init(t_philo **philo, t_data *data)
 		(*philo)[idx].right_fork = (idx + 1) % data->num_of_philo;
 		(*philo)[idx].last_time_eaten = ph_get_time();
 		(*philo)[idx].num_of_eaten = 0;
+		(*philo)[idx].dead_flag = 0;
 		idx++;
 	}
 	return (0);

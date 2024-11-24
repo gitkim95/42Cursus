@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 22:45:35 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/23 15:56:56 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/24 22:26:06 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				times_to_eat;
-	int				dead_flag;
+	int				run_flag;
 	long long		start_time;
 }	t_data;
 
@@ -36,6 +36,7 @@ typedef struct s_philo
 	int				left_fork;
 	int				right_fork;
 	int				num_of_eaten;
+	int				dead_flag;
 	long long		last_time_eaten;
 }	t_philo;
 
