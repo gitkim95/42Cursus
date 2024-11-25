@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 22:27:15 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/25 22:50:30 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/26 02:25:55 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@
 
 int	get_fork(t_philo *philo, t_data *data, int fork_num)
 {
-	if (data->run_flag == 0 || philo->dead_flag == 1)
+	while (data->fork_flag[fork_num] && philo->dead_flag == 0)
+		usleep(10);
+	if (philo->dead_flag == 1)
 		return (0);
 	pthread_mutex_lock(&(data->fork[fork_num]));
+	data->fork_flag[fork_num] = philo->id + 1;
 	ph_print_status(data, philo->id, "has taken a fork");
 	return (1);
 }
@@ -43,7 +46,9 @@ int	ph_philo_eat(t_philo *philo, t_data *data)
 	wait_tasking(ph_get_time(), data->time_to_eat);
 	philo->num_of_eaten++;
 	pthread_mutex_unlock(&(data->fork[philo->right_fork]));
+	data->fork_flag[philo->right_fork] = 0;
 	pthread_mutex_unlock(&(data->fork[philo->left_fork]));
+	data->fork_flag[philo->left_fork] = 0;
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 22:33:15 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/25 22:51:23 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/26 00:19:58 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,8 @@ int	ph_check_starvation(t_philo *philo, t_data *data)
 		if (cur_time > last_mealtime + data->time_to_die)
 		{
 			philo[idx].dead_flag = 1;
-			ph_print_status(data, philo[idx].id, "died");
-			pthread_mutex_unlock(&data->fork[philo->left_fork]);
 			data->run_flag = 0;
+			ph_print_status(data, philo[idx].id, "died");
 			return (1);
 		}
 		idx++;

@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:25:59 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/25 22:50:59 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/26 02:45:33 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,3 @@ int	terminator(int flag, t_philo **philo, t_data *data, char *msg)
 		free_philo(philo);
 	return (flag);
 }
-
-// void	ph_detach(t_philo **philo_pointer, t_data *data)
-// {
-// 	int		idx;
-// 	t_philo	*philo;
-
-// 	philo = *philo_pointer;
-// 	idx = 0;
-// 	while (idx < data->num_of_philo)
-// 	{
-// 		pthread_detach(philo[idx].thread);
-// 		idx++;
-// 	}
-// }
