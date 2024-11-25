@@ -6,11 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 22:42:06 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/24 22:26:15 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/25 20:03:13 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <limits.h>
 #include "philo.h"
 
 int	ph_data_mutex_init(t_data *data)
@@ -40,6 +41,7 @@ int	ph_data_init(t_data *data, int argc, char *argv[])
 	data->time_to_sleep = ft_atoi(argv[4]);
 	data->run_flag = 1;
 	data->start_time = ph_get_time();
+	data->times_to_eat = INT_MAX;
 	if (argc == 6)
 	{
 		data->times_to_eat = ft_atoi(argv[5]);

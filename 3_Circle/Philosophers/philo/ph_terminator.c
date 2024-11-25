@@ -6,10 +6,11 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:25:59 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/23 15:50:04 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/25 22:50:59 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <pthread.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include "philo.h"
@@ -27,36 +28,32 @@ void	ph_destroy_mutex(t_data *data)
 	free(data->fork);
 }
 
-void	ph_clear(t_philo **philo, t_data *data)
-{
-	ph_detach(*philo, data);
-	ph_destroy_mutex(data);
-}
-
-void	ph_detach(t_philo *philo, t_data *data)
-{
-	int	idx;
-
-	idx = 0;
-	while (idx < data->num_of_philo)
-	{
-		pthread_detach(philo[idx].thread);
-		idx++;
-	}
-}
-
 void	free_philo(t_philo **philo)
 {
 	free(*philo);
 }
 
-int	terminator(int flag, void *for_free, char *msg)
+int	terminator(int flag, t_philo **philo, t_data *data, char *msg)
 {
 	if (flag)
 		write(2, msg, ft_strlen(msg));
-	// if (flag == 2 && for_free)
-	// 	free_data((t_data *)for_free);
-	else if (flag == 3)
-		free_philo((t_philo **)for_free);
+	if (data)
+		ph_destroy_mutex(data);
+	if (philo)
+		free_philo(philo);
 	return (flag);
 }
+
+// void	ph_detach(t_philo **philo_pointer, t_data *data)
+// {
+// 	int		idx;
+// 	t_philo	*philo;
+
+// 	philo = *philo_pointer;
+// 	idx = 0;
+// 	while (idx < data->num_of_philo)
+// 	{
+// 		pthread_detach(philo[idx].thread);
+// 		idx++;
+// 	}
+// }

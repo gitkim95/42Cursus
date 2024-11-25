@@ -6,14 +6,31 @@
             "type": "cppdbg",
             "request": "launch",
             // "program": "${fileDirname}/a.out",
-            "program": "${workspaceFolder}/3_Circle/Philosophers/a.out",
-            "args": ["4", "1", "1", "1"],
+            "program": "${workspaceFolder}/3_Circle/Philosophers/philo/a.out",
+            "args": ["2", "310", "150", "150", "10"],
             "stopAtEntry": false,
             // "cwd": "${fileDirname}",
             "cwd": "${workspaceFolder}/3_Circle/Philosophers",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb", 
+                    "text": "-enable-pretty-printing", 
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Enable multi-threading",
+                    "text": "set print thread-events on", 
+                    "ignoreFailures": true
+                }
+            ],
+            "logging": {
+                "engineLogging": true,
+                "trace": true,
+                "traceResponse": true
+            }
         }
     ]
 }
