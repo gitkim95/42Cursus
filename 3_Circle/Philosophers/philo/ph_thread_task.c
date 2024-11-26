@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 22:27:15 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/26 02:25:55 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/26 21:17:44 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ph_philo_think(t_philo *philo, t_data *data)
 
 int	ph_philo_eat(t_philo *philo, t_data *data)
 {
-	if (data->run_flag == 0 || philo->dead_flag == 1)
+	if (philo->dead_flag == 1)
 		return (0);
 	philo->last_time_eaten = ph_get_time();
 	ph_print_status(data, philo->id, "is eating");
@@ -54,7 +54,7 @@ int	ph_philo_eat(t_philo *philo, t_data *data)
 
 int	ph_philo_sleep(t_philo *philo, t_data *data)
 {
-	if (data->run_flag == 0 || philo->dead_flag == 1)
+	if (philo->dead_flag == 1)
 		return (0);
 	ph_print_status(data, philo->id, "is sleeping");
 	wait_tasking(ph_get_time(), data->time_to_sleep);
@@ -70,7 +70,7 @@ void	*thread_task(void *param)
 	data = philo->data;
 	if (philo->id % 2)
 		usleep(500);
-	while (data->run_flag)
+	while (philo->dead_flag == 0)
 	{
 		if (!ph_philo_think(philo, data))
 			break ;
@@ -79,5 +79,6 @@ void	*thread_task(void *param)
 		if (!ph_philo_sleep(philo, data))
 			break ;
 	}
+	check_holding_fork(philo, data);
 	return (NULL);
 }

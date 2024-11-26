@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 22:45:35 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/26 00:04:08 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/26 20:09:54 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				times_to_eat;
-	int				run_flag;
 	long long		start_time;
 }	t_data;
 
@@ -42,10 +41,11 @@ typedef struct s_philo
 }	t_philo;
 
 //ph_check_status.c
-int			ph_check_flag(t_philo *philo, t_data *data);
-void		ph_check_meal(t_philo *philo, t_data *data);
-int			ph_check_starvation(t_philo *philo, t_data *data);
-void		val_flag(t_philo **philo_pointer, t_data *data);
+void		check_holding_fork(t_philo *philo, t_data *data);
+int			ph_check_flag(t_philo **philo_pointer, t_data *data);
+int			ph_check_meal(t_philo **philo_pointer, t_data *data);
+int			ph_check_starvation(t_philo **philo_pointer, t_data *data);
+void		val_flag(t_philo **philo, t_data *data);
 
 //ph_init.c
 int			ph_data_mutex_init(t_data *data);

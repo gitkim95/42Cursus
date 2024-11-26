@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 22:42:06 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/26 00:09:40 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/26 19:19:47 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	ph_data_init(t_data *data, int argc, char *argv[])
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
-	data->run_flag = 1;
 	data->start_time = ph_get_time();
 	data->fork_flag = (int *)malloc(sizeof(int) * data->num_of_philo);
 	memset(data->fork_flag, 0, sizeof(int) * data->num_of_philo);

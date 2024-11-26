@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:25:59 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/26 02:45:33 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/26 21:46:09 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ph_destroy_mutex(t_data *data)
 {
 	int	idx;
 
+	idx = 0;
 	pthread_mutex_destroy(&(data->print));
 	while (idx < data->num_of_philo)
 	{
@@ -39,6 +40,8 @@ int	terminator(int flag, t_philo **philo, t_data *data, char *msg)
 		write(2, msg, ft_strlen(msg));
 	if (data)
 		ph_destroy_mutex(data);
+	if (data->fork_flag)
+		free(data->fork_flag);
 	if (philo)
 		free_philo(philo);
 	return (flag);
