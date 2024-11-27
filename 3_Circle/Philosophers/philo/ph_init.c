@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 22:42:06 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/26 19:19:47 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/27 22:59:32 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,20 @@
 #include <string.h>
 #include "philo.h"
 
+int	ph_philo_mutex_init(t_philo **philo, t_data *data)
+{
+	int	idx;
+
+	idx = 0;
+	while (idx < data->num_of_philo)
+	{
+		if (pthread_mutex_init(&(*philo)[idx].df_mutex, NULL))
+			return (1);
+		idx++;
+	}
+	return (0);
+}
+
 int	ph_data_mutex_init(t_data *data)
 {
 	int	idx;
@@ -22,12 +36,15 @@ int	ph_data_mutex_init(t_data *data)
 	if (pthread_mutex_init(&(data->print), NULL))
 		return (1);
 	data->fork = malloc(sizeof(pthread_mutex_t) * data->num_of_philo);
+	data->ff_mutex = malloc(sizeof(pthread_mutex_t) * data->num_of_philo);
 	if (!data->fork)
 		return (1);
 	idx = 0;
 	while (idx < data->num_of_philo)
 	{
 		if (pthread_mutex_init(&(data->fork[idx]), NULL))
+			return (1);
+		if (pthread_mutex_init(&(data->ff_mutex[idx]), NULL))
 			return (1);
 		idx++;
 	}
@@ -77,5 +94,7 @@ int	ph_philo_init(t_philo **philo, t_data *data)
 		(*philo)[idx].dead_flag = 0;
 		idx++;
 	}
+	if (ph_philo_mutex_init(philo, data))
+		return (1);
 	return (0);
 }

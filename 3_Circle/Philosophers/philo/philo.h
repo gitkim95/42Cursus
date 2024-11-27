@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 22:45:35 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/26 20:09:54 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/27 22:58:44 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct s_data
 {
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	print;
+	pthread_mutex_t	*ff_mutex;
 	int				*fork_flag;
 	int				num_of_philo;
 	int				time_to_die;
@@ -30,8 +31,9 @@ typedef struct s_data
 
 typedef struct s_philo
 {
-	pthread_t		thread;
 	t_data			*data;
+	pthread_t		thread;
+	pthread_mutex_t	df_mutex;
 	int				id;
 	int				left_fork;
 	int				right_fork;
@@ -48,6 +50,7 @@ int			ph_check_starvation(t_philo **philo_pointer, t_data *data);
 void		val_flag(t_philo **philo, t_data *data);
 
 //ph_init.c
+int			ph_philo_mutex_init(t_philo **philo, t_data *data);
 int			ph_data_mutex_init(t_data *data);
 int			ph_data_init(t_data *data, int argc, char *argv[]);
 int			ph_philo_init(t_philo **philo, t_data *data);
