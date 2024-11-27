@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:24:49 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/25 22:50:24 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/27 21:03:28 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	wait_tasking(long long start, int wait)
 	while (ph_get_time() <= fin_time)
 		usleep(10);
 }
+
 
 int	ph_print_status(t_data *data, int id, char *msg)
 {
