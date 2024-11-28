@@ -6,13 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:24:49 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/28 12:57:32 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/28 23:41:59 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pthread.h>
 #include <sys/time.h>
-#include <stdio.h>
 #include <unistd.h>
 #include "philo.h"
 
@@ -23,20 +22,6 @@ void	wait_tasking(long long start, int wait)
 	fin_time = start + wait;
 	while (ph_get_time() <= fin_time)
 		usleep(10);
-}
-
-
-int	ph_print_status(t_data *data, int ord, char *msg)
-{
-	long long	cur_time;
-
-	cur_time = ph_get_time();
-	if (cur_time == -1)
-		return (-1);
-	pthread_mutex_lock(&(data->print));
-	printf("%lld %d %s\n", cur_time, ord + 1, msg);
-	pthread_mutex_unlock(&(data->print));
-	return (0);
 }
 
 long long	ph_get_time(void)

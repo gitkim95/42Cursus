@@ -18,6 +18,7 @@
 		"errno.h": "c",
 		"stdlib.h": "c",
 		"fdf.h": "c",
-		"philo.h": "c"
+		"philo.h": "c",
+		"pthread.h": "c"
 	}
 }
