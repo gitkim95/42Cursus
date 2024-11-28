@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 22:27:15 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/28 23:27:46 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/29 00:14:14 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ph_philo_eat(t_philo *philo, t_data *data)
 
 int	ph_philo_sleep(t_philo *philo, t_data *data)
 {
-	if (get_mtx_value(&(philo->dead_flag)) == 1)
+	if (get_mtx_value(&(philo->dead_flag)))
 		return (0);
 	ph_print_status(data, philo->ord, "is sleeping");
 	wait_tasking(ph_get_time(), data->time_to_sleep);
