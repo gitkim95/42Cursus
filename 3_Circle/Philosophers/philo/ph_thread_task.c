@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 22:27:15 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/28 13:06:53 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/28 16:45:59 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ long long	get_mtx_value(t_mutex *arg)
 	pthread_mutex_lock(&(arg->mtx));
 	value = arg->value;
 	pthread_mutex_unlock(&(arg->mtx));
+	return (value);
 }
 
 int	check_flags(t_philo *philo, t_data *data, int fork_num)
@@ -35,16 +36,11 @@ int	check_flags(t_philo *philo, t_data *data, int fork_num)
 	int	ret;
 
 	ret = 0;
-	if (!get_mtx_value(&(data->fork[fork_num])) && get_mtx_value(&philo->dead_flag))
-	// 여기부터 계속
-	pthread_mutex_lock(&(philo->df_mutex));
-	pthread_mutex_lock(&(data->ff_mutex[fork_num]));
-	if (!data->fork_flag[fork_num] && !philo->dead_flag)
+	if (!get_mtx_value(&(data->fork[fork_num])) && \
+		!get_mtx_value(&philo->dead_flag))
 		ret++;
-	else if (philo->dead_flag)
+	else if (get_mtx_value(&philo->dead_flag))
 		ret--;
-	pthread_mutex_unlock(&(data->ff_mutex[fork_num]));
-	pthread_mutex_unlock(&(philo->df_mutex));
 	return (ret);
 }
 
