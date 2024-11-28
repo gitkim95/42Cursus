@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 22:42:06 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/27 22:59:32 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/28 13:05:46 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ int	ph_philo_mutex_init(t_philo **philo, t_data *data)
 	idx = 0;
 	while (idx < data->num_of_philo)
 	{
-		if (pthread_mutex_init(&(*philo)[idx].df_mutex, NULL))
+		if (pthread_mutex_init(&(*philo)[idx].num_of_eaten.mtx, NULL))
+			return (1);
+		if (pthread_mutex_init(&(*philo)[idx].dead_flag.mtx, NULL))
+			return (1);
+		if (pthread_mutex_init(&(*philo)[idx].last_time_eaten.mtx, NULL))
 			return (1);
 		idx++;
 	}
@@ -35,17 +39,15 @@ int	ph_data_mutex_init(t_data *data)
 
 	if (pthread_mutex_init(&(data->print), NULL))
 		return (1);
-	data->fork = malloc(sizeof(pthread_mutex_t) * data->num_of_philo);
-	data->ff_mutex = malloc(sizeof(pthread_mutex_t) * data->num_of_philo);
+	data->fork = (t_mutex *)malloc(sizeof(t_mutex) * data->num_of_philo);
 	if (!data->fork)
 		return (1);
 	idx = 0;
 	while (idx < data->num_of_philo)
 	{
-		if (pthread_mutex_init(&(data->fork[idx]), NULL))
+		if (pthread_mutex_init(&(data->fork[idx].mtx), NULL))
 			return (1);
-		if (pthread_mutex_init(&(data->ff_mutex[idx]), NULL))
-			return (1);
+		data->fork[idx].value = 0;
 		idx++;
 	}
 	return (0);
@@ -57,9 +59,6 @@ int	ph_data_init(t_data *data, int argc, char *argv[])
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
-	data->start_time = ph_get_time();
-	data->fork_flag = (int *)malloc(sizeof(int) * data->num_of_philo);
-	memset(data->fork_flag, 0, sizeof(int) * data->num_of_philo);
 	data->times_to_eat = INT_MAX;
 	if (argc == 6)
 	{
@@ -86,12 +85,12 @@ int	ph_philo_init(t_philo **philo, t_data *data)
 	while (idx < data->num_of_philo)
 	{
 		(*philo)[idx].data = data;
-		(*philo)[idx].id = idx;
+		(*philo)[idx].ord = idx;
 		(*philo)[idx].left_fork = idx;
 		(*philo)[idx].right_fork = (idx + 1) % data->num_of_philo;
-		(*philo)[idx].last_time_eaten = ph_get_time();
-		(*philo)[idx].num_of_eaten = 0;
-		(*philo)[idx].dead_flag = 0;
+		(*philo)[idx].num_of_eaten.value = 0;
+		(*philo)[idx].dead_flag.value = 0;
+		(*philo)[idx].last_time_eaten.value = ph_get_time();
 		idx++;
 	}
 	if (ph_philo_mutex_init(philo, data))

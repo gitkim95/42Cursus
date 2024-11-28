@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 22:27:15 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/27 23:18:35 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/28 13:06:53 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,29 @@
 #include <unistd.h>
 #include "philo.h"
 
+void	set_mtx_value(t_mutex *arg, long long value)
+{
+	pthread_mutex_lock(&(arg->mtx));
+	arg->value = value;
+	pthread_mutex_unlock(&(arg->mtx));
+}
+
+long long	get_mtx_value(t_mutex *arg)
+{
+	long long	value;
+
+	pthread_mutex_lock(&(arg->mtx));
+	value = arg->value;
+	pthread_mutex_unlock(&(arg->mtx));
+}
+
 int	check_flags(t_philo *philo, t_data *data, int fork_num)
 {
 	int	ret;
 
 	ret = 0;
+	if (!get_mtx_value(&(data->fork[fork_num])) && get_mtx_value(&philo->dead_flag))
+	// 여기부터 계속
 	pthread_mutex_lock(&(philo->df_mutex));
 	pthread_mutex_lock(&(data->ff_mutex[fork_num]));
 	if (!data->fork_flag[fork_num] && !philo->dead_flag)
@@ -49,16 +67,16 @@ int	get_fork(t_philo *philo, t_data *data, int fork_num)
 	}
 	pthread_mutex_lock(&(data->fork[fork_num]));
 	pthread_mutex_lock(&(data->ff_mutex[fork_num]));
-	data->fork_flag[fork_num] = philo->id + 1;
+	data->fork_flag[fork_num] = philo->ord + 1;
 	pthread_mutex_unlock(&(data->ff_mutex[fork_num]));
-	ph_print_status(data, philo->id, "has taken a fork");
+	ph_print_status(data, philo->ord, "has taken a fork");
 	return (1);
 }
 
 int	ph_philo_think(t_philo *philo, t_data *data)
 {
-	if (philo->num_of_eaten)
-		ph_print_status(data, philo->id, "is thinking");
+	if (get_mtx_value(&philo->num_of_eaten))
+		ph_print_status(data, philo->ord, "is thinking");
 	if (!get_fork(philo, data, philo->left_fork))
 		return (0);
 	if (!get_fork(philo, data, philo->right_fork))
@@ -73,7 +91,7 @@ int	ph_philo_eat(t_philo *philo, t_data *data)
 		return (0);
 	pthread_mutex_unlock(&(philo->df_mutex));
 	philo->last_time_eaten = ph_get_time();
-	ph_print_status(data, philo->id, "is eating");
+	ph_print_status(data, philo->ord, "is eating");
 	wait_tasking(ph_get_time(), data->time_to_eat);
 	philo->num_of_eaten++;
 	pthread_mutex_unlock(&(data->fork[philo->right_fork]));
@@ -93,7 +111,7 @@ int	ph_philo_sleep(t_philo *philo, t_data *data)
 	if (philo->dead_flag == 1)
 		return (0);
 	pthread_mutex_unlock(&(philo->df_mutex));
-	ph_print_status(data, philo->id, "is sleeping");
+	ph_print_status(data, philo->ord, "is sleeping");
 	wait_tasking(ph_get_time(), data->time_to_sleep);
 	return (1);
 }
@@ -105,7 +123,7 @@ void	*thread_task(void *param)
 
 	philo = param;
 	data = philo->data;
-	if (philo->id % 2)
+	if (philo->ord % 2)
 		usleep(500);
 	while (1)
 	{

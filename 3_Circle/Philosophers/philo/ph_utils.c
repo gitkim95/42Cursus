@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:24:49 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/27 21:03:28 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/28 12:57:32 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	wait_tasking(long long start, int wait)
 }
 
 
-int	ph_print_status(t_data *data, int id, char *msg)
+int	ph_print_status(t_data *data, int ord, char *msg)
 {
 	long long	cur_time;
 
@@ -34,7 +34,7 @@ int	ph_print_status(t_data *data, int id, char *msg)
 	if (cur_time == -1)
 		return (-1);
 	pthread_mutex_lock(&(data->print));
-	printf("%lld %d %s\n", cur_time, id + 1, msg);
+	printf("%lld %d %s\n", cur_time, ord + 1, msg);
 	pthread_mutex_unlock(&(data->print));
 	return (0);
 }

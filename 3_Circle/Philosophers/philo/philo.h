@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 22:45:35 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/27 22:58:44 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/28 12:54:38 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,34 @@
 
 # include <pthread.h>
 
+typedef struct s_mutex
+{
+	long long		value;
+	pthread_mutex_t	mtx;
+}	t_mutex;
+
+
 typedef struct s_data
 {
-	pthread_mutex_t	*fork;
+	t_mutex			*fork;
 	pthread_mutex_t	print;
-	pthread_mutex_t	*ff_mutex;
-	int				*fork_flag;
 	int				num_of_philo;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				times_to_eat;
-	long long		start_time;
 }	t_data;
 
 typedef struct s_philo
 {
 	t_data			*data;
 	pthread_t		thread;
-	pthread_mutex_t	df_mutex;
-	int				id;
+	int				ord;
 	int				left_fork;
 	int				right_fork;
-	int				num_of_eaten;
-	int				dead_flag;
-	long long		last_time_eaten;
+	t_mutex			num_of_eaten;
+	t_mutex			dead_flag;
+	t_mutex			last_time_eaten;
 }	t_philo;
 
 //ph_check_status.c
