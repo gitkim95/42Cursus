@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:10:52 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/30 23:04:31 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/30 23:38:45 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@ void	philosophers_logic_b(t_philo_b **philo_p, t_data_b *data)
 	val_flag_b(philo_p, data);
 	idx = 0;
 	while (idx < data->num_of_philo)
-	{
-		waitpid(data->pid[idx], NULL, 0);
-	}
+		waitpid(data->pid[idx++], NULL, 0);
 }
 
 int	main(int argc, char *argv[])

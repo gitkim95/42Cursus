@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:34:42 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/30 23:05:09 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/30 23:19:53 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ph_alloc_data(t_data_b *data)
 	if (!data->pid)
 		terminator_b(0, NULL, data, "Allocation failed");
 	idx = 0;
-	data->print = sem_open("/p0", O_CREAT | O_EXCL, 0644, 1);
+	data->print = sem_open("/p0", O_CREAT, 0644, 1);
 	if (data->print == SEM_FAILED)
 		terminator_b(1, NULL, data, "Sem_open failed");
 	while (idx < data->num_of_philo)
@@ -89,7 +89,7 @@ void	ph_alloc_data(t_data_b *data)
 		name[1] = 'f';
 		name[2] = '0' + idx % 10;
 		name[3] = '\0';
-		data->fork[idx].sem = sem_open(name, O_CREAT | O_EXCL, 0644, 1);
+		data->fork[idx].sem = sem_open(name, O_CREAT, 0644, 1);
 		if (data->fork[idx].sem == SEM_FAILED)
 			terminator_b(1, NULL, data, "Sem_open failed");
 		idx++;

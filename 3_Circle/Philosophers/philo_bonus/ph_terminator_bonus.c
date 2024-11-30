@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:25:59 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/30 23:09:09 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/30 23:27:54 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	ph_delete_sem(t_sema *sem, char flag, int idx)
 	name[1] = flag;
 	name[2] = '0' + idx % 10;
 	name[3] = '\0';
-	sem_close(sem->sem);
+	if (sem)
+		sem_close(sem->sem);
 	sem_unlink(name);
 }
 
@@ -37,9 +38,9 @@ void	free_philo_b(t_philo_b **philo, t_data_b *data)
 		if ((*philo)[idx].num_of_eaten.sem)
 			ph_delete_sem(&(*philo)[idx].num_of_eaten, 'n', idx);
 		if ((*philo)[idx].dead_flag.sem)
-			ph_delete_sem(&(*philo)[idx].num_of_eaten, 'n', idx);
+			ph_delete_sem(&(*philo)[idx].dead_flag, 'd', idx);
 		if ((*philo)[idx].lt_eaten.sem)
-			ph_delete_sem(&(*philo)[idx].num_of_eaten, 'n', idx);
+			ph_delete_sem(&(*philo)[idx].lt_eaten, 't', idx);
 		idx++;
 	}
 	free(*philo);

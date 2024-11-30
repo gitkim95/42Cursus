@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 21:14:29 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/30 23:12:28 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/30 23:18:33 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,16 @@ void	*th_work(void *param)
 		usleep(500);
 	while (1)
 	{
+		usleep(100);
 		if (!ph_philo_think_b(philo, data))
 			break ;
+		usleep(100);
 		if (!ph_philo_eat_b(philo, data))
 			break ;
+		usleep(100);
 		if (!ph_philo_sleep_b(philo, data))
 			break ;
-		usleep(10);
+		usleep(100);
 	}
 	check_holding_fork_b(philo, data);
 	return (NULL);
