@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:25:59 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/30 23:27:54 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/01 07:19:53 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,68 +15,36 @@
 #include <unistd.h>
 #include "philo_bonus.h"
 
-void	ph_delete_sem(t_sema *sem, char flag, int idx)
+void	unlink_sem(void)
 {
-	char	name[4];
-
-	name[0] = '/';
-	name[1] = flag;
-	name[2] = '0' + idx % 10;
-	name[3] = '\0';
-	if (sem)
-		sem_close(sem->sem);
-	sem_unlink(name);
+	sem_unlink("/fork");
+	sem_unlink("/print");
+	sem_unlink("/dead");
 }
 
-void	free_philo_b(t_philo_b **philo, t_data_b *data)
+void	close_sem(t_data_b *data, int flag)
 {
-	int		idx;
-
-	idx = 0;
-	while (idx < data->num_of_philo)
-	{
-		if ((*philo)[idx].num_of_eaten.sem)
-			ph_delete_sem(&(*philo)[idx].num_of_eaten, 'n', idx);
-		if ((*philo)[idx].dead_flag.sem)
-			ph_delete_sem(&(*philo)[idx].dead_flag, 'd', idx);
-		if ((*philo)[idx].lt_eaten.sem)
-			ph_delete_sem(&(*philo)[idx].lt_eaten, 't', idx);
-		idx++;
-	}
-	free(*philo);
-}
-
-void	free_data_b(t_data_b *data)
-{
-	int		idx;
-
 	if (data->fork)
-	{
-		idx = 0;
-		while (idx < data->num_of_philo)
-		{
-			if (data->fork[idx].sem)
-				ph_delete_sem(&data->fork[idx], 'f', idx);
-			idx++;
-		}
-		free(data->fork);
-	}
+		sem_close(data->fork);
 	if (data->print)
-	{
 		sem_close(data->print);
-		sem_unlink("/p0");
-	}
-	if (data->pid)
-		free(data->pid);
+	if (data->dead)
+		sem_close(data->dead);
+	if (flag == 1)
+		unlink_sem();
 }
 
-void	terminator_b(int flag, t_philo_b **philo, t_data_b *data, char *msg)
+void	terminator_b(int flag, t_philo_b **philo_p, pid_t *pid, char *msg)
 {
-	if (flag)
+	if (philo_p)
+		free(*philo_p);
+	if (pid)
+		free(pid);
+	if (flag > 0)
+	{
 		write(2, msg, ft_strlen(msg));
-	if (data)
-		free_data_b(data);
-	if (philo)
-		free_philo_b(philo, data);
-	exit (flag);
+		exit(1);
+	}
+	if (!flag)
+		exit(0);
 }
