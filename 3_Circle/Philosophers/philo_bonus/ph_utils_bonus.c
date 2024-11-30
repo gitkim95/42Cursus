@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ph_utils.c                                         :+:      :+:    :+:   */
+/*   ph_utils_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/19 19:24:49 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/30 15:09:18 by gitkim           ###   ########.fr       */
+/*   Created: 2024/11/30 19:18:16 by gitkim            #+#    #+#             */
+/*   Updated: 2024/11/30 21:18:57 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <pthread.h>
 #include <sys/time.h>
 #include <unistd.h>
-#include "philo.h"
+#include "philo_bonus.h"
 
-void	wait_tasking(long long start, int wait)
+void	wait_tasking_b(long long start, int wait)
 {
 	long long	fin_time;
 
@@ -24,7 +23,7 @@ void	wait_tasking(long long start, int wait)
 		usleep(100);
 }
 
-long long	ph_get_time(void)
+long	ph_get_time_b(void)
 {
 	struct timeval	tv;
 	long long		total_time;
@@ -35,45 +34,4 @@ long long	ph_get_time(void)
 		return (-1);
 	total_time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 	return (total_time);
-}
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-int	ft_atoi(const char *nptr)
-{
-	int	i;
-	int	sign;
-	int	result;
-
-	sign = 1;
-	i = 0;
-	result = 0;
-	while (nptr[i] == 32 || (9 <= nptr[i] && nptr[i] <= 13))
-		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
-	{
-		if (nptr[i + 1] == '+' || nptr[i + 1] == '-')
-			return (0);
-		if (nptr[i] == '-')
-			sign *= -1;
-		i++;
-	}
-	if (!('0' <= nptr[i] && nptr[i] <= '9'))
-		return (0);
-	while ('0' <= nptr[i] && nptr[i] <= '9')
-	{
-		result = result * 10 + (nptr[i] - '0');
-		i++;
-	}
-	return (result * sign);
 }
