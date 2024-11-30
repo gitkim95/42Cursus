@@ -6,11 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:10:52 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/30 21:17:25 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/30 23:04:31 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/wait.h>
+#include <unistd.h>
 #include "philo_bonus.h"
 
 void	philosophers_logic_b(t_philo_b **philo_p, t_data_b *data)
@@ -44,14 +45,14 @@ void	philosophers_logic_b(t_philo_b **philo_p, t_data_b *data)
 
 int	main(int argc, char *argv[])
 {
-	t_data_b	data;
 	t_philo_b	*philo;
+	t_data_b	data;
 
 	if (argc != 5 && argc != 6)
 		terminator_b(1, NULL, NULL, "Incorrect number of arguments");
 	ph_data_init_b(&data, argc, argv);
 	ph_philo_init_b(&philo, &data);
 	philosophers_logic_b(&philo, &data);
-	terminator(0, &philo, &data, NULL);
+	terminator_b(0, &philo, &data, NULL);
 	return (0);
 }

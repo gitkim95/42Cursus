@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:34:42 by gitkim            #+#    #+#             */
-/*   Updated: 2024/11/30 21:12:42 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/11/30 23:05:09 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <fcntl.h>
 #include <semaphore.h>
 #include <string.h>
+#include <stdlib.h>
 #include "philo_bonus.h"
 
 void	ph_philo_sem_open(t_philo_b **philo_p, t_data_b *data)
@@ -60,7 +61,7 @@ void	ph_philo_init_b(t_philo_b **philo, t_data_b *data)
 		(*philo)[idx].ord = idx;
 		(*philo)[idx].left_fork = idx;
 		(*philo)[idx].right_fork = (idx + 1) % data->num_of_philo;
-		(*philo)[idx].lt_eaten.value = ph_get_time();
+		(*philo)[idx].lt_eaten.value = ph_get_time_b();
 		idx++;
 	}
 	ph_philo_sem_open(philo, data);
@@ -95,7 +96,7 @@ void	ph_alloc_data(t_data_b *data)
 	}
 }
 
-void	ph_data_init_b(t_data_b *data, int argc, char *argv)
+void	ph_data_init_b(t_data_b *data, int argc, char *argv[])
 {
 	data->num_of_philo = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);

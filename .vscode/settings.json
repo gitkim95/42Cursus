@@ -20,6 +20,7 @@
 		"fdf.h": "c",
 		"philo.h": "c",
 		"pthread.h": "c",
-		"unistd.h": "c"
+		"unistd.h": "c",
+		"philo_bonus.h": "c"
 	}
 }
