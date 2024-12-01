@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:34:42 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/01 08:28:34 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/01 22:12:36 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,38 @@
 #include <stdlib.h>
 #include "philo_bonus.h"
 
+void	ph_make_named_sem(t_philo_b **philo, t_sema *sem, char *name)
+{
+
+	sem->sem = sem_open(name, O_CREAT, 0644, 1);
+	if (sem->sem == SEM_FAILED)
+	{
+		close_sem(philo, (*philo)->data, 1);
+		terminator_b(1, NULL, NULL, "Sem_open failed");
+	}
+}
+
+void	ph_set_sem_philo(t_philo_b **philo, t_data_b *data)
+{
+	int			idx;
+	char		name[4];
+
+	idx = 0;
+	while (idx < data->num_of_philo)
+	{
+		name[0] = '/';
+		name[2] = '0' + idx % 10;
+		name[3] = '\0';
+		name[1] = 'd';
+		ph_make_named_sem(philo, &(*philo)[idx].dead_flag, name);
+		name[1] = 'n';
+		ph_make_named_sem(philo, &(*philo)[idx].num_of_eaten, name);
+		name[1] = 't';
+		ph_make_named_sem(philo, &(*philo)[idx].last_time_eaten, name);
+		idx++;
+	}
+}
+
 void	ph_philo_init_b(t_philo_b **philo, t_data_b *data)
 {
 	int	idx;
@@ -24,7 +56,7 @@ void	ph_philo_init_b(t_philo_b **philo, t_data_b *data)
 	*philo = malloc(sizeof(t_philo_b) * data->num_of_philo);
 	if (!(*philo))
 	{
-		close_sem(data, 1);
+		close_sem(philo, data, 1);
 		terminator_b(1, NULL, NULL, "Allocation failed");
 	}
 	memset(*philo, 0, sizeof(t_philo_b) * data->num_of_philo);
@@ -33,31 +65,26 @@ void	ph_philo_init_b(t_philo_b **philo, t_data_b *data)
 	{
 		(*philo)[idx].data = data;
 		(*philo)[idx].ord = idx;
-		(*philo)[idx].last_time_eaten = ph_get_time_b();
+		(*philo)[idx].last_time_eaten.value = ph_get_time_b();
 		idx++;
 	}
+	ph_set_sem_philo(philo, data);
 }
 
-void	ph_set_sem(t_data_b *data)
+void	ph_set_sem_data(t_philo_b **philo, t_data_b *data)
 {
 	data->fork = sem_open("/fork", O_CREAT, 0644, data->num_of_philo);
 	if (data->fork == SEM_FAILED)
 		terminator_b(1, NULL, NULL, "Sem_open failed");
-	data->print = sem_open("/print", O_CREAT, 0644, 1);
+	data->print = sem_open("/print", O_CREAT, 0644, data->num_of_philo);
 	if (data->print == SEM_FAILED)
 	{
-		close_sem(data, 1);
-		terminator_b(1, NULL, NULL, "Sem_open failed");
-	}
-	data->dead = sem_open("/dead", O_CREAT, 0644, data->num_of_philo);
-	if (data->dead == SEM_FAILED)
-	{
-		close_sem(data, 1);
+		close_sem(philo, data, 1);
 		terminator_b(1, NULL, NULL, "Sem_open failed");
 	}
 }
 
-void	ph_data_init_b(t_data_b *data, int ac, char **av)
+void	ph_data_init_b(t_philo_b **philo, t_data_b *data, int ac, char **av)
 {
 	memset(data, 0, sizeof(t_data_b));
 	data->num_of_philo = ft_atoi(av[1]);
@@ -74,5 +101,5 @@ void	ph_data_init_b(t_data_b *data, int ac, char **av)
 	if (data->num_of_philo <= 0 || data->time_to_die < 0 || \
 		data->time_to_eat < 0 || data->time_to_sleep < 0)
 		terminator_b (1, NULL, NULL, "Incorrect data");
-	ph_set_sem(data);
+	ph_set_sem_data(philo, data);
 }

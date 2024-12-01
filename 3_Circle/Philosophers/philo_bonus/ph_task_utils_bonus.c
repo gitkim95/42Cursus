@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 19:20:47 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/01 08:13:38 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/01 22:46:37 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,16 @@
 #include <sys/time.h>
 #include "philo_bonus.h"
 
-void	get_fork_b(t_philo_b *philo, t_data_b *data)
+int	get_fork_b(t_philo_b *philo, t_data_b *data)
 {
+	if (get_sem_value(&philo->dead_flag))
+		return (0);
 	sem_wait(data->fork);
+	philo->hold++;
 	ph_print_status_b(data, philo->ord, "has taken a fork");
+	if (data->num_of_philo == 1)
+		return (0);
+	return (1);
 }
 
 void	ph_print_status_b(t_data_b *data, int ord, char *msg)

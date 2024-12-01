@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:09:40 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/01 08:36:17 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/01 22:44:28 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,16 @@
 # include <semaphore.h>
 # include <pthread.h>
 
+typedef struct s_sema
+{
+	long	value;
+	sem_t	*sem;
+}	t_sema;
+
 typedef struct s_data_b
 {
 	sem_t		*fork;
 	sem_t		*print;
-	sem_t		*dead;
 	int			num_of_philo;
 	int			time_to_die;
 	int			time_to_eat;
@@ -32,38 +37,46 @@ typedef struct s_philo_b
 {
 	t_data_b	*data;
 	pthread_t	thread;
+	t_sema		dead_flag;
+	t_sema		num_of_eaten;
+	t_sema		last_time_eaten;
 	int			ord;
-	int			num_of_eaten;
-	long		last_time_eaten;
+	int			hold;
 }	t_philo_b;
 
 //ph_check_status_bonus.c
 int		ph_check_meal_b(t_philo_b *philo, t_data_b *data);
 int		ph_check_starvation_b(t_philo_b *philo, t_data_b *data);
 int		val_flag_b(t_philo_b *philo, t_data_b *data);
-void	*check_dead(void *param);
+
+//ph_handle_sem.c
+long	get_sem_value(t_sema *sem);
+void	set_sem_value_1(t_sema *sem);
+void	set_sem_value_2(t_sema *sem, long value);
 
 //ph_init_bonus.c
+void	ph_make_named_sem(t_philo_b **philo, t_sema *sem, char *name);
+void	ph_set_sem_philo(t_philo_b **philo_p, t_data_b *data);
 void	ph_philo_init_b(t_philo_b **philo, t_data_b *data);
-void	ph_set_sem(t_data_b *data);
-void	ph_data_init_b(t_data_b *data, int ac, char **av);
+void	ph_set_sem_data(t_philo_b **philo, t_data_b *data);
+void	ph_data_init_b(t_philo_b **philo, t_data_b *data, int ac, char **av);
 
 //ph_task_utils_bonus.c
-void	get_fork_b(t_philo_b *philo, t_data_b *data);
+int		get_fork_b(t_philo_b *philo, t_data_b *data);
 void	ph_print_status_b(t_data_b *data, int ord, char *msg);
 void	wait_tasking_b(long long start, int wait);
 long	ph_get_time_b(void);
 
 //ph_terminator_bonus.c
-void	unlink_sem(void);
-void	close_sem(t_data_b *data, int flag);
+void	unlink_sem(int nop);
+void	close_sem(t_philo_b **philo, t_data_b *data, int flag);
 void	terminator_b(int flag, t_philo_b **philo_p, pid_t *pid, char *msg);
 
 //ph_thread_task_bonus.c
-void	ph_philo_think_b(t_philo_b *philo, t_data_b *data);
-void	ph_philo_eat_b(t_philo_b *philo, t_data_b *data);
-void	ph_philo_sleep_b(t_philo_b *philo, t_data_b *data);
-void	thread_task_b(t_philo_b *philo, t_data_b *data);
+int		ph_philo_think_b(t_philo_b *philo, t_data_b *data);
+int		ph_philo_eat_b(t_philo_b *philo, t_data_b *data);
+int		ph_philo_sleep_b(t_philo_b *philo, t_data_b *data);
+void	*thread_task_b(void *param);
 
 //ph_utils_bonus.c
 size_t	ft_strlen(const char *s);
