@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:10:52 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/01 22:34:28 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/01 22:55:54 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	parents_process(t_data_b *data, pid_t *pid)
 			idx_2 = 0;
 			while (idx_2 < data->num_of_philo)
 			{
-				kill(pid[idx_2], SIGTERM);
+				kill(pid[idx_2], SIGKILL);
 				idx_2++;
 			}
 		}
