@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:25:59 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/01 21:54:26 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/02 13:02:47 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	unlink_sem(int nop)
 	}
 }
 
-void	close_sem(t_philo_b **philo, t_data_b *data, int flag)
+void	close_sem(t_philo_b *philo, t_data_b *data, int flag)
 {
 	int	idx;
 
@@ -61,10 +61,8 @@ void	close_sem(t_philo_b **philo, t_data_b *data, int flag)
 		unlink_sem(data->num_of_philo);
 }
 
-void	terminator_b(int flag, t_philo_b **philo_p, pid_t *pid, char *msg)
+void	terminator_b(int flag, pid_t *pid, char *msg)
 {
-	if (philo_p)
-		free(*philo_p);
 	if (pid)
 		free(pid);
 	if (msg)

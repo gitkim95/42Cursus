@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:09:40 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/01 22:44:28 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/02 13:04:13 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ long	ph_get_time_b(void);
 //ph_terminator_bonus.c
 void	unlink_sem(int nop);
 void	close_sem(t_philo_b **philo, t_data_b *data, int flag);
-void	terminator_b(int flag, t_philo_b **philo_p, pid_t *pid, char *msg);
+void	terminator_b(int flag, pid_t *pid, char *msg);
 
 //ph_thread_task_bonus.c
 int		ph_philo_think_b(t_philo_b *philo, t_data_b *data);

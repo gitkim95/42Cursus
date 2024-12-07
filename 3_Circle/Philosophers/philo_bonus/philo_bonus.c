@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:10:52 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/01 22:55:54 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/02 13:16:05 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,22 @@ void	parents_process(t_data_b *data, pid_t *pid)
 	}
 }
 
-void	child_process(t_philo_b **philo_p, t_data_b *data, int idx)
+void	child_process(t_philo_b *philo, t_data_b *data, int idx)
 {
-	t_philo_b	*philo;
-	int			code;
+	int	code;
 
-	philo = *philo_p;
 	if (pthread_create(&philo[idx].thread, NULL, thread_task_b, &philo[idx]))
 	{
-		close_sem(philo_p, data, 1);
-		terminator_b(1, philo_p, NULL, "Thread_create failed");
+		close_sem(philo, data, 1);
+		terminator_b(1, NULL, "Thread_create failed");
 	}
 	code = val_flag_b(&philo[idx], data);
 	pthread_join(philo->thread, NULL);
-	close_sem(philo_p, data, 0);
-	terminator_b(code, philo_p, NULL, NULL);
+	close_sem(philo, data, 0);
+	terminator_b(code, philo, NULL, NULL);
 }
 
-void	make_child_process(t_philo_b **philo_p, t_data_b *data, pid_t *pid)
+void	make_child_process(t_philo_b *philo, t_data_b *data, pid_t *pid)
 {
 	int		idx;
 
@@ -66,42 +64,42 @@ void	make_child_process(t_philo_b **philo_p, t_data_b *data, pid_t *pid)
 		pid[idx] = fork();
 		if (pid[idx] == -1)
 		{
-			close_sem(philo_p, data, 1);
-			terminator_b(1, philo_p, pid, "Fork failed");
+			close_sem(philo, data, 1);
+			terminator_b(1, pid, "Fork failed");
 		}
 		else if (pid[idx] == 0)
 		{
 			free(pid);
-			child_process(philo_p, data, idx);
+			child_process(philo, data, idx);
 		}
 		idx++;
 	}
 }
 
-void	philosophers_logic_b(t_philo_b **philo_p, t_data_b *data)
+void	philosophers_logic_b(t_philo_b *philo, t_data_b *data)
 {
 	pid_t	*pid;
 
 	pid = (pid_t *)malloc(sizeof(pid_t) * data->num_of_philo);
 	if (!pid)
 	{
-		close_sem(philo_p, data, 1);
-		terminator_b(1, philo_p, NULL, "Allocation failed");
+		close_sem(philo, data, 1);
+		terminator_b(1, NULL, "Allocation failed");
 	}
-	make_child_process(philo_p, data, pid);
+	make_child_process(philo, data, pid);
 	parents_process(data, pid);
-	close_sem(philo_p, data, 1);
-	terminator_b(0, philo_p, pid, NULL);
+	close_sem(philo, data, 1);
+	terminator_b(0, pid, NULL);
 }
 
 int	main(int argc, char *argv[])
 {
-	t_philo_b	*philo;
+	t_philo_b	philo;
 	t_data_b	data;
 
 	unlink_sem(ft_atoi(argv[1]));
 	if (argc != 5 && argc != 6)
-		terminator_b(1, NULL, NULL, "Incorrect number of arguments");
+		terminator_b(1, NULL, "Incorrect number of arguments");
 	ph_data_init_b(&philo, &data, argc, argv);
 	ph_philo_init_b(&philo, &data);
 	philosophers_logic_b(&philo, &data);
