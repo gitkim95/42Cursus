@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:34:42 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/08 15:48:56 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/08 16:12:53 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 void	ph_make_named_sem(t_philo_b *philo, t_sema *sem, char *name)
 {
-
 	sem->sem = sem_open(name, O_CREAT, 0644, 1);
 	if (sem->sem == SEM_FAILED)
 	{
@@ -55,7 +54,7 @@ void	ph_set_sem_data(t_philo_b *philo, t_data_b *data)
 	data->fork = sem_open("/fork", O_CREAT, 0644, data->num_of_philo);
 	if (data->fork == SEM_FAILED)
 		terminator_b(1, NULL, "Sem_open failed");
-	data->print = sem_open("/print", O_CREAT, 0644, data->num_of_philo);
+	data->print = sem_open("/print", O_CREAT, 0644, 1);
 	if (data->print == SEM_FAILED)
 	{
 		close_sem(philo, data, 1);

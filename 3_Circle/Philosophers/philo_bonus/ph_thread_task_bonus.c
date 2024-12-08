@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 21:14:29 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/01 22:48:05 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/08 16:06:12 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 int	ph_philo_think_b(t_philo_b *philo, t_data_b *data)
 {
-	ph_print_status_b(data, philo->ord, "is thinking");
+	sem_wait(data->print);
+	ph_print_status_b(philo->ord, "is thinking");
+	sem_post(data->print);
 	if (!get_fork_b(philo, data))
 		return (0);
 	if (!get_fork_b(philo, data))
@@ -28,7 +30,9 @@ int	ph_philo_eat_b(t_philo_b *philo, t_data_b *data)
 	if (get_sem_value(&philo->dead_flag))
 		return (0);
 	set_sem_value_2(&philo->last_time_eaten, ph_get_time_b());
-	ph_print_status_b(data, philo->ord, "is eating");
+	sem_wait(data->print);
+	ph_print_status_b(philo->ord, "is eating");
+	sem_post(data->print);
 	wait_tasking_b(ph_get_time_b(), data->time_to_eat);
 	sem_post(data->fork);
 	philo->hold--;
@@ -42,7 +46,9 @@ int	ph_philo_sleep_b(t_philo_b *philo, t_data_b *data)
 {
 	if (get_sem_value(&philo->dead_flag))
 		return (0);
-	ph_print_status_b(data, philo->ord, "is sleeping");
+	sem_wait(data->print);
+	ph_print_status_b(philo->ord, "is sleeping");
+	sem_post(data->print);
 	wait_tasking_b(ph_get_time_b(), data->time_to_sleep);
 	return (1);
 }

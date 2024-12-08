@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:10:52 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/08 15:53:16 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/08 16:05:04 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,9 @@ void	parents_process(t_data_b *data, pid_t *pid)
 void	child_process(t_philo_b *philo, t_data_b *data, int idx)
 {
 	int	code;
-	
+
 	philo->ord = idx;
 	ph_set_sem_philo(philo, idx);
-
 	if (pthread_create(&philo->thread, NULL, thread_task_b, philo))
 	{
 		close_sem(philo, data, 1);

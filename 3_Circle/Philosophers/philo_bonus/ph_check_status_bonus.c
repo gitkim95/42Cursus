@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 22:53:29 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/01 22:19:57 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/08 16:06:16 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ int	ph_check_starvation_b(t_philo_b *philo, t_data_b *data)
 	cur_time = ph_get_time_b();
 	if (cur_time > life)
 	{
-		ph_print_status_b(data, philo->ord, "died");
+		sem_wait(data->print);
+		ph_print_status_b(philo->ord, "died");
+		sem_post(data->print);
 		set_sem_value_1(&philo->dead_flag);
 		return (1);
 	}

@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:09:40 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/08 15:49:04 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/08 16:06:34 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ph_data_init_b(t_philo_b *philo, t_data_b *data, int ac, char **av);
 
 //ph_task_utils_bonus.c
 int		get_fork_b(t_philo_b *philo, t_data_b *data);
-void	ph_print_status_b(t_data_b *data, int ord, char *msg);
+void	ph_print_status_b(int ord, char *msg);
 void	wait_tasking_b(long long start, int wait);
 long	ph_get_time_b(void);
 
