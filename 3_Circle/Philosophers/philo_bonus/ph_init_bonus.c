@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:34:42 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/02 13:12:48 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/08 15:48:56 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,24 @@ void	ph_make_named_sem(t_philo_b *philo, t_sema *sem, char *name)
 	sem->sem = sem_open(name, O_CREAT, 0644, 1);
 	if (sem->sem == SEM_FAILED)
 	{
-		close_sem(philo, (*philo)->data, 1);
+		close_sem(philo, philo->data, 1);
 		terminator_b(1, NULL, "Sem_open failed");
 	}
 }
 
-void	ph_set_sem_philo(t_philo_b *philo, t_data_b *data)
+void	ph_set_sem_philo(t_philo_b *philo, int idx)
 {
-	int			idx;
 	char		name[4];
 
-	idx = 0;
-	while (idx < data->num_of_philo)
-	{
-		name[0] = '/';
-		name[2] = '0' + idx % 10;
-		name[3] = '\0';
-		name[1] = 'd';
-		ph_make_named_sem(philo, &(*philo)[idx].dead_flag, name);
-		name[1] = 'n';
-		ph_make_named_sem(philo, &(*philo)[idx].num_of_eaten, name);
-		name[1] = 't';
-		ph_make_named_sem(philo, &(*philo)[idx].last_time_eaten, name);
-		idx++;
-	}
+	name[0] = '/';
+	name[2] = '0' + idx % 10;
+	name[3] = '\0';
+	name[1] = 'd';
+	ph_make_named_sem(philo, &philo->dead_flag, name);
+	name[1] = 'n';
+	ph_make_named_sem(philo, &philo->num_of_eaten, name);
+	name[1] = 't';
+	ph_make_named_sem(philo, &philo->last_time_eaten, name);
 }
 
 void	ph_philo_init_b(t_philo_b *philo, t_data_b *data)

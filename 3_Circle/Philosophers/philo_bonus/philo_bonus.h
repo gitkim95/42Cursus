@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:09:40 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/02 13:04:13 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/08 15:49:04 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ void	set_sem_value_1(t_sema *sem);
 void	set_sem_value_2(t_sema *sem, long value);
 
 //ph_init_bonus.c
-void	ph_make_named_sem(t_philo_b **philo, t_sema *sem, char *name);
-void	ph_set_sem_philo(t_philo_b **philo_p, t_data_b *data);
-void	ph_philo_init_b(t_philo_b **philo, t_data_b *data);
-void	ph_set_sem_data(t_philo_b **philo, t_data_b *data);
-void	ph_data_init_b(t_philo_b **philo, t_data_b *data, int ac, char **av);
+void	ph_make_named_sem(t_philo_b *philo, t_sema *sem, char *name);
+void	ph_set_sem_philo(t_philo_b *philo, int idx);
+void	ph_philo_init_b(t_philo_b *philo, t_data_b *data);
+void	ph_set_sem_data(t_philo_b *philo, t_data_b *data);
+void	ph_data_init_b(t_philo_b *philo, t_data_b *data, int ac, char **av);
 
 //ph_task_utils_bonus.c
 int		get_fork_b(t_philo_b *philo, t_data_b *data);
@@ -69,7 +69,7 @@ long	ph_get_time_b(void);
 
 //ph_terminator_bonus.c
 void	unlink_sem(int nop);
-void	close_sem(t_philo_b **philo, t_data_b *data, int flag);
+void	close_sem(t_philo_b *philo, t_data_b *data, int flag);
 void	terminator_b(int flag, pid_t *pid, char *msg);
 
 //ph_thread_task_bonus.c

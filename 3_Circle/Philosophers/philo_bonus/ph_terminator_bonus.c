@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:25:59 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/02 13:02:47 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/08 15:49:36 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,16 @@ void	unlink_sem(int nop)
 
 void	close_sem(t_philo_b *philo, t_data_b *data, int flag)
 {
-	int	idx;
-
 	if (data->fork)
 		sem_close(data->fork);
 	if (data->print)
 		sem_close(data->print);
-	idx = 0;
-	while (idx < data->num_of_philo)
-	{
-		if ((*philo)[idx].dead_flag.sem)
-			sem_close((*philo)[idx].dead_flag.sem);
-		if ((*philo)[idx].num_of_eaten.sem)
-			sem_close((*philo)[idx].num_of_eaten.sem);
-		if ((*philo)[idx].num_of_eaten.sem)
-			sem_close((*philo)[idx].last_time_eaten.sem);
-		idx++;
-	}
+	if (philo->dead_flag.sem)
+		sem_close(philo->dead_flag.sem);
+	if (philo->num_of_eaten.sem)
+		sem_close(philo->num_of_eaten.sem);
+	if (philo->num_of_eaten.sem)
+		sem_close(philo->last_time_eaten.sem);
 	if (flag == 1)
 		unlink_sem(data->num_of_philo);
 }
