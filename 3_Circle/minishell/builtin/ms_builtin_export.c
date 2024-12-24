@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ms_builtin_export.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/10 16:12:21 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/22 19:55:30 by hwilkim          ###   ########.fr       */
+/*   Created: 2024/12/12 18:43:14 by hwilkim           #+#    #+#             */
+/*   Updated: 2024/12/22 22:46:53 by hwilkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "ms_execute.h"
+#include "ms_builtin.h"
 #include "ms_env.h"
-#include "ms_utils.h"
 #include "libft.h"
 
-int	main(int argc, char **argv, char **envp)
+int	ms_builtin_export(char **argv)
 {
-	t_cmd_list	list;
-	int			exit_code;
+	int		i;
+	char	*delimiter;
 
-	(void) argc;
-	(void) argv;
-	set_env_state(envp);
-	script_loop(&list);
-	exit_code = ft_atoi(ms_get_env(MS_EXIT_CODE_KEY));
-	handle_hash_leak();
-	return (exit_code);
+	i = 1;
+	while (argv[i])
+	{
+		delimiter = ft_strchr(argv[i], '=');
+		if (delimiter)
+		{
+			*delimiter = '\0';
+			ms_set_env(argv[i], delimiter + 1);
+		}
+		++i;
+	}
+	return (0);
 }

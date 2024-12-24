@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ms_builtin_echo.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/10 16:12:21 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/22 19:55:30 by hwilkim          ###   ########.fr       */
+/*   Created: 2024/12/12 18:43:14 by hwilkim           #+#    #+#             */
+/*   Updated: 2024/12/12 19:39:48 by hwilkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "ms_execute.h"
-#include "ms_env.h"
+#include "ms_builtin.h"
 #include "ms_utils.h"
 #include "libft.h"
 
-int	main(int argc, char **argv, char **envp)
+int	ms_builtin_echo(char **argv)
 {
-	t_cmd_list	list;
-	int			exit_code;
+	int	new_line;
+	int	idx;
 
-	(void) argc;
-	(void) argv;
-	set_env_state(envp);
-	script_loop(&list);
-	exit_code = ft_atoi(ms_get_env(MS_EXIT_CODE_KEY));
-	handle_hash_leak();
-	return (exit_code);
+	new_line = !(argv[1] && ft_strcmp(argv[1], "-n") == 0);
+	if (new_line)
+		idx = 1;
+	else
+		idx = 2;
+	while (argv[idx])
+	{
+		ft_printf("%s", argv[idx]);
+		++idx;
+		if (argv[idx])
+			ft_printf(" ");
+	}
+	if (new_line)
+		ft_printf("\n");
+	return (0);
 }

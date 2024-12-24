@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ms_builtin_pwd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 18:02:07 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/22 22:41:36 by gitkim           ###   ########.fr       */
+/*   Created: 2024/12/12 18:43:14 by hwilkim           #+#    #+#             */
+/*   Updated: 2024/12/13 17:04:45 by hwilkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ms_builtin.h"
+#include "ms_env.h"
 #include "libft.h"
 
-int	ft_isalnum(int c)
+int	ms_builtin_pwd(char **argv)
 {
-	if (('a' <= c && c <= 'z')
-		|| ('A' <= c && c <= 'Z')
-		|| ('0' <= c && c <= '9')
-		|| c == '_')
-		return (1);
-	else
-		return (0);
+	(void) argv;
+	ft_printf("%s\n", ms_get_env("PWD"));
+	return (0);
 }

@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ms_builtin_unset.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 18:02:07 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/22 22:41:36 by gitkim           ###   ########.fr       */
+/*   Created: 2024/12/12 18:43:14 by hwilkim           #+#    #+#             */
+/*   Updated: 2024/12/22 22:46:51 by hwilkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ms_builtin.h"
+#include "ms_env.h"
 
-int	ft_isalnum(int c)
+int	ms_builtin_unset(char **argv)
 {
-	if (('a' <= c && c <= 'z')
-		|| ('A' <= c && c <= 'Z')
-		|| ('0' <= c && c <= '9')
-		|| c == '_')
-		return (1);
-	else
-		return (0);
+	int	i;
+
+	i = 1;
+	while (argv[i])
+	{
+		ms_del_env(argv[i]);
+		++i;
+	}
+	return (0);
 }

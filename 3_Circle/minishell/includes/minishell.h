@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 18:02:07 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/22 22:41:36 by gitkim           ###   ########.fr       */
+/*   Created: 2024/12/10 16:12:29 by gitkim            #+#    #+#             */
+/*   Updated: 2024/12/11 21:46:26 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
-int	ft_isalnum(int c)
-{
-	if (('a' <= c && c <= 'z')
-		|| ('A' <= c && c <= 'Z')
-		|| ('0' <= c && c <= '9')
-		|| c == '_')
-		return (1);
-	else
-		return (0);
-}
+# include "ms_struct.h"
+
+#endif

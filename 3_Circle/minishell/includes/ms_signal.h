@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ms_signal.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/10 16:12:21 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/22 19:55:30 by hwilkim          ###   ########.fr       */
+/*   Created: 2024/12/11 19:46:59 by hwilkim           #+#    #+#             */
+/*   Updated: 2024/12/22 21:31:39 by hwilkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include "ms_execute.h"
-#include "ms_env.h"
-#include "ms_utils.h"
-#include "libft.h"
+#ifndef MS_SIGNAL_H
+# define MS_SIGNAL_H
 
-int	main(int argc, char **argv, char **envp)
-{
-	t_cmd_list	list;
-	int			exit_code;
+# define MS_STORE_TERMINAL_STATE	1
+# define MS_RESTORE_TERMINAL_STATE	0
 
-	(void) argc;
-	(void) argv;
-	set_env_state(envp);
-	script_loop(&list);
-	exit_code = ft_atoi(ms_get_env(MS_EXIT_CODE_KEY));
-	handle_hash_leak();
-	return (exit_code);
-}
+/* ms_signal_heredoc */
+void	register_heredoc_signal_handler(t_cmd_list *list);
+void	terminal_state(int store_flag);
+
+/* ms_signal */
+void	register_signal_handler(void);
+void	block_signal(void);
+void	unblock_signal(void);
+
+#endif
