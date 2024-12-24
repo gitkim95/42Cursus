@@ -3,7 +3,7 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
 NAME = megaphone
 
-SOURCES = megaphone.cpp
+SOURCES = Megaphone.cpp
 OBJS = $(SOURCES:.cpp=.o)
 
 all : $(NAME)
