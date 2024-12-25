@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.cpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/24 18:35:53 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/24 22:52:48 by gitkim           ###   ########.fr       */
+/*   Created: 2024/12/25 19:25:38 by gitkim            #+#    #+#             */
+/*   Updated: 2024/12/25 19:30:31 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
+#include "Contact.hpp"
 #include "PhoneBook.hpp"
 
 int	main(void)
 {
 	std::string	input;
-	PhoneBook phonebook;
+	PhoneBook	phonebook;
 
 	while (1)
 	{

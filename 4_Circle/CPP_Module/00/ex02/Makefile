@@ -1,9 +1,10 @@
 C++ = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
-NAME = phonebook
+NAME = Account
 
-SOURCES = Phonebook.cpp
+SOURCES =	Account.cpp	\
+			tests.cpp
 OBJS = $(SOURCES:.cpp=.o)
 
 all : $(NAME)

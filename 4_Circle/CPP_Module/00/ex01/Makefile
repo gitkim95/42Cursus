@@ -1,9 +1,10 @@
 C++ = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
-NAME = megaphone
+NAME = phonebook
 
-SOURCES = megaphone.cpp
+SOURCES =	main.cpp		\
+			Phonebook.cpp
 OBJS = $(SOURCES:.cpp=.o)
 
 all : $(NAME)
