@@ -1,7 +1,7 @@
 C++ = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
-NAME = Account
+NAME = Zombie
 
 SOURCES =	main.cpp		\
 			Zombie.cpp		\

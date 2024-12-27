@@ -1,12 +1,9 @@
 C++ = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
-NAME = Account
+NAME = HI_THIS_IS_BRAIN
 
-SOURCES =	main.cpp		\
-			Zombie.cpp		\
-			newZombie.cpp	\
-			randomChump.cpp
+SOURCES =	main.cpp
 
 OBJS = $(SOURCES:.cpp=.o)
 

@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:40:32 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/21 22:11:56 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/27 23:38:36 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,3 @@ char	**append_cmd_options(char *arg)
 	}
 	return (argv);
 }
-
-// void	handle_heredoc_eof_quotes(t_cmd *node)
-// {
-
-// }
