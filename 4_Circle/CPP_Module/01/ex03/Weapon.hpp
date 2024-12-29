@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 22:14:39 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/27 22:20:56 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/29 20:50:31 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ class Weapon
 	private:
 		std::string	type;
 	public:
-		Weapon(/* args */);
+		Weapon();
+		Weapon( std::string type );
 		~Weapon();
 
-		std::string	getType();
-		void		setType( std::string str );
+		const std::string&	getType() const;
+		void				setType( std::string& str );
 };
 
 #endif

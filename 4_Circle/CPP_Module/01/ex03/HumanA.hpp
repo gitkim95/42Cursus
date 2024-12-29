@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 22:16:23 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/27 22:25:57 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/29 20:56:39 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@
 class HumanA
 {
 	private:
-		Weapon		weapon;
+		Weapon&		weapon;
 		std::string	name;
 	public:
-		HumanA(/* args */);
+		HumanA( std::string& name, Weapon& weapon );
 		~HumanA();
+
+		void	attack();
 };
 
 #endif
