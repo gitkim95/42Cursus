@@ -6,18 +6,18 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 00:07:45 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/29 20:50:29 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/30 01:49:38 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Weapon.hpp"
 
-const std::string&	Weapon::getType() const
+const std::string	Weapon::getType() const
 {
 	return (type);
 }
 
-void	Weapon::setType( std::string& str )
+void	Weapon::setType( std::string str )
 {
 	type = str;
 }

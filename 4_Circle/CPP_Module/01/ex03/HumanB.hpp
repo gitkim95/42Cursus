@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 22:15:56 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/29 20:57:29 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/30 02:09:27 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@
 class HumanB
 {
 	private:
-		Weapon		weapon;
 		std::string	name;
+		Weapon*		weapon;
 	public:
-		HumanB( std::string& name );
-		~HumanB();
+		HumanB( std::string name );
 
 		void	attack();
-		void	setWeapon( std::string newWeapon );
+		void	setWeapon( Weapon& newWeapon );
 };
 
 #endif
