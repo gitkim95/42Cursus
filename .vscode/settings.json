@@ -83,6 +83,7 @@
 		"typeinfo": "cpp",
 		"variant": "cpp",
 		"semaphore": "cpp",
-		"exam04": "cpp"
+		"exam04": "cpp",
+		"fstream": "cpp"
 	}
 }
