@@ -1,12 +1,10 @@
 C++ = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
-NAME = Account
+NAME = HarlFilter
 
 SOURCES =	main.cpp		\
-			Zombie.cpp		\
-			newZombie.cpp	\
-			randomChump.cpp
+			Harl.cpp
 
 OBJS = $(SOURCES:.cpp=.o)
 

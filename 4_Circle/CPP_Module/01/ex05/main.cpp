@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 19:57:35 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/30 19:58:49 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/31 19:07:25 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main()
 {
-	Harl harl;
+	Harl    harl;
 
     harl.complain("DEBUG");
     harl.complain("INFO");

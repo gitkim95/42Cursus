@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 19:24:58 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/30 20:39:14 by gitkim           ###   ########.fr       */
+/*   Updated: 2024/12/31 19:10:02 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ private:
 public:
 	Harl();
 
-	void	 	complain( std::string level );
+	void	 	complain( std::string input );
 };
 
 #endif
