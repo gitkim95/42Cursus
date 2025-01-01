@@ -6,14 +6,31 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 18:35:53 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/25 19:28:05 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/01 17:17:12 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
+#include <sstream>
+#include <iomanip>
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
+
+static int	isCorrectInput(int maxNum)
+{
+	std::stringstream	val;
+	std::string			searchIdx;
+	int					result;
+
+	std::getline(std::cin, searchIdx);
+	val << searchIdx;
+	val >> result;
+	if (val.fail() || result < 1 || result > maxNum)
+		return (-1);
+	else
+		return (result);
+}
 
 void	PhoneBook::add()
 {
@@ -23,13 +40,15 @@ void	PhoneBook::add()
 	contactNum++;
 	std::cout << "Addition successful\n";
 }
+
 void	PhoneBook::search()
 {
 	if (contactNum == 0)
-      	{
+    {
 		std::cout << "The phonebook is empty." << std::endl;
 		return ;
-      	}
+    }
+	std::cout << "  First name| Last name|  Nickname" << std::endl;
 	int	limit = (contactNum >= 8) ? 8 : contactNum;
 	for (int i = 0; i < limit; i++)
 	{
@@ -37,8 +56,8 @@ void	PhoneBook::search()
 		contacts[i].outputContact();
 	}
 	std::cout << "Please enter the contact number : ";
-	std::cin >> searchIdx;
-	if (!(0 <= searchIdx && searchIdx <= 7))
+	int	searchIdx = isCorrectInput(limit);
+	if (searchIdx == -1)
 		std::cout << "Wrong number!\n";
 	else
 		contacts[searchIdx - 1].displayContact();
@@ -47,34 +66,29 @@ void	PhoneBook::search()
 void	Contact::inputContact()
 {
 	std::cout << "Please enter First Name : ";
-	std::cin >> firstName;
+	std::getline(std::cin, firstName);
 	std::cout << "Please enter Last Name : ";
-	std::cin >> lastName;
+	std::getline(std::cin, lastName);
 	std::cout << "Please enter Nickname : ";
-	std::cin >> nickname;
+	std::getline(std::cin, nickname);
 	std::cout << "Please enter Phone Number : ";
-	std::cin >> phoneNumber;
+	std::getline(std::cin, phoneNumber);
 	std::cout << "Please enter Darkest Secret : ";
-	std::cin >> darkestSecret;
+	std::getline(std::cin, darkestSecret);
 }
 
 std::string	Contact::lengthNotTen(const std::string& str)
 {
-	if (str.length() < 10)
-	{
-		int	cnt = 10 - str.length();
-		return (std::string(cnt, ' ') + str);
-	}
-	else if (str.length() > 10)
+	if (str.length() > 10)
 		return (str.substr(0, 9) + ".");
 	else
 		return (str);
 }
 void	Contact::outputContact()
 {
-	std::cout	<< "|" << lengthNotTen(firstName)
-				<< "|" << lengthNotTen(lastName)
-				<< "|" << lengthNotTen(nickname) << "\n";
+	std::cout	<< "|" << std::setw(10) << lengthNotTen(firstName)
+				<< "|" << std::setw(10) << lengthNotTen(lastName)
+				<< "|" << std::setw(10) << lengthNotTen(nickname) << "\n";
 }
 
 void	Contact::displayContact()

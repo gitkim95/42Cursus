@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 20:32:37 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/25 19:28:41 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/01 17:06:42 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ class PhoneBook
 		void	search();
 
 	private:
-		Contact	contacts[8];
-		int		contactNum;
-		int		searchIdx;
+		Contact		contacts[8];
+		int			contactNum;
 };
 
 #endif
