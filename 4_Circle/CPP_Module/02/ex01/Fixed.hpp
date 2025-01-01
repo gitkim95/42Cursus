@@ -6,12 +6,14 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 15:23:56 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/01 16:00:39 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/01 18:31:21 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIXED_HPP
 # define FIXED_HPP
+
+#include <iostream>
 
 class Fixed
 {
@@ -20,10 +22,16 @@ private:
 	static const int	fractionalBits = 8;
 public:
 	Fixed();
-	Fixed(const Fixed& other);
-	Fixed& operator=(const Fixed& other);
+	Fixed( const int value );
+	Fixed( const float fValue );
+	Fixed( const Fixed& other );
 	~Fixed();
 
+	Fixed& operator=(const Fixed& other);
+	friend	std::ostream& operator<<(std::ostream& out, const Fixed& fixed);
+
+	float	toFloat( void ) const;
+	int		toInt( void ) const;
 	int		getRawBits( void ) const;
 	void	setRawBits( int const raw );
 };
