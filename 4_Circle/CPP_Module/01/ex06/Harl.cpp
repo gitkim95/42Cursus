@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 19:27:27 by gitkim            #+#    #+#             */
-/*   Updated: 2024/12/31 19:20:06 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/01 15:22:41 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,24 @@ void	Harl::complain( std::string input )
 	{
 		case (0):
 			(this->*funcPointer[0])();
-			goto case_1;
+			(this->*funcPointer[1])();
+			(this->*funcPointer[2])();
+			(this->*funcPointer[3])();
+			// goto case_1;
+			break ;
 		case (1):
 		case_1:
 			(this->*funcPointer[1])();
-			goto case_2;
+			(this->*funcPointer[2])();
+			(this->*funcPointer[3])();
+			// goto case_2;
+			break ;
 		case (2):
 		case_2:
 			(this->*funcPointer[2])();
-			goto case_3;
+			(this->*funcPointer[3])();
+			// goto case_3;
+			break ;
 		case (3):
 		case_3:
 			(this->*funcPointer[3])();
