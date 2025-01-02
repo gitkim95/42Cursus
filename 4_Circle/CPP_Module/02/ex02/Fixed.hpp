@@ -6,14 +6,14 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 15:23:56 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/02 11:25:18 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/02 15:51:04 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
-#include <iostream>
+# include <iostream>
 
 class Fixed
 {
@@ -27,20 +27,25 @@ public:
 	Fixed( const Fixed& other );
 	~Fixed();
 
-	Fixed& operator=(const Fixed& other);
+	Fixed&	operator=(const Fixed& other);
 	friend	std::ostream& operator<<(std::ostream& out, const Fixed& fixed);
 
-	Fixed& operator>(const Fixed& other);
-	Fixed& operator<(const Fixed& other);
-	Fixed& operator>=(const Fixed& other);
-	Fixed& operator<=(const Fixed& other);
-	Fixed& operator==(const Fixed& other);
-	Fixed& operator!=(const Fixed& other);
+	bool	operator>( const Fixed& other );
+	bool	operator<( const Fixed& other );
+	bool	operator>=( const Fixed& other );
+	bool	operator<=( const Fixed& other );
+	bool	operator==( const Fixed& other );
+	bool	operator!=( const Fixed& other );
 
-	Fixed& operator+(const Fixed& other);
-	Fixed& operator-(const Fixed& other);
-	Fixed& operator*(const Fixed& other);
-	Fixed& operator/(const Fixed& other);
+	Fixed&	operator+( const Fixed& other );
+	Fixed&	operator-( const Fixed& other );
+	Fixed&	operator*( const Fixed& other );
+	Fixed&	operator/( const Fixed& other );
+
+	Fixed&	operator++( void );
+	Fixed&	operator--( void );
+	Fixed&	operator++( int );
+	Fixed&	operator--( int );
 
 
 	float	toFloat( void ) const;
