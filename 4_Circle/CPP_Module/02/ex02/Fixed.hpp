@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 15:23:56 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/02 15:51:04 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/02 17:24:19 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ public:
 	Fixed&	operator++( int );
 	Fixed&	operator--( int );
 
+	static Fixed&	min( const Fixed& a, const Fixed& b );
+	static Fixed&	min( );
 
 	float	toFloat( void ) const;
 	int		toInt( void ) const;
