@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 15:23:56 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/02 20:09:24 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/03 13:47:53 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ public:
 	Fixed( const Fixed& other );
 	~Fixed();
 
-	Fixed&	operator=(const Fixed& other);
+	Fixed&	operator=( const Fixed& other );
 	friend	std::ostream&	operator<<(std::ostream& out, const Fixed& fixed);
 
 	bool	operator>( const Fixed& other ) const;

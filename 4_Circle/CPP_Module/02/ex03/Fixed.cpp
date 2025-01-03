@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 15:27:00 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/02 20:08:10 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/03 13:41:57 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	Fixed::setRawBits( int const raw )
 	value = raw;
 }
 
-Fixed& Fixed::operator=(const Fixed& other)
+Fixed&	Fixed::operator=(const Fixed& other)
 {
 	// std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &other)
@@ -70,7 +70,8 @@ Fixed& Fixed::operator=(const Fixed& other)
 	return (*this);
 }
 
-std::ostream& operator<<(std::ostream& out, const Fixed& fixed) {
+std::ostream& operator<<(std::ostream& out, const Fixed& fixed)
+{
     out << fixed.toFloat();
     return out;
 }
