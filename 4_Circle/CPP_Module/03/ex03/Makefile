@@ -1,12 +1,13 @@
 C++ = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
-NAME = FragTrap
+NAME = DiamondTrap
 
 SOURCES =	main.cpp		\
 			ClapTrap.cpp	\
 			ScavTrap.cpp	\
-			FragTrap.cpp
+			FragTrap.cpp	\
+			DiamondTrap.cpp
 
 OBJS = $(SOURCES:.cpp=.o)
 

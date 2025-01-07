@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 00:42:18 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 00:45:10 by gitkim           ###   ########.fr       */
+/*   Created: 2025/01/08 00:56:12 by gitkim            #+#    #+#             */
+/*   Updated: 2025/01/08 02:08:38 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_HPP
-# define FRAGTRAP_HPP
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
+# include <string>
 # include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap
+class ScavTrap : public ClapTrap
 {
 public:
-	FragTrap( void );
-	FragTrap( std::string name );
-	FragTrap( const FragTrap& other );
-	~FragTrap();
+	ScavTrap( void );
+	ScavTrap( std::string name );
+	ScavTrap( const ScavTrap& other );
+	~ScavTrap();
 	
-	void	highFivesGuys( void );
+	void	guardGate( void );
 	
-	FragTrap&				operator=( const FragTrap& other );
-	friend std::ostream&	operator<<( std::ostream& out, const FragTrap& FragTrap );
+	ScavTrap&				operator=( const ScavTrap& other );
+	friend std::ostream&	operator<<( std::ostream& out, const ScavTrap& scavTrap );
 
 	void	attack( const std::string& target );
 };
-
 
 #endif
