@@ -3,11 +3,13 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
 NAME = Polimorphism
 
-SOURCES =	main.cpp	\
-			Animal.cpp	\
-			Cat.cpp		\
-			Dog.cpp			
-
+SOURCES =	main.cpp		\
+			Animal.cpp		\
+			Cat.cpp			\
+			Dog.cpp			\
+			WrongAnimal.cpp	\
+			WrongCat.cpp
+			
 OBJS = $(SOURCES:.cpp=.o)
 
 all : $(NAME)
