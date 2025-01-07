@@ -5,7 +5,8 @@ NAME = ScavTrap
 
 SOURCES =	main.cpp		\
 			ClapTrap.cpp	\
-			ScavTrap.cpp
+			ScavTrap.cpp	\
+			FragTrap.cpp
 
 OBJS = $(SOURCES:.cpp=.o)
 
