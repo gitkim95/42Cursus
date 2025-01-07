@@ -1,7 +1,7 @@
 C++ = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
-NAME = ScavTrap
+NAME = FragTrap
 
 SOURCES =	main.cpp		\
 			ClapTrap.cpp	\
