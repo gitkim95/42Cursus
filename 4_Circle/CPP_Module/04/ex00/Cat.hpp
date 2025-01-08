@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 02:53:33 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 03:27:03 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/08 18:47:50 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ public:
 
 	Cat&					operator=( const Cat& other );
 	friend std::ostream&	operator<<( std::ostream& out, const Cat& Cat );
+
+	void	makeSound( void ) const;
 };
 
 #endif

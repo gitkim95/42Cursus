@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 03:27:15 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 03:41:05 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/08 18:49:18 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,9 @@ std::ostream&	operator<<( std::ostream& out, const Cat& Cat )
 {
 	out	<< Cat.type << std::endl;
 	return (out);
+}
+
+void	Cat::makeSound( void ) const
+{
+	std::cout << "meowwww.." << std::endl;
 }

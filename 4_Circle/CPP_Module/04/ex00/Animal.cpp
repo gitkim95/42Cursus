@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 02:59:56 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 03:39:04 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/08 18:49:34 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,7 @@ std::ostream&	operator<<( std::ostream& out, const Animal& Animal )
 
 void	Animal::makeSound( void ) const
 {
-	if (!type.compare("Dog"))
-	{
-		std::cout << "grrrrrr.." << std::endl;
-	}
-	else if (!type.compare("Cat"))
-	{
-		std::cout << "miaoooo.." << std::endl;
-	}
-	else
-	{
-		std::cout << "Silent..." << std::endl;
-	}
+	std::cout << "Silent..." << std::endl;
 }
 
 std::string	Animal::getType( void ) const

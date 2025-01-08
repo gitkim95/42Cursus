@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 03:28:32 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 03:40:55 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/08 18:49:22 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,9 @@ std::ostream&	operator<<( std::ostream& out, const Dog& Dog )
 {
 	out	<< Dog.type << std::endl;
 	return (out);
+}
+
+void	Dog::makeSound( void ) const
+{
+	std::cout << "grrrrrr.." << std::endl;
 }
