@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:56:36 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 02:45:09 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/08 16:46:01 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ int main()
     DiamondTrap diamond3("DiamondThree");
     diamond3.attack("TargetTwo");
     diamond3.whoAmI();
+    std::cout << std::endl;
+
+    DiamondTrap diamond4(diamond3);
+    diamond4.attack("TargetThree");
+    diamond4.whoAmI();
     std::cout << std::endl;
 
     return (0);

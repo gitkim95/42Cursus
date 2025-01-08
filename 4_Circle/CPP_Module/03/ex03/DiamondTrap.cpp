@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:57:30 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 15:58:04 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/08 16:44:39 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ DiamondTrap::DiamondTrap( std::string name ) : ScavTrap(name + "_clap_name"), Fr
 	std::cout << "DiamondTrap parameterized constructor called for: " << name << std::endl;
 }
 
-DiamondTrap::DiamondTrap( const DiamondTrap& other ) : ScavTrap(other), FragTrap(other)
+DiamondTrap::DiamondTrap( const DiamondTrap& other ) : ClapTrap(other.name + "_clap_name"), ScavTrap(other), FragTrap(other), name(other.name)
 {
 	std::cout << "DiamondTrap Copy constructor called" << std::endl;
 }
