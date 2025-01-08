@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:55:55 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 00:55:56 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/08 18:38:49 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,19 @@ void	FragTrap::attack( const std::string& target )
 				<< " points of damage!"
 				<< std::endl;
 	this->energyPoints--;
+}
+
+unsigned int	FragTrap::getHitPoints( void ) const
+{
+	return (100);
+}
+
+unsigned int	FragTrap::getEnergyPoints( void ) const
+{
+	return (100);
+}
+
+unsigned int	FragTrap::getAttackDamage( void ) const
+{
+	return (30);
 }

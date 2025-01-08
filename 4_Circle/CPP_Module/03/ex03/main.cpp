@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:56:36 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 16:46:01 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/08 18:42:02 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int main()
 {
     // 1. 기본 생성자 및 생성자에서 출력된 메시지 확인
     DiamondTrap diamond1("DiamondOne");
+    std::cout << diamond1 << std::endl;
     std::cout << std::endl;
 
     // 2. DiamondTrap의 고유 함수 `whoAmI` 호출
@@ -31,17 +32,21 @@ int main()
     // DiamondTrap 객체가 스코프를 벗어나면 소멸자가 호출됨
     {
         DiamondTrap diamond2("DiamondTwo");
+        std::cout << diamond2 << std::endl;
     }
     std::cout << std::endl;
     
     // 5. 여러 객체 테스트
     DiamondTrap diamond3("DiamondThree");
+    std::cout << diamond3 << std::endl;
     diamond3.attack("TargetTwo");
     diamond3.whoAmI();
     std::cout << std::endl;
 
     DiamondTrap diamond4(diamond3);
+    std::cout << diamond4 << std::endl;
     diamond4.attack("TargetThree");
+    std::cout << diamond4 << std::endl;
     diamond4.whoAmI();
     std::cout << std::endl;
 

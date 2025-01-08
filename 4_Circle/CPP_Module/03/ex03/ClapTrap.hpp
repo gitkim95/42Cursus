@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:55:50 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 00:55:50 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/08 18:30:02 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ public:
 	void			takeDamage( unsigned int amount );
 	void			beRepaired( unsigned int amount );
 
-	std::string		getName( void );
-	unsigned int	getHitPoints( void );
-	unsigned int	getEnergyPoints( void );
-	unsigned int	getAttackDamage( void );
+	std::string				getName( void ) const;
+	virtual unsigned int	getHitPoints( void ) const;
+	virtual unsigned int	getEnergyPoints( void ) const;
+	virtual unsigned int	getAttackDamage( void ) const;
 };
 
 #endif

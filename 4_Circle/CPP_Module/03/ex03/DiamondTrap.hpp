@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:57:04 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 02:39:47 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/08 18:35:14 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ public:
 	friend std::ostream&	operator<<( std::ostream& out, const DiamondTrap& DiamondTrap );
 
 	void	attack( const std::string& target );
+
+	virtual unsigned int	getHitPoints( void ) const;
+	virtual unsigned int	getEnergyPoints( void ) const;
+	virtual unsigned int	getAttackDamage( void ) const;
 };
 
 #endif

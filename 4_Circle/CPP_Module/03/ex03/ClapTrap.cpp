@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:55:46 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 00:55:47 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/08 17:56:00 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,21 +110,21 @@ void	ClapTrap::beRepaired( unsigned int amount )
 	this->hitPoints += amount;
 	this->energyPoints--;
 }
-std::string	ClapTrap::getName( void )
+std::string	ClapTrap::getName( void ) const
 {
-	return (this->name);
+	return (name);
 }
 
-unsigned int	ClapTrap::getHitPoints( void )
+unsigned int	ClapTrap::getHitPoints( void ) const
 {
-	return (this->hitPoints);
+	return (hitPoints);
 }
-unsigned int	ClapTrap::getEnergyPoints( void )
+unsigned int	ClapTrap::getEnergyPoints( void ) const
 {
-	return (this->energyPoints);
+	return (energyPoints);
 }
 
-unsigned int	ClapTrap::getAttackDamage( void )
+unsigned int	ClapTrap::getAttackDamage( void ) const
 {
-	return (this->attackDamage);
+	return (attackDamage);
 }

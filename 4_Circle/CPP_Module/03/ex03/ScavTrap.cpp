@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:56:08 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 00:56:09 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/08 18:38:57 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,19 @@ void	ScavTrap::attack( const std::string& target )
 				<< " points of damage!"
 				<< std::endl;
 	this->energyPoints--;
+}
+
+unsigned int	ScavTrap::getHitPoints( void ) const
+{
+	return (100);
+}
+
+unsigned int	ScavTrap::getEnergyPoints( void ) const
+{
+	return (50);
+}
+
+unsigned int	ScavTrap::getAttackDamage( void ) const
+{
+	return (20);
 }

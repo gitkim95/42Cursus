@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:57:30 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 16:44:39 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/08 18:45:13 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@
 
 DiamondTrap::DiamondTrap( void ) : ScavTrap(), FragTrap(), name("nonamed")
 {
-	hitPoints = FragTrap::getHitPoints();
-	energyPoints = ScavTrap::getEnergyPoints();
-	attackDamage = FragTrap::getAttackDamage();
+	hitPoints = getHitPoints();
+	energyPoints = getEnergyPoints();
+	attackDamage = getAttackDamage();
     std::cout << "DiamondTrap default constructor called" << std::endl;
 }
 
-DiamondTrap::DiamondTrap( std::string name ) : ScavTrap(name + "_clap_name"), FragTrap(name + "_clap_name"), name(name)
+DiamondTrap::DiamondTrap( std::string name ) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name), name(name)
 {
-	hitPoints = FragTrap::getHitPoints();
-	energyPoints = ScavTrap::getEnergyPoints();
-	attackDamage = FragTrap::getAttackDamage();
+	hitPoints = getHitPoints();
+	energyPoints = getEnergyPoints();
+	attackDamage = getAttackDamage();
 	std::cout << "DiamondTrap parameterized constructor called for: " << name << std::endl;
 }
 
-DiamondTrap::DiamondTrap( const DiamondTrap& other ) : ClapTrap(other.name + "_clap_name"), ScavTrap(other), FragTrap(other), name(other.name)
+DiamondTrap::DiamondTrap( const DiamondTrap& other ) : ClapTrap(other), ScavTrap(other), FragTrap(other), name(other.name)
 {
 	std::cout << "DiamondTrap Copy constructor called" << std::endl;
 }
@@ -70,4 +70,19 @@ void	DiamondTrap::whoAmI( void )
 void	DiamondTrap::attack( const std::string& target )
 {
 	ScavTrap::attack(target);
+}
+
+unsigned int	DiamondTrap::getHitPoints( void ) const
+{
+	return (FragTrap::getHitPoints());
+}
+
+unsigned int	DiamondTrap::getEnergyPoints( void ) const
+{
+	return (ScavTrap::getEnergyPoints());
+}
+
+unsigned int	DiamondTrap::getAttackDamage( void ) const
+{
+	return (FragTrap::getAttackDamage());
 }
