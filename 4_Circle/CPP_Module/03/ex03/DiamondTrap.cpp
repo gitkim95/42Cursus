@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:57:30 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 02:41:58 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/08 15:58:04 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@
 
 DiamondTrap::DiamondTrap( void ) : ScavTrap(), FragTrap(), name("nonamed")
 {
-	FragTrap::hitPoints = FragTrap::getHitPoints();
-	ScavTrap::energyPoints = ScavTrap::getEnergyPoints();
-	FragTrap::attackDamage = FragTrap::getAttackDamage();
+	hitPoints = FragTrap::getHitPoints();
+	energyPoints = ScavTrap::getEnergyPoints();
+	attackDamage = FragTrap::getAttackDamage();
     std::cout << "DiamondTrap default constructor called" << std::endl;
 }
 
 DiamondTrap::DiamondTrap( std::string name ) : ScavTrap(name + "_clap_name"), FragTrap(name + "_clap_name"), name(name)
 {
-	FragTrap::hitPoints = FragTrap::getHitPoints();
-	ScavTrap::energyPoints = ScavTrap::getEnergyPoints();
-	FragTrap::attackDamage = FragTrap::getAttackDamage();
+	hitPoints = FragTrap::getHitPoints();
+	energyPoints = ScavTrap::getEnergyPoints();
+	attackDamage = FragTrap::getAttackDamage();
 	std::cout << "DiamondTrap parameterized constructor called for: " << name << std::endl;
 }
 
@@ -46,7 +46,7 @@ DiamondTrap&	DiamondTrap::operator=( const DiamondTrap& other )
 {
 	if (this != &other)
 	{
-		FragTrap::operator=(other);
+		operator=(other);
 	}
 	std::cout << "DiamondTrap Copy assignment operator called" << std::endl;
 	return (*this);
@@ -54,10 +54,10 @@ DiamondTrap&	DiamondTrap::operator=( const DiamondTrap& other )
 
 std::ostream&	operator<<( std::ostream& out, const DiamondTrap& DiamondTrap )
 {
-	out	<< "DiamondTrap " << DiamondTrap.ScavTrap::name
-		<< " [HP: " << DiamondTrap.FragTrap::hitPoints
-		<< ", Energy: " << DiamondTrap.ScavTrap::energyPoints
-		<< ", Attack Damage: " << DiamondTrap.FragTrap::attackDamage
+	out	<< "DiamondTrap " << DiamondTrap.name
+		<< " [HP: " << DiamondTrap.hitPoints
+		<< ", Energy: " << DiamondTrap.energyPoints
+		<< ", Attack Damage: " << DiamondTrap.attackDamage
 		<< "]";
 	return (out);
 }
