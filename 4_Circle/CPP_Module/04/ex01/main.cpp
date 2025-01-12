@@ -6,14 +6,13 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 02:57:17 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/12 22:39:01 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/12 23:26:35 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Cat.hpp"
 #include "Dog.hpp"
-#include "WrongCat.hpp"
 
 int main() {
     const int N = 6;
