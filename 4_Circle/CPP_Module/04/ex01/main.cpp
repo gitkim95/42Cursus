@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 02:57:17 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/12 16:41:00 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/12 18:58:48 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,35 @@
 #include "Dog.hpp"
 #include "WrongCat.hpp"
 
-int	main()
-{
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
-	meta->makeSound();
-	delete(meta);
-	delete(j);
-	delete(i);
+int main() {
+    const int N = 6;
+    Animal* animals[N];
 
-	const WrongAnimal* meta2 = new WrongAnimal();
-	const WrongAnimal* j2 = new WrongCat();
-	std::cout << j2->getType() << " " << std::endl;
-	j2->makeSound();
-	meta2->makeSound();
-	delete(meta2);
-	delete(j2);
-	return 0;
+    // Half Dog, Half Cat
+    for (int i = 0; i < N / 2; ++i) {
+        animals[i] = new Dog();
+    }
+    for (int i = N / 2; i < N; ++i) {
+        animals[i] = new Cat();
+    }
+
+    // Test copy constructor and assignment operator
+    Dog dogCopy = *dynamic_cast<Dog*>(animals[0]);
+    Cat catCopy = *dynamic_cast<Cat*>(animals[N / 2]);
+
+    // Test assignment
+    *dynamic_cast<Dog*>(animals[1]) = dogCopy;
+    *dynamic_cast<Cat*>(animals[3]) = catCopy;
+
+    // Make sounds
+    for (int i = 0; i < N; ++i) {
+        animals[i]->makeSound();
+    }
+
+    // Clean up and delete animals
+    for (int i = 0; i < N; ++i) {
+        delete animals[i];
+    }
+
+    return 0;
 }
