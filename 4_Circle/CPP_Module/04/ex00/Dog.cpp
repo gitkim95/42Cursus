@@ -6,14 +6,13 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 03:28:32 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 18:49:22 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/12 16:37:40 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
 #include "Dog.hpp"
-#include "Animal.hpp"
 
 Dog::Dog( void ) : Animal()
 {

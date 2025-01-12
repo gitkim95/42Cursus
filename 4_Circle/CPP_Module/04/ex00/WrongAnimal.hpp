@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 03:44:43 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 03:47:22 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/12 16:32:47 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ public:
 	WrongAnimal&					operator=( const WrongAnimal& other );
 	friend std::ostream&	operator<<( std::ostream& out, const WrongAnimal& WrongAnimal );
 
-	void		makeSound( void ) const;
-	std::string	getType( void ) const;
+	virtual void	makeSound( void ) const;
+	std::string		getType( void ) const;
 };
 
 #endif

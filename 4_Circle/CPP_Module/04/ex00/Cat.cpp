@@ -6,14 +6,13 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 03:27:15 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 18:49:18 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/12 16:37:28 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
 #include "Cat.hpp"
-#include "Animal.hpp"
 
 Cat::Cat( void ) : Animal()
 {
