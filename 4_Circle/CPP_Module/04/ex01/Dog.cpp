@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 03:28:32 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/12 18:30:34 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/12 23:16:54 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ Dog::~Dog()
 
 Dog&	Dog::operator=( const Dog& other )
 {
+	std::cout << "Dog Copy assignment operator called" << std::endl;
 	if (this != &other)
 	{
 		if (dogsBrain)
 			delete (dogsBrain);
 		Animal::operator=(other);
-		*dogsBrain = *other.dogsBrain;
+		dogsBrain = new Brain(*other.dogsBrain);
 	}
 	return (*this);
 }

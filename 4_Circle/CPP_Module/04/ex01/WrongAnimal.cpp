@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 03:44:20 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/12 18:18:48 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/12 23:06:50 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ WrongAnimal::~WrongAnimal()
 
 WrongAnimal&	WrongAnimal::operator=( const WrongAnimal& other )
 {
+	std::cout << "WrongAnimal Copy assignment operator called" << std::endl;
 	if (this != &other)
 	{
 		type = other.type;

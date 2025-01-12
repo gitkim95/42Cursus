@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 17:01:12 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/12 18:08:51 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/12 23:06:14 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ Brain::~Brain()
 
 Brain&	Brain::operator=( const Brain& other )
 {
+	std::cout << "Brain Copy assignment operator called" << std::endl;
 	if (this != &other)
 	{
 		for (int i = 0; i < 100; i++)

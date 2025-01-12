@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 03:44:32 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/12 18:19:01 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/12 23:07:01 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ WrongCat::~WrongCat()
 
 WrongCat&	WrongCat::operator=( const WrongCat& other )
 {
+	std::cout << "WrongCat Copy assignment operator called" << std::endl;
 	if (this != &other)
 	{
 		type = other.type;
