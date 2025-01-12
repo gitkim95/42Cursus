@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 03:44:20 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/12 16:35:09 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/12 18:17:40 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@
 WrongAnimal::WrongAnimal( void ) : type("nonamed")
 {
 	std::cout << "WrongAnimal Default constructor called" << std::endl;
-}
-
-WrongAnimal::WrongAnimal( std::string type ) : type(type)
-{
-	std::cout << "WrongAnimal parameterized constructor called for: " << type << std::endl;
 }
 
 WrongAnimal::WrongAnimal( const WrongAnimal& other )

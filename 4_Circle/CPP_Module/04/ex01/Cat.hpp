@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 03:44:43 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/12 18:17:44 by gitkim           ###   ########.fr       */
+/*   Created: 2025/01/08 02:53:33 by gitkim            #+#    #+#             */
+/*   Updated: 2025/01/12 18:18:35 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-# define WRONGANIMAL_HPP
+#ifndef CAT_HPP
+# define CAT_HPP
 
-# include <string>
+# include "Animal.hpp"
+# include "Brain.hpp"
 
-class WrongAnimal
+class Cat : public Animal
 {
-protected:
-	std::string	type;
+private:
+	Brain*	catsBrain;
 public:
-	WrongAnimal( void );
-	WrongAnimal( const WrongAnimal& other );
-	virtual ~WrongAnimal();
+	Cat( void );
+	Cat( const Cat& other );
+	virtual ~Cat();
 
-	WrongAnimal&					operator=( const WrongAnimal& other );
-	friend std::ostream&	operator<<( std::ostream& out, const WrongAnimal& WrongAnimal );
+	Cat&					operator=( const Cat& other );
+	friend std::ostream&	operator<<( std::ostream& out, const Cat& Cat );
 
-	virtual void	makeSound( void ) const;
-	std::string		getType( void ) const;
+	void	makeSound( void ) const;
 };
 
 #endif

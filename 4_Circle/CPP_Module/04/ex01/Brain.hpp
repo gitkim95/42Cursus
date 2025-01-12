@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 03:44:43 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/12 18:17:44 by gitkim           ###   ########.fr       */
+/*   Created: 2025/01/12 17:01:09 by gitkim            #+#    #+#             */
+/*   Updated: 2025/01/12 18:13:34 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-# define WRONGANIMAL_HPP
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 
 # include <string>
 
-class WrongAnimal
+class Brain
 {
-protected:
-	std::string	type;
+private:
+	std::string	ideas[100];
 public:
-	WrongAnimal( void );
-	WrongAnimal( const WrongAnimal& other );
-	virtual ~WrongAnimal();
+	Brain( void );
+	Brain( const Brain& other );
+	~Brain();
 
-	WrongAnimal&					operator=( const WrongAnimal& other );
-	friend std::ostream&	operator<<( std::ostream& out, const WrongAnimal& WrongAnimal );
-
-	virtual void	makeSound( void ) const;
-	std::string		getType( void ) const;
+	Brain&	operator=( const Brain& other );
 };
 
 #endif

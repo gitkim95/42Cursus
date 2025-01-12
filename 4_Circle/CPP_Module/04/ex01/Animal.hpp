@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 03:44:43 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/12 18:17:44 by gitkim           ###   ########.fr       */
+/*   Created: 2025/01/08 02:53:33 by gitkim            #+#    #+#             */
+/*   Updated: 2025/01/12 18:18:13 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WRONGANIMAL_HPP
-# define WRONGANIMAL_HPP
+#ifndef ANIMAL_HPP
+# define ANIMAL_HPP
 
 # include <string>
 
-class WrongAnimal
+class Animal
 {
 protected:
 	std::string	type;
 public:
-	WrongAnimal( void );
-	WrongAnimal( const WrongAnimal& other );
-	virtual ~WrongAnimal();
+	Animal( void );
+	Animal( const Animal& other );
+	virtual ~Animal();
 
-	WrongAnimal&					operator=( const WrongAnimal& other );
-	friend std::ostream&	operator<<( std::ostream& out, const WrongAnimal& WrongAnimal );
+	Animal&					operator=( const Animal& other );
+	friend std::ostream&	operator<<( std::ostream& out, const Animal& Animal );
 
 	virtual void	makeSound( void ) const;
 	std::string		getType( void ) const;
+	
 };
 
 #endif

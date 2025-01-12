@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 02:53:33 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 18:47:44 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/12 18:17:33 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ class Dog : public Animal
 {
 public:
 	Dog( void );
-	Dog( std::string type );
 	Dog( const Dog& other );
 	virtual ~Dog();
 

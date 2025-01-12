@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 02:53:33 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 18:47:27 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/12 18:17:24 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ protected:
 	std::string	type;
 public:
 	Animal( void );
-	Animal( std::string type );
 	Animal( const Animal& other );
 	virtual ~Animal();
 

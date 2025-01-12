@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 03:44:32 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/12 16:40:27 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/12 18:17:51 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,6 @@ WrongCat::WrongCat( void ) : WrongAnimal()
 {
 	type = "WrongCat";
 	std::cout << "WrongCat Default constructor called" << std::endl;
-}
-
-WrongCat::WrongCat( std::string type ) : WrongAnimal(type)
-{
-	type = "WrongCat";
-	std::cout << "WrongCat parameterized constructor called for: " << type << std::endl;
 }
 
 WrongCat::WrongCat( const WrongCat& other ) : WrongAnimal(other)

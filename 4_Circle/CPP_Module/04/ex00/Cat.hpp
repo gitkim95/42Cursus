@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 02:53:33 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 18:47:50 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/12 18:17:27 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ class Cat : public Animal
 {
 public:
 	Cat( void );
-	Cat( std::string type );
 	Cat( const Cat& other );
 	virtual ~Cat();
 

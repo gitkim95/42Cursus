@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 03:28:32 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/12 18:17:31 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/12 18:30:34 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,20 @@
 #include <string>
 #include "Dog.hpp"
 
-Dog::Dog( void ) : Animal()
+Dog::Dog( void ) : Animal(), dogsBrain(new Brain())
 {
 	type = "Dog";
 	std::cout << "Dog Default constructor called" << std::endl;
 }
 
-Dog::Dog( const Dog& other ) : Animal(other)
+Dog::Dog( const Dog& other ) : Animal(other), dogsBrain(new Brain(*other.dogsBrain))
 {
 	std::cout << "Dog Copy constructor called" << std::endl;
 }
 
 Dog::~Dog()
 {
+	delete (dogsBrain);
 	std::cout << "Dog Destructor called" << std::endl;
 }
 
@@ -34,7 +35,10 @@ Dog&	Dog::operator=( const Dog& other )
 {
 	if (this != &other)
 	{
-		type = other.type;
+		if (dogsBrain)
+			delete (dogsBrain);
+		Animal::operator=(other);
+		*dogsBrain = *other.dogsBrain;
 	}
 	return (*this);
 }
