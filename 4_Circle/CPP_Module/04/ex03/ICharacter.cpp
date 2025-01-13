@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cure.hpp                                           :+:      :+:    :+:   */
+/*   ICharacter.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 20:29:54 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/13 20:42:45 by gitkim           ###   ########.fr       */
+/*   Created: 2025/01/13 20:55:36 by gitkim            #+#    #+#             */
+/*   Updated: 2025/01/13 20:56:16 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CURE_HPP
-# define CURE_HPP
+#include "ICharacter.hpp"
 
-# include "AMateria.hpp"
-
-class Cure : public AMateria
+ICharacter::ICharacter( void )
 {
-public:
-	Cure( void );
-	Cure( const Cure& other );
-	~Cure();
 
-	Cure&	operator=( const Cure& other );
+}
 
-	virtual	Cure*	clone( void ) const;
-	virtual	void	use( ICharacter& target );
-};
+ICharacter::ICharacter( const ICharacter& other )
+{
 
-#endif
+}
+
+ICharacter::~ICharacter( void )
+{
+
+}
+
+ICharacter&	ICharacter::operator=( const ICharacter& other )
+{
+
+}

@@ -1,41 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.cpp                                       :+:      :+:    :+:   */
+/*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 18:22:21 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/13 20:29:37 by gitkim           ###   ########.fr       */
+/*   Created: 2025/01/13 20:41:43 by gitkim            #+#    #+#             */
+/*   Updated: 2025/01/13 20:52:25 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "AMateria.hpp"
+#include "Ice.hpp"
 
-AMateria::AMateria( void ) : type("untyped") {}
+Ice::Ice( void ) : AMateria()
+{
+	type = "ice";
+}
 
-AMateria::AMateria( std::string const &type ) : type(type) {}
+Ice::Ice( const Ice& other ) : AMateria(other) {}
 
-AMateria::AMateria( const AMateria& other ) : type(other.type) {}
+Ice::~Ice() {}
 
-AMateria::~AMateria() {}
-
-AMateria&	AMateria::operator=( const AMateria& other )
+Ice&	Ice::operator=( const Ice& other )
 {
 	if (this != &other)
 	{
-		type = other.type;
+		AMateria::operator=(other);
 	}
 	return (*this);
 }
 
-std::string const& AMateria::getType( void ) const
+Ice*	Ice::clone( void ) const
 {
-	return (type);
+	return (new Ice(*this));
 }
 
-void AMateria::use( ICharacter& target )
+void	Ice::use( ICharacter& target )
 {
-	std::cout << "* There is no type *" << std::endl;
+	std::cout <<  "* shoots an ice bolt at <name> *" << std::endl;
 }

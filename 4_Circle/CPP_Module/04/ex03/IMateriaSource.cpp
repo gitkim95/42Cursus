@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cure.hpp                                           :+:      :+:    :+:   */
+/*   IMateriaSource.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 20:29:54 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/13 20:42:45 by gitkim           ###   ########.fr       */
+/*   Created: 2025/01/13 20:56:31 by gitkim            #+#    #+#             */
+/*   Updated: 2025/01/13 20:57:20 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CURE_HPP
-# define CURE_HPP
+#include "IMateriaSource.hpp"
 
-# include "AMateria.hpp"
-
-class Cure : public AMateria
+IMateriaSource::IMateriaSource( void )
 {
-public:
-	Cure( void );
-	Cure( const Cure& other );
-	~Cure();
 
-	Cure&	operator=( const Cure& other );
+}
 
-	virtual	Cure*	clone( void ) const;
-	virtual	void	use( ICharacter& target );
-};
+IMateriaSource::IMateriaSource( const IMateriaSource& other )
+{
 
-#endif
+}
+
+IMateriaSource::~IMateriaSource()
+{
+
+}
+
+IMateriaSource&	IMateriaSource::operator=( const IMateriaSource& other )
+{
+
+}

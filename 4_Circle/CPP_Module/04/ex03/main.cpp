@@ -1,3 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/13 20:38:50 by gitkim            #+#    #+#             */
+/*   Updated: 2025/01/13 20:57:31 by gitkim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "Ice.hpp"
+#include "Cure.hpp"
+#include "ICharacter.hpp"
+#include "IMateriaSource.hpp"
+
 int main()
 {
 IMateriaSource* src = new MateriaSource();

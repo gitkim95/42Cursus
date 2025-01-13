@@ -1,41 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.cpp                                       :+:      :+:    :+:   */
+/*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 18:22:21 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/13 20:29:37 by gitkim           ###   ########.fr       */
+/*   Created: 2025/01/13 20:39:52 by gitkim            #+#    #+#             */
+/*   Updated: 2025/01/13 20:51:30 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "AMateria.hpp"
+#include "Cure.hpp"
 
-AMateria::AMateria( void ) : type("untyped") {}
+Cure::Cure( void ) : AMateria()
+{
+	type = "cure";
+}
 
-AMateria::AMateria( std::string const &type ) : type(type) {}
+Cure::Cure( const Cure& other ) : AMateria(other) {}
 
-AMateria::AMateria( const AMateria& other ) : type(other.type) {}
+Cure::~Cure() {}
 
-AMateria::~AMateria() {}
-
-AMateria&	AMateria::operator=( const AMateria& other )
+Cure&	Cure::operator=( const Cure& other )
 {
 	if (this != &other)
 	{
-		type = other.type;
+		AMateria::operator=(other);
 	}
 	return (*this);
 }
 
-std::string const& AMateria::getType( void ) const
+Cure*	Cure::clone( void ) const
 {
-	return (type);
+	return (new Cure(*this));
 }
 
-void AMateria::use( ICharacter& target )
+void	Cure::use( ICharacter& target )
 {
-	std::cout << "* There is no type *" << std::endl;
+	std::cout <<  "* heals <name>’s wounds *" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 23:57:44 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/13 01:19:40 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/13 22:03:57 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define AMATERIA_HPP
 
 # include <string>
+# include "ICharacter.hpp"
 
 class AMateria
 {
@@ -27,9 +28,9 @@ public:
 
 	AMateria&	operator=( const AMateria& other );
 
-	std::string const &getType( void ) const; //Returns the materia type
-	virtual AMateria* clone( void ) const = 0;
-	virtual void use( ICharacter& target );
+	std::string const&	getType( void ) const;
+	virtual	AMateria*	clone( void ) const = 0;
+	virtual	void		use( ICharacter& target );
 };
 
 #endif
