@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 23:06:12 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/17 23:13:28 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/18 00:03:33 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ class Form
 private:
 	std::string const	name;
 	bool				sign;
-	int const			requiredSignGrade;
-	int const			requiredExecuteGrade;
+	int const			signGrade;
+	int const			executeGrade;
 public:
 	Form( void );
-	Form( std::string name, int grade );
+	Form( std::string name, int signGrade, int executeGrade );
 	Form( const Form& other );
 	~Form( void );
 

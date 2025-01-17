@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 23:13:50 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/17 23:56:19 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/18 00:03:30 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ Form&	Form::operator=( const Form& other )
 	}
 	return (*this);
 }
-
+// ========================================
 std::ostream&	operator<<( std::ostream& out, const Form& bureaucrat )
 {
 	out	<< bureaucrat.name
