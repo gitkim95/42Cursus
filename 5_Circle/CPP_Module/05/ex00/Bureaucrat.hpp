@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 20:43:18 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/16 22:00:43 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/17 22:52:22 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ public:
 	class	GradeTooHighException : public std::exception
 	{
 	public:
-	
+		const char* what() const throw();
 	};
 	class	GradeTooLowException : public std::exception
 	{
 	public:
-	
+		const char* what() const throw();
 	};
 };
 
