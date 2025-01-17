@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 22:00:52 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/17 22:52:31 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/17 23:52:02 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ Bureaucrat&	Bureaucrat::operator=( const Bureaucrat& other )
 {
 	if (this != &other)
 	{
+		const_cast<std::string&>(name) = other.name;
 		grade = other.grade;
 	}
 	return (*this);

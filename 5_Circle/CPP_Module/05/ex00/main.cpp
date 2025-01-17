@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 22:45:53 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/17 22:56:08 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/17 23:53:53 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,11 @@ int	main()
 	{
         std::cerr << "[Exception] " << e.what() << std::endl;
     }
+	Bureaucrat origin("ori", 1);
+	Bureaucrat modify("mod", 150);
+	std::cout << origin << "\n" << modify << std::endl;
+	origin = modify;
+	std::cout << origin << "\n" << modify << std::endl;
 
     return 0;
 }
