@@ -1,7 +1,7 @@
 C++ = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
-NAME = Interface
+NAME = Exception
 
 SOURCES =	main.cpp		\
 			Bureaucrat.cpp	
