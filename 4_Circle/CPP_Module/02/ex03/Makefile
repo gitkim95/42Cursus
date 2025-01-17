@@ -1,7 +1,7 @@
 C++ = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
-NAME = Fixed
+NAME = bsp
 
 SOURCES =	main.cpp	\
 			Fixed.cpp	\
