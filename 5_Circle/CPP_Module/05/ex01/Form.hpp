@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 23:06:12 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/18 00:03:33 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/18 17:45:38 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ public:
 	friend std::ostream&	operator<<( std::ostream& out, const Form& Form );
 
 	std::string	getName( void ) const;
-	int			getGrade( void ) const;
+	int			getSignGrade( void ) const;
+	int			getExecuteGrade( void ) const;
 	void		beSigned( Bureaucrat& bureaucrat );
 	void		signForm( void );
 

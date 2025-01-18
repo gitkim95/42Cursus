@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 23:13:50 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/18 00:03:30 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/18 17:46:32 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,27 +38,15 @@ Form&	Form::operator=( const Form& other )
 	}
 	return (*this);
 }
-// ========================================
-std::ostream&	operator<<( std::ostream& out, const Form& bureaucrat )
+
+std::ostream&	operator<<( std::ostream& out, const Form& form )
 {
-	out	<< bureaucrat.name
-		<< ", bureaucrat grade "
-		<< bureaucrat.grade << std::endl;
+	out	<< form.name
+		<< ", form grade required to sign "
+		<< form.signGrade
+		<< ", form grade required to execute " 
+		<< form.executeGrade << std::endl;
 	return (out);
-}
-
-void	Form::increaseGrade( void )
-{
-	if (grade - 1 < 1)
-		throw (GradeTooHighException());
-	this->grade--;
-}
-
-void	Form::decreaseGrade( void )
-{
-	if (grade + 1 > 150)
-		throw (GradeTooLowException());
-	this->grade++;
 }
 
 std::string	Form::getName( void ) const
@@ -66,10 +54,26 @@ std::string	Form::getName( void ) const
 	return (name);
 }
 
-int	Form::getGrade( void ) const
+int	Form::getSignGrade( void ) const
 {
-	return (grade);
+	return (signGrade);
 }
+
+int	Form::getExecuteGrade( void ) const
+{
+	return (executeGrade);
+}
+
+void	Form::beSigned( Bureaucrat& bureaucrat )
+{
+
+}
+
+void	Form::signForm( void )
+{
+
+}
+
 
 const char* Form::GradeTooHighException::what() const throw()
 {
