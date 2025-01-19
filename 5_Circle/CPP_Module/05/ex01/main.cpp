@@ -6,64 +6,49 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 22:45:53 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/17 22:56:08 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/19 21:17:16 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include "Form.hpp"
 #include "Bureaucrat.hpp"
 
 int	main()
 {
 	try
-	{
-        // 정상 생성 테스트
-        Bureaucrat alice("Alice", 1);
+    {
+        // Bureaucrat 생성
+        Bureaucrat alice("Alice", 3);
         Bureaucrat bob("Bob", 150);
-        std::cout << alice << " created successfully.\n";
-        std::cout << bob << " created successfully.\n";
 
-        // 유효하지 않은 등급으로 생성 테스트
-        Bureaucrat invalidHigh("Charlie", 0); // GradeTooHighException 발생
-    }
-	catch (const Bureaucrat::GradeTooHighException& e)
-	{
-        std::cerr << "[Exception] " << e.what() << std::endl;
-    }
-	catch (const Bureaucrat::GradeTooLowException& e)
-	{
-        std::cerr << "[Exception] " << e.what() << std::endl;
-    }
+        // Form 생성
+        Form importantForm("Important Form", 5, 10);
+        Form easyForm("Easy Form", 150, 150);
 
-    try
-	{
-        // 등급 조정 테스트
-        Bureaucrat david("David", 2);
-        std::cout << "Before increase: " << david << std::endl;
-        david.increaseGrade(); // 정상적으로 등급 증가
-        std::cout << "After increase: " << david << std::endl;
+        // Form과 Bureaucrat 정보 출력
+        std::cout << alice << std::endl;
+        std::cout << bob << std::endl;
+        std::cout << importantForm << std::endl;
+        std::cout << easyForm << std::endl;
 
-        // 예외: 등급 초과로 증가
-        david.increaseGrade(); // GradeTooHighException 발생
-    }
-	catch (const Bureaucrat::GradeTooHighException& e)
-	{
-        std::cerr << "[Exception] " << e.what() << std::endl;
-    }
+        // Alice가 Form 서명 시도
+        alice.signForm(importantForm);
+        alice.signForm(easyForm);
 
-    try
-	{
-        Bureaucrat eve("Eve", 149);
-        std::cout << "Before decrease: " << eve << std::endl;
-        eve.decreaseGrade(); // 정상적으로 등급 감소
-        std::cout << "After decrease: " << eve << std::endl;
+        // Bob이 Form 서명 시도
+        bob.signForm(importantForm);
+        bob.signForm(easyForm);
 
-        // 예외: 등급 초과로 감소
-        eve.decreaseGrade(); // GradeTooLowException 발생
+        // Form의 서명 상태 확인
+        std::cout << importantForm << std::endl;
+        std::cout << easyForm << std::endl;
+
     }
-	catch (const Bureaucrat::GradeTooLowException& e)
-	{
-        std::cerr << "[Exception] " << e.what() << std::endl;
+    catch (const std::exception& e)
+    {
+        // 예외 처리
+        std::cerr << "Exception: " << e.what() << std::endl;
     }
 
     return 0;

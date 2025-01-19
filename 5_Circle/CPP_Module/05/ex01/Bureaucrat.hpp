@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 20:43:18 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/17 22:52:22 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/19 21:29:42 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <string>
 # include <iostream>
 # include <stdexcept>
+
+class	Form;
 
 class	Bureaucrat
 {
@@ -35,6 +37,7 @@ public:
 	void		decreaseGrade( void );
 	std::string	getName( void ) const;
 	int			getGrade( void ) const;
+	void		signForm( Form& form );
 	
 	class	GradeTooHighException : public std::exception
 	{

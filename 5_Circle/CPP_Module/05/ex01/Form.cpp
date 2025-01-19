@@ -6,12 +6,13 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 23:13:50 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/18 17:46:32 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/19 21:32:08 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 Form::Form( void ) : name("unnamed"), sign(false), signGrade(1), executeGrade(1) {}
 
@@ -41,11 +42,13 @@ Form&	Form::operator=( const Form& other )
 
 std::ostream&	operator<<( std::ostream& out, const Form& form )
 {
-	out	<< form.name
+	out	<< form.getName()
 		<< ", form grade required to sign "
-		<< form.signGrade
+		<< form.getSignGrade()
 		<< ", form grade required to execute " 
-		<< form.executeGrade << std::endl;
+		<< form.getExecuteGrade()
+		<< ", the sign status of the form "
+		<< form.getSignStatus() << std::endl;
 	return (out);
 }
 
@@ -64,16 +67,18 @@ int	Form::getExecuteGrade( void ) const
 	return (executeGrade);
 }
 
+bool	Form::getSignStatus( void ) const
+{
+	return (sign);
+}
+
 void	Form::beSigned( Bureaucrat& bureaucrat )
 {
-
+	if (bureaucrat.getGrade() <= signGrade)
+		sign = true;
+	else
+		throw (GradeTooLowException());
 }
-
-void	Form::signForm( void )
-{
-
-}
-
 
 const char* Form::GradeTooHighException::what() const throw()
 {

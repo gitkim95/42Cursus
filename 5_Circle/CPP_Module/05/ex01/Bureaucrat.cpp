@@ -6,12 +6,13 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 22:00:52 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/17 23:52:02 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/19 21:29:44 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat( void ) : name("unnamed"), grade(150) {}
 
@@ -67,6 +68,25 @@ std::string	Bureaucrat::getName( void ) const
 int	Bureaucrat::getGrade( void ) const
 {
 	return (grade);
+}
+
+void	Bureaucrat::signForm( Form& form )
+{
+	if (grade <= form.getSignGrade())
+	{
+		std::cout	<< this->name
+					<< " signed "
+					<< form.getName() << std::endl;
+		form.beSigned(*this);
+	}
+	else
+	{
+		std::cout	<< this->name
+					<< " couldn't sign "
+					<< form.getName()
+					<< " because ";
+		form.beSigned(*this);
+	}
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()

@@ -4,7 +4,8 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 NAME = Exception
 
 SOURCES =	main.cpp		\
-			Bureaucrat.cpp	
+			Bureaucrat.cpp	\
+			Form.cpp
 			
 OBJS = $(SOURCES:.cpp=.o)
 
