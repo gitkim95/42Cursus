@@ -1,11 +1,14 @@
 C++ = g++-11
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
-NAME = Form
+NAME = ExecuteForms
 
-SOURCES =	main.cpp		\
-			Bureaucrat.cpp	\
-			Form.cpp
+SOURCES =	main.cpp					\
+			Bureaucrat.cpp				\
+			AForm.cpp					\
+			ShrubberyCreationForm.cpp	\
+			RobotomyRequestForm.cpp		\
+			PresidentialPardonForm.cpp
 			
 OBJS = $(SOURCES:.cpp=.o)
 

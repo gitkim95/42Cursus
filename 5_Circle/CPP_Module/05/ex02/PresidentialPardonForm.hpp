@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:02:18 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/20 16:21:24 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/21 01:56:18 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@ class	PresidentialPardonForm : public AForm
 {
 public:
 	PresidentialPardonForm( void );
+	PresidentialPardonForm( std::string target );
 	PresidentialPardonForm( const PresidentialPardonForm& other );
-	~PresidentialPardonForm( void );
+	virtual ~PresidentialPardonForm( void );
 
 	PresidentialPardonForm&	operator=( const PresidentialPardonForm& other );
 
-	virtual void	execute( Bureaucrat const& executor ) const = 0;
+	virtual void	execute( Bureaucrat const& executor ) const;
+	virtual void	action( void ) const;
 };
 
 #endif

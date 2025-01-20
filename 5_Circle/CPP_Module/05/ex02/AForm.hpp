@@ -42,6 +42,7 @@ public:
 	std::string		getTarget( void ) const;
 	void			beSigned( Bureaucrat& bureaucrat );
 	virtual void	execute( Bureaucrat const& executor ) const = 0;
+	virtual void	action( void ) = 0;
 
 	class	GradeTooHighException : public std::exception
 	{
