@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 23:13:50 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/19 21:32:08 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/20 09:04:11 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ std::ostream&	operator<<( std::ostream& out, const Form& form )
 		<< form.getSignGrade()
 		<< ", form grade required to execute " 
 		<< form.getExecuteGrade()
-		<< ", the sign status of the form "
+		<< ", the sign status of the form is "
 		<< form.getSignStatus() << std::endl;
 	return (out);
 }
@@ -67,9 +67,12 @@ int	Form::getExecuteGrade( void ) const
 	return (executeGrade);
 }
 
-bool	Form::getSignStatus( void ) const
+std::string	Form::getSignStatus( void ) const
 {
-	return (sign);
+	if (sign)
+		return ("true");
+	else
+		return ("false");
 }
 
 void	Form::beSigned( Bureaucrat& bureaucrat )

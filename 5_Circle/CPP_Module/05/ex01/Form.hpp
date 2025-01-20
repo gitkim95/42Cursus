@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 23:06:12 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/19 21:22:17 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/20 09:02:50 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ public:
 	std::string	getName( void ) const;
 	int			getSignGrade( void ) const;
 	int			getExecuteGrade( void ) const;
-	bool		getSignStatus( void ) const;
+	std::string	getSignStatus( void ) const;
 	void		beSigned( Bureaucrat& bureaucrat );
 
 	class	GradeTooHighException : public std::exception
