@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 16:02:18 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/22 00:20:38 by gitkim           ###   ########.fr       */
+/*   Created: 2025/01/20 16:03:25 by gitkim            #+#    #+#             */
+/*   Updated: 2025/01/21 01:53:17 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRESIDENTIALPARDONFORM_HPP
-# define PRESIDENTIALPARDONFORM_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+# define ROBOTOMYREQUESTFORM_HPP
 
 # include "AForm.hpp"
 
-class	PresidentialPardonForm : public AForm
+class	RobotomyRequestForm : public AForm
 {
 public:
-	PresidentialPardonForm( void );
-	PresidentialPardonForm( std::string target );
-	PresidentialPardonForm( const PresidentialPardonForm& other );
-	virtual ~PresidentialPardonForm( void );
+	RobotomyRequestForm( void );
+	RobotomyRequestForm( std::string target );
+	RobotomyRequestForm( const RobotomyRequestForm& other );
+	virtual ~RobotomyRequestForm( void );
 
-	PresidentialPardonForm&	operator=( const PresidentialPardonForm& other );
+	RobotomyRequestForm&	operator=( const RobotomyRequestForm& other );
 
 	virtual void	execute( Bureaucrat const& executor ) const;
 	virtual void	action( void ) const;

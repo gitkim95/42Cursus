@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 16:02:18 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/22 00:20:38 by gitkim           ###   ########.fr       */
+/*   Created: 2025/01/20 16:02:54 by gitkim            #+#    #+#             */
+/*   Updated: 2025/01/21 01:53:19 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRESIDENTIALPARDONFORM_HPP
-# define PRESIDENTIALPARDONFORM_HPP
+#ifndef SHRUBBERYCREATIONFORM_HPP
+# define SHRUBBERYCREATIONFORM_HPP
 
 # include "AForm.hpp"
 
-class	PresidentialPardonForm : public AForm
+class	ShrubberyCreationForm : public AForm
 {
 public:
-	PresidentialPardonForm( void );
-	PresidentialPardonForm( std::string target );
-	PresidentialPardonForm( const PresidentialPardonForm& other );
-	virtual ~PresidentialPardonForm( void );
+	ShrubberyCreationForm( void );
+	ShrubberyCreationForm( std::string name );
+	ShrubberyCreationForm( const ShrubberyCreationForm& other );
+	virtual ~ShrubberyCreationForm( void );
 
-	PresidentialPardonForm&	operator=( const PresidentialPardonForm& other );
+	ShrubberyCreationForm&	operator=( const ShrubberyCreationForm& other );
 
 	virtual void	execute( Bureaucrat const& executor ) const;
 	virtual void	action( void ) const;
