@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 16:22:30 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/21 01:51:45 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/21 20:24:01 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ void	PresidentialPardonForm::execute( Bureaucrat const& executor ) const
 
 void	PresidentialPardonForm::action( void ) const
 {
-
+	std::cout	<< this->getTarget()
+				<< " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }

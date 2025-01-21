@@ -1,4 +1,4 @@
-C++ = g++-11
+C++ = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
 NAME = ExecuteForms
