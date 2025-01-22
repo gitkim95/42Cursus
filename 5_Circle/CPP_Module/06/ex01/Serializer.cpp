@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   Serializer.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/22 00:47:39 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/22 22:18:59 by gitkim           ###   ########.fr       */
+/*   Created: 2025/01/22 22:54:18 by gitkim            #+#    #+#             */
+/*   Updated: 2025/01/22 23:12:05 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCALARCONVERTER_HPP
-# define SCALARCONVERTER_HPP
+#include "Serializer.hpp"
 
-# include <string>
+Serializer::~Serializer() {}
 
-class ScalarConverter
+uintptr_t	Serializer::serialize( Data* ptr )
 {
-private:
-	ScalarConverter( void );
-	ScalarConverter( const ScalarConverter& other );
-	ScalarConverter&	operator=( const ScalarConverter& other );
-public:
-	~ScalarConverter( void );
-
-	static void	convert( const std::string& input );
-};
-
-#endif
+	return (reinterpret_cast<uintptr_t>(ptr));
+}
+Data*	Serializer::deserialize( uintptr_t raw )
+{
+	return (reinterpret_cast<Data*>(raw));
+}

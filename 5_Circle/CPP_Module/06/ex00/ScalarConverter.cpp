@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 01:20:51 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/22 21:45:55 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/22 23:12:27 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <cstdlib>
 #include <iomanip>
 #include "ScalarConverter.hpp"
+
+ScalarConverter::~ScalarConverter( void ) {}
 
 static bool	isChar( const std::string& input )
 {
