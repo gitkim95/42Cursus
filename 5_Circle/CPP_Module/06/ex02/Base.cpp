@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 21:20:19 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/24 23:44:36 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/24 23:49:03 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "B.hpp"
 #include "C.hpp"
 
-Base *generate(void)
+Base*	generate( void )
 {
 	Base *base;
 
@@ -40,7 +40,7 @@ Base *generate(void)
 	return (base);
 }
 
-void identify(Base *p)
+void	identify( Base *p )
 {
 	A *a = dynamic_cast<A *>(p);
 	if (a)
@@ -55,7 +55,7 @@ void identify(Base *p)
 		std::cout << "C" << std::endl;
 }
 
-void identify(Base &p)
+void	identify( Base &p )
 {
 	try
 	{
@@ -78,15 +78,4 @@ void identify(Base &p)
 		return;
 	}
 	catch (const std::exception &e)	{}
-}
-
-int main()
-{
-	Base *basePointer = generate();
-
-	identify(basePointer);
-	identify(*basePointer);
-
-	delete basePointer;
-	return (0);
 }
