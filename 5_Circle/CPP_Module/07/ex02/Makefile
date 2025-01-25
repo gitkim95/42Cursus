@@ -1,10 +1,10 @@
 C++ = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
-NAME = Base
+NAME = Array
 
 SOURCES =	main.cpp	\
-			Base.cpp
+			Array.cpp
 			
 OBJS = $(SOURCES:.cpp=.o)
 
