@@ -6,9 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 01:35:49 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/25 01:36:12 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/25 17:23:58 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <iostream>
+#include "whatever.hpp"
 
 int main( void )
 {
