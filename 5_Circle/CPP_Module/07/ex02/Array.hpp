@@ -6,14 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 19:55:03 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/25 22:24:17 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/26 22:29:07 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ARRAY_HPP
 # define ARRAY_HPP
-
-# include <stdexcept>
 
 template <typename T>
 class Array
@@ -32,5 +30,7 @@ public:
 
 	unsigned int	size( void ) const;
 };
+
+# include "Array.tpp"
 
 #endif

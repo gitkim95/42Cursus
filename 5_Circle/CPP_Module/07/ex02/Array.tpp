@@ -6,12 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 21:41:54 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/25 22:35:16 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/26 22:29:14 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "Array.hpp"
+#include <stdexcept>
 
 template <typename T>
 Array<T>::Array( void ) : arr(NULL), length(0)
