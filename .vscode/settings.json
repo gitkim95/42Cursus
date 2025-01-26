@@ -84,6 +84,7 @@
 		"variant": "cpp",
 		"semaphore": "cpp",
 		"exam04": "cpp",
-		"fstream": "cpp"
+		"fstream": "cpp",
+		"*.tpp": "cpp"
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 18:58:59 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/26 19:11:21 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/01/26 23:05:14 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 # define MUTANTSTACK_HPP
 
 # include <stack>
+# include <iterator>
 
 template <typename T>
-class MutantStack
+class MutantStack : public std::stack<T>
 {
-private:
-	/* data */
 public:
 	MutantStack( void );
 	MutantStack( const MutantStack& other );
@@ -27,11 +26,15 @@ public:
 
 	MutantStack&	operator=( const MutantStack& other );
 
-	void	push( void );
-	void	pop( void );
-	void	size( void );
-	void	begin( void );
-	void	end( void );
+	typedef typename std::stack<T>::container_type::iterator iterator;
+	typedef typename std::stack<T>::container_type::const_iterator const_iterator;
+
+	iterator		begin( void );
+	iterator		end( void );
+	const_iterator	begin( void ) const;
+	const_iterator	end( void ) const;
 };
+
+# include "MutantStack.tpp"
 
 #endif
