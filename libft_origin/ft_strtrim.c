@@ -6,10 +6,11 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 23:24:13 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/09 18:36:51 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/04 00:44:45 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
 void	trim_paste(char const *s1, char *result, size_t offset)

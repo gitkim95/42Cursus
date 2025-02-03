@@ -6,10 +6,11 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 23:06:00 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/08 18:53:48 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/04 00:44:22 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
 static char	*ft_strcat(char *dst, char const *src, int *offset)

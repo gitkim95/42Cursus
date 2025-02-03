@@ -6,10 +6,11 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 17:32:17 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 22:31:27 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/04 00:43:33 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "libft.h"
 
 void	ft_putnbr_fd(int n, int fd)

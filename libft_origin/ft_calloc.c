@@ -6,12 +6,13 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 21:36:03 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/05 23:35:52 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/04 00:42:15 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
 #include <limits.h>
+#include "libft.h"
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {

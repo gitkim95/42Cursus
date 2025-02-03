@@ -6,10 +6,11 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 22:04:06 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/08 18:50:11 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/04 00:44:05 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
 char	*ft_strdup(const char *s)

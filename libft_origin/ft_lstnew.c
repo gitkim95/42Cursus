@@ -6,10 +6,11 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 17:43:48 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/03 21:42:56 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/04 00:42:46 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
 t_list	*ft_lstnew(void *content)

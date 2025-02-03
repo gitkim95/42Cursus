@@ -6,10 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 14:18:52 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/16 05:27:42 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/04 00:45:18 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
+#include <stdlib.h>
 #include "libft.h"
 
 void	free_null(char **ff)

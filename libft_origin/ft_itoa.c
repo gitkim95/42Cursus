@@ -6,10 +6,11 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 16:03:17 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/06 00:52:20 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/04 00:42:07 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "libft.h"
 
 int	cal_len(long long n)

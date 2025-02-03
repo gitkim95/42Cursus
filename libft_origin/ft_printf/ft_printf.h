@@ -6,15 +6,14 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:21:34 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/13 18:23:23 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/04 00:40:12 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <stdlib.h>
-# include <unistd.h>
+# include <stddef.h>
 # include <stdarg.h>
 # define TYPES "cspdiuxX%"
 # define LOWCASE "0123456789abcdef"

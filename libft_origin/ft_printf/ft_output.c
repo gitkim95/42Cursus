@@ -6,10 +6,11 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 01:21:17 by gitkim            #+#    #+#             */
-/*   Updated: 2024/10/13 17:02:17 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/04 00:40:29 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "ft_printf.h"
 
 int	ft_printchar(char c)
