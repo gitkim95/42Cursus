@@ -6,12 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:12:19 by gitkim            #+#    #+#             */
-/*   Updated: 2025/02/04 00:40:58 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/06 19:38:50 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <stdlib.h>
-# include <stdarg.h>
+#include <stdlib.h>
+#include <stdarg.h>
 #include "ft_printf.h"
 
 int	print_c_p(char arg, va_list ap)
