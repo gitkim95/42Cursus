@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 02:53:33 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/12 18:17:24 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/08 14:47:07 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ public:
 	Animal( const Animal& other );
 	virtual ~Animal();
 
-	Animal&					operator=( const Animal& other );
-	friend std::ostream&	operator<<( std::ostream& out, const Animal& Animal );
+	Animal&	operator=( const Animal& other );
 
 	virtual void	makeSound( void ) const;
 	std::string		getType( void ) const;
 	
 };
+std::ostream&	operator<<( std::ostream& out, const Animal& Animal );
 
 #endif

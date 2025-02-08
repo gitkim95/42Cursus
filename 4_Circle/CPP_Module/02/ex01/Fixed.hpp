@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 15:23:56 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/01 18:31:21 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/08 14:16:02 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ public:
 	~Fixed();
 
 	Fixed& operator=(const Fixed& other);
-	friend	std::ostream& operator<<(std::ostream& out, const Fixed& fixed);
 
 	float	toFloat( void ) const;
 	int		toInt( void ) const;
 	int		getRawBits( void ) const;
 	void	setRawBits( int const raw );
 };
+std::ostream& operator<<(std::ostream& out, const Fixed& fixed);
 
 #endif

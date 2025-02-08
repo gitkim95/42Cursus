@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:45:16 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 00:49:47 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/08 14:26:49 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,10 @@ FragTrap&	FragTrap::operator=( const FragTrap& other )
 
 std::ostream&	operator<<( std::ostream& out, const FragTrap& FragTrap )
 {
-	out	<< "FragTrap " << FragTrap.name
-		<< " [HP: " << FragTrap.hitPoints
-		<< ", Energy: " << FragTrap.energyPoints
-		<< ", Attack Damage: " << FragTrap.attackDamage
-		<< "]";
+	out	<< "FragTrap " << FragTrap.getName()
+		<< " [HP: " << FragTrap.getHitPoints()
+		<< ", Energy: " << FragTrap.getEnergyPoints()
+		<< ", Attack Damage: " << FragTrap.getAttackDamage() << "]";
 	return (out);
 }
 

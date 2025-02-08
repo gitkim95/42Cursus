@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 02:53:33 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/12 18:17:33 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/08 14:45:52 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ public:
 	virtual ~Dog();
 
 	Dog&					operator=( const Dog& other );
-	friend std::ostream&	operator<<( std::ostream& out, const Dog& Dog );
 
 	void	makeSound( void ) const;
 };
+std::ostream&	operator<<( std::ostream& out, const Dog& Dog );
 
 #endif

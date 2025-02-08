@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 22:00:52 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/20 16:30:25 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/08 14:54:21 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ Bureaucrat&	Bureaucrat::operator=( const Bureaucrat& other )
 
 std::ostream&	operator<<( std::ostream& out, const Bureaucrat& bureaucrat )
 {
-	out	<< bureaucrat.name
+	out	<< bureaucrat.getName()
 		<< ", bureaucrat grade "
-		<< bureaucrat.grade << std::endl;
+		<< bureaucrat.getGrade() << std::endl;
 	return (out);
 }
 

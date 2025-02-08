@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 02:53:33 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/12 18:18:35 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/08 14:50:43 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ public:
 	Cat( const Cat& other );
 	virtual ~Cat();
 
-	Cat&					operator=( const Cat& other );
-	friend std::ostream&	operator<<( std::ostream& out, const Cat& Cat );
+	Cat&	operator=( const Cat& other );
 
 	void	makeSound( void ) const;
 };
+std::ostream&	operator<<( std::ostream& out, const Cat& Cat );
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 03:28:32 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/12 23:16:54 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/08 14:48:23 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ Dog&	Dog::operator=( const Dog& other )
 
 std::ostream&	operator<<( std::ostream& out, const Dog& Dog )
 {
-	out	<< Dog.type << std::endl;
+	out	<< Dog.getType() << std::endl;
 	return (out);
 }
 

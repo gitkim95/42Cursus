@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:56:08 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 18:38:57 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/08 14:41:23 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ ScavTrap&	ScavTrap::operator=( const ScavTrap& other )
 
 std::ostream&	operator<<( std::ostream& out, const ScavTrap& scavTrap )
 {
-	out	<< "ScavTrap " << scavTrap.name
-		<< " [HP: " << scavTrap.hitPoints
-		<< ", Energy: " << scavTrap.energyPoints
-		<< ", Attack Damage: " << scavTrap.attackDamage
+	out	<< "ScavTrap " << scavTrap.getName()
+		<< " [HP: " << scavTrap.getHitPoints()
+		<< ", Energy: " << scavTrap.getEnergyPoints()
+		<< ", Attack Damage: " << scavTrap.getAttackDamage()
 		<< "]";
 	return (out);
 }
@@ -84,19 +84,4 @@ void	ScavTrap::attack( const std::string& target )
 				<< " points of damage!"
 				<< std::endl;
 	this->energyPoints--;
-}
-
-unsigned int	ScavTrap::getHitPoints( void ) const
-{
-	return (100);
-}
-
-unsigned int	ScavTrap::getEnergyPoints( void ) const
-{
-	return (50);
-}
-
-unsigned int	ScavTrap::getAttackDamage( void ) const
-{
-	return (20);
 }

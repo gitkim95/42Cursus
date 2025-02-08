@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:55:55 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 18:38:49 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/08 14:40:49 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,12 @@ FragTrap&	FragTrap::operator=( const FragTrap& other )
 	return (*this);
 }
 
-std::ostream&	operator<<( std::ostream& out, const FragTrap& FragTrap )
+std::ostream&	operator<<( std::ostream& out, const FragTrap& fragTrap )
 {
-	out	<< "FragTrap " << FragTrap.name
-		<< " [HP: " << FragTrap.hitPoints
-		<< ", Energy: " << FragTrap.energyPoints
-		<< ", Attack Damage: " << FragTrap.attackDamage
-		<< "]";
+	out	<< "FragTrap " << fragTrap.getName()
+		<< " [HP: " << fragTrap.getHitPoints()
+		<< ", Energy: " << fragTrap.getEnergyPoints()
+		<< ", Attack Damage: " << fragTrap.getAttackDamage() << "]";
 	return (out);
 }
 
@@ -84,19 +83,4 @@ void	FragTrap::attack( const std::string& target )
 				<< " points of damage!"
 				<< std::endl;
 	this->energyPoints--;
-}
-
-unsigned int	FragTrap::getHitPoints( void ) const
-{
-	return (100);
-}
-
-unsigned int	FragTrap::getEnergyPoints( void ) const
-{
-	return (100);
-}
-
-unsigned int	FragTrap::getAttackDamage( void ) const
-{
-	return (30);
 }

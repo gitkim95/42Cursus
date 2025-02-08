@@ -1,10 +1,10 @@
 C++ = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
-NAME = MutantStack
+NAME = RPN
 
 SOURCES =	main.cpp		\
-			MutantStack.cpp
+			RPN.cpp
 			
 OBJS = $(SOURCES:.cpp=.o)
 

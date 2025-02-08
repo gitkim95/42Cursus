@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 15:23:56 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/02 20:09:24 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/08 14:17:10 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ public:
 	~Fixed();
 
 	Fixed&	operator=(const Fixed& other);
-	friend	std::ostream&	operator<<(std::ostream& out, const Fixed& fixed);
 
 	bool	operator>( const Fixed& other ) const;
 	bool	operator<( const Fixed& other ) const;
@@ -57,5 +56,6 @@ public:
 	int		getRawBits( void ) const;
 	void	setRawBits( int const raw );
 };
+std::ostream&	operator<<(std::ostream& out, const Fixed& fixed);
 
 #endif

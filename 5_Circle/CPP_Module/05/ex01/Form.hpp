@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 23:06:12 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/20 09:02:50 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/08 14:53:09 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ public:
 	Form( const Form& other );
 	~Form( void );
 
-	Form&					operator=( const Form& other );
-	friend std::ostream&	operator<<( std::ostream& out, const Form& Form );
+	Form&	operator=( const Form& other );
 
 	std::string	getName( void ) const;
 	int			getSignGrade( void ) const;
@@ -51,5 +50,6 @@ public:
 		const char* what() const throw();
 	};
 };
+std::ostream&	operator<<( std::ostream& out, const Form& Form );
 
 #endif

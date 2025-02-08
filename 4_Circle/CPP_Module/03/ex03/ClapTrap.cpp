@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:55:46 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 17:56:00 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/08 14:25:12 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,10 @@ ClapTrap&	ClapTrap::operator=( const ClapTrap& other )
 
 std::ostream&	operator<<( std::ostream& out, const ClapTrap& clapTrap )
 {
-	out	<< "ClapTrap " << clapTrap.name
-		<< " [HP: " << clapTrap.hitPoints
-		<< ", Energy: " << clapTrap.energyPoints
-		<< ", Attack Damage: " << clapTrap.attackDamage
-		<< "]";
+	out	<< "ClapTrap " << clapTrap.getName()
+		<< " [HP: " << clapTrap.getHitPoints()
+		<< ", Energy: " << clapTrap.getEnergyPoints()
+		<< ", Attack Damage: " << clapTrap.getAttackDamage() << "]";
 	return (out);
 }
 

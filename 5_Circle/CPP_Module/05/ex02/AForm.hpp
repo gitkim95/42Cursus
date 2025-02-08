@@ -32,8 +32,7 @@ public:
 	AForm( const AForm& other );
 	virtual ~AForm( void );
 
-	AForm&					operator=( const AForm& other );
-	friend std::ostream&	operator<<( std::ostream& out, const AForm& AForm );
+	AForm&	operator=( const AForm& other );
 
 	std::string		getName( void ) const;
 	int				getSignGrade( void ) const;
@@ -55,5 +54,6 @@ public:
 		const char* what() const throw();
 	};
 };
+std::ostream&	operator<<( std::ostream& out, const AForm& AForm );
 
 #endif

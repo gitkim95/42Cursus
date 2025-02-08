@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 03:27:15 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/12 23:16:38 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/08 14:50:34 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ Cat&	Cat::operator=( const Cat& other )
 
 std::ostream&	operator<<( std::ostream& out, const Cat& Cat )
 {
-	out	<< Cat.type << std::endl;
+	out	<< Cat.getType() << std::endl;
 	return (out);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 20:43:18 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/17 22:52:22 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/08 14:52:20 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ public:
 	~Bureaucrat( void );
 
 	Bureaucrat&				operator=( const Bureaucrat& other );
-	friend std::ostream&	operator<<( std::ostream& out, const Bureaucrat& bureaucrat );
 
 	void		increaseGrade( void );
 	void		decreaseGrade( void );
@@ -47,5 +46,6 @@ public:
 		const char* what() const throw();
 	};
 };
+std::ostream&	operator<<( std::ostream& out, const Bureaucrat& bureaucrat );
 
 #endif

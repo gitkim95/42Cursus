@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 23:07:51 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 00:39:59 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/08 14:26:08 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,10 @@ ScavTrap&	ScavTrap::operator=( const ScavTrap& other )
 
 std::ostream&	operator<<( std::ostream& out, const ScavTrap& scavTrap )
 {
-	out	<< "ScavTrap " << scavTrap.name
-		<< " [HP: " << scavTrap.hitPoints
-		<< ", Energy: " << scavTrap.energyPoints
-		<< ", Attack Damage: " << scavTrap.attackDamage
-		<< "]";
+	out	<< "ScavTrap " << scavTrap.getName()
+		<< " [HP: " << scavTrap.getHitPoints()
+		<< ", Energy: " << scavTrap.getEnergyPoints()
+		<< ", Attack Damage: " << scavTrap.getAttackDamage() << "]";
 	return (out);
 }
 

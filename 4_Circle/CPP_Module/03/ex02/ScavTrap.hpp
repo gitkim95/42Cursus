@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:41:09 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/12 03:35:38 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/08 14:27:14 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ public:
 	
 	void	guardGate( void );
 	
-	ScavTrap&				operator=( const ScavTrap& other );
-	friend std::ostream&	operator<<( std::ostream& out, const ScavTrap& scavTrap );
+	ScavTrap&	operator=( const ScavTrap& other );
 
 	void	attack( const std::string& target );
 };
+std::ostream&	operator<<( std::ostream& out, const ScavTrap& scavTrap );
 
 #endif

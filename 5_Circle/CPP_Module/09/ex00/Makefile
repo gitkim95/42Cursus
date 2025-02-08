@@ -1,10 +1,10 @@
 C++ = c++
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
-NAME = MutantStack
+NAME = btc
 
 SOURCES =	main.cpp		\
-			MutantStack.cpp
+			BitcoinExchange.cpp
 			
 OBJS = $(SOURCES:.cpp=.o)
 

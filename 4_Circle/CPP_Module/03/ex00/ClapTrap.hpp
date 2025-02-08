@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 13:25:26 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/03 16:30:11 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/08 14:21:25 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ public:
 	~ClapTrap();
 	
 	ClapTrap&				operator=( const ClapTrap& other );
-	friend std::ostream&	operator<<( std::ostream& out, const ClapTrap& ClapTrap );
 
 	void			attack( const std::string& target );
 	void			takeDamage( unsigned int amount );
 	void			beRepaired( unsigned int amount );
 
-	std::string		getName( void );
-	unsigned int	getHitPoints( void );
-	unsigned int	getEnergyPoints( void );
-	unsigned int	getAttackDamage( void );
+	std::string		getName( void ) const;
+	unsigned int	getHitPoints( void ) const;
+	unsigned int	getEnergyPoints( void ) const;
+	unsigned int	getAttackDamage( void ) const;
 };
+std::ostream&	operator<<( std::ostream& out, const ClapTrap& ClapTrap );
 
 #endif

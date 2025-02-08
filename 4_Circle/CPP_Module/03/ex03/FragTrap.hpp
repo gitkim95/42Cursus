@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 00:55:59 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 18:35:06 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/08 14:38:31 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,10 @@ public:
 	
 	void	highFivesGuys( void );
 	
-	FragTrap&				operator=( const FragTrap& other );
-	friend std::ostream&	operator<<( std::ostream& out, const FragTrap& FragTrap );
+	FragTrap&	operator=( const FragTrap& other );
 
 	void	attack( const std::string& target );
-
-	virtual unsigned int	getHitPoints( void ) const;
-	virtual unsigned int	getEnergyPoints( void ) const;
-	virtual unsigned int	getAttackDamage( void ) const;
 };
+std::ostream&	operator<<( std::ostream& out, const FragTrap& fragTrap );
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 15:05:54 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/08 00:12:56 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/08 14:24:04 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,10 @@ ClapTrap&	ClapTrap::operator=( const ClapTrap& other )
 
 std::ostream&	operator<<( std::ostream& out, const ClapTrap& clapTrap )
 {
-	out	<< "ClapTrap " << clapTrap.name
-		<< " [HP: " << clapTrap.hitPoints
-		<< ", Energy: " << clapTrap.energyPoints
-		<< ", Attack Damage: " << clapTrap.attackDamage
-		<< "]";
+	out	<< "ClapTrap " << clapTrap.getName()
+		<< " [HP: " << clapTrap.getHitPoints()
+		<< ", Energy: " << clapTrap.getEnergyPoints()
+		<< ", Attack Damage: " << clapTrap.getAttackDamage() << "]";
 	return (out);
 }
 
@@ -110,21 +109,21 @@ void	ClapTrap::beRepaired( unsigned int amount )
 	this->hitPoints += amount;
 	this->energyPoints--;
 }
-std::string	ClapTrap::getName( void )
+std::string	ClapTrap::getName( void ) const
 {
 	return (this->name);
 }
 
-unsigned int	ClapTrap::getHitPoints( void )
+unsigned int	ClapTrap::getHitPoints( void ) const
 {
 	return (this->hitPoints);
 }
-unsigned int	ClapTrap::getEnergyPoints( void )
+unsigned int	ClapTrap::getEnergyPoints( void ) const
 {
 	return (this->energyPoints);
 }
 
-unsigned int	ClapTrap::getAttackDamage( void )
+unsigned int	ClapTrap::getAttackDamage( void ) const
 {
 	return (this->attackDamage);
 }

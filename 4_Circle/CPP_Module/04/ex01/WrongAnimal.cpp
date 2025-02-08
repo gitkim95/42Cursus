@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 03:44:20 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/12 23:06:50 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/08 14:48:39 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ WrongAnimal&	WrongAnimal::operator=( const WrongAnimal& other )
 
 std::ostream&	operator<<( std::ostream& out, const WrongAnimal& WrongAnimal )
 {
-	out	<< WrongAnimal.type << std::endl;
+	out	<< WrongAnimal.getType() << std::endl;
 	return (out);
 }
 
