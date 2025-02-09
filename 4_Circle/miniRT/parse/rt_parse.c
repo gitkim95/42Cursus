@@ -6,7 +6,7 @@
 /*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 17:30:56 by gitkim            #+#    #+#             */
-/*   Updated: 2025/02/03 15:39:20 by hwilkim          ###   ########.fr       */
+/*   Updated: 2025/02/09 16:03:43 by hwilkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 #include "rt_parse.h"
 
+static char	*get_trim_line(int fd);
 static void	match_data_type(t_mlx *mlx, char **split_data);
 static bool	valid_file_extension(char *file_path);
 
@@ -37,14 +38,14 @@ void	parse_data(t_mlx *mlx, char *file_path)
 		exit_on_error(NULL, RT_ERR_OPEN);
 	while (1)
 	{
-		read_line = get_next_line(fd);
+		read_line = get_trim_line(fd);
 		if (!read_line)
 			break ;
 		split_data = ft_split(read_line, ' ');
 		free(read_line);
 		if (!split_data || rt_errno(RT_ERRNO_GET))
 		{
-			free_gnl(fd);
+			free_gnl(split_data, fd);
 			exit_on_error(&mlx->scene.figures, rt_errno(RT_ERRNO_GET));
 		}
 		match_data_type(mlx, split_data);
@@ -53,12 +54,27 @@ void	parse_data(t_mlx *mlx, char *file_path)
 	close(fd);
 }
 
+static char	*get_trim_line(int fd)
+{
+	char	*tmp;
+	char	*line;
+
+	tmp = get_next_line(fd);
+	if (!tmp)
+		return (NULL);
+	line = ft_strtrim(tmp, " \n");
+	free(tmp);
+	return (line);
+}
+
 static void	match_data_type(t_mlx *mlx, char **split_data)
 {
 	char	*identifier;
 
 	identifier = split_data[0];
-	if (rt_isupper(*identifier))
+	if (!identifier)
+		return ;
+	else if (rt_isupper(*identifier))
 		parse_component(&(mlx->scene), split_data);
 	else
 		parse_figure(&(mlx->scene.figures), split_data);
