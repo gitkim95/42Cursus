@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 20:39:52 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/13 20:51:30 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/09 17:22:04 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ Cure*	Cure::clone( void ) const
 
 void	Cure::use( ICharacter& target )
 {
-	std::cout <<  "* heals <name>’s wounds *" << std::endl;
+	std::cout <<  "* heals" << target.getName() << "’s wounds *" << std::endl;
 }

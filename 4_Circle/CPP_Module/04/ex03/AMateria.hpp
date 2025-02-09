@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 23:57:44 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/13 22:03:57 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/09 18:08:18 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ protected:
 	std::string	type;
 public:
 	AMateria( void );
-	AMateria( std::string const &type );
+	AMateria( std::string const& type );
 	AMateria( const AMateria& other );
 	virtual ~AMateria();
 
