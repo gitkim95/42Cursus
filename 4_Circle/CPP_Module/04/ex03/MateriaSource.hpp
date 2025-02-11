@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 18:09:24 by gitkim            #+#    #+#             */
-/*   Updated: 2025/02/09 21:51:29 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/11 12:14:15 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ public:
 
 	MateriaSource&	operator=( const MateriaSource& other );
 
-	virtual void		learnMateria( AMateria* );
-	virtual AMateria*	createMateri( std::string const& type );
+	virtual void		learnMateria( AMateria* source );
+	virtual AMateria*	createMateria( std::string const& type );
 };
 
 #endif

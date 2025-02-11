@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 17:57:35 by gitkim            #+#    #+#             */
-/*   Updated: 2025/02/09 21:16:43 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/11 12:29:38 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ public:
 	virtual void				equip( AMateria* m );
 	virtual void				unequip( int idx );
 	virtual void				use( int idx, ICharacter& target );
+	AMateria*					getMateria( int idx );
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:22:21 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/13 20:29:37 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/11 12:36:36 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ std::string const& AMateria::getType( void ) const
 
 void AMateria::use( ICharacter& target )
 {
+	static_cast<void>(target);
 	std::cout << "* There is no type *" << std::endl;
 }

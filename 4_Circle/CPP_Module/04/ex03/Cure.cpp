@@ -6,11 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 20:39:52 by gitkim            #+#    #+#             */
-/*   Updated: 2025/02/09 17:22:04 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/11 12:40:24 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include "ICharacter.hpp"
 #include "Cure.hpp"
 
 Cure::Cure( void ) : AMateria()
@@ -38,5 +39,5 @@ Cure*	Cure::clone( void ) const
 
 void	Cure::use( ICharacter& target )
 {
-	std::cout <<  "* heals" << target.getName() << "’s wounds *" << std::endl;
+	std::cout <<  "* heals " << target.getName() << "’s wounds *" << std::endl;
 }

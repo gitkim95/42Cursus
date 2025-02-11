@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 21:13:53 by gitkim            #+#    #+#             */
-/*   Updated: 2025/02/09 21:43:33 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/11 12:37:18 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,11 @@ void	Character::use( int idx, ICharacter& target )
 	if (idx < 0 || idx > 3 || !inventory[idx])
 		return ;
 	inventory[idx]->use(target);
+}
+
+AMateria*	Character::getMateria( int idx )
+{
+	if (idx < 0 || idx > 3 || !inventory[idx])
+		return (NULL);
+	return (inventory[idx]);
 }

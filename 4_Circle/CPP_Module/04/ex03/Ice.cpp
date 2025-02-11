@@ -6,11 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 20:41:43 by gitkim            #+#    #+#             */
-/*   Updated: 2025/02/09 17:23:02 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/11 12:40:09 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include "ICharacter.hpp"
 #include "Ice.hpp"
 
 Ice::Ice( void ) : AMateria()

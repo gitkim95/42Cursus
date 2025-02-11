@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 20:30:11 by gitkim            #+#    #+#             */
-/*   Updated: 2025/02/09 17:11:41 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/11 12:39:13 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define ICHARACTER_HPP
 
 # include <string>
-# include "AMateria.hpp"
+
+class AMateria;
 
 class ICharacter
 {

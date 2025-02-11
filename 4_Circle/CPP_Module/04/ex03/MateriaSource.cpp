@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 21:45:20 by gitkim            #+#    #+#             */
-/*   Updated: 2025/02/09 21:54:53 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/11 12:47:06 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,24 @@ MateriaSource&	MateriaSource::operator=( const MateriaSource& other )
 	return (*this);
 }
 
-void	MateriaSource::learnMateria( AMateria* )
+void	MateriaSource::learnMateria( AMateria* learn )
 {
-
+	for (int i = 0; i < 4; i++)
+	{
+		if (!source[i])
+		{
+			source[i] = learn->clone();
+			break ;
+		}
+	}
 }
 
-AMateria*	MateriaSource::createMateri( std::string const& type )
+AMateria*	MateriaSource::createMateria( std::string const& type )
 {
-
+	for (int i = 0; i < 4; i++)
+	{
+		if (source[i]->getType() == type)
+			return (source[i]->clone());
+	}
+	return (NULL);
 }
