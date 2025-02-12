@@ -6,22 +6,25 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 00:31:00 by gitkim            #+#    #+#             */
-/*   Updated: 2025/02/12 13:04:25 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/12 18:37:44 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <climits>
+#include <cstdlib>
 #include "PmergeMe.hpp"
 
 PmergeMe::PmergeMe( void ) {}
 
-PmergeMe::PmergeMe( const PmergeMe &other) {}
+PmergeMe::PmergeMe( const PmergeMe &other) : temp(other.temp) {}
 
 PmergeMe::~PmergeMe( void  ){}
 
 PmergeMe&	PmergeMe::operator=( const PmergeMe &other )
 {
+	if (this != &other)
+		temp = other.temp;
 	return (*this);
 }
 
@@ -29,7 +32,7 @@ void	PmergeMe::initContainer( std::vector<int>& vec, std::list<int>& list, int a
 {
 	for (int i = 1; i < ac; i++)
 	{
-		long	value = std::strtol(av[i], NULL, 10);
+		long	value = strtol(av[i], NULL, 10);
 		if (value < 0 || value > INT_MAX)
 			throw (PmergeMeException("Error: Value out of range"));
 		vec.push_back(static_cast<int>(value));
@@ -59,16 +62,16 @@ void	PmergeMe::mergeSort( std::vector<int>& vec, int start, int mid, int end )
 	std::vector<int>	right(vec.begin() + mid + 1, vec.begin() + end + 1); 
 	int					leftIdx = 0, rightIdx = 0, vecIdx = start;
 	
-	while (leftIdx < left.size() && rightIdx < right.size())
+	while (leftIdx < static_cast<int>(left.size()) && rightIdx < static_cast<int>(right.size()))
 	{
 		if (left[leftIdx] < right[rightIdx])
 			vec[vecIdx++] = left[leftIdx++];
 		else
 			vec[vecIdx++] = right[rightIdx++];
 	}
-	while (leftIdx < left.size())
+	while (leftIdx < static_cast<int>(left.size()))
 		vec[vecIdx++] = left[leftIdx++];
-	while (rightIdx < right.size())
+	while (rightIdx < static_cast<int>(right.size()))
 		vec[vecIdx++] = right[rightIdx++];
 }
 

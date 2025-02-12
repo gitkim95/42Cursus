@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 00:29:48 by gitkim            #+#    #+#             */
-/*   Updated: 2025/02/12 13:03:01 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/12 18:35:06 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 
 class PmergeMe
 {
+private:
+	int	temp;
 public:
 	PmergeMe( void );
 	PmergeMe( const PmergeMe &other);
