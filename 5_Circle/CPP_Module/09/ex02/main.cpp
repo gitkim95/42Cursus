@@ -6,16 +6,64 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 00:33:23 by gitkim            #+#    #+#             */
-/*   Updated: 2025/02/09 00:40:49 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/12 13:04:58 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string>
+#include <vector>
+#include <list>
+#include <iostream>
+#include <climits>
+#include <exception>
 #include "PmergeMe.hpp"
+
+static void	printBefore ( int ac, char **av );
+static void	printAfter ( std::string after );
 
 int	main(int ac, char **av)
 {
+	std::vector<int>	vec;
+	std::list<int>		list;
+	try
+	{
+		PmergeMe::initContainer(vec, list, ac, av);
+		printBefore(ac, av);
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+		return (1);
+	}
+	PmergeMe::mergeInsertionSort(vec, 0, vec.size() - 1);
+	PmergeMe::mergeInsertionSort(list);
+	printAfter(vec);
 
 	return (0);
+}
+
+static void	printBefore ( int ac, char **av )
+{
+	std::cout << "Before: ";
+	for (int i = 1; i < ac; i++)
+	{
+		std::cout << av[i];
+		if (i != ac - 1)
+			std::cout << " ";
+	}
+	std::cout << std::endl;
+}
+
+static void	printAfter ( std::vector<int>& vec )
+{
+	std::cout << "After: ";
+	for (int i = 0; i < vec.size(); i++)
+	{
+		std::cout << vec[i];
+		if (i != vec.size() - 2)
+			std::cout << " ";
+	}
+	std::cout << std::endl;
 }
 
 //양의 정수를 인수로 사용
