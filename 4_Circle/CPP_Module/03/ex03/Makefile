@@ -16,7 +16,7 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	$(C++) $(CPPFLAGS) -o $@ $^
 
-%.o : %.c
+%.o : %.cpp
 	$(C++) $(CPPFLAGS) -o $@ -c $<
 
 clean :
