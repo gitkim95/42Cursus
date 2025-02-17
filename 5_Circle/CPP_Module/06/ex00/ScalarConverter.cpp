@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 01:20:51 by gitkim            #+#    #+#             */
-/*   Updated: 2025/02/18 01:08:23 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/18 03:02:01 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ScalarConverter::convert( const std::string& input )
 	{
 		long	i = std::strtol(input.c_str(), &end, 10);
 
-		std::cout << "char: " << (std::isprint(i) ? "'" + std::string(1, static_cast<char>(i)) + "'" : "Non displayable") << std::endl;
+		std::cout << "char: " << ((i >= 0 && i <= 255) && std::isprint(i) ? "'" + std::string(1, static_cast<char>(i)) + "'" : "Non displayable") << std::endl;
 		std::cout << "int: " << i << std::endl;
 		std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(i) << "f" << std::endl;
 		std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(i) << std::endl;
@@ -86,7 +86,7 @@ void	ScalarConverter::convert( const std::string& input )
 		}
 		else
 		{
-			std::cout << "char: " << (std::isprint(static_cast<int>(f)) ? "'" + std::string(1, static_cast<char>(f)) + "'" : "impossible") << std::endl;
+			std::cout << "char: " << (((static_cast<int>(f) >= 0 && static_cast<int>(f) <= 255) && std::isprint(static_cast<int>(f))) ? "'" + std::string(1, static_cast<char>(f)) + "'" : "impossible") << std::endl;
 			std::cout << "int: " << static_cast<int>(f) << std::endl;
 		}
 		std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
@@ -103,7 +103,7 @@ void	ScalarConverter::convert( const std::string& input )
 		}
 		else
 		{
-			std::cout << "char: " << (std::isprint(static_cast<int>(d)) ? "'" + std::string(1, static_cast<char>(d)) + "'" : "impossible") << std::endl;
+			std::cout << "char: " << (((static_cast<int>(d) >= 0 && static_cast<int>(d) <= 255) && std::isprint(static_cast<int>(d))) ? "'" + std::string(1, static_cast<char>(d)) + "'" : "impossible") << std::endl;
 			std::cout << "int: " << static_cast<int>(d) << std::endl;
 		}
 		std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(d) << "f" << std::endl;
