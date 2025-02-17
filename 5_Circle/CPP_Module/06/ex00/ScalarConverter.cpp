@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 01:20:51 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/22 23:12:27 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/18 01:08:23 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static bool isFloat( const std::string& input )
 {
 	if (input.find('f') != std::string::npos && input[input.size() - 1] == 'f')
 	{
+		if (input == "nanf" || input == "+inff" || input == "-inff" || input == "inff")
+			return (true);
 		char*	end = NULL;
 		std::strtof(input.c_str(), &end);
 		return (*end == 'f' && *(end + 1) == '\0');
@@ -77,8 +79,16 @@ void	ScalarConverter::convert( const std::string& input )
 	{
 		float	f = std::strtof(input.c_str(), &end);
 
-		std::cout << "char: " << (std::isprint(static_cast<int>(f)) ? "'" + std::string(1, static_cast<char>(f)) + "'" : "impossible") << std::endl;
-		std::cout << "int: " << static_cast<int>(f) << std::endl;
+		if (input == "nanf" || input == "inff" || input == "-inff" || input == "+inff")
+		{
+			std::cout << "char: impossible" << std::endl;
+			std::cout << "int: impossible" << std::endl;
+		}
+		else
+		{
+			std::cout << "char: " << (std::isprint(static_cast<int>(f)) ? "'" + std::string(1, static_cast<char>(f)) + "'" : "impossible") << std::endl;
+			std::cout << "int: " << static_cast<int>(f) << std::endl;
+		}
 		std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
 		std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(f) << std::endl;
 	}

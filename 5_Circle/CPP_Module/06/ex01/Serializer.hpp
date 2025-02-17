@@ -6,14 +6,14 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 21:57:43 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/22 22:56:15 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/18 01:08:25 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SERIALIZER_HPP
 # define SERIALIZER_HPP
 
-# include <cstdint>
+# include <stdint.h>
 
 struct Data
 {
