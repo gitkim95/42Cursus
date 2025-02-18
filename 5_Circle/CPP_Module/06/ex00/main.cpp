@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 20:34:44 by gitkim            #+#    #+#             */
-/*   Updated: 2025/01/22 20:36:35 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/02/18 23:12:24 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 
 int	main(int ac, char **av)
 {
-	if (ac < 2)
+	if (ac != 2)
 	{
-		std::cout << "Not enough input" << std::endl;
-		return (0);
+		std::cerr << "Invalid input" << std::endl;
+		return (1);
 	}
 	ScalarConverter::convert(av[1]);
 	return (0);
