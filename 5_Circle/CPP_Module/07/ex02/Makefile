@@ -3,8 +3,7 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
 NAME = Array
 
-SOURCES =	main.cpp	\
-			Array.cpp
+SOURCES =	main.cpp
 			
 OBJS = $(SOURCES:.cpp=.o)
 
