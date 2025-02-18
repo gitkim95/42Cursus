@@ -3,8 +3,7 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
 NAME = MutantStack
 
-SOURCES =	main.cpp		\
-			MutantStack.cpp
+SOURCES =	main.cpp
 			
 OBJS = $(SOURCES:.cpp=.o)
 
