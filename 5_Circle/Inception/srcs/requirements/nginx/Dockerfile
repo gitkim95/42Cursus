@@ -3,6 +3,9 @@
 FROM debian:latest
 # Debian 최신 버전을 기본 이미지로 사용합니다.
 
+RUN echo "deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware" > /etc/apt/sources.list && \
+    echo "deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware" >> /etc/apt/sources.list && \
+    echo "deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware" >> /etc/apt/sources.list
 RUN apt-get update && apt-get install -y nginx openssl
 # 패키지 목록을 업데이트하고, NGINX와 OpenSSL을 설치합니다.
 

@@ -3,6 +3,9 @@
 FROM debian:latest
 # Debian 최신 버전을 기본 이미지로 사용합니다.
 
+RUN echo "deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware" > /etc/apt/sources.list && \
+    echo "deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware" >> /etc/apt/sources.list && \
+    echo "deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware" >> /etc/apt/sources.list
 RUN apt-get update && apt-get install -y mariadb-server
 # 패키지 목록을 업데이트하고, MariaDB 서버를 설치합니다.
 
@@ -15,7 +18,8 @@ ARG MYSQL_PASSWORD
 # 템플릿 파일을 실제 init.sql 파일로 변환
 COPY ./conf/init.sql.template /init.sql.template
 # 로컬의 init.sql.template 파일을 컨테이너 내부로 복사합니다.
-RUN envsubst < /init.sql.template > /docker-entrypoint-initdb.d/init.sql
+RUN mkdir -p /docker-entrypoint-initdb.d && \
+    envsubst < /init.sql.template > /docker-entrypoint-initdb.d/init.sql
 # 환경 변수를 대체하여 init.sql 파일을 생성합니다.
 
 # MariaDB 설정 파일 복사
