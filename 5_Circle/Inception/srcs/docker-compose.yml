@@ -37,7 +37,7 @@ services:
       - app-network
       # WordPress 서비스가 연결될 네트워크를 지정합니다.
     volumes:
-      - /home/gitkim/data/wordpress:/var/www/html
+      - ./data/wordpress:/var/www/html
       # 호스트의 디렉토리를 컨테이너의 /var/www/html 디렉토리에 마운트합니다.
     environment:
       - WORDPRESS_DB_HOST=db
@@ -68,13 +68,16 @@ services:
       - app-network
       # MariaDB 서비스가 연결될 네트워크를 지정합니다.
     volumes:
-      - /home/gitkim/data/mysql:/var/lib/mysql
+      - ./data/mysql:/var/lib/mysql
       # 호스트의 디렉토리를 컨테이너의 /var/lib/mysql 디렉토리에 마운트합니다.
       - ./requirements/mariadb/conf:/etc/mysql/conf.d
       # 로컬의 conf 디렉토리를 컨테이너의 /etc/mysql/conf.d 디렉토리에 마운트합니다.
       - ./requirements/mariadb/tools:/docker-entrypoint-initdb.d
       # 로컬의 tools 디렉토리를 컨테이너의 /docker-entrypoint-initdb.d 디렉토리에 마운트합니다.
     environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db_root_password
       # MariaDB 루트 비밀번호 파일 경로를 설정합니다.
       - MYSQL_PASSWORD_FILE=/run/secrets/db_password
