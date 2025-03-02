@@ -1,8 +1,8 @@
-FROM debian:buster
+FROM debian:bullseye
 
 RUN apt-get update && apt-get install -y \
     apt-utils lsb-release ca-certificates apt-transport-https software-properties-common wget curl unzip mariadb-client gnupg dirmngr\
-    && echo "deb https://packages.sury.org/php/ buster main" > /etc/apt/sources.list.d/sury-php.list \
+    && echo "deb https://packages.sury.org/php/ bullseye main" > /etc/apt/sources.list.d/sury-php.list \
     && wget -q -O- https://packages.sury.org/php/apt.gpg | gpg --dearmor > /etc/apt/trusted.gpg.d/sury-php.gpg \
     && apt-get update --allow-releaseinfo-change
 
