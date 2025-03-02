@@ -1,7 +1,7 @@
 FROM debian:buster
 
 RUN apt-get update && apt-get install -y \
-    lsb-release ca-certificates apt-transport-https software-properties-common wget curl unzip mariadb-client \
+    lsb-release ca-certificates apt-transport-https software-properties-common wget curl unzip mariadb-client gnupg\
     && echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/sury-php.list \
     && wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add - \
     && apt-get update

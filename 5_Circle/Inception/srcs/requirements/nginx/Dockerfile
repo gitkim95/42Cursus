@@ -5,7 +5,7 @@ RUN echo "deb http://deb.debian.org/debian buster main contrib non-free" > /etc/
     echo "deb http://deb.debian.org/debian buster-updates main contrib non-free" >> /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y \
-    nginx openssl && \
+    apt-utils nginx openssl && \
     rm -rf /var/lib/apt/lists/*
 
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
