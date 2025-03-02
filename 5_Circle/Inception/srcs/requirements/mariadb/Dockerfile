@@ -1,8 +1,8 @@
 FROM debian:buster
 
-RUN echo "deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware" > /etc/apt/sources.list && \
-    echo "deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware" >> /etc/apt/sources.list && \
-    echo "deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware" >> /etc/apt/sources.list
+RUN echo "deb http://deb.debian.org/debian buster main contrib non-free non-free-firmware" > /etc/apt/sources.list && \
+    echo "deb http://security.debian.org/debian-security buster/updates main contrib non-free" >> /etc/apt/sources.list && \
+    echo "deb http://deb.debian.org/debian buster-updates main contrib non-free" >> /etc/apt/sources.list
 RUN apt-get update && apt-get install -y mariadb-server
 
 ARG MYSQL_DATABASE
