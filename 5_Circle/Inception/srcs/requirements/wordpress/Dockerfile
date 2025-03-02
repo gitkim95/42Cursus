@@ -1,11 +1,10 @@
 FROM debian:buster
 
 RUN apt-get update && apt-get install -y \
-    lsb-release ca-certificates apt-transport-https software-properties-common wget curl unzip mariadb-client gnupg\
+    lsb-release ca-certificates apt-transport-https software-properties-common wget curl unzip mariadb-client gnupg apt-utils\
     && echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/sury-php.list \
     && wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add - \
     && apt-get update
-
 
 RUN apt-get update && apt-get install -y \
     php8.0-fpm php8.0-mysql php8.0-mbstring php8.0-xml php8.0-curl php8.0-gd php8.0-zip \
