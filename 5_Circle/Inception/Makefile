@@ -9,17 +9,17 @@ MYSQL_DIR           = $(DATA_DIR)/mysql
 
 up: build
 	mkdir -p $(NGINX_DIR) $(WORDPRESS_DIR) $(MYSQL_DIR)
-	docker compose -f $(DOCKER_COMPOSE_FILE) up -d
+	docker-compose -f $(DOCKER_COMPOSE_FILE) up -d
 
 down:
-	docker compose -f $(DOCKER_COMPOSE_FILE) down
+	docker-compose -f $(DOCKER_COMPOSE_FILE) down
 
 build:
 	mkdir -p $(NGINX_DIR) $(WORDPRESS_DIR) $(MYSQL_DIR)
-	docker compose -f $(DOCKER_COMPOSE_FILE) up --build -d
+	docker-compose -f $(DOCKER_COMPOSE_FILE) up --build -d
 
 restart:
-	docker compose -f $(DOCKER_COMPOSE_FILE) down && docker compose -f $(DOCKER_COMPOSE_FILE) up -d
+	docker-compose -f $(DOCKER_COMPOSE_FILE) down && docker-compose -f $(DOCKER_COMPOSE_FILE) up -d
 
 logs:
-	docker compose -f $(DOCKER_COMPOSE_FILE) logs -f
+	docker-compose -f $(DOCKER_COMPOSE_FILE) logs -f
