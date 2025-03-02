@@ -17,27 +17,6 @@ services:
       - DOMAIN_NAME=${DOMAIN_NAME}
     restart: always
 
-  wordpress:
-    build:
-      context: ./requirements/wordpress
-      dockerfile: Dockerfile
-    secrets:
-      - db_root_password
-      - db_password
-    volumes:
-      - /home/gitkim/data/wordpress:/var/www/html
-    environment:
-      - WORDPRESS_DB_HOST=db
-      - WORDPRESS_DB_USER=${MYSQL_USER}
-      - WORDPRESS_DB_PASSWORD_FILE=/run/secrets/db_password
-      - WORDPRESS_DB_NAME=${MYSQL_DATABASE}
-      - WORDPRESS_ADMIN_USER=gitkim_master
-      - WORDPRESS_ADMIN_PASSWORD_FILE=/run/secrets/db_root_password
-      - WORDPRESS_ADMIN_EMAIL=${MY_EMAIL}
-    networks:
-      - app-network
-    restart: always
-
   db:
     build:
       context: ./requirements/mariadb
@@ -55,6 +34,27 @@ services:
     environment:
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USER}
+    networks:
+      - app-network
+    restart: always
+
+  wordpress:
+    build:
+      context: ./requirements/wordpress
+      dockerfile: Dockerfile
+    secrets:
+      - db_root_password
+      - db_password
+    volumes:
+      - /home/gitkim/data/wordpress:/var/www/html
+    environment:
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_USER=${MYSQL_USER}
+      - WORDPRESS_DB_PASSWORD_FILE=/run/secrets/db_password
+      - WORDPRESS_DB_NAME=${MYSQL_DATABASE}
+      - WORDPRESS_ADMIN_USER=gitkim_master
+      - WORDPRESS_ADMIN_PASSWORD_FILE=/run/secrets/db_root_password
+      - WORDPRESS_ADMIN_EMAIL=${MY_EMAIL}
     networks:
       - app-network
     restart: always
