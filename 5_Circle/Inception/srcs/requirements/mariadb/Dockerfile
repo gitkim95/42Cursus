@@ -15,6 +15,11 @@ ARG MYSQL_USER
 ARG MYSQL_PASSWORD
 # Dockerfile에서 사용할 빌드 시 환경 변수를 정의합니다.
 
+ENV MYSQL_DATABASE=$MYSQL_DATABASE
+ENV MYSQL_USER=$MYSQL_USER
+ENV MYSQL_PASSWORD=$MYSQL_PASSWORD
+# 빌드 시 사용한 ARG 값을 실행 시에도 사용할 수 있도록 ENV로 설정
+
 # 템플릿 파일을 실제 init.sql 파일로 변환
 COPY ./conf/init.sql.template /init.sql.template
 # 로컬의 init.sql.template 파일을 컨테이너 내부로 복사합니다.
