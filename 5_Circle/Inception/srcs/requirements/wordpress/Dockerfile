@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y \
     apt-utils lsb-release ca-certificates apt-transport-https software-properties-common wget curl unzip mariadb-client gnupg\
     && echo "deb https://packages.sury.org/php/ buster main" | tee /etc/apt/sources.list.d/sury-php.list \
     && wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add - \
-    && apt-get update
+    && apt-get update --allow-releaseinfo-change
 
 RUN apt-get update && apt-get install -y \
     php8.0-fpm php8.0-mysql php8.0-mbstring php8.0-xml php8.0-curl php8.0-gd php8.0-zip \
