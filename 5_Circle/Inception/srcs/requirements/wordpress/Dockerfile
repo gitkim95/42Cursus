@@ -1,9 +1,9 @@
 FROM debian:buster
 
 RUN apt-get update && apt-get install -y \
-    apt-utils lsb-release ca-certificates apt-transport-https software-properties-common wget curl unzip mariadb-client gnupg\
-    && echo "deb https://packages.sury.org/php/ buster main" | tee /etc/apt/sources.list.d/sury-php.list \
-    && wget -qO - https://packages.sury.org/php/apt.gpg | apt-key add - \
+    apt-utils lsb-release ca-certificates apt-transport-https software-properties-common wget curl unzip mariadb-client gnupg dirmngr\
+    && echo "deb https://packages.sury.org/php/ buster main" > /etc/apt/sources.list.d/sury-php.list \
+    && wget -q -O- https://packages.sury.org/php/apt.gpg | gpg --dearmor > /etc/apt/trusted.gpg.d/sury-php.gpg \
     && apt-get update --allow-releaseinfo-change
 
 RUN apt-get update && apt-get install -y \
