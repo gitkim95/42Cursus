@@ -3,7 +3,7 @@
 // 환경 변수를 사용하여 데이터베이스 설정을 구성합니다.
 define('DB_NAME', getenv('MYSQL_DATABASE'));
 define('DB_USER', getenv('MYSQL_USER'));
-define('DB_PASSWORD', getenv('MYSQL_PASSWORD'));
+define('DB_PASSWORD', trim(file_get_contents('/run/secrets/db_password')));
 define('DB_HOST', getenv('WORDPRESS_DB_HOST'));
 define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');

@@ -1,103 +1,70 @@
 version: '3.7'
-# Docker Compose 파일의 버전을 지정합니다.
 
 services:
   nginx:
     build:
       context: ./requirements/nginx
-      # NGINX 서비스를 빌드할 때 사용할 컨텍스트 디렉토리를 지정합니다.
       dockerfile: Dockerfile
-      # NGINX 서비스를 빌드할 때 사용할 Dockerfile을 지정합니다.
     ports:
       - "443:443"
-      # 컨테이너의 443 포트를 호스트의 443 포트에 매핑합니다.
     networks:
       - app-network
-      # NGINX 서비스가 연결될 네트워크를 지정합니다.
     volumes:
       - /home/gitkim/data/nginx:/var/www/html
-      # 호스트의 디렉토리를 컨테이너의 /var/www/html 디렉토리에 마운트합니다.
       - ./requirements/nginx/conf:/etc/nginx/conf.d
-      # 로컬의 conf 디렉토리를 컨테이너의 /etc/nginx/conf.d 디렉토리에 마운트합니다.
       - ./requirements/nginx/tools:/docker-entrypoint-initdb.d
-      # 로컬의 tools 디렉토리를 컨테이너의 /docker-entrypoint-initdb.d 디렉토리에 마운트합니다.
     environment:
       - DOMAIN_NAME=${DOMAIN_NAME}
-      # 환경 변수 DOMAIN_NAME을 설정합니다.
     restart: always
-    # 컨테이너가 중지될 경우 항상 다시 시작하도록 설정합니다.
 
   wordpress:
     build:
       context: ./requirements/wordpress
-      # WordPress 서비스를 빌드할 때 사용할 컨텍스트 디렉토리를 지정합니다.
       dockerfile: Dockerfile
-      # WordPress 서비스를 빌드할 때 사용할 Dockerfile을 지정합니다.
-    networks:
-      - app-network
-      # WordPress 서비스가 연결될 네트워크를 지정합니다.
+    secrets:
+      - db_root_password
+      - db_password
     volumes:
-      - ./data/wordpress:/var/www/html
-      # 호스트의 디렉토리를 컨테이너의 /var/www/html 디렉토리에 마운트합니다.
+      - /home/gitkim/data/wordpress:/var/www/html
     environment:
       - WORDPRESS_DB_HOST=db
-      # 데이터베이스 호스트를 지정합니다.
       - WORDPRESS_DB_USER=${MYSQL_USER}
-      # 환경 변수 MYSQL_USER를 사용하여 데이터베이스 사용자를 설정합니다.
-      - WORDPRESS_DB_PASSWORD=${MYSQL_PASSWORD}
-      # 환경 변수 MYSQL_PASSWORD를 사용하여 데이터베이스 비밀번호를 설정합니다.
+      - WORDPRESS_DB_PASSWORD_FILE=/run/secrets/db_password
       - WORDPRESS_DB_NAME=${MYSQL_DATABASE}
-      # 환경 변수 MYSQL_DATABASE를 사용하여 데이터베이스 이름을 설정합니다.
+      - WORDPRESS_ADMIN_USER=gitkim_master
+      - WORDPRESS_ADMIN_PASSWORD_FILE=/run/secrets/db_root_password
+      - WORDPRESS_ADMIN_EMAIL=${MY_EMAIL}
+    networks:
+      - app-network
     restart: always
-    # 컨테이너가 중지될 경우 항상 다시 시작하도록 설정합니다.
 
   db:
     build:
       context: ./requirements/mariadb
-      # MariaDB 서비스를 빌드할 때 사용할 컨텍스트 디렉토리를 지정합니다.
       dockerfile: Dockerfile
-      # MariaDB 서비스를 빌드할 때 사용할 Dockerfile을 지정합니다.
       args:
         MYSQL_DATABASE: ${MYSQL_DATABASE}
-        # 빌드 시 환경 변수 MYSQL_DATABASE를 설정합니다.
         MYSQL_USER: ${MYSQL_USER}
-        # 빌드 시 환경 변수 MYSQL_USER를 설정합니다.
-        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-        # 빌드 시 환경 변수 MYSQL_PASSWORD를 설정합니다.
-    networks:
-      - app-network
-      # MariaDB 서비스가 연결될 네트워크를 지정합니다.
-    volumes:
-      - ./data/mysql:/var/lib/mysql
-      # 호스트의 디렉토리를 컨테이너의 /var/lib/mysql 디렉토리에 마운트합니다.
-      - ./requirements/mariadb/conf:/etc/mysql/conf.d
-      # 로컬의 conf 디렉토리를 컨테이너의 /etc/mysql/conf.d 디렉토리에 마운트합니다.
-      - ./requirements/mariadb/tools:/docker-entrypoint-initdb.d
-      # 로컬의 tools 디렉토리를 컨테이너의 /docker-entrypoint-initdb.d 디렉토리에 마운트합니다.
-    environment:
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db_root_password
-      # MariaDB 루트 비밀번호 파일 경로를 설정합니다.
-      - MYSQL_PASSWORD_FILE=/run/secrets/db_password
-      # MariaDB 사용자 비밀번호 파일 경로를 설정합니다.
     secrets:
       - db_root_password
       - db_password
-      # MariaDB에서 사용할 secrets 파일을 지정합니다.
+    volumes:
+      - /home/gitkim/data/mysql:/var/lib/mysql
+      - ./requirements/mariadb/conf:/etc/mysql/conf.d
+      - ./requirements/mariadb/tools:/docker-entrypoint-initdb.d
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+    networks:
+      - app-network
     restart: always
-    # 컨테이너가 중지될 경우 항상 다시 시작하도록 설정합니다.
 
 networks:
   app-network:
     driver: bridge
-    # 브리지 네트워크 드라이버를 사용하여 app-network를 설정합니다.
 
 secrets:
   db_root_password:
     file: ../secrets/db_root_password.txt
-    # MariaDB 루트 비밀번호를 저장한 파일의 경로를 설정합니다.
   db_password:
     file: ../secrets/db_password.txt
-    # MariaDB 비밀번호를 저장한 파일의 경로를 설정합니다.

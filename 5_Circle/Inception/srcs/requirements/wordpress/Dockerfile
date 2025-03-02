@@ -1,14 +1,21 @@
-# Dockerfile for WordPress with PHP-FPM
-# PHP-FPM을 사용하여 WordPress를 실행하기 위한 Dockerfile 입니다.
-FROM wordpress:php8.0-fpm
-# WordPress와 PHP-FPM이 포함된 이미지를 기본 이미지로 사용합니다.
+FROM debian:buster
 
-# WordPress 설정 파일 복사
+RUN apt-get update && apt-get install -y \
+    php8.0-fpm php8.0-mysql php8.0-mbstring php8.0-xml php8.0-curl php8.0-gd php8.0-zip \
+    wget unzip curl mariadb-client \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /var/www/html
+
+RUN wget https://wordpress.org/latest.tar.gz \
+    && tar -xzf latest.tar.gz --strip-components=1 \
+    && rm latest.tar.gz
+
 COPY ./wp-config.php /var/www/html/wp-config.php
-# 로컬의 wp-config.php 파일을 컨테이너 내부의 WordPress 디렉토리로 복사합니다.
+
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html
 
 EXPOSE 9000
-# 컨테이너 외부에 노출할 포트 9000 (PHP-FPM 기본 포트)을 설정합니다.
 
 CMD ["php-fpm"]
-# 컨테이너가 시작될 때 php-fpm 명령어를 실행합니다.
