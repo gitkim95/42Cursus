@@ -57,7 +57,6 @@ services:
       - WORDPRESS_ADMIN_EMAIL=${MY_EMAIL}
     networks:
       - app-network
-    network_mode: bridge
     restart: always
 
 networks:
