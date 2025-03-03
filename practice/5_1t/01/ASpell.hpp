@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 21:41:05 by gitkim            #+#    #+#             */
-/*   Updated: 2025/03/03 23:08:44 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/03/04 02:49:06 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class ATarget;
 
 class ASpell
 {
-private:
+protected:
 	std::string	name;
 	std::string effects;
 	ASpell( void );

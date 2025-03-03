@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 22:57:03 by gitkim            #+#    #+#             */
-/*   Updated: 2025/03/03 23:12:17 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/03/04 02:52:50 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ class ASpell;
 
 class ATarget
 {
-private:
+protected:
 	std::string	type;
 	ATarget( void );
 	ATarget( const ATarget& other );
