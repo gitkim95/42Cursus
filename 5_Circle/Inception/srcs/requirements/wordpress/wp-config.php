@@ -24,6 +24,10 @@ $table_prefix = 'wp_';
 // 디버그 모드 설정
 define('WP_DEBUG', false);
 
+// 관리자 사용자명과 비밀번호를 환경 변수에서 가져옵니다.
+define('WORDPRESS_ADMIN_USER', trim(file_get_contents('/run/secrets/credentials'))); // credentials.txt에서 사용자명 읽기
+define('WORDPRESS_ADMIN_PASSWORD', getenv('WORDPRESS_ADMIN_PASSWORD')); // 환경 변수에서 비밀번호 읽기
+
 // 끝에 아래 줄을 추가
 if ( !defined('ABSPATH') )
     define('ABSPATH', dirname(__FILE__) . '/');

@@ -22,6 +22,10 @@ COPY ./wp-config.php /var/www/html/wp-config.php
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
 EXPOSE 9000
 
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["php-fpm8.0", "-F"]
