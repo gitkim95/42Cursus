@@ -6,11 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 16:20:44 by gitkim            #+#    #+#             */
-/*   Updated: 2025/03/04 16:26:27 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/03/04 18:20:41 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include "ASpell.hpp"
 
 #include "Warlock.hpp"
 
@@ -56,4 +57,25 @@ void	Warlock::setTitle( std::string const& newTitle )
 void	Warlock::introduce( void ) const
 {
 	std::cout << name << ": I am " << name << ", " << title << "!" << std::endl;
+}
+
+void	Warlock::learnSpell( ASpell* spell )
+{
+	spells.learnSpell(spell);
+}
+
+void	Warlock::forgetSpell( std::string const& spellName )
+{
+	spells.forgetSpell(spellName);
+}
+
+void	Warlock::launchSpell( std::string const& spellName, ATarget& target )
+{
+	ASpell*	currentSpell = spells.createSpell(spellName);
+
+	if (currentSpell)
+	{
+		currentSpell->launch(target);
+		delete (currentSpell);
+	}
 }

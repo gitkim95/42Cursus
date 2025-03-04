@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BrickWall.hpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/04 16:29:33 by gitkim            #+#    #+#             */
-/*   Updated: 2025/03/04 17:39:05 by gitkim           ###   ########.fr       */
+/*   Created: 2025/03/04 16:23:46 by gitkim            #+#    #+#             */
+/*   Updated: 2025/03/04 16:28:44 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRICKWALL_HPP
-# define BRICKWALL_HPP
+#include <iostream>
 
-# include <string>
+#include "Warlock.hpp"
 
-# include "ATarget.hpp"
-
-class BrickWall : public ATarget
+int main()
 {
-public:
-	BrickWall( void );
-	BrickWall( BrickWall const& other );
-	BrickWall&	operator=( BrickWall const& other );
-	virtual ~BrickWall();
+  Warlock const richard("Richard", "Mistress of Magma");
+  richard.introduce();
+  std::cout << richard.getName() << " - " << richard.getTitle() << std::endl;
 
-	virtual BrickWall*	clone( void ) const;
-};
+  Warlock* jack = new Warlock("Jack", "the Long");
+  jack->introduce();
+  jack->setTitle("the Mighty");
+  jack->introduce();
 
-#endif
+  delete jack;
+
+  return (0);
+}

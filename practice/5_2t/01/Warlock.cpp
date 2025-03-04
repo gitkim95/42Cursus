@@ -6,11 +6,12 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 16:20:44 by gitkim            #+#    #+#             */
-/*   Updated: 2025/03/04 16:26:27 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/03/04 17:59:43 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include "ASpell.hpp"
 
 #include "Warlock.hpp"
 
@@ -36,6 +37,16 @@ Warlock&	Warlock::operator=( Warlock const& other )
 Warlock::~Warlock()
 {
 	std::cout << name << ": My job here is done!" << std::endl;
+
+	std::map<std::string, ASpell*>::const_iterator	it = spells.begin();
+	std::map<std::string, ASpell*>::const_iterator	temp;
+	while (it != spells.end())
+	{
+		temp = it;
+		it++;
+		delete (temp->second);
+		spells.erase(temp);
+	}
 }
 
 std::string const&	Warlock::getName( void ) const
@@ -56,4 +67,30 @@ void	Warlock::setTitle( std::string const& newTitle )
 void	Warlock::introduce( void ) const
 {
 	std::cout << name << ": I am " << name << ", " << title << "!" << std::endl;
+}
+
+void	Warlock::learnSpell( ASpell* spell )
+{
+	spells[spell->getName()] = spell;
+}
+
+void	Warlock::forgetSpell( std::string const& spellName )
+{
+	std::map<std::string, ASpell*>::const_iterator	it = spells.find(spellName);
+
+	if (it != spells.end())
+	{
+		delete (it->second);
+		spells.erase(spellName);
+	}
+}
+
+void	Warlock::launchSpell( std::string const& spellName, ATarget& target )
+{
+	std::map<std::string, ASpell*>::const_iterator	it = spells.find(spellName);
+
+	if (it != spells.end())
+	{
+		it->second->launch(target);
+	}
 }
