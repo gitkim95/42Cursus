@@ -12,7 +12,7 @@ COPY ./tools/certs.sh /tmp/certs.sh
 
 RUN chmod +x /tmp/certs.sh
 
-COPY ./conf/default /etc/nginx/sites-available/default
+COPY ./conf/nginx.conf /etc/nginx/sites-available/default
 
 
 ENTRYPOINT ["/tmp/certs.sh"]
