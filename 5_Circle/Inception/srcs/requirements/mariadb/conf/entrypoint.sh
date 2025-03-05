@@ -2,9 +2,10 @@
 
 mysqld_safe &
 
-while ! mysqladmin ping -h "${MYSQL_HOST}" --silent; do
+while ! mysqladmin ping -h "localhost" --silent; do
   echo "Waiting for database connection..."
   sleep 2
+done
 
 mysql -e "CREATE DATABASE IF NOT EXISTS ${MYSQL_DATABASE};"
 mysql -e "CREATE USER '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';"
