@@ -8,5 +8,3 @@ COPY ./conf/entrypoint.sh /tmp/entrypoint.sh
 RUN chmod +x /tmp/entrypoint.sh
 
 ENTRYPOINT ["bash", "/tmp/entrypoint.sh"]
-
-CMD ["mysqld_safe"]

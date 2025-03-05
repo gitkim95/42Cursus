@@ -15,4 +15,4 @@ RUN chmod +x /tmp/certs.sh
 
 COPY ./conf/nginx.conf /etc/nginx/sites-available/default
 
-ENTRYPOINT ["/tmp/certs.sh"]
+ENTRYPOINT ["bash", "/tmp/certs.sh"]

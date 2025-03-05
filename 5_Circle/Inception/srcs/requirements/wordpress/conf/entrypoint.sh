@@ -1,6 +1,15 @@
 #!bin/bash
 
-sleep 10
+# 데이터베이스가 실행 중인지 확인하는 함수
+check_db() {
+  mysqladmin ping -h "${MYSQL_HOST}" --silent
+}
+
+# 데이터베이스가 실행될 때까지 대기
+until check_db; do
+  echo "Waiting for database connection..."
+  sleep 2
+done
 
 if [ ! -f /var/www/html/wp-config.php ]; then
     wp config create --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER \
