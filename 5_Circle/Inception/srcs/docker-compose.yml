@@ -15,7 +15,7 @@ services:
       - ./requirements/nginx/tools:/docker-entrypoint-initdb.d
     environment:
       - DOMAIN_NAME=${DOMAIN_NAME}
-    restart: always
+    restart: on-failure
 
   db:
     build:
@@ -39,7 +39,7 @@ services:
 
     networks:
       - app-network
-    restart: always
+    restart: on-failure
 
   wordpress:
     build:
@@ -61,7 +61,7 @@ services:
       - WORDPRESS_ADMIN_EMAIL=${MY_EMAIL}
     networks:
       - app-network
-    restart: always
+    restart: on-failure
 
 networks:
   app-network:
