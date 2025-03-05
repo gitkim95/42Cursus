@@ -1,7 +1,12 @@
 #!/bin/bash
-MYSQL_ROOT_PASSWORD=$(cat /run/secrets/db_root_password)
-MYSQL_PASSWORD=$(cat /run/secrets/db_password)
 
-envsubst < /init.sql.template | mysql -u root
+service mysql start
 
-exec mysqld
+mysql -e "CREATE DATABASE IF NOT EXISTS ${MYSQL_DATABASE};"
+mysql -e "CREATE USER '${MYSQL_USER}'@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';"
+mysql -e "GRANT ALL PRIVILEGES ON ${MYSQL_DATABASE}.* TO '${MYSQL_USER}'@'%';"
+mysql -u${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD} -e "ALTER USER '${MYSQL_ROOT_USER}'@'${MYSQL_HOST}' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';"
+mysql -e "FLUSH PRIVILEGES;"
+mysqladmin -u${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD} shutdown
+
+exec "$@"

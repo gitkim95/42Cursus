@@ -1,5 +1,0 @@
-**/node_modules
-# node_modules 디렉토리를 Docker 이미지 빌드에서 제외합니다.
-
-**/npm-debug.log
-# npm-debug.log 파일을 Docker 이미지 빌드에서 제외합니다.

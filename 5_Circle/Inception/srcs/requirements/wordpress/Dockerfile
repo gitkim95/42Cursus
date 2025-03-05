@@ -1,31 +1,27 @@
 FROM debian:bullseye
 
-RUN apt-get update && apt-get install -y \
-    apt-utils lsb-release ca-certificates apt-transport-https software-properties-common wget curl unzip mariadb-client gnupg dirmngr\
-    && echo "deb https://packages.sury.org/php/ bullseye main" > /etc/apt/sources.list.d/sury-php.list \
-    && wget -q -O- https://packages.sury.org/php/apt.gpg | gpg --dearmor > /etc/apt/trusted.gpg.d/sury-php.gpg \
-    && apt-get update --allow-releaseinfo-change
-
-RUN apt-get update && apt-get install -y \
-    php8.0-fpm php8.0-mysql php8.0-mbstring php8.0-xml php8.0-curl php8.0-gd php8.0-zip \
-    wget unzip curl mariadb-client \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get upgrade && apt-get install -y \
+    php-fpm \
+    php-mysql \
+    php-zip \
+    php-redis \
+    curl \
+    vim && \
+    sed -i -e 's/listen =.*/listen = 9000/g' /etc/php/7.4/fpm/pool.d/www.conf
+RUN apt-get install -y sendmail
+RUN mkdir -p /run/php
 
 WORKDIR /var/www/html
 
-RUN wget https://wordpress.org/latest.tar.gz \
-    && tar -xzf latest.tar.gz --strip-components=1 \
-    && rm latest.tar.gz
+RUN chown -R www-data:www-data /var/www/html
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+    chmod +x wp-cli.phar && \
+    mv wp-cli.phar /usr/local/bin/wp
 
-COPY ./wp-config.php /var/www/html/wp-config.php
+RUN wp core download --allow-root
 
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
+COPY ./conf/entrypoint.sh .
 
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
+RUN chmod +x entrypoint.sh
 
-EXPOSE 9000
-
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-CMD ["php-fpm8.0", "-F"]
+ENTRYPOINT ["bash", "entrypoint.sh"]

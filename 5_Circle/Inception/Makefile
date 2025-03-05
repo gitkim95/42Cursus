@@ -1,25 +1,32 @@
-DOCKER_COMPOSE_FILE = srcs/docker-compose.yml
+DOCKER_COMPOSE		=	docker-compose
+DOCKER_COMPOSE_FILE	=	srcs/docker-compose.yml
 
-DATA_DIR            = /home/gitkim/data
-NGINX_DIR           = $(DATA_DIR)/nginx
-WORDPRESS_DIR       = $(DATA_DIR)/wordpress
-MYSQL_DIR           = $(DATA_DIR)/mysql
+RM					=	rm -r
 
-.PHONY: up down build restart logs
+DATA_DIR            =	/home/gitkim/data
+WORDPRESS_DIR       =	$(DATA_DIR)/wordpress
+MYSQL_DIR           =	$(DATA_DIR)/mysql
 
-up: build
-	mkdir -p $(NGINX_DIR) $(WORDPRESS_DIR) $(MYSQL_DIR)
-	docker-compose -f $(DOCKER_COMPOSE_FILE) up -d
+.PHONY: up down clean fclean restart kill logs
+
+up: 
+	mkdir -p $(WORDPRESS_DIR) $(MYSQL_DIR)
+	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) up --build -d
 
 down:
-	docker-compose -f $(DOCKER_COMPOSE_FILE) down
+	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) down
 
-build:
-	mkdir -p $(NGINX_DIR) $(WORDPRESS_DIR) $(MYSQL_DIR)
-	docker-compose -f $(DOCKER_COMPOSE_FILE) up --build -d
+clean:
+	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) down -v
 
-restart:
-	docker-compose -f $(DOCKER_COMPOSE_FILE) down && docker-compose -f $(DOCKER_COMPOSE_FILE) up -d
+fclean: clean
+	@$(RM) $(WORDPRESS_DIR) $(MYSQL_DIR)
+	docker system prune -a -f
+
+restart: clean up
+
+kill:
+	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) kill
 
 logs:
-	docker-compose -f $(DOCKER_COMPOSE_FILE) logs -f
+	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) logs -f
