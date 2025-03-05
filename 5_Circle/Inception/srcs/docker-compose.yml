@@ -45,6 +45,18 @@ networks:
   app-network:
     driver: bridge
 
+volumes:
+  mdb:
+   driver_opts:
+      type: 'none'
+      o: bind
+      device: /home/gitkim/data/mysql
+  wp:
+   driver_opts:
+      type: 'none'
+      o: bind
+      device: /home/gitkim/data/wordpress
+
 secrets:
   db_root_password:
     file: ../secrets/db_root_password.txt
