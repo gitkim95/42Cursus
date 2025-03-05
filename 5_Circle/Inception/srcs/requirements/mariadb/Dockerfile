@@ -1,7 +1,8 @@
 FROM debian:bullseye
 
 RUN apt-get update && apt-get install -y \
-    mariadb-server
+    mariadb-server \
+    default-mysql-client
 
 COPY ./conf/entrypoint.sh /tmp/entrypoint.sh
 
