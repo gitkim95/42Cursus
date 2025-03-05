@@ -6,7 +6,8 @@ RUN apt-get update && apt-get upgrade && apt-get install -y \
     php-zip \
     php-redis \
     curl \
-    vim && \
+    vim \
+    default-mysql-client && \
     sed -i -e 's/listen =.*/listen = 9000/g' /etc/php/7.4/fpm/pool.d/www.conf
 RUN apt-get install -y sendmail
 RUN mkdir -p /run/php
