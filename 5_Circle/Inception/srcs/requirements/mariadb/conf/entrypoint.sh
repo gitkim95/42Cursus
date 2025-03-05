@@ -19,4 +19,5 @@ mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e "FLUSH PRIVILEGES;"
 # mysql -u${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD} -e "ALTER USER '${MYSQL_ROOT_USER}'@'${MYSQL_HOST}' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';"
 # mysql -e "FLUSH PRIVILEGES;"
 
-exec mysqld_safe
+# exec mysqld_safe
+wait
