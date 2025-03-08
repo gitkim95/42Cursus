@@ -85,6 +85,7 @@
 		"semaphore": "cpp",
 		"exam04": "cpp",
 		"fstream": "cpp",
-		"*.tpp": "cpp"
+		"*.tpp": "cpp",
+		"socket.h": "c"
 	}
 }
