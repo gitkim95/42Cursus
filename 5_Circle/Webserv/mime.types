@@ -1,0 +1,10 @@
+text/html              html htm php bla
+application/javascript js
+text/css               css
+application/json       json
+image/jpeg             jpg jpeg
+image/png              png
+image/gif              gif
+text/plain             txt
+application/x-python-code py
+application/x-httpd-cgi cgi

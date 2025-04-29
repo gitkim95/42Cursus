@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cookie Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #4a90e2;
+        }
+
+        #output {
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            border: 1px solid #dcdcdc;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <script>
+        // 쿠키에서 특정 key를 찾아주는 함수
+        function getCookie(name) {
+            let cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim();
+                if (cookie.startsWith(name + '=')) {
+                    return cookie.substring(name.length + 1);
+                }
+            }
+            return null;
+        }
+
+        // 밀리초 timestamp를 사람이 읽을 수 있게 변환하는 함수
+        function formatTimestamp(millis) {
+            const date = new Date(parseInt(millis, 10));
+            const year = date.getFullYear();
+            const month = ('0' + (date.getMonth() + 1)).slice(-2);
+            const day = ('0' + date.getDate()).slice(-2);
+            const hours = ('0' + date.getHours()).slice(-2);
+            const minutes = ('0' + date.getMinutes()).slice(-2);
+            const seconds = ('0' + date.getSeconds()).slice(-2);
+            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        }
+
+        // 페이지 로드되자마자 실행할 함수
+        window.onload = function () {
+            let output = document.getElementById('output');
+            let time = getCookie('visited');
+
+            if (!time) {
+                output.innerText = "👋 처음 방문하셨군요! 환영합니다.";
+            } else {
+                let formattedTime = formatTimestamp(time);
+                output.innerText = `📅 마지막 방문 기록: ${formattedTime}`;
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <h1>🍪 Cookie Test Page</h1>
+    <p id="output">로딩 중...</p>
+</body>
+
+</html>
