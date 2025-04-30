@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
     -keyout /etc/ssl/private/nginx-selfsigned.key \
     -out /etc/ssl/certs/nginx-selfsigned.crt \
-    -subj '/C=FR/ST=Ile-de-France/L=Paris/O=42/OU=42Paris/CN=HYLIM/UID=TTT'
+    -subj '/C=FR/ST=Ile-de-France/L=Paris/O=42/OU=42Paris/CN=gitkim/UID=TTT'
 
 # SSL 스니펫 파일 생성: 인증서와 개인키 경로 지정
 RUN echo "ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;\nssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;" \

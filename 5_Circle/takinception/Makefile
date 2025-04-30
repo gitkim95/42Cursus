@@ -1,13 +1,13 @@
 
 all:
-	@mkdir -p /home/hylim/data/db /home/hylim/data/wordpress
+	@mkdir -p /home/gitkim/data/db /home/gitkim/data/wordpress
 	@docker-compose -f ./srcs/docker-compose.yml up --build -d
 
 install :
 	@apt update 
 	@apt upgrade -y
 	@apt install docker-compose -y && apt install docker -y && apt install vim -y
-	@mkdir -p /home/hylim/data/db /home/hylim/data/wordpress
+	@mkdir -p /home/gitkim/data/db /home/gitkim/data/wordpress
 	@./init_domain.sh
 	
 restart :
@@ -20,7 +20,7 @@ down:
 clean:
 	@docker rm -f $$(docker ps -qa)
 	@docker volume rm -f $$(docker volume ls)
-	@rm -rf /home/hylim/data
+	@rm -rf /home/gitkim/data
 
 re: clean all
 

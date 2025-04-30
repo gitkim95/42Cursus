@@ -55,7 +55,7 @@ services:
     depends_on:
       - wordpress
     volumes:
-      - wordpress:/home/hylim/ftp/files
+      - wordpress:/home/gitkim/ftp/files
     env_file:
       - .env
     ports:
@@ -109,14 +109,14 @@ volumes:
     driver_opts:
       type: none
       # device: /Users/limhyeontaek/data/wordpress
-      device: /home/hylim/data/wordpress
+      device: /home/gitkim/data/wordpress
       o: bind
   db:
     driver: local
     driver_opts:
       type: none
       # device: /Users/limhyeontaek/data/db
-      device: /home/hylim/data/db
+      device: /home/gitkim/data/db
       o: bind
 
 

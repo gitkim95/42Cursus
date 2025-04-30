@@ -32,7 +32,7 @@ else
     echo "Redis configuration applied."
 
     echo "wp-config.php ftp config applied."
-    wp core install --url=hylim.42.fr --title=INCEPTION --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PASSWORD --admin_email=$WP_ADMIN_EMAIL --allow-root  
+    wp core install --url=gitkim.42.fr --title=INCEPTION --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PASSWORD --admin_email=$WP_ADMIN_EMAIL --allow-root  
     wp user create $WP_USER $WP_USER_EMAIL --user_pass=$WP_USER_PASSWORD --role=$WP_USER_ROLE --porcelain --allow-root 
     wp theme install neve --activate --allow-root
 

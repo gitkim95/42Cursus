@@ -2,8 +2,8 @@
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
-    server_name hylim.42.fr;
-    return 301 https://hylim.42.fr$request_uri;
+    server_name gitkim.42.fr;
+    return 301 https://gitkim.42.fr$request_uri;
 }
 
 
@@ -19,7 +19,7 @@ server {
         root /var/www/html/wordpress;
         index index.php ;
 
-        server_name hylim.42.fr;
+        server_name gitkim.42.fr;
 
         location / {
                 try_files $uri $uri/ =404;
