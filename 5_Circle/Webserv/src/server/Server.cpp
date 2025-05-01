@@ -6,12 +6,13 @@
 /*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 09:44:20 by hwilkim           #+#    #+#             */
-/*   Updated: 2025/04/30 21:36:56 by hwilkim          ###   ########.fr       */
+/*   Updated: 2025/05/01 13:28:50 by hwilkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cstdio>
 #include <cstring>
+#include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <csignal>
@@ -24,6 +25,8 @@
 #include "utils/utils.hpp"
 
 #include "server/Server.hpp"
+
+static bool hasCgiError(const CharVec &httpMessage);
 
 /* private */
 void Server::bindSocket(Socket *socket)
@@ -265,11 +268,12 @@ void Server::readFromCGI(int pipeRead)
 	else
 		return;
 
-	if (std::strcmp((const char *)&httpMessage[0], "ERROR") == 0)
+	if (hasCgiError(httpMessage))
 	{
 		Response response = ResponseGenerator::errorResponse(INTERNAL_SERVER_ERROR, client);
 		client->setResponse(response);
 	}
+
 	cleanupCgi(client, pipeRead);
 }
 
@@ -455,4 +459,15 @@ void Server::setMetaConfig(const MetaConfig &config)
 MetaConfig &Server::getMetaConfig()
 {
 	return (this->config);
+}
+
+static bool hasCgiError(const CharVec &httpMessage)
+{
+	static std::string htmlEnd = "</html>";
+
+	if (std::strcmp((const char *)&httpMessage[0], "ERROR") == 0)
+		return true;
+	if (std::search(httpMessage.begin(), httpMessage.end(), htmlEnd.begin(), htmlEnd.end()) == httpMessage.end())
+		return true;
+	return false;
 }

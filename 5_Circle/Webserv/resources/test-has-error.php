@@ -50,9 +50,7 @@
         <h2>Your Request Information</h2>
         <p><strong>Request Method:</strong> 
             <?php
-				while (true) {
-					sleep(1);
-				}
+				function_not_exist();
                 echo $_SERVER['REQUEST_METHOD'];
             ?>
         </p>
