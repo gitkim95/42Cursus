@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Request.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:05:37 by hwilkim           #+#    #+#             */
-/*   Updated: 2025/04/28 18:58:38 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/04/30 21:36:34 by hwilkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ enum PathType
 	PAYLOAD_TOO_LARGE = 413,
 	UNSUPPORTED_MEDIA_TYPE = 415,
 	UNPROCESSABLE_ENTITY = 422,
+	INTERNAL_SERVER_ERROR = 500,
+	SERVICE_UNAVAILABLE = 503,
+	GATEWAY_TIMEOUT = 504,
 };
 
 class Client;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   CGI.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 04:53:47 by hwilkim           #+#    #+#             */
-/*   Updated: 2025/04/27 00:50:04 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/04/30 20:40:16 by hwilkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,10 @@ char **CGI::generateCGIEnv(const Request &request)
 }
 
 /* public */
-int CGI::execute(const Request &request, int *in, int *out)
+int CGI::execute(Client *client, int *in, int *out)
 {
 	pid_t pid;
+	const Request &request = client->getRequest();
 
 	pid = fork();
 	if (pid < 0)
@@ -115,11 +116,13 @@ int CGI::execute(const Request &request, int *in, int *out)
 		closePipes(out);
 		if (execve(argv[0], argv, cgiEnv) < 0)
 		{
-			perror("================CGI: ");
 			freeSplit(cgiEnv);
-			std::exit(1);
+			write(STDOUT_FILENO, "ERROR", 6);
+			throw std::runtime_error("CGI: execve failed");
 		}
 	}
+	client->setCgiPid(pid);
+	client->setReadFd(out[0]);
 	return (1);
 }
 

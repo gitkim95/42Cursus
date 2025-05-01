@@ -6,7 +6,7 @@
 /*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 20:47:12 by hwilkim           #+#    #+#             */
-/*   Updated: 2025/04/29 17:07:58 by hwilkim          ###   ########.fr       */
+/*   Updated: 2025/04/30 21:36:37 by hwilkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,6 @@ public:
 	static Response ok();
 	static Response badRequest();
 	static Response notFound();
-	static Response internalServerError();
-	static Response serverUnavailable();
-	static Response gatewayTimeout();
 	static Response makeResponse(const StatusCode &statusCode);
 	Response &withHeader(const std::string &headerName, const std::string &value);
 	Response &withBody(const CharVec &content);

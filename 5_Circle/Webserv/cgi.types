@@ -1,5 +1,5 @@
 /usr/bin/php-cgi       php
-/usr/bin/python        py
+/usr/bin/python3        py
 /usr/bin/perl          cgi pl
 /usr/bin/ruby          rb
 /usr/bin/java          jsp

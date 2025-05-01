@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ResponseGenerator.hpp                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 15:17:12 by gitkim            #+#    #+#             */
-/*   Updated: 2025/04/28 22:57:56 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/04/30 21:36:39 by hwilkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ public:
 	static std::string getFileExtension(const std::string &path);
 	static const CharVec getFileData(Client *client);
 	static const Response getResponseData(Client *client, const CharVec &fileData);
+
+	static Response errorResponse(PathType pathType, Client *client);
 };
 
 #endif

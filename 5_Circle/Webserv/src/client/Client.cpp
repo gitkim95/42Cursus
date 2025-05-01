@@ -6,11 +6,12 @@
 /*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:26:42 by hwilkim           #+#    #+#             */
-/*   Updated: 2025/04/27 09:03:26 by hwilkim          ###   ########.fr       */
+/*   Updated: 2025/04/30 21:36:46 by hwilkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include "response/ResponseGenerator.hpp"
 #include "utils/utils.hpp"
 
 #include "client/Client.hpp"
@@ -24,6 +25,8 @@ Client::Client()
 	this->refCount = 0;
 	this->state = REQUEST;
 	this->isReqParsed = false;
+	this->cgiPid = 0;
+	this->readFd = 0;
 }
 
 Client::Client(Socket *serv, int clntSock, sockaddr_in addr) : clnt(clntSock, addr)
@@ -32,6 +35,8 @@ Client::Client(Socket *serv, int clntSock, sockaddr_in addr) : clnt(clntSock, ad
 	this->refCount = 0;
 	this->state = REQUEST;
 	this->isReqParsed = false;
+	this->cgiPid = 0;
+	this->readFd = 0;
 
 	try
 	{
@@ -40,7 +45,7 @@ Client::Client(Socket *serv, int clntSock, sockaddr_in addr) : clnt(clntSock, ad
 	catch (std::exception &e)
 	{
 		std::cerr << e.what() << std::endl;
-		this->setResponse(Response::internalServerError());
+		this->setResponse(ResponseGenerator::errorResponse(INTERNAL_SERVER_ERROR, this));
 		this->state = ERROR;
 	}
 }
@@ -95,6 +100,8 @@ const PathType &Client::getPathType() const { return (this->pathType); }
 const int &Client::getRefCount(void) const { return (this->refCount); }
 CharVec &Client::getReqBuffer() { return (this->reqBuffer); }
 const bool &Client::getIsReqParsed() const { return (this->isReqParsed); }
+const pid_t &Client::getCgiPid() const { return (this->cgiPid); }
+const int &Client::getReadFd() const { return (this->readFd); }
 
 void Client::setRequest(const Request &request)
 {
@@ -131,6 +138,9 @@ void Client::setIsReqParsed(const bool &isParsed)
 	this->isReqParsed = isParsed;
 }
 
+void Client::setCgiPid(const pid_t &pid) { this->cgiPid = pid; }
+void Client::setReadFd(const int &fd) { this->readFd = fd; }
+
 Client &Client::operator=(const Client &client)
 {
 	if (this != &client)
@@ -147,6 +157,9 @@ Client &Client::operator=(const Client &client)
 		this->refCount = client.refCount;
 		this->state = client.state;
 		this->reqBuffer = client.reqBuffer;
+
+		this->cgiPid = client.cgiPid;
+		this->readFd = client.readFd;
 	}
 	return (*this);
 }

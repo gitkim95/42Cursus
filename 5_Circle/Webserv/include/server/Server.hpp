@@ -6,7 +6,7 @@
 /*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 09:44:20 by hwilkim           #+#    #+#             */
-/*   Updated: 2025/04/29 17:08:48 by hwilkim          ###   ########.fr       */
+/*   Updated: 2025/04/30 20:39:43 by hwilkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ private:
 
 	void removeClient(int clntFd);
 	void cleanupClient(void);
+
+	void cleanupCgi(Client *client, int pipeRead);
 
 	void processSessionAndCookies(Request &request, Response &response);
 

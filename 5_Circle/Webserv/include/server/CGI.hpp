@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   CGI.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 04:53:47 by hwilkim           #+#    #+#             */
-/*   Updated: 2025/04/27 00:50:20 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/04/30 20:39:41 by hwilkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <map>
 #include <string>
-#include "request/Request.hpp"
+#include "client/Client.hpp"
 
 #define CGI_ERROR -1
 #define EMPTY_RESPONSE ""
@@ -40,7 +40,7 @@ private:
 	CGI();
 
 public:
-	static int execute(const Request &request, int *in, int *out);
+	static int execute(Client *client, int *in, int *out);
 	static void setPath(const std::string &extension, const std::string &path);
 };
 

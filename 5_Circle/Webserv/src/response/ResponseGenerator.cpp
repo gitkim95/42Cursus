@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ResponseGenerator.cpp                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 15:50:28 by gitkim            #+#    #+#             */
-/*   Updated: 2025/04/29 03:26:36 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/04/30 21:39:02 by hwilkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ const Response ResponseGenerator::getResponseData(Client *client, const CharVec 
 	}
 	case MOVED_PERMANENTLY:
 	{
-		std::string redirectionURL = getRedirectionURL(currentData, filePath);
+		std::string redirectionURL = getRedirectionURL(currentData, request.getRequestUri());
 		Response response = Response::makeResponse(HttpStatus::MOVED_PERMANENTLY);
 		response.setHeader("Location", redirectionURL);
 		response.setHeader("Connection", "keep-alive");
@@ -120,6 +120,27 @@ const Response ResponseGenerator::getResponseData(Client *client, const CharVec 
 		Response response = Response::makeResponse(HttpStatus::UNSUPPORTED_MEDIA_TYPE).withBody(fileData);
 		response.setDefaultContentType();
 		response.setHeader("Connection", "keep-alive");
+		return (response);
+	}
+	case INTERNAL_SERVER_ERROR:
+	{
+		Response response = Response::makeResponse(HttpStatus::INTERNAL_SERVER_ERROR).withBody(fileData);
+		response.setDefaultContentType();
+		response.setHeader("Connection", "close");
+		return (response);
+	}
+	case SERVICE_UNAVAILABLE:
+	{
+		Response response = Response::makeResponse(HttpStatus::SERVICE_UNAVAILABLE).withBody(fileData);
+		response.setDefaultContentType();
+		response.setHeader("Connection", "close");
+		return (response);
+	}
+	case GATEWAY_TIMEOUT:
+	{
+		Response response = Response::makeResponse(HttpStatus::GATEWAY_TIMEOUT).withBody(fileData);
+		response.setDefaultContentType();
+		response.setHeader("Connection", "close");
 		return (response);
 	}
 	default:
@@ -421,6 +442,18 @@ const CharVec ResponseGenerator::getFileData(Client *client)
 	{
 		return (readFileData(getErrorPath(client, UNSUPPORTED_MEDIA_TYPE)));
 	}
+	case INTERNAL_SERVER_ERROR:
+	{
+		return (readFileData(getErrorPath(client, INTERNAL_SERVER_ERROR)));
+	}
+	case SERVICE_UNAVAILABLE:
+	{
+		return (readFileData(getErrorPath(client, SERVICE_UNAVAILABLE)));
+	}
+	case GATEWAY_TIMEOUT:
+	{
+		return (readFileData(getErrorPath(client, GATEWAY_TIMEOUT)));
+	}
 	default:
 	{
 		return (CharVec());
@@ -449,4 +482,11 @@ const std::string ResponseGenerator::getIndexPath(Client *client, const std::str
 			return (indexPath);
 	}
 	return ("");
+}
+
+Response ResponseGenerator::errorResponse(PathType pathType, Client *client)
+{
+	client->setPathType(pathType);
+	CharVec fileData = ResponseGenerator::getFileData(client);
+	return (ResponseGenerator::getResponseData(client, fileData));
 }

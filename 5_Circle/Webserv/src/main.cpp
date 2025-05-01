@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 20:26:32 by hwilkim           #+#    #+#             */
-/*   Updated: 2025/04/29 18:04:47 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/04/30 20:39:55 by hwilkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,12 @@
 #include "server/Server.hpp"
 #include "response/ResponseGenerator.hpp"
 
-/**
- * temp server shutdown handler
- * must remove
- */
-Server *tmp;
+Server *serverInst;
 
 static void sigIntHandler(int signum)
 {
 	(void)signum;
-	tmp->stop();
+	serverInst->stop();
 	std::cout << std::endl;
 	std::cout << "server stop" << std::endl;
 }
@@ -73,7 +69,7 @@ int main(int argc, char **argv)
 		server.setMetaConfig(config);
 		server.openServerPort();
 
-		tmp = &server;
+		serverInst = &server;
 		signal(SIGINT, sigIntHandler);
 		signal(SIGCHLD, sigChldHandler);
 
@@ -83,6 +79,7 @@ int main(int argc, char **argv)
 	catch (std::exception &e)
 	{
 		std::cerr << e.what() << std::endl;
+		return (1);
 	}
 	return (0);
 }

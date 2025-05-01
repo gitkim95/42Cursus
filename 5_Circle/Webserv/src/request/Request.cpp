@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Request.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:06:10 by hwilkim           #+#    #+#             */
-/*   Updated: 2025/04/28 18:58:58 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/04/30 20:40:00 by hwilkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,7 @@ void Request::parseHeader(std::stringstream &stream)
 			else if (key == "Host")
 			{
 				size_t idx = value.find(":");
-				if (idx != std::string::npos)
-					this->setHost(value.substr(0, idx));
+				this->setHost(value.substr(0, idx));
 			}
 			else if (key == "Cookie")
 			{

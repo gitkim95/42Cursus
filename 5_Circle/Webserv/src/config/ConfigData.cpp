@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ConfigData.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 21:01:05 by gitkim            #+#    #+#             */
-/*   Updated: 2025/04/29 17:42:52 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/04/30 21:36:49 by hwilkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,9 @@ void ConfigData::setDefaultErrorPage()
 	this->errorPage[PAYLOAD_TOO_LARGE] = ERROR_PATH + sizeToStr(PAYLOAD_TOO_LARGE) + ".html";
 	this->errorPage[UNSUPPORTED_MEDIA_TYPE] = ERROR_PATH + sizeToStr(UNSUPPORTED_MEDIA_TYPE) + ".html";
 	this->errorPage[UNPROCESSABLE_ENTITY] = ERROR_PATH + sizeToStr(UNPROCESSABLE_ENTITY) + ".html";
+	this->errorPage[INTERNAL_SERVER_ERROR] = ERROR_PATH + sizeToStr(INTERNAL_SERVER_ERROR) + ".html";
+	this->errorPage[SERVICE_UNAVAILABLE] = ERROR_PATH + sizeToStr(SERVICE_UNAVAILABLE) + ".html";
+	this->errorPage[GATEWAY_TIMEOUT] = ERROR_PATH + sizeToStr(GATEWAY_TIMEOUT) + ".html";
 }
 
 void ConfigData::setDefaultAllowMethods()

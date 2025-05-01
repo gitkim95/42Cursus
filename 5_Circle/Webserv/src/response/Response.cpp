@@ -6,7 +6,7 @@
 /*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 20:52:43 by hwilkim           #+#    #+#             */
-/*   Updated: 2025/04/29 17:08:05 by hwilkim          ###   ########.fr       */
+/*   Updated: 2025/04/30 21:36:08 by hwilkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,40 +42,6 @@ Response Response::notFound()
 	Response response(Header(HttpStatus::NOT_FOUND), (Body()));
 	response.setDefaultContentType();
 	return (response);
-}
-
-Response Response::internalServerError()
-{
-	return Response(Header(HttpStatus::INTERNAL_SERVER_ERROR), Body());
-}
-
-Response Response::serverUnavailable()
-{
-	return Response(Header(HttpStatus::SERVICE_UNAVAILABLE), Body());
-}
-
-Response Response::gatewayTimeout()
-{
-	Body body = Body();
-	const char *html =
-		"<!DOCTYPE html>\r\n"
-		"<html>\r\n"
-		"<head>\r\n"
-		"<title>504 Gateway Timeout</title>\r\n"
-		"</head>\r\n"
-		"<body>\r\n"
-		"<h1>504 Gateway Timeout</h1>\r\n"
-		"<p>The server, while acting as a gateway or proxy, did not receive a timely response from the upstream server.</p>\r\n"
-		"</body>\r\n"
-		"</html>";
-	body.setContent(CharVec(html, html + std::strlen(html)));
-
-	Header header = Header(HttpStatus::GATEWAY_TIMEOUT);
-	header.setAttribute("Content-Type", "text/html");
-	header.setAttribute("Content-Length", sizeToStr(body.getContent().size()));
-	header.setAttribute("Connection", "close");
-
-	return Response(header, body);
 }
 
 Response Response::makeResponse(const StatusCode &statusCode)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
+/*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:22:17 by hwilkim           #+#    #+#             */
-/*   Updated: 2025/04/26 18:23:51 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/04/30 20:39:38 by hwilkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ private:
 	Response response;
 	Config matchedConfig;
 	ConfigData matchedData;
+	pid_t cgiPid;
+	int readFd;
 
 	PathType pathType;
 	int refCount;
@@ -67,6 +69,8 @@ public:
 	const int &getRefCount(void) const;
 	CharVec &getReqBuffer();
 	const bool &getIsReqParsed() const;
+	const pid_t &getCgiPid() const;
+	const int &getReadFd() const;
 
 	void setRequest(const Request &request);
 	void setResponse(const Response &response);
@@ -75,6 +79,8 @@ public:
 	void setPathType(const PathType &type);
 	void setReqBuffer(const CharVec &str);
 	void setIsReqParsed(const bool &isParsed);
+	void setCgiPid(const pid_t &pid);
+	void setReadFd(const int &fd);
 
 	Client &operator=(const Client &client);
 };

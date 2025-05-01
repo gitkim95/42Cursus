@@ -6,13 +6,15 @@
 /*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 09:44:20 by hwilkim           #+#    #+#             */
-/*   Updated: 2025/04/29 17:12:45 by hwilkim          ###   ########.fr       */
+/*   Updated: 2025/04/30 21:36:56 by hwilkim          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cstdio>
+#include <cstring>
 #include <fstream>
 #include <iostream>
+#include <csignal>
 #include <stdexcept>
 #include <unistd.h>
 #include "request/Request.hpp"
@@ -157,7 +159,7 @@ void Server::runCGI(Client *client)
 	setFdNonBlock(in);
 	setFdNonBlock(out);
 
-	if (CGI::execute(request, in, out) < 0)
+	if (CGI::execute(client, in, out) < 0)
 		return;
 
 	if (request.getMethod() != RequestMethod::POST)
@@ -192,7 +194,6 @@ void Server::response(int clntFd)
 	}
 	bin = response.toBinary();
 
-	// todo -1 케이스 체크
 	ssize_t sendBytes = send(clntFd, reinterpret_cast<const char *>(&bin[response.getSendIdx()]), bin.size(), MSG_DONTWAIT);
 	if (sendBytes < 0)
 		return;
@@ -236,40 +237,40 @@ void Server::readFromCGI(int pipeRead)
 	}
 
 	std::cout << "read from " << pipeRead << std::endl;
-	if (!client->isTimeout())
+	CharVec &httpMessage = client->getReqBuffer();
+	char buffer[BUFSIZ];
+	ssize_t readBytes;
+
+	readBytes = read(pipeRead, buffer, BUFSIZ);
+	if (readBytes > 0)
+		httpMessage.insert(httpMessage.end(), buffer, buffer + readBytes);
+	else if (readBytes == 0)
+		client->setResponse(ResponseGenerator::errorResponse(INTERNAL_SERVER_ERROR, client));
+
+	if (client->getResponse().getHeader().getStatusCode() == HttpStatus::NONE)
 	{
-		CharVec &httpMessage = client->getReqBuffer();
-		char buffer[BUFSIZ];
-		ssize_t readBytes;
+		Response response;
+		response = Response::ok();
+		response.parseHeader(httpMessage);
+		extractHeader(httpMessage);
 
-		readBytes = read(pipeRead, buffer, BUFSIZ);
-		if (readBytes > 0)
-			httpMessage.insert(httpMessage.end(), buffer, buffer + readBytes);
-		else if (readBytes == 0)
-			client->setResponse(Response::internalServerError());
-
-		if (client->getResponse().getHeader().getStatusCode() == HttpStatus::NONE)
-		{
-			Response response = Response::ok();
-			response.parseHeader(httpMessage);
-			extractHeader(httpMessage);
-
-			client->setResponse(response);
-		}
-
-		std::string length = client->getResponse().getHeader().getAttributeValue("Content-Length");
-		if (length == "")
-			client->getResponse().withBody(httpMessage);
-		else if (httpMessage.size() == strToSize(length))
-			client->getResponse().withBody(httpMessage);
-		else
-			return;
+		client->setResponse(response);
 	}
-	epCtl(this->epfd, EPOLL_CTL_DEL, pipeRead, 0);
-	close(pipeRead);
-	client->ready();
-	client->decreaseRefCount();
-	this->cgiOut.erase(pipeRead);
+
+	std::string length = client->getResponse().getHeader().getAttributeValue("Content-Length");
+	if (length == "")
+		client->getResponse().withBody(httpMessage);
+	else if (httpMessage.size() == strToSize(length))
+		client->getResponse().withBody(httpMessage);
+	else
+		return;
+
+	if (std::strcmp((const char *)&httpMessage[0], "ERROR") == 0)
+	{
+		Response response = ResponseGenerator::errorResponse(INTERNAL_SERVER_ERROR, client);
+		client->setResponse(response);
+	}
+	cleanupCgi(client, pipeRead);
 }
 
 void Server::removeClient(int clntFd)
@@ -300,6 +301,18 @@ void Server::cleanupClient(void)
 			}
 		}
 	}
+}
+
+void Server::cleanupCgi(Client *client, int pipeRead)
+{
+	epCtl(this->epfd, EPOLL_CTL_DEL, pipeRead, 0);
+	close(pipeRead);
+	client->ready();
+	client->decreaseRefCount();
+	this->cgiOut.erase(pipeRead);
+
+	client->setCgiPid(0);
+	client->setReadFd(0);
 }
 
 void Server::processSessionAndCookies(Request &request, Response &response)
@@ -364,10 +377,16 @@ void Server::run()
 		time_t curTime = getCurrentTimeMillis();
 		for (ClientMap::iterator it = this->clients.begin(); it != this->clients.end(); ++it)
 		{
-			if (!it->second->isReady() && it->second->isTimeout(curTime))
+			Client *client = it->second;
+			if (!client->isReady() && client->isTimeout(curTime))
 			{
-				it->second->setResponse(Response::gatewayTimeout());
-				it->second->ready();
+				if (client->getCgiPid() != 0)
+				{
+					kill(client->getCgiPid(), SIGINT);
+					this->cleanupCgi(client, client->getReadFd());
+				}
+				client->setResponse(ResponseGenerator::errorResponse(GATEWAY_TIMEOUT, client));
+				client->ready();
 			}
 		}
 
