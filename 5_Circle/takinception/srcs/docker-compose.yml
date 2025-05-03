@@ -1,4 +1,3 @@
-
 services:
   nginx:
     container_name: nginx-container
@@ -105,20 +104,15 @@ services:
 
 volumes:
   wordpress:
-    driver: local
     driver_opts:
       type: none
-      # device: /Users/limhyeontaek/data/wordpress
       device: /home/gitkim/data/wordpress
       o: bind
   db:
-    driver: local
     driver_opts:
       type: none
-      # device: /Users/limhyeontaek/data/db
       device: /home/gitkim/data/db
       o: bind
-
 
 networks:
   docker-network:

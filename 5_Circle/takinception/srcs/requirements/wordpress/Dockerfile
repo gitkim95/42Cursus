@@ -1,4 +1,3 @@
-# SPECIFIE LA DISTRIBUTION: penultimate 버전의 Debian 사용 (현재 최신이 Bookworm일 경우,Bullseye가 penultimate)
 FROM debian:bullseye
 
 RUN apt-get update && apt-get upgrade -y 
