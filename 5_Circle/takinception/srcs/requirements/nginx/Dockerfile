@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
     -keyout /etc/ssl/private/nginx-selfsigned.key \
     -out /etc/ssl/certs/nginx-selfsigned.crt \
-    -subj '/C=FR/ST=Ile-de-France/L=Paris/O=42/OU=42Paris/CN=gitkim/UID=TTT'
+    -subj="/C=KR/ST=Gyeongsangbuk-do/L=Gyeongsan/O=1337 School/OU=IT Department/CN=gitkim.42.fr"
 
 # SSL 스니펫 파일 생성: 인증서와 개인키 경로 지정
 RUN echo "ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;\nssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;" \
@@ -20,13 +20,13 @@ RUN echo "ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;\nssl_certificate_
 RUN openssl dhparam -out /etc/nginx/dhparam.pem 2048
 
 # 사용자 정의 SSL 파라미터 파일과 사이트 설정 파일들을 복사
-COPY ./conf/ssl-params.conf           /etc/nginx/snippets/
+COPY ./conf/ssl-params.conf             /etc/nginx/snippets/
 COPY ./conf/default                     /etc/nginx/sites-available/
 COPY ./conf/static-page.conf            /etc/nginx/sites-available/
 COPY ./conf/adminer.conf                /etc/nginx/sites-available/
 
 # 사이트 설정 활성화를 위한 심볼릭 링크 생성
-RUN ln -sf /etc/nginx/sites-available/default        /etc/nginx/sites-enabled/default && \
+RUN ln -sf /etc/nginx/sites-available/default           /etc/nginx/sites-enabled/default && \
     ln -sf /etc/nginx/sites-available/static-page.conf  /etc/nginx/sites-enabled/static-page.conf && \
     ln -sf /etc/nginx/sites-available/adminer.conf      /etc/nginx/sites-enabled/adminer.conf
 
