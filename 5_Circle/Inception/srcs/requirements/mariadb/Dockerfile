@@ -16,7 +16,7 @@ RUN mkdir -p /run/mysqld && \
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 
 # 초기화 스크립트 복사
-COPY ./util/script.sh/
+COPY ./util/script.sh /
 RUN chmod +x /script.sh
 
 ENTRYPOINT ["/script.sh"]
