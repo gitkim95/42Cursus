@@ -10,8 +10,8 @@ all:
 	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) up --build -d
 
 init:
-	@./setting.sh
-	@./init_domain.sh
+	@[ -f ./setting.sh ] && ./setting.sh
+	@[ -f ./init_domain.sh ] && ./init_domain.sh
 	@mkdir -p $(DB_PATH)
 	@mkdir -p $(WP_PATH)
 
@@ -30,10 +30,9 @@ fclean: clean
 	@docker system prune -a -f
 
 soft_restart :
-	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) stop
-	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) start
+	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) restart
 
-hard_restart : clean bulid
+hard_restart : clean all
 
 re: fclean all
 
