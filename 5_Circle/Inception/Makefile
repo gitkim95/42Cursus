@@ -10,7 +10,7 @@ all:
 	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) up --build -d
 
 init:
-	@[ -f ./setting.sh ] && ./setting.sh
+	@[ -f ./settings.sh ] && ./settings.sh
 	@[ -f ./init_domain.sh ] && ./init_domain.sh
 	@mkdir -p $(DB_PATH)
 	@mkdir -p $(WP_PATH)
