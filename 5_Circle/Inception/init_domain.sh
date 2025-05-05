@@ -3,11 +3,13 @@
 echo "### Enter the server IP ###"
 read ip
 
+# 도메인 추가 함수
 add_host_entry() {
     local domain=$1
 
-    # 기존 줄에서 해당 도메인이 포함된 줄을 삭제 (정확히 포함된 줄만)
-    sudo sed -i "/[[:space:]]\+$domain\([[:space:]]\+\|$\)/d" /etc/hosts
+    # 도메인만 포함된 줄을 삭제 (앞뒤 공백 포함)
+    echo "Checking for domain: $domain"
+    sudo sed -i "/\s*$domain\s*/d" /etc/hosts
 
     # 도메인 추가
     echo "$ip $domain" | sudo tee -a /etc/hosts > /dev/null
