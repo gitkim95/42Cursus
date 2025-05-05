@@ -1,15 +1,15 @@
 #!/bin/bash
 
-echo "### Enter the server IP ###"
-read ip
+# IP를 자동으로 설정 (127.0.0.1 또는 VM의 IP로 변경 가능)
+ip="127.0.0.1"  # 기본 IP, 필요시 다른 IP로 변경 가능
 
 # 도메인 추가 함수
 add_host_entry() {
     local domain=$1
 
-    # 도메인만 포함된 줄을 삭제 (앞뒤 공백 포함)
+    # 기존에 도메인만 있는 줄을 삭제 (IP와 연결된 줄은 유지)
     echo "Checking for domain: $domain"
-    sudo sed -i "/\s*$domain\s*/d" /etc/hosts
+    sudo sed -i "/^[[:space:]]*[^[:space:]]\+\s\+$domain[[:space:]]*$/d" /etc/hosts
 
     # 도메인 추가
     echo "$ip $domain" | sudo tee -a /etc/hosts > /dev/null
