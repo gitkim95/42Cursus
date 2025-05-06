@@ -1,17 +1,24 @@
-DOCKER_COMPOSE		=	docker-compose
-DOCKER_COMPOSE_FILE	=	srcs/docker-compose.yml
+DOCKER_COMPOSE		= docker-compose
+DOCKER_COMPOSE_FILE	= ./srcs/docker-compose.yml
 
-RM					=	rm -r
+DB_PATH				= /home/gitkim/data/db
+WP_PATH				= /home/gitkim/data/wordpress
 
-DATA_DIR            =	/home/gitkim/data
-WORDPRESS_DIR       =	$(DATA_DIR)/wordpress
-MYSQL_DIR           =	$(DATA_DIR)/mysql
-
-.PHONY: up down clean fclean restart kill logs
-
-up: 
-	mkdir -p $(WORDPRESS_DIR) $(MYSQL_DIR)
+all:
+	@mkdir -p $(DB_PATH)
+	@mkdir -p $(WP_PATH)
 	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) up --build -d
+
+init:
+	@chmod a+x ./settings.sh
+	@chmod a+x ./init_domain.sh
+	@[ -f ./settings.sh ] && ./settings.sh
+	@[ -f ./init_domain.sh ] && ./init_domain.sh
+	@mkdir -p $(DB_PATH)
+	@mkdir -p $(WP_PATH)
+
+kill:
+	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) kill
 
 down:
 	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) down
@@ -20,13 +27,15 @@ clean:
 	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) down -v
 
 fclean: clean
-	@$(RM) $(WORDPRESS_DIR) $(MYSQL_DIR)
-	docker system prune -a -f
+	@rm -rf $(DB_PATH)
+	@rm -rf $(WP_PATH)
+	@docker system prune -a -f
 
-restart: clean up
+soft_restart :
+	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) restart
 
-kill:
-	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) kill
+hard_restart : clean all
 
-logs:
-	@$(DOCKER_COMPOSE) -f $(DOCKER_COMPOSE_FILE) logs -f
+re: fclean all
+
+.PHONY: all init kill down clean fclean soft_restart hard_restart re

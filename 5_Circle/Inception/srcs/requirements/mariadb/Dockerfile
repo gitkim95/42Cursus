@@ -1,11 +1,22 @@
 FROM debian:bullseye
 
-RUN apt-get update && apt-get install -y \
+# 필수 패키지 설치
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y \
     mariadb-server \
-    default-mysql-client
+    procps && \
+    rm -rf /var/lib/apt/lists/*
 
-COPY ./conf/entrypoint.sh /tmp/entrypoint.sh
+# 소켓 디렉토리 생성 및 권한 설정
+RUN mkdir -p /run/mysqld && \
+    chown -R mysql:mysql /run/mysqld
 
-RUN chmod +x /tmp/entrypoint.sh
+# 설정 파일 복사
+COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 
-ENTRYPOINT ["bash", "/tmp/entrypoint.sh"]
+# 초기화 스크립트 복사
+COPY ./util/script.sh /
+RUN chmod +x /script.sh
+
+ENTRYPOINT ["/script.sh"]

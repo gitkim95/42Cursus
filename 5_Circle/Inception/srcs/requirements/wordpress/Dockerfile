@@ -1,28 +1,18 @@
 FROM debian:bullseye
 
-RUN apt-get update && apt-get upgrade && apt-get install -y \
-    php-fpm \
-    php-mysql \
-    php-zip \
-    php-redis \
-    curl \
-    vim \
-    default-mysql-client && \
-    sed -i -e 's/listen =.*/listen = 9000/g' /etc/php/7.4/fpm/pool.d/www.conf
-RUN apt-get install -y sendmail
-RUN mkdir -p /run/php
+RUN apt-get update && apt-get upgrade -y 
 
-WORKDIR /var/www/html
+RUN apt-get install -y unzip php curl wget php-mysqli php-fpm php-cgi redis php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip php-redis
+RUN apt-get install -y default-mysql-client
 
-RUN chown -R www-data:www-data /var/www/html
-RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
-    chmod +x wp-cli.phar && \
-    mv wp-cli.phar /usr/local/bin/wp
+COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/
+RUN mkdir /run/php
 
-RUN wp core download --allow-root
+RUN apt-get install -y iputils-ping vim
 
-COPY ./conf/entrypoint.sh .
+COPY ./util/* /home/
+RUN chmod 777 /home/wpinstall.sh
 
-RUN chmod +x entrypoint.sh
+EXPOSE 9000
 
-ENTRYPOINT ["bash", "entrypoint.sh"]
+ENTRYPOINT ["/home/wpinstall.sh"]
