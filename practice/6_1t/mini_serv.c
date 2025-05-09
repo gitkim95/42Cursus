@@ -6,19 +6,43 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <netinet/in.h>
-#include <arpa/inet.h>
 
 char print_buf[120000];
 char read_buf[120000];
+char line[120000];
+char client_buffer[FD_SETSIZE][120000];
 fd_set fdsets, readfds;
 int servfd, maxfd = 0;
 int client_ids[FD_SETSIZE];
 int client_id = 0;
 
-void send_to_client(int fd, const char *msg)
+int extract_line(int fd)
 {
-	int len = strlen(msg);
-	for (int i = 0; i < len; ++i)
+	int i = 0;
+
+	while (client_buffer[fd][i] && client_buffer[fd][i] != '\n')
+	{
+		line[i] = client_buffer[fd][i];
+		i++;
+	}
+	if (client_buffer[fd][i] == '\n')
+	{
+		line[i] = '\0';
+		i++;
+
+		int j = 0;
+		while (client_buffer[fd][i])
+			client_buffer[fd][j++] = client_buffer[fd][i++];
+		client_buffer[fd][j] = '\0';
+		return (1);
+	}
+	line[0] = '\0';
+	return (0);
+}
+
+void send_to_client(int fd, const char *msg, int len)
+{
+	for (int i = 0; i <= maxfd; ++i)
 	{
 		if (i != fd && FD_ISSET(i, &fdsets) && i != servfd)
 			send(i, msg, len, 0);
@@ -101,36 +125,33 @@ int main(int argc, char *argv)
 						maxfd = clifd;
 					client_ids[clifd] = client_id++;
 					int len = sprintf(print_buf, "server: client %d just arrived\n", client_ids[clifd]);
-					for (int i = 0; i < len; ++i)
-					{
-						if (i != clifd && FD_ISSET(i, &fdsets) && i != servfd)
-							send(i, print_buf, len, 0);
-					}
+					send_to_client(clifd, print_buf, len);
 				}
 				else
 				{
-					int len = recv(fd, read_buf, sizeof(read_buf) - 1, 0);
-					if (len <= 0)
+					int read_len = recv(fd, read_buf, sizeof(read_buf) - 1, 0);
+					if (read_len <= 0)
 					{
 						int id = client_ids[fd];
 						int len = sprintf(print_buf, "server: client %d just left\n", id);
-						for (int i = 0; i <= maxfd; ++i)
-						{
-							if (i != fd && FD_ISSET(i, &fdsets) && i != servfd)
-								send(i, print_buf, len, 0);
-						}
+						send_to_client(fd, print_buf, len);
 						close(fd);
 						FD_CLR(fd, &fdsets);
 						if (fd == maxfd)
 						{
-							while (FD_ISSET(maxfd, &fdsets))
+							while (maxfd >= 0 && !FD_ISSET(maxfd, &fdsets))
 								maxfd--;
 						}
 					}
 					else
 					{
-						read_buf[len] = '\0';
-						
+						read_buf[read_len] = '\0';
+						strcat(client_buffer[fd], read_buf);
+						while (extract_line(fd))
+						{
+							int len = sprintf(print_buf, "client %d: %s\n", client_ids[fd], line);
+							send_to_client(fd, print_buf, len);
+						}
 					}
 				}
 			}
