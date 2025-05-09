@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/select.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <netinet/in.h>
@@ -10,7 +11,19 @@
 char print_buf[120000];
 char read_buf[120000];
 fd_set fdsets, readfds;
-int maxfd = 0;
+int servfd, maxfd = 0;
+int client_ids[FD_SETSIZE];
+int client_id = 0;
+
+void send_to_client(int fd, const char *msg)
+{
+	int len = strlen(msg);
+	for (int i = 0; i < len; ++i)
+	{
+		if (i != fd && FD_ISSET(i, &fdsets) && i != servfd)
+			send(i, msg, len, 0);
+	}
+}
 
 void print_error_and_exit(const char *msg)
 {
@@ -30,12 +43,10 @@ int main(int argc, char *argv)
 	// port 정수화
 	int port = atoi(argv[1]);
 	if (port < 1024 || port > 65535)
-	{
-		write(2, "Port number must be between 1024 and 65535\n", 43);
-		return (1);
-	}
+		print_error_and_exit("Port number must be between 1024 and 65535");
+
 	// socket 생성
-	int servfd = socket(AF_INET, SOCK_STREAM, 0);
+	servfd = socket(AF_INET, SOCK_STREAM, 0);
 	if (servfd < 0)
 		print_error_and_exit("Fatal error");
 
@@ -60,14 +71,16 @@ int main(int argc, char *argv)
 		print_error_and_exit("Fatal error");
 	}
 
-	maxfd = servfd;
 	FD_ZERO(&fdsets);
 	FD_SET(servfd, &fdsets);
+	maxfd = servfd;
+
 	while (1)
 	{
 		readfds = fdsets;
 		if (select(maxfd + 1, &readfds, NULL, NULL, NULL) < 0)
 			print_error_and_exit("Fatal error");
+
 		for (int fd = 0; fd <= maxfd; ++fd)
 		{
 			if (FD_ISSET(fd, &readfds))
@@ -86,9 +99,39 @@ int main(int argc, char *argv)
 					FD_SET(clifd, &fdsets);
 					if (clifd > maxfd)
 						maxfd = clifd;
+					client_ids[clifd] = client_id++;
+					int len = sprintf(print_buf, "server: client %d just arrived\n", client_ids[clifd]);
+					for (int i = 0; i < len; ++i)
+					{
+						if (i != clifd && FD_ISSET(i, &fdsets) && i != servfd)
+							send(i, print_buf, len, 0);
+					}
 				}
 				else
 				{
+					int len = recv(fd, read_buf, sizeof(read_buf) - 1, 0);
+					if (len <= 0)
+					{
+						int id = client_ids[fd];
+						int len = sprintf(print_buf, "server: client %d just left\n", id);
+						for (int i = 0; i <= maxfd; ++i)
+						{
+							if (i != fd && FD_ISSET(i, &fdsets) && i != servfd)
+								send(i, print_buf, len, 0);
+						}
+						close(fd);
+						FD_CLR(fd, &fdsets);
+						if (fd == maxfd)
+						{
+							while (FD_ISSET(maxfd, &fdsets))
+								maxfd--;
+						}
+					}
+					else
+					{
+						read_buf[len] = '\0';
+						
+					}
 				}
 			}
 		}
