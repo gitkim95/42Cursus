@@ -1,2 +1,5 @@
 .vscode
 .tok
+
+*.o
+a.out

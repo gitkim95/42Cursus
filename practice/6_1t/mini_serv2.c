@@ -6,6 +6,7 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <netinet/in.h>
+#include <errno.h>
 
 char print_buf[120000];
 char read_buf[120000];
@@ -133,8 +134,17 @@ int main(int argc, char **argv)
 				}
 				else
 				{
-					int read_len = recv(fd, read_buf, sizeof(read_buf) - 1, 0);
-					if (read_len <= 0)
+					int read_len;
+					while (1)
+					{
+						read_len = recv(fd, read_buf, sizeof(read_buf) - 1, 0);
+						if (read_len <= 0)
+							break;
+						read_buf[read_len] = '\0';
+						strcat(client_buffer[fd], read_buf);
+					}
+
+					if (read_len == 0 || (read_len < 0 && errno != EWOULDBLOCK && errno != EAGAIN))
 					{
 						int id = client_ids[fd];
 						int len = sprintf(print_buf, "server: client %d just left\n", id);
@@ -149,8 +159,6 @@ int main(int argc, char **argv)
 					}
 					else
 					{
-						read_buf[read_len] = '\0';
-						strcat(client_buffer[fd], read_buf);
 						while (extract_line(fd))
 						{
 							int len = sprintf(print_buf, "client %d: %s\n", client_ids[fd], line);
