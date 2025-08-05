@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Client.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:26:42 by hwilkim           #+#    #+#             */
-/*   Updated: 2025/04/30 21:36:46 by hwilkim          ###   ########.fr       */
+/*   Updated: 2025/08/05 23:36:41 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,21 @@ bool Client::isRequestValid() const
 	if (this->request.getMethod() != "POST")
 		return (false);
 
-	if (header.getAttributeValue("Transfer-Encoding") == "chunked")
+	if (header.getAttributeValue("Transfer-Encoding") == "chunked" || (!hasLength && header.getAttributeValue("Transfer-Encoding").empty()))
 	{
-		const std::string expectedEnds = "0\r\n\r\n";
-		if (reqBuffer.size() >= expectedEnds.size())
+		const std::string expectedEnds1 = "0\r\n\r\n";
+		if (reqBuffer.size() >= expectedEnds1.size())
 		{
-			std::string bufferEnds(reqBuffer.end() - expectedEnds.size(), reqBuffer.end());
-			if (bufferEnds == expectedEnds)
+			std::string bufferEnds1(reqBuffer.end() - expectedEnds1.size(), reqBuffer.end());
+			if (bufferEnds1 == expectedEnds1)
+				return (true);
+		}
+
+		const std::string expectedEnds2 = "0\\r\\n\\r\\n";
+		if (reqBuffer.size() >= expectedEnds2.size())
+		{
+			std::string bufferEnds2(reqBuffer.end() - expectedEnds2.size(), reqBuffer.end());
+			if (bufferEnds2 == expectedEnds2)
 				return (true);
 		}
 	}
