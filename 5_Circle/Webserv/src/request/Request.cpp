@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Request.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hwilkim <hwilkim@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:06:10 by hwilkim           #+#    #+#             */
-/*   Updated: 2025/04/30 20:40:00 by hwilkim          ###   ########.fr       */
+/*   Updated: 2025/08/05 23:37:23 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ void Request::parseBodyField(Client *client)
 	Header header = client->getRequest().getHeader();
 	long contentLength = strToSize(client->getRequest().getContentLength());
 
-	if (header.getAttributeValue("Transfer-Encoding") == "chunked")
+	if (header.getAttributeValue("Transfer-Encoding") == "chunked" || (contentLength == 0 && header.getAttributeValue("Transfer-Encoding").empty()))
 		this->parseChunked(client->getReqBuffer());
 	else if (contentLength > 0)
 	{
@@ -175,6 +175,8 @@ void Request::parseChunked(const CharVec &buffer)
 	while (pos < buffer.size())
 	{
 		std::string lengthLine = getVecLine(buffer, pos);
+		if (lengthLine.empty())
+			break;
 		size_t length = 0;
 		std::stringstream hexStream(lengthLine);
 		hexStream >> std::hex >> length;
@@ -189,6 +191,10 @@ void Request::parseChunked(const CharVec &buffer)
 
 		if (pos + 1 < buffer.size() && buffer[pos] == '\r' && buffer[pos + 1] == '\n')
 			pos += 2;
+		else if (pos + 3 < buffer.size() && buffer[pos] == '\\' && buffer[pos + 1] == 'r' && buffer[pos + 2] == '\\' && buffer[pos + 3] == 'n')
+			pos += 4;
+		else if (pos < buffer.size() && buffer[pos] == '\n')
+			pos += 1;
 		else
 			break;
 	}

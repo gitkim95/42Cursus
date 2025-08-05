@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 14:59:24 by hwilkim           #+#    #+#             */
-/*   Updated: 2025/04/29 03:26:52 by gitkim           ###   ########.fr       */
+/*   Updated: 2025/08/05 23:36:49 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,13 @@ std::string getVecLine(const CharVec &buffer, size_t &pos)
 			++pos;
 			break;
 		}
+		else if (c == '\\' && pos + 2 < buffer.size() && buffer[pos] == 'r' && buffer[pos + 1] == '\\' && buffer[pos + 2] == 'n')
+		{
+			pos += 3;
+			break;
+		}
+		else if (c == '\n')
+			break;
 		line += c;
 	}
 	return (line);
