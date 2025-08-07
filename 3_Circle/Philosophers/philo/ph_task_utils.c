@@ -20,8 +20,8 @@ int	check_flags(t_philo *philo, t_data *data, int fork_num)
 	int	ret;
 
 	ret = 0;
-	if (!get_mtx_value(&(data->fork[fork_num])) && \
-		!get_mtx_value(&philo->dead_flag))
+	if (!get_mtx_value(&(data->fork[fork_num]))
+		&& !get_mtx_value(&philo->dead_flag))
 		ret++;
 	else if (get_mtx_value(&philo->dead_flag))
 		ret--;
@@ -39,7 +39,10 @@ int	get_fork(t_philo *philo, t_data *data, int fork_num)
 			break ;
 		else if (able_get == 0)
 		{
-			usleep(10);
+			if (data->num_of_philo > 100)
+				usleep(50);
+			else
+				usleep(10);
 			continue ;
 		}
 		else

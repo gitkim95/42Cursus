@@ -43,10 +43,19 @@ void	ph_print_status_b(int ord, char *msg)
 void	wait_tasking_b(long long start, int wait)
 {
 	long long	fin_time;
+	long long	remaining;
 
 	fin_time = start + wait;
 	while (ph_get_time_b() < fin_time)
-		usleep(100);
+	{
+		remaining = fin_time - ph_get_time_b();
+		if (remaining > 1000)
+			usleep(500);
+		else if (remaining > 100)
+			usleep(50);
+		else
+			usleep(10);
+	}
 }
 
 long	ph_get_time_b(void)

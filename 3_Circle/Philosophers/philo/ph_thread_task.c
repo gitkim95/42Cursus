@@ -16,6 +16,12 @@
 
 int	ph_philo_think(t_philo *philo, t_data *data)
 {
+	if (data->num_of_philo == 1)
+	{
+		ph_print_status(data, philo->ord, "has taken a fork");
+		usleep(data->time_to_die * 1000);
+		return (0);
+	}
 	ph_print_status(data, philo->ord, "is thinking");
 	if (!get_fork(philo, data, philo->left_fork))
 		return (0);
@@ -63,7 +69,10 @@ void	*thread_task(void *param)
 			break ;
 		if (!ph_philo_sleep(philo, data))
 			break ;
-		usleep(10);
+		if (data->num_of_philo > 100)
+			usleep(50);
+		else
+			usleep(10);
 	}
 	check_holding_fork(philo, data);
 	return (NULL);

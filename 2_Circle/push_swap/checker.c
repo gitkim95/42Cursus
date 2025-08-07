@@ -13,21 +13,18 @@
 #include "checker.h"
 #include "./libft/libft.h"
 
-void	validate_inst(char *get_inst, t_stack *stack_a, t_stack *stack_b)
+void	validate_inst(char *inst, t_stack *stack_a, t_stack *stack_b)
 {
-	if (!ft_strncmp(get_inst, "sa\n", 3) || !ft_strncmp(get_inst, "sb\n", 3) || \
-		!ft_strncmp(get_inst, "ss\n", 3) || !ft_strncmp(get_inst, "pa\n", 3) || \
-		!ft_strncmp(get_inst, "pb\n", 3) || !ft_strncmp(get_inst, "ra\n", 3) || \
-		!ft_strncmp(get_inst, "rb\n", 3) || !ft_strncmp(get_inst, "rr\n", 3) || \
-		!ft_strncmp(get_inst, "rra\n", 4) || !ft_strncmp(get_inst, "rrb\n", 4) || \
-		!ft_strncmp(get_inst, "rrr\n", 4))
+	if (!ft_strncmp(inst, "sa\n", 3) || !ft_strncmp(inst, "sb\n", 3)
+		|| !ft_strncmp(inst, "ss\n", 3) || !ft_strncmp(inst, "pa\n", 3)
+		|| !ft_strncmp(inst, "pb\n", 3) || !ft_strncmp(inst, "ra\n", 3)
+		|| !ft_strncmp(inst, "rb\n", 3) || !ft_strncmp(inst, "rr\n", 3)
+		|| !ft_strncmp(inst, "rra\n", 4) || !ft_strncmp(inst, "rrb\n", 4)
+		|| !ft_strncmp(inst, "rrr\n", 4))
 		return ;
-	else
-	{
-		if (stack_b->head)
-			ps_lstfree(stack_b);
-		terminator(1, get_inst, NULL, stack_a);
-	}
+	if (stack_b->head)
+		ps_lstfree(stack_b);
+	terminator(1, inst, NULL, stack_a);
 }
 
 void	compare_inst(char *get_inst, t_stack *stack_a, t_stack *stack_b)
@@ -62,12 +59,11 @@ void	check_instruction(t_stack *stack_a, t_stack *stack_b)
 	int		total_size;
 
 	total_size = stack_a->size;
-	get_inst = ft_strdup("");
-	if (!get_inst)
-		terminator(1, NULL, NULL, stack_a);
+	get_inst = NULL;
 	while (1)
 	{
-		free(get_inst);
+		if (get_inst)
+			free(get_inst);
 		get_inst = get_next_line(0);
 		if (!get_inst)
 			break ;

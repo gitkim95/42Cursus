@@ -31,11 +31,11 @@ $(LIBFT) :
 	make -C $(LIBFT_DIR)
 
 clean :
-	rm -f $(OBJS) $(M_OBJS) $(B_OBJS)
+	rm -f $(OBJS) $(M_OBJS)
 	make -C $(LIBFT_DIR) clean
 
 fclean : clean
-	rm -f $(NAME) $(BONUS_NAME)
+	rm -f $(NAME)
 	make -C $(LIBFT_DIR) fclean
 
 re : fclean all
