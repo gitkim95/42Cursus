@@ -12,22 +12,19 @@
 
 #include "fdf.h"
 #include "./libft/libft.h"
-#include "stdio.h"
-#include "stdlib.h"
+#include <stdlib.h>
 
 void	free_fdf_coord(t_fdf *fdf)
 {
 	int		y;
-	t_coord	**temp;
 
-	temp = fdf->map.data;
 	y = 0;
 	while (y < fdf->map.height)
 	{
-		free(temp[y]);
+		free(fdf->map.data[y]);
 		y++;
 	}
-	free(temp);
+	free(fdf->map.data);
 }
 
 void	free_split(char **c_split, int **i_split, int i_size)
@@ -72,13 +69,19 @@ void	free_fdf_maplist(t_map_list *node)
 void	gnl_leak_guard(void)
 {
 	char	*buf;
+	int		fd;
 
-	while (1)
+	fd = 0;
+	while (fd <= 10)
 	{
-		buf = get_next_line(3);
-		if (!buf)
-			break ;
-		free(buf);
+		while (1)
+		{
+			buf = get_next_line(fd);
+			if (!buf)
+				break ;
+			free(buf);
+		}
+		fd++;
 	}
 }
 

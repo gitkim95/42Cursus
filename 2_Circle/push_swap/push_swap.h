@@ -87,7 +87,6 @@ void		set_zero_top(t_stack *a);
 //ps_greedy_utils_2.c
 int			if_a_prev_null(t_stack *a, int b_nb);
 int			find_a_cost(t_stack *a, int b_nb);
-void		set_abs_value(int *a_loc, int *b_loc, int *a_co, int *b_co);
 int			check_least_cost(t_least_cost *cal);
 
 //ps_list_utils.c

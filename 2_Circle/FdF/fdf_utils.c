@@ -27,8 +27,8 @@ void	my_mlx_pixel_put(t_fdf *fdf, int x, int y, unsigned int color)
 
 	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT)
 		return ;
-	dst = (unsigned int *)(fdf->addr + \
-	(y * fdf->line_len + x * (fdf->bpp / 8)));
+	dst = (unsigned int *)(fdf->addr
+			+ (y * fdf->line_len + x * (fdf->bpp / 8)));
 	*dst = color;
 }
 
@@ -41,6 +41,6 @@ void	init_fdf_struct(t_fdf	*fdf, char *file_path)
 	fdf->win = mlx_new_window(fdf->mlx, WIDTH, HEIGHT, name);
 	free(name);
 	fdf->img = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
-	fdf->addr = mlx_get_data_addr(fdf->img, &fdf->bpp, \
-		&fdf->line_len, &fdf->endian);
+	fdf->addr = mlx_get_data_addr(fdf->img, &fdf->bpp,
+			&fdf->line_len, &fdf->endian);
 }

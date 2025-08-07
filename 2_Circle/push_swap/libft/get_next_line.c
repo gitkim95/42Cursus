@@ -38,7 +38,7 @@ static char	*cut_lf(char **save_line)
 		return (NULL);
 	}
 	if ((*save_line)[i] == '\0')
-		*save_line = ft_strdup("");
+		*save_line = NULL;
 	else
 		*save_line = ft_strdup(tmp + i + 1);
 	free(tmp);

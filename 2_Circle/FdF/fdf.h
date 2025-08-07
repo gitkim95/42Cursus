@@ -88,8 +88,8 @@ void				set_struct_zero(t_fdf *fdf);
 
 //fdf_list_util.c
 t_map_list			*fdf_maplist_last(t_map_list *node);
-void				fdf_maplist_addback(t_map_list **head, \
-					t_map_list *new_node);
+void				fdf_maplist_addback(t_map_list **head,
+						t_map_list *new_node);
 t_map_list			*fdf_maplist_newnode(char **maplist);
 
 //fdf_set_map_1.c
@@ -113,12 +113,11 @@ void				terminator(int flag, void *data, int errnum, char *msg);
 
 //fdf_utils.c
 int					fdf_abs(int num);
-void				my_mlx_pixel_put(t_fdf *fdf, int x, int y, \
-					unsigned int color);
+void				my_mlx_pixel_put(t_fdf *fdf, int x, int y,
+						unsigned int color);
 void				init_fdf_struct(t_fdf	*fdf, char *file_path);
 
 //fdf_valid_file.c
 void				valid_fdf_file(char *file_path);
-void				init_fdf_struct(t_fdf	*fdf, char *file_path);
 
 #endif

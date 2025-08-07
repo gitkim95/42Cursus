@@ -38,7 +38,7 @@ static char	*cut_lf(char **save_line)
 		return (NULL);
 	}
 	if ((*save_line)[i] == '\0')
-		*save_line = ft_strdup("");
+		*save_line = NULL;
 	else
 		*save_line = ft_strdup(tmp + i + 1);
 	free(tmp);
@@ -73,10 +73,10 @@ static char	*take_a_line(int fd, char **buf, char **save_line)
 	n = read_file(fd, buf, save_line);
 	if (n == -1 || !(*save_line))
 		return (NULL);
-	if (n == 0 || **save_line)
+	if (**save_line)
 		return (cut_lf(save_line));
 	else
-		return (ft_strdup(*save_line));
+		return (NULL);
 }
 
 char	*get_next_line(int fd)
@@ -94,9 +94,8 @@ char	*get_next_line(int fd)
 		save_line[fd] = ft_strdup("");
 	read_line = take_a_line(fd, &buf, &save_line[fd]);
 	free_null(&buf);
-	if (!read_line || !*read_line)
+	if (!read_line)
 	{
-		free(read_line);
 		free_null(&save_line[fd]);
 		return (NULL);
 	}

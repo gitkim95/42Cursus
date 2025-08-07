@@ -39,14 +39,14 @@ int	find_a_cost(t_stack *a, int b_nb)
 	{
 		if (node->prev == NULL && if_a_prev_null(a, b_nb))
 			break ;
-		if (node->prev != NULL && node->prev->nb < b_nb && \
-			node->nb > b_nb && node->prev->nb < node->nb)
+		if (node->prev != NULL && node->prev->nb < b_nb
+			&& node->nb > b_nb && node->prev->nb < node->nb)
 			break ;
-		if (node->prev != NULL && node->prev->nb > b_nb && \
-			node->nb > b_nb && node->prev->nb > node->nb)
+		if (node->prev != NULL && node->prev->nb > b_nb
+			&& node->nb > b_nb && node->prev->nb > node->nb)
 			break ;
-		if (node->prev != NULL && node->prev->nb < b_nb && \
-			node->nb < b_nb && node->prev->nb > node->nb)
+		if (node->prev != NULL && node->prev->nb < b_nb
+			&& node->nb < b_nb && node->prev->nb > node->nb)
 			break ;
 		node = node->next;
 		cnt++;
@@ -54,18 +54,6 @@ int	find_a_cost(t_stack *a, int b_nb)
 	if (cnt > a->size / 2)
 		cnt = cnt - a->size;
 	return (cnt);
-}
-
-void	set_abs_value(int *a_loc, int *b_loc, int *a_co, int *b_co)
-{
-	if (*a_loc < 0)
-		*a_loc *= -1;
-	if (*b_loc < 0)
-		*b_loc *= -1;
-	if (*a_co < 0)
-		*a_co *= -1;
-	if (*b_co < 0)
-		*b_co *= -1;
 }
 
 int	check_least_cost(t_least_cost *cal)
@@ -79,7 +67,14 @@ int	check_least_cost(t_least_cost *cal)
 	b_loc = cal->b_location;
 	a_co = cal->a_cost;
 	b_co = cal->b_cost;
-	set_abs_value(&a_loc, &b_loc, &a_co, &b_co);
+	if (a_loc < 0)
+		a_loc *= -1;
+	if (b_loc < 0)
+		b_loc *= -1;
+	if (a_co < 0)
+		a_co *= -1;
+	if (b_co < 0)
+		b_co *= -1;
 	if (a_loc + b_loc < a_co + b_co)
 		return (1);
 	return (0);

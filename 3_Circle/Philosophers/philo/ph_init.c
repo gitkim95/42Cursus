@@ -66,8 +66,8 @@ int	ph_data_init(t_data *data, int argc, char *argv[])
 		if (data->times_to_eat < 0)
 			return (1);
 	}
-	if (data->num_of_philo <= 0 || data->time_to_die < 0 || \
-		data->time_to_eat < 0 || data->time_to_sleep < 0)
+	if (data->num_of_philo <= 0 || data->time_to_die < 0
+		|| data->time_to_eat < 0 || data->time_to_sleep < 0)
 		return (1);
 	if (ph_data_mutex_init(data))
 		return (1);

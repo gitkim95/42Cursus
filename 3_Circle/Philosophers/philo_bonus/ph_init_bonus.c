@@ -76,8 +76,8 @@ void	ph_data_init_b(t_philo_b *philo, t_data_b *data, int ac, char **av)
 		if (data->times_to_eat < 0)
 			terminator_b (1, NULL, "Incorrect data");
 	}
-	if (data->num_of_philo <= 0 || data->time_to_die < 0 || \
-		data->time_to_eat < 0 || data->time_to_sleep < 0)
+	if (data->num_of_philo <= 0 || data->time_to_die < 0
+		|| data->time_to_eat < 0 || data->time_to_sleep < 0)
 		terminator_b (1, NULL, "Incorrect data");
 	ph_set_sem_data(philo, data);
 }

@@ -52,8 +52,8 @@ void	set_coord_map(t_fdf *fdf, t_map_list **head)
 	idx = 0;
 	while (idx < fdf->map.height)
 	{
-		fdf->map.data[idx] = (t_coord *)malloc(sizeof(t_coord) * \
-		fdf->map.width);
+		fdf->map.data[idx] = (t_coord *)malloc(sizeof(t_coord)
+				* fdf->map.width);
 		if (!(fdf->map.data[idx]))
 		{
 			free_fdf_coord(fdf);

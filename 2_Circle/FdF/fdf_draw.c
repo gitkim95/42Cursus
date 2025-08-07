@@ -84,8 +84,8 @@ int	refresh_image(t_fdf *fdf)
 {
 	mlx_destroy_image(fdf->mlx, fdf->img);
 	fdf->img = mlx_new_image(fdf->mlx, WIDTH, HEIGHT);
-	fdf->addr = mlx_get_data_addr(fdf->img, &fdf->bpp, \
-		&fdf->line_len, &fdf->endian);
+	fdf->addr = mlx_get_data_addr(fdf->img, &fdf->bpp,
+			&fdf->line_len, &fdf->endian);
 	draw_horizen_line(fdf);
 	draw_vertical_line(fdf);
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img, 0, 0);
