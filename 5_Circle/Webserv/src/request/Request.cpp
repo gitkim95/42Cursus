@@ -227,7 +227,13 @@ void Request::parseMultipart(const CharVec &buffer)
 
 		size_t fileNameIdx = contentDisposition.find("filename=");
 		if (fileNameIdx != std::string::npos)
-			fileName = stripQuotes(contentDisposition.substr(fileNameIdx + 9));
+		{
+			fileName = this->body.changeFileName(stripQuotes(contentDisposition.substr(fileNameIdx + 9)));
+		}
+		if (fileNameIdx == std::string::npos || fileName.empty())
+		{
+			fileName = this->body.changeFileName(sizeToStr(getCurrentTimeMillis()));
+		}
 
 		line.clear();
 		line = getVecLine(buffer, pos);

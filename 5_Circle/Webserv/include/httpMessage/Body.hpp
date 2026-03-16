@@ -13,9 +13,6 @@
 #ifndef BODY_HPP
 #define BODY_HPP
 
-#include <vector>
-#include <string>
-#include <map>
 #include "sys/types.hpp"
 
 class Body
@@ -33,6 +30,9 @@ public:
 	const std::map<std::string, CharVec> &getFileData() const;
 	void setContent(const CharVec &content);
 	void setFileData(const std::string &fileName, const CharVec &fileBody);
+
+	const bool isAlreadyExistKey(const std::string &filename) const;
+	const std::string changeFileName(const std::string &filename) const;
 
 	Body &operator=(const Body &body);
 };
