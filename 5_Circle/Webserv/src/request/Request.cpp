@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 23:06:10 by hwilkim           #+#    #+#             */
-/*   Updated: 2025/08/05 23:37:23 by gitkim           ###   ########.fr       */
+/*   Updated: 2026/03/16 22:37:20 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,11 +205,16 @@ void Request::parseMultipart(const CharVec &buffer)
 {
 	std::string boundaryMarker = "--" + this->header.getAttributeValue("boundary");
 	std::string boundaryEnd = boundaryMarker + "--";
+	std::string line;
 	size_t pos = 0;
-
+	
 	while (pos < buffer.size())
 	{
-		std::string line = getVecLine(buffer, pos);
+		if (line != boundaryMarker)
+		{
+			line.clear();
+			line = getVecLine(buffer, pos);
+		}
 		if (line != boundaryMarker)
 			continue;
 
@@ -235,15 +240,15 @@ void Request::parseMultipart(const CharVec &buffer)
 		while (pos < buffer.size())
 		{
 			size_t lineStart = pos;
-			std::string nextLine;
-			nextLine = getVecLine(buffer, pos);
-
-			if (nextLine == boundaryMarker || nextLine == boundaryEnd)
+			line.clear();
+			line = getVecLine(buffer, pos);
+			
+			if (line == boundaryMarker || line == boundaryEnd)
 			{
 				if (fileBody.size() >= 2 && fileBody[fileBody.size() - 2] == '\r' && fileBody[fileBody.size() - 1] == '\n')
 					fileBody.erase(fileBody.end() - 2, fileBody.end());
 				this->body.setFileData(fileName, fileBody);
-				if (nextLine == boundaryEnd)
+				if (line == boundaryEnd)
 					return;
 				break;
 			}
