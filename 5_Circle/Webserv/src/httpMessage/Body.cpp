@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 22:03:07 by hwilkim           #+#    #+#             */
-/*   Updated: 2025/04/27 17:35:11 by gitkim           ###   ########.fr       */
+/*   Updated: 2026/03/19 19:37:27 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ const std::map<std::string, CharVec> &Body::getFileData() const { return (this->
 void Body::setContent(const CharVec &content) { this->content = content; }
 void Body::setFileData(const std::string &fileName, const CharVec &fileBody) { this->fileData[fileName] = fileBody; }
 
-const bool Body::isAlreadyExistKey(const std::string &filename) const
+bool Body::isAlreadyExistKey(const std::string &filename) const
 {
 	return (this->fileData.count(filename) > 0);
 }

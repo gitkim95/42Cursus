@@ -6,7 +6,7 @@
 /*   By: gitkim <gitkim@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 22:02:15 by hwilkim           #+#    #+#             */
-/*   Updated: 2025/04/26 18:26:59 by gitkim           ###   ########.fr       */
+/*   Updated: 2026/03/19 19:37:33 by gitkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ public:
 	void setContent(const CharVec &content);
 	void setFileData(const std::string &fileName, const CharVec &fileBody);
 
-	const bool isAlreadyExistKey(const std::string &filename) const;
+	bool isAlreadyExistKey(const std::string &filename) const;
 	const std::string changeFileName(const std::string &filename) const;
 
 	Body &operator=(const Body &body);
